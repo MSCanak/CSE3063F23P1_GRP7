@@ -79,7 +79,7 @@
           ],
           "SemesterInf": {
             "TakenCredit": 31,
-            "ComplatedCredit": 31,
+            "CompletedCredit": 31,
             "Yano": 3.0161290322580645,
             "Gano": 3.0161290322580645
           }
@@ -153,7 +153,7 @@
           ],
           "SemesterInf": {
             "TakenCredit": 61,
-            "ComplatedCredit": 61,
+            "CompletedCredit": 61,
             "Yano": 2.7333333333333334,
             "Gano": 2.877049180327869
           }
@@ -211,7 +211,7 @@
           ],
           "SemesterInf": {
             "TakenCredit": 91,
-            "ComplatedCredit": 91,
+            "CompletedCredit": 91,
             "Yano": 2.6666666666666665,
             "Gano": 2.8076923076923075
           }
@@ -261,7 +261,7 @@
           ],
           "SemesterInf": {
             "TakenCredit": 120,
-            "ComplatedCredit": 120,
+            "CompletedCredit": 120,
             "Yano": 2.396551724137931,
             "Gano": 2.7083333333333335
           }
