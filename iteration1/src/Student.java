@@ -1,7 +1,7 @@
 public class Student extends Person {
-    int semester;
-    Transcript transcript;
-    Advisor advisor;
+    private int semester;
+    private Transcript transcript;
+    private Advisor advisor;
     public Student(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department, int semester,Advisor advisor) {
         super(name, surname, email, phoneNumber, ID, password, faculty, department);
         this.semester = semester;
