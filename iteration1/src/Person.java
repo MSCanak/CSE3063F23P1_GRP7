@@ -98,7 +98,7 @@ public abstract class Person {
         return 0;
     }
 
-    public Arraylist<Course> getCoursesTaken() {
+    public ArrayList<Course> getCoursesTaken() {
         return null;
     }
 
