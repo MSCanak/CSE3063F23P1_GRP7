@@ -68,12 +68,11 @@ public class StudentCourseRegistrationInterface {
     private void selectedCoursesMenu() {
         scanner = new Scanner(System.in);
         var choice = "";
-        while (choice.equals("5")) {
+        while (choice.equals("4")) {
             System.out.println("1. Show selected courses");
             System.out.println("2. Delete selected courses");
             System.out.println("3. Send registration request");
-            System.out.println("4. Calculate available courses");
-            System.out.println("5. Exit");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.next();
             switch (choice) {
@@ -87,9 +86,6 @@ public class StudentCourseRegistrationInterface {
                     sendRegRequest();
                     break;
                 case "4":
-                    calculateAvailableCourses();
-                    break;
-                case "5":
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -103,20 +99,6 @@ public class StudentCourseRegistrationInterface {
             System.out.println("Course name: " + course.getCourseName());
             System.out.println("Course credits: " + course.getCredit());
             System.out.println("Course is elective: " + course.isElective());
-            System.out.println("Course optional prerequisites: ");
-            for (var optionalPrerequisite : course.getOptionalPrerequisite()) {
-                System.out.println("Course ID: " + optionalPrerequisite.getCourseID());
-                System.out.println("Course name: " + optionalPrerequisite.getCourseName());
-                System.out.println("Course credits: " + optionalPrerequisite.getCredit());
-                System.out.println("Course is elective: " + optionalPrerequisite.isElective());
-            }
-            System.out.println("Course mandatory prerequisites: ");
-            for (var mandatoryPrerequisite : course.getMandatoryPrerequisite()) {
-                System.out.println("Course ID: " + mandatoryPrerequisite.getCourseID());
-                System.out.println("Course name: " + mandatoryPrerequisite.getCourseName());
-                System.out.println("Course credits: " + mandatoryPrerequisite.getCredit());
-                System.out.println("Course is elective: " + mandatoryPrerequisite.isElective());
-            }
         }
         // continue when enter is pressed
         System.out.println("\nPress enter to continue");
@@ -196,30 +178,25 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void showAvailableCourses() {
+        if (availableCourses.isEmpty()) {
+            System.out.println("No available courses");
+            return;
+        }
+
         for (var course : availableCourses) {
             System.out.println("Course ID: " + course.getCourseID());
             System.out.println("Course name: " + course.getCourseName());
             System.out.println("Course credits: " + course.getCredit());
             System.out.println("Course is elective: " + course.isElective());
-            System.out.println("Course optional prerequisites: ");
-            for (var optionalPrerequisite : course.getOptionalPrerequisite()) {
-                System.out.println("Course ID: " + optionalPrerequisite.getCourseID());
-                System.out.println("Course name: " + optionalPrerequisite.getCourseName());
-                System.out.println("Course credits: " + optionalPrerequisite.getCredit());
-                System.out.println("Course is elective: " + optionalPrerequisite.isElective());
-            }
-            System.out.println("Course mandatory prerequisites: ");
-            for (var mandatoryPrerequisite : course.getMandatoryPrerequisite()) {
-                System.out.println("Course ID: " + mandatoryPrerequisite.getCourseID());
-                System.out.println("Course name: " + mandatoryPrerequisite.getCourseName());
-                System.out.println("Course credits: " + mandatoryPrerequisite.getCredit());
-                System.out.println("Course is elective: " + mandatoryPrerequisite.isElective());
-            }
         }
+        // continue when enter is pressed
+        System.out.println("\nPress enter to continue");
+        scanner.nextLine();
     }
 
     private void saveAvailableCourses() {
-        // save available courses to a current student_id.json file inside of iteration1/jsons/
+        // save available courses to a current student_id.json file inside of
+        // iteration1/jsons/
     }
 
     private void showSyllabus() {
