@@ -6,8 +6,7 @@ public class Course {
 
     private String courseName,courseID;
     private int credit;
-    private boolean isTheoretical, isElective;
-    private CourseSession Session;
+    private boolean isElective;
     private ArrayList<Course> optionalPrerequisite;
     private ArrayList<Course> mandatoryPrerequisite;
     
@@ -29,23 +28,12 @@ public class Course {
     public void setCredit(int credit) {
         this.credit = credit;
     }
-    public boolean isTheoretical() {
-        return isTheoretical;
-    }
-    public void setTheoretical(boolean isTheoretical) {
-        this.isTheoretical = isTheoretical;
-    }
+
     public boolean isElective() {
         return isElective;
     }
     public void setElective(boolean isElective) {
         this.isElective = isElective;
-    }
-    public CourseSession getSession() {
-        return Session;
-    }
-    public void setSession(CourseSession session) {
-        Session = session;
     }
     public ArrayList<Course> getOptionalPrerequisite() {
         return optionalPrerequisite;
