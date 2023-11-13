@@ -17,29 +17,17 @@ students = []
 
 for file in files:
     # open each file
-    with open("iteration1/jsons/student" + file, "r") as f:
-        # load the json file
+    with open("iteration1/jsons/student/" + file, "r") as f:
         json_file = json.load(f)
-        # create a student object
-        student = (json_file["id"], json_file["name"], json_file["surname"])
-        # append the student object to the list
+        student = dict(
+            Id=json_file["Id"], Name=json_file["Name"], Surname=json_file["Surname"]
+        )
         students.append(student)
-
-# create a json file with all students
-
-# create a list of dictionaries
-students_dict = []
-# iterate over all students
-for student in students:
-    # create a dictionary for each student
-    student_dict = {"id": student.id, "name": student.name, "surname": student.surname}
-    # append the dictionary to the list
-    students_dict.append(student_dict)
 
 # create a json file
 with open("iteration1/jsons/students.json", "w") as f:
     # dump the list of dictionaries to the json file
-    json.dump(students_dict, f, indent=4)
+    json.dump(students, f, indent=4)
 
 # print the list of dictionaries
-print(students_dict)
+print(students)
