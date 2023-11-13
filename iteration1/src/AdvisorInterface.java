@@ -18,16 +18,16 @@ public class AdvisorInterface{
 
         scanner = new Scanner(System.in);
         System.out.print("1) Course registiration System\n2) Logout\n3) Exit\n");
-        int caseNumber = scanner.nextInt();
+        char caseToken = scanner.next(). charAt(0);
         
-        switch(caseNumber){
-            case 1: //for course Registration system
+        switch(caseToken){
+            case '1': //for course Registration system
                 advCourseRegInt.advRegMenu();
                 break;
-            case 2: // logout
+            case '*': // logout
                 loginInt.logout();
                 break;
-            case 3: //exit
+            case 'x': //exit
                 loginInt.exit();
                 break;
             default :
