@@ -1,14 +1,14 @@
 [
     {
-        "name": "Murat",
-        "surname": "Ganiz",
-        "email": "mganiz@marmara.edu.tr",
-        "phoneNumber": "05555555550",
+        "Name": "Murat",
+        "Surname": "Ganiz",
+        "Email": "mganiz@marmara.edu.tr",
+        "PhoneNumber": "05555555550",
         "ID": "150101",
-        "password": "150101Murat",
-        "faculty": "Engineering",
-        "department": "Computer Science Engineering",
-        "students": [
+        "Password": "150101Murat",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Students": [
             {
                 "Id": "150120000",
                 "Name": "Ensar",
@@ -37,15 +37,15 @@
         ]
     },
     {
-        "name": "Betul",
-        "surname": "Boz",
-        "email": "bboz@marmara.edu.tr",
-        "phoneNumber": "05555555551",
+        "Name": "Betul",
+        "Surname": "Boz",
+        "Email": "bboz@marmara.edu.tr",
+        "PhoneNumber": "05555555551",
         "ID": "150102",
-        "password": "150102Betul",
-        "faculty": "Engineering",
-        "department": "Computer Science Engineering",
-        "students": [
+        "Password": "150102Betul",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Students": [
             {
                 "Id": "150120001",
                 "Name": "Ayse",
