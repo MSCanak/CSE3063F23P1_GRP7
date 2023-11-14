@@ -1,0 +1,76 @@
+[
+    {
+        "name": "Murat",
+        "surname": "Ganiz",
+        "email": "mganiz@marmara.edu.tr",
+        "phoneNumber": "05555555550",
+        "ID": "150101",
+        "password": "150101Murat",
+        "faculty": "Engineering",
+        "department": "Computer Science Engineering",
+        "students": [
+            {
+                "Id": "150120000",
+                "Name": "Ensar",
+                "Surname": "Yozgat"
+            },
+            {
+                "Id": "150120002",
+                "Name": "Turan",
+                "Surname": "Kaya"
+            },
+            {
+                "Id": "150120004",
+                "Name": "Muhammet",
+                "Surname": "Karagul"
+            },
+            {
+                "Id": "150120006",
+                "Name": "Feyz",
+                "Surname": "Asil"
+            },
+            {
+                "Id": "150120008",
+                "Name": "Muhamammed",
+                "Surname": "Nael"
+            }
+        ]
+    },
+    {
+        "name": "Betul",
+        "surname": "Boz",
+        "email": "bboz@marmara.edu.tr",
+        "phoneNumber": "05555555551",
+        "ID": "150102",
+        "password": "150102Betul",
+        "faculty": "Engineering",
+        "department": "Computer Science Engineering",
+        "students": [
+            {
+                "Id": "150120001",
+                "Name": "Ayse",
+                "Surname": "Demir"
+            },
+            {
+                "Id": "150120003",
+                "Name": "Said",
+                "Surname": "Canak"
+            },
+            {
+                "Id": "150120005",
+                "Name": "Kadir",
+                "Surname": "Bat"
+            },
+            {
+                "Id": "150120007",
+                "Name": "Adullah",
+                "Surname": "Kan"
+            },
+            {
+                "Id": "150120009",
+                "Name": "Barbara",
+                "Surname": "Palvin"
+            }
+        ]
+    }
+]
