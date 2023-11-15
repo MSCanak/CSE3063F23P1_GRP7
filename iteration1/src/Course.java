@@ -78,6 +78,7 @@ public class Course {
             Integer Semester = (int) course.get("Semester");
 
             System.out.printf("Semester %d%n", Semester);
+            
             System.out.printf("\t%1s%10s%1s%35s%1s%15s%1s%8s%1s%10s%1s%25s%1s%25s%n", "|",
                     CourseID,"|", CourseName, "|", CourseType,"|" ,Credit,"|",
                     "OptionalPrerequisites","|", "MandatoryPrerequisites");
