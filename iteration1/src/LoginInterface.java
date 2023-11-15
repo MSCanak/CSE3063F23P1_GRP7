@@ -1,3 +1,10 @@
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class LoginInterface {
@@ -18,7 +25,7 @@ public class LoginInterface {
         getLoginInf();
         if(userExists()) {
             System.out.println("You have successfully logged in.");
-
+            userConstructor();
         }
         else {
             System.out.println("Invalid ID or password!");
@@ -77,11 +84,20 @@ public class LoginInterface {
     }
 
     private boolean userExists() {
-        if (ID.length() == 9) {
-            
-        }
-        else if (ID.length() == 6) {
-            
+        JSONParser parser = new JSONParser();
+        try {
+            FileReader reader = new FileReader("students.json");
+            Object obj = parser.parse(reader);
+            JSONArray studentList = (JSONArray) obj;
+
+            for (Object studentObj : studentList) {
+                JSONObject student = (JSONObject) studentObj;
+                if (student.get("Id").equals(ID) && student.get("Password").equals(password)) {
+                    return true;
+                }
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
         }
         return false;
     }
