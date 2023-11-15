@@ -3,9 +3,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.util.Scanner;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class LoginInterface {
     
@@ -25,6 +25,7 @@ public class LoginInterface {
         getLoginInf();
         if(userExists()) {
             System.out.println("You have successfully logged in.");
+            // create user object
             userConstructor();
         }
         else {
@@ -53,8 +54,6 @@ public class LoginInterface {
             System.out.println("Please try again.");
             logout();
         }
-        
-
     }
 
     public void exit() {
@@ -65,47 +64,79 @@ public class LoginInterface {
         // get id
         System.out.print("ID: ");
         ID = scanner.nextLine();
-        // if id is 9 digits, it is a student
-        if (ID.length() == 9) {
-            System.out.println("Password: ");
+        // check id format
+        if (!idFormatChecker()) {
+            System.out.println("Invalid ID!");
+            System.out.println("Please try again.");
+            login();
+        }
+        // get user type and password
+        if (getUserType().equalsIgnoreCase("student") || getUserType().equalsIgnoreCase("advisor")) {
+            // get password
+            System.out.print("Password: ");
             password = scanner.nextLine();
         }
-        // if id is 6 digits, it is an advisor
-        else if (ID.length() == 6) {
-            System.out.println("Password: ");
-            password = scanner.nextLine();
+        else {
+            System.out.println("Invalid ID!");
+            System.out.println("Please try again.");
+            login();    
         }
-        // else error
+    }
+
+    private boolean userExists() {
+    JSONParser parser = new JSONParser();
+    try {
+        FileReader reader = new FileReader("students.json");
+        Object obj = parser.parse(reader);
+        JSONArray studentList = (JSONArray) obj;
+
+        for (Object studentObj : studentList) {
+            JSONObject student = (JSONObject) studentObj;
+            if (student.get("Id").equals(ID) && student.get("Password").equals(password)) {
+                return true;
+            }
+        }
+    } catch (IOException | ParseException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+    // creates user object
+    private void userConstructor() {
+        if(getUserType().equalsIgnoreCase("student")){
+            // create student object
+        }
+        else if (getUserType().equalsIgnoreCase("advisor")) {
+            // create advisor object
+        }
         else {
             System.out.println("Invalid ID!");
             System.out.println("Please try again.");
             login();
         }
     }
-
-    private boolean userExists() {
-        JSONParser parser = new JSONParser();
-        try {
-            FileReader reader = new FileReader("students.json");
-            Object obj = parser.parse(reader);
-            JSONArray studentList = (JSONArray) obj;
-
-            for (Object studentObj : studentList) {
-                JSONObject student = (JSONObject) studentObj;
-                if (student.get("Id").equals(ID) && student.get("Password").equals(password)) {
-                    return true;
-                }
-            }
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
+    // returns false if id format is wrong
+    private boolean idFormatChecker() {
+        if (ID.isEmpty()) {
+            return false;
         }
-        return false;
+        for (int i = 0; i < ID.length(); i++) {
+            if (ID.charAt(i) < '0' || ID.charAt(i) > '9') {
+                return false;
+            }
+        }
+        return true;
     }
-
-    private void userConstructor() {
+    // returns user type
+    private String getUserType() {
         if (ID.length() == 9) {
+            return "student";
         }
         else if (ID.length() == 6) {
+            return "advisor";
+        }
+        else {
+            return null;
         }
     }
 }
