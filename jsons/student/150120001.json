@@ -6,7 +6,8 @@
     "Mail": "Ayse@marun.edu.tr",
     "Faculty": "Engineering",
     "Department": "Computer Science Engineering",
-    "AdvisorID": 150102,
+    "AdvisorId": "150102",
+    "PhoneNumber" : "00054181181",
     "Semester": 3,
     "Transcript": {
       "Semester": [

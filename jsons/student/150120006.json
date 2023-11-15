@@ -6,7 +6,8 @@
     "Mail": "Feyz@marun.edu.tr",
     "Faculty": "Engineering",
     "Department": "Computer Science Engineering",
-    "AdvisorID": 150101,
+    "AdvisorId": "150101",
+    "PhoneNumber" : "05321234568",
     "Semester": 3,
     "Transcript": {
       "Semester": [
