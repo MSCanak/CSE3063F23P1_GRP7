@@ -20,10 +20,7 @@ for file in files:
     with open("iteration1/jsons/student/" + file, "r") as f:
         json_file = json.load(f)
         student = dict(
-            Id=json_file["Id"],
-            Name=json_file["Name"],
-            Surname=json_file["Surname"],
-            Password=json_file["Password"],
+            Id=json_file["Id"], Name=json_file["Name"], Surname=json_file["Surname"]
         )
         students.append(student)
 

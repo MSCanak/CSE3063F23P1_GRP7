@@ -1,12 +1,13 @@
 {
-    "Id": "150120008",
-    "Name": "Muhamammed",
-    "Surname": "Nael",
-    "Password": "150120008Muhamammed",
-    "Mail": "Muhamammed@marun.edu.tr",
+    "Id": "150120003",
+    "Name": "Said",
+    "Surname": "Canak",
+    "Password": "150120003Said",
+    "Mail": "Said@marun.edu.tr",
     "Faculty": "Engineering",
     "Department": "Computer Science Engineering",
-    "AdvisorID": 150101,
+    "AdvisorId": "150102",
+    "PhoneNumber" : "05321234569",
     "Semester": 3,
     "Transcript": {
       "Semester": [
@@ -34,7 +35,7 @@
               "CourseType": "M",
               "Credit": 4,
               "Semester": 1,
-              "Grade": 0
+              "Grade": 2
             },
             {
               "CourseID": "CSE1241",
@@ -42,7 +43,7 @@
               "CourseType": "M",
               "Credit": 6,
               "Semester": 1,
-              "Grade": 2.5
+              "Grade": 3
             },
             {
               "CourseID": "MATH1001",
@@ -50,7 +51,7 @@
               "CourseType": "M",
               "Credit": 6,
               "Semester": 1,
-              "Grade": 2.5
+              "Grade": 4
             },
             {
               "CourseID": "PHYS1101",
@@ -58,7 +59,7 @@
               "CourseType": "M",
               "Credit": 4,
               "Semester": 1,
-              "Grade": 3
+              "Grade": 2.5
             },
             {
               "CourseID": "PHYS1103",
@@ -66,7 +67,7 @@
               "CourseType": "M",
               "Credit": 2,
               "Semester": 1,
-              "Grade": 3
+              "Grade": 4
             },
             {
               "CourseID": "TRD121",
@@ -74,14 +75,14 @@
               "CourseType": "M",
               "Credit": 2,
               "Semester": 1,
-              "Grade": 1.5
+              "Grade": 3
             }
           ],
           "SemesterInf": {
             "TakenCredit": 31,
             "CompletedCredit": 31,
-            "Yano": 2.129032258064516,
-            "Gano": 2.129032258064516
+            "Yano": 2.870967741935484,
+            "Gano": 2.870967741935484
           }
         },
         {
@@ -92,7 +93,7 @@
               "CourseType": "M",
               "Credit": 2,
               "Semester": 2,
-              "Grade": 3.5
+              "Grade": 3
             },
             {
               "CourseID": "CSE1242",
@@ -100,7 +101,7 @@
               "CourseType": "M",
               "Credit": 6,
               "Semester": 2,
-              "Grade": 2
+              "Grade": 2.5
             },
             {
               "CourseID": "MATH1002",
@@ -108,7 +109,7 @@
               "CourseType": "M",
               "Credit": 6,
               "Semester": 2,
-              "Grade": 2.5
+              "Grade": 1
             },
             {
               "CourseID": "MATH2256",
@@ -116,7 +117,7 @@
               "CourseType": "M",
               "Credit": 5,
               "Semester": 2,
-              "Grade": 2
+              "Grade": 2.5
             },
             {
               "CourseID": "PHYS1102",
@@ -124,7 +125,7 @@
               "CourseType": "M",
               "Credit": 4,
               "Semester": 2,
-              "Grade": 3
+              "Grade": 2
             },
             {
               "CourseID": "PHYS1104",
@@ -132,7 +133,7 @@
               "CourseType": "M",
               "Credit": 2,
               "Semester": 2,
-              "Grade": 0
+              "Grade": 2
             },
             {
               "CourseID": "TRD122",
@@ -140,7 +141,7 @@
               "CourseType": "M",
               "Credit": 2,
               "Semester": 2,
-              "Grade": 3
+              "Grade": 2
             },
             {
               "CourseID": "NTE1",
@@ -154,8 +155,8 @@
           "SemesterInf": {
             "TakenCredit": 61,
             "CompletedCredit": 61,
-            "Yano": 2.3666666666666667,
-            "Gano": 2.2459016393442623
+            "Yano": 2.15,
+            "Gano": 2.5163934426229506
           }
         },
         {
@@ -166,7 +167,7 @@
               "CourseType": "M",
               "Credit": 6,
               "Semester": 3,
-              "Grade": 4
+              "Grade": 2
             },
             {
               "CourseID": "CSE2225",
@@ -174,7 +175,7 @@
               "CourseType": "M",
               "Credit": 7,
               "Semester": 3,
-              "Grade": 3.5
+              "Grade": 2
             },
             {
               "CourseID": "ECON2004",
@@ -182,7 +183,7 @@
               "CourseType": "M",
               "Credit": 4,
               "Semester": 3,
-              "Grade": 1
+              "Grade": 3.5
             },
             {
               "CourseID": "EE2031",
@@ -190,7 +191,7 @@
               "CourseType": "M",
               "Credit": 5,
               "Semester": 3,
-              "Grade": 2
+              "Grade": 2.5
             },
             {
               "CourseID": "MATH2055",
@@ -198,7 +199,7 @@
               "CourseType": "M",
               "Credit": 4,
               "Semester": 3,
-              "Grade": 2
+              "Grade": 3
             },
             {
               "CourseID": "MATH2059",
@@ -212,8 +213,8 @@
           "SemesterInf": {
             "TakenCredit": 91,
             "CompletedCredit": 91,
-            "Yano": 2.75,
-            "Gano": 2.412087912087912
+            "Yano": 2.55,
+            "Gano": 2.5274725274725274
           }
         },
         {
@@ -232,7 +233,7 @@
               "CourseType": "M",
               "Credit": 7,
               "Semester": 4,
-              "Grade": 2.5
+              "Grade": 1
             },
             {
               "CourseID": "CSE2260",
@@ -240,7 +241,7 @@
               "CourseType": "M",
               "Credit": 6,
               "Semester": 4,
-              "Grade": 2
+              "Grade": 2.5
             },
             {
               "CourseID": "EE2032",
@@ -248,7 +249,7 @@
               "CourseType": "M",
               "Credit": 5,
               "Semester": 4,
-              "Grade": 1.5
+              "Grade": 2
             },
             {
               "CourseID": "STAT2253",
@@ -256,14 +257,14 @@
               "CourseType": "M",
               "Credit": 5,
               "Semester": 4,
-              "Grade": 2.5
+              "Grade": 0
             }
           ],
           "SemesterInf": {
             "TakenCredit": 120,
-            "CompletedCredit": 114,
-            "Yano": 2.1206896551724137,
-            "Gano": 2.341666666666667
+            "CompletedCredit": 115,
+            "Yano": 1.5172413793103448,
+            "Gano": 2.283333333333333
           }
         }
       ]
