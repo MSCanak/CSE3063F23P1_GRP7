@@ -29,8 +29,8 @@ public class Transcript {
 	}
 
 	// find json file with the corresponding studentId to parse
-    public void readAndParseStudentJson(String studentId) {
-        String filePath = "../jsons/student/" + studentId + ".json";
+    public void readAndParseStudentJson() {
+        String filePath = "../jsons/student/" + student.getID() + ".json";
         JSONParser parser = new JSONParser();
 
         try {
