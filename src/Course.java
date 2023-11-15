@@ -1,3 +1,4 @@
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,9 +59,11 @@ public class Course {
 
     public void showCourses() throws Exception {
         
-        System.out.printf("%-10s%-35s%-15s%-8s%-10s%-25s%-25s%n",
-                "CourseID", "CourseName", "CourseType", "Credit", "Semester",
-                "OptionalPrerequisites", "MandatoryPrerequisites"); //aralarına | koyup tablo gibi yapabilirim
+        System.out.printf("\t\t%-10s%-45s%-15s%-8s%-35s%-35s%n",
+                "CourseID", "CourseName", "CourseType", "Credit",
+                "OptionalPrerequisites", "MandatoryPrerequisites"); 
+
+
 
         Object coursesJSONobj;
         JSONArray courseJSONarr;
@@ -68,23 +71,49 @@ public class Course {
 
         courseJSONarr = (JSONArray) coursesJSONobj;
 
+        int previousSemester = -1;
         for (Object courseObj: courseJSONarr) {
             JSONObject course = (JSONObject) courseObj;
 
             String CourseID = (String) course.get("CourseID"); 
             String CourseName = (String) course.get("CourseName");
             String CourseType = (String) course.get("CourseType");
-            Integer Credit = (int) course.get("Credit");
-            Integer Semester = (int) course.get("Semester");
+            long Credit = (long) course.get("Credit");
+            long Semester = (long) course.get("Semester");
+            JSONArray OptionalPrerequisites = (JSONArray) course.get("OptionalPrerequisites");
+            JSONArray MandatoryPrerequisites = (JSONArray) course.get("MandatoryPrerequisites");
 
-            System.out.printf("Semester %d%n", Semester);
+            if (CourseType.equals("M")) {
+                CourseType = "Mandatory";
+            } else if (CourseType.equals("E")){
+                CourseType = "Elective";
+            }
             
-            System.out.printf("\t%1s%10s%1s%35s%1s%15s%1s%8s%1s%10s%1s%25s%1s%25s%n", "|",
-                    CourseID,"|", CourseName, "|", CourseType,"|" ,Credit,"|",
-                    "OptionalPrerequisites","|", "MandatoryPrerequisites");
+
+            String optionalPrerequisitesString = OptionalPrerequisites.toString().replace("\"", "").replace("[", "").replace("]", "").replace(",", "-");
+            String mandatoryPrerequisitesString = MandatoryPrerequisites.toString().replace("\"", "").replace("[", "").replace("]", "").replace(",", "-");
+
+            if (previousSemester != Semester) {
+                System.out.printf("-----------------------------------------------------------------------------------------------------------------------------------------------------------------%n");   
+                System.out.printf("Semester %s", Semester);
+                System.out.printf("\t%-10s%-45s%-15s%-8s%-35s%-35s%n%n",
+                "CourseID", "CourseName", "CourseType", "Credit",
+                "OptionalPrerequisites", "MandatoryPrerequisites"); 
+                previousSemester = (int) Semester;
+            }
+
+         
+            
+            System.out.printf("\t\t%-10s%-45s%-15s%-8s%-35s%-35s%n", 
+                    CourseID, CourseName,  CourseType ,Credit,
+                    optionalPrerequisitesString, mandatoryPrerequisitesString);
 
     }
 
+   
+    
+
 }
+
 }
 
