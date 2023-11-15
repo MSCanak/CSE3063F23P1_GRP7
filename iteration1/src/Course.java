@@ -1,3 +1,5 @@
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Course {
@@ -46,6 +48,15 @@ public class Course {
     }
     public void setMandatoryPrerequisite(ArrayList<Course> mandatoryPrerequisite) {
         this.mandatoryPrerequisite = mandatoryPrerequisite;
+    }
+
+        private void showCourses() {
+        
+        System.out.printf("%-10s%-35s%-15s%-8s%-10s%-25s%-25s%n",
+                "CourseID", "CourseName", "CourseType", "Credit", "Semester",
+                "OptionalPrerequisites", "MandatoryPrerequisites"); //aralarına | koyup tablo gibi yapabilirim
+
+
     }
 
 }
