@@ -31,7 +31,7 @@ public class Transcript {
 	}
 
 	// initialize YANO from studentID.json
-    private void initializeYano() {
+    private void initializeYanoAndGano() {
         String filePath = "../jsons/student/" + student.getID() + ".json";
         JSONParser parser = new JSONParser();
 
@@ -48,7 +48,9 @@ public class Transcript {
             for (int i = 0; i < arrayOfSemesters.size(); i++) {
                 JSONObject semester = (JSONObject) arrayOfSemesters.get(i);
                 Double yanoVal = (Double) semester.get("Yano");
+                Double ganoVal = (Double) semester.get("Gano");
                 yano.put(i + 1, yanoVal);
+                gano.put(i + 1, ganoVal);
             }
 
         } catch (Exception exception) {
