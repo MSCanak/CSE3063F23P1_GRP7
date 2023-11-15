@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -28,7 +30,33 @@ public class Transcript {
 		this.scanner = new Scanner(System.in);
 	}
 
-	// find json file with the corresponding studentId to parse
+	// initialize YANO from studentID.json
+    private void initializeYano() {
+        String filePath = "../jsons/student/" + student.getID() + ".json";
+        JSONParser parser = new JSONParser();
+
+        try {
+            // read student json file
+            Object obj = parser.parse(new FileReader(filePath));
+            JSONObject studentJson = (JSONObject) obj;
+            
+            // get transcript attribute then obtain the array of courses inside
+            JSONObject transcript = (JSONObject) studentJson.get("Transcript");
+            JSONArray arrayOfSemesters = (JSONArray) transcript.get("Semester");
+
+            // fetch each semester's yano
+            for (int i = 0; i < arrayOfSemesters.size(); i++) {
+                JSONObject semester = (JSONObject) arrayOfSemesters.get(i);
+                Double yanoVal = (Double) semester.get("Yano");
+                yano.put(i + 1, yanoVal);
+            }
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+    
+	// find json file with the corresponding studentId to parse - debug
     public void readAndParseStudentJson() {
         String filePath = "../jsons/student/" + student.getID() + ".json";
         JSONParser parser = new JSONParser();
