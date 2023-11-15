@@ -31,7 +31,16 @@ public class StudentInterface {
         // viewing transcript
         case '1':
             student.getTranscript().viewTranscript();
-            break;
+            boolean a = true;
+            while (a) {
+                System.out.println("Enter '0' to go back to the main menu.");
+                char backChoice = input.next().charAt(0);
+                if (backChoice == '0') {
+                    stuMenu();
+                } else {
+                    System.out.println("Invalid input. Please try again.");
+                }
+            }
 
         // show courses
         case '2':
