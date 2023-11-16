@@ -15,7 +15,7 @@ public class Transcript {
 	// first argument for semester value
 	private HashMap<Integer, Double> yano;
 	private HashMap<Integer, Double> gano;
-	private HashMap<Integer, ArrayList<String>> courses;
+	private HashMap<Integer, ArrayList<Course>> courses;
 	private HashMap<Integer, Integer> takenCredit;
 	private HashMap<Integer, Integer> completedCredit;
 	private Student student;
@@ -29,8 +29,14 @@ public class Transcript {
 		this.completedCredit = new HashMap<>();
 		this.student = student;
 		this.scanner = new Scanner(System.in);
+		
+		createTranscript();
+	}
 
+	// 
+	private void createTranscript() {
 		initializeYanoAndGano();
+		initializeTakenAndCompletedCredit();
 		
 		// debug
 		System.out.println("Yano HashMap:");
@@ -38,8 +44,58 @@ public class Transcript {
 		for (Entry<Integer, Double> entry : yano.entrySet()) {
 			System.out.println("Semester " + entry.getKey() + ": " + entry.getValue());
 		}
-	}
 
+		// debug
+		System.out.println("Gano HashMap:");
+
+		for (Entry<Integer, Double> entry : gano.entrySet()) {
+			System.out.println("Semester " + entry.getKey() + ": " + entry.getValue());
+		}
+		
+		
+		// debug
+		System.out.println("Taken HashMap:");
+
+		for (Entry<Integer, Integer> entry : takenCredit.entrySet()) {
+			System.out.println("Semester " + entry.getKey() + ": " + entry.getValue());
+		}
+		
+		// debug
+		System.out.println("Completed HashMap:");
+
+		for (Entry<Integer, Integer> entry : completedCredit.entrySet()) {
+			System.out.println("Semester " + entry.getKey() + ": " + entry.getValue());
+		}
+	}
+	
+	private void initializeTakenAndCompletedCredit() {
+		String filePath = "./jsons/student/" + student.getID() + ".json";
+		JSONParser parser = new JSONParser();
+
+		try {
+			// read student json file
+			Object obj = parser.parse(new FileReader(filePath));
+			JSONObject studentJson = (JSONObject) obj;
+
+			// get transcript attribute then obtain the array of courses inside
+			JSONObject transcript = (JSONObject) studentJson.get("Transcript");
+			JSONArray arrayOfSemesters = (JSONArray) transcript.get("Semester");
+
+			// fetch each semester's yano
+			for (int i = 0; i < arrayOfSemesters.size(); i++) {
+				JSONObject semester = (JSONObject) arrayOfSemesters.get(i);
+				Integer takenCreditVal = ((Number) ((JSONObject) semester.get("SemesterInf")).get("TakenCredit")).intValue();
+				Integer completedCreditVal = ((Number) ((JSONObject) semester.get("SemesterInf")).get("CompletedCredit")).intValue();
+				System.out.println(takenCreditVal);
+				takenCredit.put(i + 1, takenCreditVal);
+				completedCredit.put(i + 1, completedCreditVal);
+			}
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+	}
+	
 	// initialize YANO and GANO from studentID.json
 	private void initializeYanoAndGano() {
 		String filePath = "./jsons/student/" + student.getID() + ".json";
@@ -71,7 +127,7 @@ public class Transcript {
 
 	// find json file with the corresponding studentId to parse - debug
 	public void readAndParseStudentJson() {
-		String filePath = "../jsons/student/" + student.getID() + ".json";
+		String filePath = "./jsons/student/" + student.getID() + ".json";
 		JSONParser parser = new JSONParser();
 
 		try {
@@ -107,11 +163,11 @@ public class Transcript {
 		this.gano = gano;
 	}
 
-	public HashMap<Integer, ArrayList<String>> getCourses() {
+	public HashMap<Integer, ArrayList<Course>> getCourses() {
 		return courses;
 	}
 
-	public void setCourses(HashMap<Integer, ArrayList<String>> courses) {
+	public void setCourses(HashMap<Integer, ArrayList<Course>> courses) {
 		this.courses = courses;
 	}
 
