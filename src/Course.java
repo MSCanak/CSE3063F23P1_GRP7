@@ -14,8 +14,29 @@ public class Course {
     private String courseName, courseID;
     private int credit;
     private boolean isElective;
+    private int semester;
+
+    
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+
+
     private ArrayList<Course> optionalPrerequisite;
     private ArrayList<Course> mandatoryPrerequisite;
+
+    public Course(String courseName, String courseID, int credit, boolean isElective, int semester) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.credit = credit;
+        this.isElective = isElective;
+        this.semester = semester;
+    }
 
     public String getCourseName() {
         return courseName;
@@ -64,6 +85,8 @@ public class Course {
     public void setMandatoryPrerequisite(ArrayList<Course> mandatoryPrerequisite) {
         this.mandatoryPrerequisite = mandatoryPrerequisite;
     }
+
+
 
     public void showCourses() throws Exception {
 
