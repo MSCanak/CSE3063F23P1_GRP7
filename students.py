@@ -10,22 +10,22 @@ import json
 import os
 
 # get all files inside of iteration1/jsons/student/ folder
-files = os.listdir("iteration1/jsons/student")
+files = os.listdir("jsons/student")
 # create a list of student objects
 students = []
 # iterate over all files
 
 for file in files:
     # open each file
-    with open("iteration1/jsons/student/" + file, "r") as f:
+    with open("jsons/student/" + file, "r") as f:
         json_file = json.load(f)
         student = dict(
-            Id=json_file["Id"], Name=json_file["Name"], Surname=json_file["Surname"]
+            Id=json_file["Id"], Name=json_file["Name"], Surname=json_file["Surname"], Password=json_file["Password"]
         )
         students.append(student)
 
 # create a json file
-with open("iteration1/jsons/students.json", "w") as f:
+with open("jsons/students.json", "w") as f:
     # dump the list of dictionaries to the json file
     json.dump(students, f, indent=4)
 
