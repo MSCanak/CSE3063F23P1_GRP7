@@ -35,33 +35,6 @@ public class Transcript {
 		initializeYanoAndGano();
 		initializeTakenAndCompletedCredit();
 		initializeAndConstructCourses();
-		// debug
-		System.out.println("Yano HashMap:");
-
-		for (Entry<Integer, Double> entry : yano.entrySet()) {
-			System.out.println("Semester " + entry.getKey() + ": " + entry.getValue());
-		}
-
-		// debug
-		System.out.println("Gano HashMap:");
-
-		for (Entry<Integer, Double> entry : gano.entrySet()) {
-			System.out.println("Semester " + entry.getKey() + ": " + entry.getValue());
-		}
-
-		// debug
-		System.out.println("Taken HashMap:");
-
-		for (Entry<Integer, Integer> entry : takenCredit.entrySet()) {
-			System.out.println("Semester " + entry.getKey() + ": " + entry.getValue());
-		}
-
-		// debug
-		System.out.println("Completed HashMap:");
-
-		for (Entry<Integer, Integer> entry : completedCredit.entrySet()) {
-			System.out.println("Semester " + entry.getKey() + ": " + entry.getValue());
-		}
 	}
 
 	private void initializeAndConstructCourses() {
