@@ -6,7 +6,8 @@
     "Mail": "Muhammet@marun.edu.tr",
     "Faculty": "Engineering",
     "Department": "Computer Science Engineering",
-    "AdvisorID": 150101,
+    "AdvisorID": "150101",
+    "PhoneNumber" : "05321234569",
     "Semester": 3,
     "Transcript": {
       "Semester": [
