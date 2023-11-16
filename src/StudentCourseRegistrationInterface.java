@@ -1,5 +1,9 @@
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -127,7 +131,26 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void sendRegRequest() {
+        // Convert the selected courses to JSON
+        var selectedCoursesJsonArray = new JSONArray();
+        for (var course : selectedCourses) {
+            var courseJson = new JSONObject();
+            courseJson.put("CourseID", course.getCourseID());
+            selectedCoursesJsonArray.add(courseJson);
+        }
 
+        // Create the final JSON object
+        var registrationJson = new JSONObject();
+        registrationJson.put("StudentID", student.getID());
+        registrationJson.put("SelectedCourses", selectedCoursesJsonArray);
+
+        // Write the selected courses JSON to the file
+        try (var fileWriter = new FileWriter("jsons/RegistrationRequests.json")) {
+            fileWriter.write(registrationJson.toJSONString());
+            System.out.println("Registration request written to RegistrationRequests.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void availableCoursesMenu() {
@@ -165,7 +188,7 @@ public class StudentCourseRegistrationInterface {
         return null; // returns when course not found
     }
 
-    private void calculateAvailableCourses() throws Exception {
+    private void calculateAvailableCourses() {
         var allCourses = new ArrayList<Course>();
         var targetSemester = student.getSemester();
 
