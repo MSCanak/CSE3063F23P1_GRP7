@@ -1,9 +1,7 @@
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -95,12 +93,10 @@ public class StudentCourseRegistrationInterface {
             System.out.println("Course credits: " + course.getCredit());
             System.out.println("Course is elective: " + course.isElective());
         }
-        // continue when enter is pressed
-        System.out.println("\nPress enter to continue");
-        scanner.nextLine();
     }
 
     private void deleteSelectedCourses() {
+        showSelectedCourses();
         scanner = new Scanner(System.in);
         var choice = "";
         while (choice.equals("0")) {
@@ -113,13 +109,12 @@ public class StudentCourseRegistrationInterface {
                     selectedCourses.clear();
                     break;
                 case "2":
-                    System.out.print("Enter the ID of the course you want to delete: ");
-                    var courseID = scanner.next();
-                    for (var course : selectedCourses) {
-                        if (course.getCourseID().equals(courseID)) {
-                            selectedCourses.remove(course);
-                            break;
-                        }
+                    System.out.print("Enter the number of the course you want to delete (for example -> 1 2 3): ");
+                    var selectedIndexes = scanner.nextLine().split(" ");
+                    System.out.print("Do you want to delete selected courses? (y/n): ");
+                    var saveChoice = scanner.next();
+                    if (saveChoice.toLowerCase().equals("y")) {
+                        deleteSelectedCourses(selectedIndexes);
                     }
                     break;
                 case "0":
@@ -127,6 +122,19 @@ public class StudentCourseRegistrationInterface {
                 default:
                     System.out.println("Invalid choice");
             }
+        }
+    }
+
+    private void deleteSelectedCourses(String[] selectedIndexes) {
+        // copy selected courses to a new list
+        var selectedCoursesCopy = new ArrayList<Course>();
+        for (var course : selectedCourses) {
+            selectedCoursesCopy.add(course);
+        }
+        // remove selected courses from selected courses
+        for (var selectedIndex : selectedIndexes) {
+            var index = Integer.parseInt(selectedIndex);
+            selectedCourses.remove(selectedCoursesCopy.get(index - 1));
         }
     }
 
@@ -158,7 +166,6 @@ public class StudentCourseRegistrationInterface {
         var choice = "";
         while (choice.equals("0")) {
             System.out.println("1. Show available courses");
-            System.out.println("2. Save available courses");
             System.out.println("0. Go back to main menu");
             choice = scanner.next();
             switch (choice) {
@@ -166,10 +173,12 @@ public class StudentCourseRegistrationInterface {
                     calculateAvailableCourses();
                     showAvailableCourses();
                     System.out.print("Select courses you want to add (for example -> 1 2 3): ");
-                    var courseIDs = scanner.nextLine().split(" ");
-                    break;
-                case "2":
-                    saveAvailableCourses();
+                    var selectedIndexes = scanner.nextLine().split(" ");
+                    System.out.print("Do you want to save selected courses? (y/n): ");
+                    var saveChoice = scanner.next();
+                    if (saveChoice.toLowerCase().equals("y")) {
+                        saveAvailableCourses(selectedIndexes);
+                    }
                     break;
                 case "0":
                     break;
@@ -179,7 +188,7 @@ public class StudentCourseRegistrationInterface {
         }
     }
 
-    private static Course findCourseByID(ArrayList<Course> courses, String courseID) {
+    private Course findCourseByID(ArrayList<Course> courses, String courseID) {
         for (var course : courses) {
             if (course.getCourseID().equals(courseID)) {
                 return course;
@@ -254,14 +263,24 @@ public class StudentCourseRegistrationInterface {
                 course.setOptionalPrerequisite(optionalPrerequisiteList);
             }
 
-            // filter by target semester and add to availableCourses
+            // clear availableCourses
+            availableCourses.clear();
 
+            // filter by target semester and add to availableCourses
             for (var course : allCourses) {
                 if (course.getSemester() == targetSemester)
                     availableCourses.add(course);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        // remove from availableCourses if that course already in selectedCourses
+        for (var selectedCourse : selectedCourses) {
+            if (availableCourses.contains(selectedCourse)) {
+                availableCourses.remove(selectedCourse);
+            }
         }
 
         // student information reading
@@ -330,13 +349,12 @@ public class StudentCourseRegistrationInterface {
             System.out.println("Course credits: " + course.getCredit());
             System.out.println("Course is elective: " + course.isElective());
         }
-        // continue when enter is pressed
-        System.out.println("\nPress enter to continue");
-        scanner.nextLine();
     }
 
-    private void saveAvailableCourses() {
-
+    private void saveAvailableCourses(String[] selectedIndexes) {
+        for (var selectedIndex : selectedIndexes) {
+            var index = Integer.parseInt(selectedIndex);
+            selectedCourses.add(availableCourses.get(index - 1));
+        }
     }
-
 }
