@@ -24,7 +24,8 @@ public class StudentInterface {
     public void stuMenu() {
 
         // prompting
-        System.out.println("What do you want to do?");
+        System.out.println("-------------------- Student Menu --------------------\n");
+        System.out.println("What do you want to do?\n");
         System.out.println("Enter '1' to view transcript");
         System.out.println("Enter '2' to view courses");
         System.out.println("Enter '3' to go to Course Registration System");
@@ -74,6 +75,7 @@ public class StudentInterface {
 
         // exiting
         case 'x':
+        System.out.println("\n-----------------------Thank you for using Marmara Course Registration System-----------------------");
         loginInterface.exit();
             break;
         
