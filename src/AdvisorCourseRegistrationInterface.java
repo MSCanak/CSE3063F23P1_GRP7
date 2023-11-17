@@ -1,7 +1,6 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,9 +19,9 @@ public class AdvisorCourseRegistrationInterface {
     Object coursObject;
     JSONArray courseJson;
 
-    public AdvisorCourseRegistrationInterface(Advisor advisor/* , AdvisorInterface advisorInt*/) {
+    public AdvisorCourseRegistrationInterface(Advisor advisor, AdvisorInterface advisorInt) {
         this.advisor = advisor;
-        // this.advisorInt = advisorInt;
+        this.advisorInt = advisorInt;
         this.scanner = new Scanner(System.in);
         this.selectionCourses = new ArrayList<String>();
         this.courses = new ArrayList<String>();

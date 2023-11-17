@@ -3,7 +3,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,8 +18,8 @@ public class LoginInterface {
     // login method to get the user in
     public void login() {
         while (true){
-            System.out.println("Welcome to Marmara Course Registration System.");
-            System.out.println("Please enter your ID and password to login.");
+            System.out.println("\n-----------------------Welcome to Marmara Course Registration System-----------------------");
+            System.out.println("Please enter your ID and password to login!\n");
             // get user login info
             String ID = getUserID();
             String password = getUserPassword();
@@ -31,10 +30,10 @@ public class LoginInterface {
                     if (checkUserLoginInfo("students", ID, password)) {
                         // create student object
                         person = createStudent(ID, null);
-                        System.out.println("Welcome " + person.getName() + " " + person.getSurname() + "!");
+                        System.out.println("\nWelcome " + person.getName() + " " + person.getSurname() + "!");
                         System.out.println("You have successfully logged in.");
                         // direct student to student menu
-                        System.out.println("You will be directed to the main menu.");
+                        System.out.println("You will be directed to the main menu!\n");
                         StudentInterface studentInterface = new StudentInterface((Student) person, this);
                         studentInterface.stuMenu();
                     }
@@ -50,9 +49,9 @@ public class LoginInterface {
                     if (checkUserLoginInfo("advisors", ID, password)) {
                         // create advisor object
                         person = createAdvisor(ID, "null");
-                        System.out.println("Welcome " + person.getName() + " " + person.getSurname() + "!");
+                        System.out.println("\nWelcome " + person.getName() + " " + person.getSurname() + "!");
                         System.out.println("You have successfully logged in.");
-                        System.out.println("You will be directed to the main menu.");
+                        System.out.println("You will be directed to the main menu!\n");
                         // direct advisor to advisor menu
                         AdvisorInterface advisorInterface = new AdvisorInterface((Advisor) person, this);
                         advisorInterface.advMenu();
@@ -78,7 +77,7 @@ public class LoginInterface {
             String answer = scanner.nextLine();
             if (answer.equals("y")) {
                 System.out.println("You have successfully logged out and exited.");
-                System.out.println("Thank you for using Marmara Course Registration System.");
+                System.out.println("\n-----------------------Thank you for using Marmara Course Registration System-----------------------");
                 // set person to null to recreate it when logging in again
                 person = null;
                 exit();
@@ -188,7 +187,7 @@ public class LoginInterface {
         // user attributes in json
         String name = (String) student.get("Name");
         String surname = (String) student.get("Surname");
-        String email = (String) student.get("Email");
+        String email = (String) student.get("Mail");
         String phoneNumber = (String) student.get("PhoneNumber");
         String department = (String) student.get("Department");
         String advisorId = (String) student.get("AdvisorId");
