@@ -63,6 +63,7 @@ public class StudentInterface {
 
         // going to course registration system
         case '3':
+        studentCourseRegistrationInterface = new StudentCourseRegistrationInterface(student,this);
         studentCourseRegistrationInterface.stuRegMenu();
             break;
         
