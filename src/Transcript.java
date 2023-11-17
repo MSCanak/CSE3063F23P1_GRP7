@@ -136,23 +136,24 @@ public class Transcript {
 	public void viewTranscript() {
 		System.out.printf("%nStudent ID: %s\nName and Surname: %s%n", student.getID(),
 				student.getName() + " " + student.getSurname());
-		for (int i = 1; i <= student.getSemester() + 1; i++) {
-
-			System.out.println(
-					"-------------------------------------------------------------------------------------------------------------");
-			System.out.println("Semester " + i + "\n");
-			System.out.printf("\t%-15s%-70s%-10s%-10s%n%n", "Course Code", "Course Name", "Credit", "Grade");
-			ArrayList<Course> coursesForPrinting = courses.get(i);
-			for (int j = 0; j < coursesForPrinting.size(); j++) {
-				System.out.printf("\t%-15s%-70s%-10s%-10s%n", coursesForPrinting.get(j).getCourseID(),
-						coursesForPrinting.get(j).getCourseName(), coursesForPrinting.get(j).getCredit(),
-						coursesForPrinting.get(j).getGrade());
+		for (int i = 1; i <= student.getSemester(); i++) {
+			if (courses.get(i) != null) {
+				System.out.println(
+						"-------------------------------------------------------------------------------------------------------------");
+				System.out.println("Semester " + i + "\n");
+				System.out.printf("\t%-15s%-70s%-10s%-10s%n%n", "Course Code", "Course Name", "Credit", "Grade");
+				ArrayList<Course> coursesForPrinting = courses.get(i);
+				for (int j = 0; j < coursesForPrinting.size(); j++) {
+					System.out.printf("\t%-15s%-70s%-10s%-10s%n", coursesForPrinting.get(j).getCourseID(),
+							coursesForPrinting.get(j).getCourseName(), coursesForPrinting.get(j).getCredit(),
+							coursesForPrinting.get(j).getGrade());
+				}
+				System.out.println("\nTaken Credit: " + takenCredit.get(i));
+				System.out.println("Completed Credit: " + completedCredit.get(i));
+				System.out.println("Yano: " + String.format("%.2f", yano.get(i)));
+				System.out.println("Gano: " + String.format("%.2f", gano.get(i)));
+				System.out.println();
 			}
-			System.out.println("\nTaken Credit: " + takenCredit.get(i));
-			System.out.println("Completed Credit: " + completedCredit.get(i));
-			System.out.println("Yano: " + String.format("%.2f", yano.get(i)));
-			System.out.println("Gano: " + String.format("%.2f", gano.get(i)));
-			System.out.println();
 		}
 	}
 
