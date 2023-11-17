@@ -110,7 +110,7 @@ public class AdvisorCourseRegistrationInterface {
        
         for (Object requestObj : requestJson) {
             JSONObject request = (JSONObject) requestObj;
-            String requestID = (String) request.get("Id");
+            String requestID = (String) request.get("StudentID");
             if(studentID.equals(requestID)) {
                 JSONArray selectedCourses = (JSONArray) request.get("SelectedCourses");
                 
