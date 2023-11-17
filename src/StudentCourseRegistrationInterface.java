@@ -15,32 +15,32 @@ public class StudentCourseRegistrationInterface {
     private StudentInterface studentInt;
     private Scanner scanner;
 
-    public StudentCourseRegistrationInterface(Student student, StudentInterface studentInt) {
+    public StudentCourseRegistrationInterface(Student student/* , StudentInterface studentInt*/) {
         this.student = student;
-        this.studentInt = studentInt;
+        // this.studentInt = studentInt;
         availableCourses = new ArrayList<Course>();
         selectedCourses = new ArrayList<Course>();
-        showStudentInf();
-        stuRegMenu();
+        scanner = new Scanner(System.in);
+        // showStudentInf();
+        // stuRegMenu();
     }
 
     public void stuRegMenu() {
-        scanner = new Scanner(System.in);
-        var choice = "";
-        while (choice.equals("0")) {
+        while (true) {
             System.out.println("1. Selected courses");
             System.out.println("2. Available courses");
             System.out.println("0. Go back to main menu");
-            choice = scanner.next();
+
+            var choice = scanner.nextInt();
             switch (choice) {
-                case "1":
+                case 1:
                     selectedCoursesMenu();
                     break;
-                case "2":
+                case 2:
                     availableCoursesMenu();
                     break;
-                case "0":
-                    break;
+                case 0:
+                    return;
                 default:
                     System.out.println("Invalid choice");
             }
@@ -60,26 +60,24 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void selectedCoursesMenu() {
-        scanner = new Scanner(System.in);
-        var choice = "";
-        while (choice.equals("0")) {
+        while (true) {
             System.out.println("1. Show selected courses");
             System.out.println("2. Delete selected courses");
             System.out.println("3. Send registration request");
             System.out.println("0. Go back to main menu");
-            choice = scanner.next();
+            var choice = scanner.nextInt();
             switch (choice) {
-                case "1":
+                case 1:
                     showSelectedCourses();
                     break;
-                case "2":
+                case 2:
                     deleteSelectedCourses();
                     break;
-                case "3":
+                case 3:
                     sendRegRequest();
                     break;
-                case "0":
-                    break;
+                case 0:
+                    return;
                 default:
                     System.out.println("Invalid choice");
             }
@@ -97,18 +95,16 @@ public class StudentCourseRegistrationInterface {
 
     private void deleteSelectedCourses() {
         showSelectedCourses();
-        scanner = new Scanner(System.in);
-        var choice = "";
-        while (choice.equals("0")) {
+        while (true) {
             System.out.println("1. Delete all selected courses");
             System.out.println("2. Delete a selected course");
             System.out.println("0. Go back to main menu");
-            choice = scanner.next();
+            var choice = scanner.nextInt();
             switch (choice) {
-                case "1":
+                case 1:
                     selectedCourses.clear();
                     break;
-                case "2":
+                case 2:
                     System.out.print("Enter the number of the course you want to delete (for example -> 1 2 3): ");
                     var selectedIndexes = scanner.nextLine().split(" ");
                     System.out.print("Do you want to delete selected courses? (y/n): ");
@@ -117,8 +113,8 @@ public class StudentCourseRegistrationInterface {
                         deleteSelectedCourses(selectedIndexes);
                     }
                     break;
-                case "0":
-                    break;
+                case 0:
+                    return;
                 default:
                     System.out.println("Invalid choice");
             }
@@ -162,14 +158,12 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void availableCoursesMenu() {
-        scanner = new Scanner(System.in);
-        var choice = "";
-        while (choice.equals("0")) {
+        while (true) {
             System.out.println("1. Show available courses");
             System.out.println("0. Go back to main menu");
-            choice = scanner.next();
+            var choice = scanner.nextInt();
             switch (choice) {
-                case "1":
+                case 1:
                     calculateAvailableCourses();
                     showAvailableCourses();
                     System.out.print("Select courses you want to add (for example -> 1 2 3): ");
@@ -180,8 +174,8 @@ public class StudentCourseRegistrationInterface {
                         saveAvailableCourses(selectedIndexes);
                     }
                     break;
-                case "0":
-                    break;
+                case 0:
+                    return;
                 default:
                     System.out.println("Invalid choice");
             }

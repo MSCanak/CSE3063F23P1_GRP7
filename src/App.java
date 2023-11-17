@@ -16,7 +16,11 @@ public class App {
         students.add((Student)student);
         person.setStudents(students);
 
-        AdvisorCourseRegistrationInterface advRegInt = new AdvisorCourseRegistrationInterface((Advisor) person);
-        advRegInt.advRegMenu();
+        // AdvisorCourseRegistrationInterface advRegInt = new AdvisorCourseRegistrationInterface((Advisor) person);
+        // advRegInt.advRegMenu();
+
+        StudentCourseRegistrationInterface stuRegInt = new StudentCourseRegistrationInterface((Student) student);
+        stuRegInt.stuRegMenu();
     }
+    
 }

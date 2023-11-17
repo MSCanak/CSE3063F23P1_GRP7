@@ -42,7 +42,7 @@ public class Json {
         else if(id.length() == 6) {
             for (Object personObj : advisorsJson) {
                 JSONObject person = (JSONObject) personObj;
-                String personID = (String) person.get("ID");
+                String personID = (String) person.get("Id");
                 if(id.equals(personID)) {
                     personLast = createAdvisor(person);
                 }
@@ -91,7 +91,7 @@ public class Json {
         String department = (String) person.get("department");
         String faculty = (String) person.get("faculty");
         String password = (String) person.get("password");
-        String id = (String) person.get("ID");
+        String id = (String) person.get("Id");
         Advisor advisorObject = new Advisor(name, surname, email,phoneNumber, id, password,   faculty, department);
         return advisorObject;
     }
