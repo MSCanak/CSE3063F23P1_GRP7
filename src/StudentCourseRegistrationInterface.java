@@ -27,19 +27,22 @@ public class StudentCourseRegistrationInterface {
 
     public void stuRegMenu() {
         while (true) {
+            System.out.println(
+                    "\n---------------------------------Student Course Registration System---------------------------------\n");
+            System.out.println("Choose an option by entering the corresponding number:\n");
             System.out.println("1. Selected courses");
             System.out.println("2. Available courses");
-            System.out.println("0. Go back to main menu");
+            System.out.println("0. Go back to Student Menu\n");
 
-            var choice = scanner.nextInt();
+            var choice = scanner.next();
             switch (choice) {
-                case 1:
+                case "1":
                     selectedCoursesMenu();
                     break;
-                case 2:
+                case "2":
                     availableCoursesMenu();
                     break;
-                case 0:
+                case "0":
                     return;
                 default:
                     System.out.println("Invalid choice");
@@ -57,26 +60,29 @@ public class StudentCourseRegistrationInterface {
 
     private void selectedCoursesMenu() {
         while (true) {
+            System.out.println(
+                    "\n---------------------------------Selected Course Menu---------------------------------\n");
+            System.out.println("Choose an option by entering the corresponding number:\n");
             System.out.println("1. Show selected courses");
             System.out.println("2. Delete selected courses");
             System.out.println("3. Send registration request");
-            System.out.println("0. Go back to main menu");
-            var choice = scanner.nextInt();
+            System.out.println("0. Go back to Student Course Registration System\n");
+            var choice = scanner.next();
             if (selectedCourses.size() == 0) {
-                System.out.println("No selected courses");
+                System.out.println("\n!!! Currently, there are no courses selected !!!\n");
                 break;
             }
             switch (choice) {
-                case 1:
+                case "1":
                     showSelectedCourses();
                     break;
-                case 2:
+                case "2":
                     deleteSelectedCourses();
                     break;
-                case 3:
+                case "3":
                     sendRegRequest();
                     break;
-                case 0:
+                case "0":
                     return;
                 default:
                     System.out.println("Invalid choice");
@@ -85,35 +91,48 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void showSelectedCourses() {
+        int courseNumber = 1;
+        System.out.printf("%n%-8s%-13s%-70s%-8s%-15s%n", "Number", "CourseID", "CourseName", "Credit", "CourseType");
+        System.out.printf(
+                "--------------------------------------------------------------------------------------------------------------%n");
+
         for (var course : selectedCourses) {
-            System.out.println("Course ID: " + course.getCourseID());
-            System.out.println("Course name: " + course.getCourseName());
-            System.out.println("Course credits: " + course.getCredit());
-            System.out.println("Course is elective: " + course.isElective());
+
+            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, course.getCourseID(), course.getCourseName(),
+                    course.getCredit(),
+                    course.getType().equals("E") ? "Elective" : "Mandatory");
+
         }
+        System.out.println();
     }
 
     private void deleteSelectedCourses() {
         showSelectedCourses();
         while (true) {
+            System.out.println(
+                    "\n---------------------------------Delete Selected Course Menu---------------------------------\n");
+                    System.out.println("Choose an option by entering the corresponding number:\n");
             System.out.println("1. Delete all selected courses");
             System.out.println("2. Delete a selected course");
-            System.out.println("0. Go back to main menu");
-            var choice = scanner.nextInt();
+            System.out.println("0. Go back to Selected Course Menu\n");
+            var choice = scanner.next();
             switch (choice) {
-                case 1:
+                case "1":
                     selectedCourses.clear();
                     return;
-                case 2:
-                    System.out.print("Enter the number of the course you want to delete (for example -> 1-2-3): ");
+                case "2":
+                    System.out.print("Enter the number of the courses you want to delete (for example -> 1-2-3) or cancel with entering 0: ");
                     var selectedIndexes = scanner.next().split("-");
+                    if (selectedIndexes[0].equals("0")) {
+                        break;
+                    }
                     System.out.print("Do you want to delete selected courses? (y/n): ");
                     var saveChoice = scanner.next();
                     if (saveChoice.toLowerCase().equals("y")) {
                         deleteSelectedCourses(selectedIndexes);
                     }
-                    break;
-                case 0:
+                    return;
+                case "0":
                     return;
                 default:
                     System.out.println("Invalid choice");
@@ -151,7 +170,7 @@ public class StudentCourseRegistrationInterface {
         // Write the selected courses JSON to the file
         try (var fileWriter = new FileWriter("jsons/RegistrationRequests.json")) {
             fileWriter.write(registrationJson.toJSONString());
-            System.out.println("Registration request written to RegistrationRequests.json");
+            System.out.println("\n!!! Registration request written to RegistrationRequests.json !!!\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -159,15 +178,22 @@ public class StudentCourseRegistrationInterface {
 
     private void availableCoursesMenu() {
         while (true) {
+             System.out.println(
+                    "\n---------------------------------Available Course Menu---------------------------------\n");
+                    System.out.println("Choose an option by entering the corresponding number:\n");
+
             System.out.println("1. Show available courses");
-            System.out.println("0. Go back to main menu");
-            var choice = scanner.nextInt();
+            System.out.println("0. Go back to Student Course Registration System\n");
+            var choice = scanner.next();
             switch (choice) {
-                case 1:
+                case "1":
                     calculateAvailableCourses();
                     showAvailableCourses();
-                    System.out.print("Select courses you want to add (for example -> 1-2-3): ");
+                    System.out.print("Select courses you want to add (for example -> 1-2-3) or cancel with entering 0: ");
                     var input = scanner.next();
+                    if (input.equals("0")) {
+                        break;
+                    }
                     var selectedIndexes = input.split("-");
                     System.out.println();
                     System.out.print("Do you want to save selected courses? (y/n): ");
@@ -176,7 +202,7 @@ public class StudentCourseRegistrationInterface {
                         saveAvailableCourses(selectedIndexes);
                     }
                     break;
-                case 0:
+                case "0":
                     return;
                 default:
                     System.out.println("Invalid choice");
@@ -211,9 +237,9 @@ public class StudentCourseRegistrationInterface {
                 var semester = ((Long) courseJson.get("Semester")).intValue();
                 var courseID = ((String) courseJson.get("CourseID")).trim();
                 var credit = ((Long) courseJson.get("Credit")).intValue();
-                var isElective = !((String) courseJson.get("CourseType")).equals("M");
+                var courseType = (String) courseJson.get("CourseType");
 
-                var course = new Course(courseName, courseID, credit, isElective, semester);
+                var course = new Course(courseName, courseID, credit, courseType, semester);
                 allCourses.add(course);
             }
 
@@ -376,7 +402,7 @@ public class StudentCourseRegistrationInterface {
 
             System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, course.getCourseID(), course.getCourseName(),
                     course.getCredit(),
-                    course.isElective() ? "Elective" : "Mandatory");
+                    course.getType().equals("E") ? "Elective" : "Mandatory");
 
         }
         System.out.println();
