@@ -17,16 +17,15 @@ public class StudentCourseRegistrationInterface {
 
     public StudentCourseRegistrationInterface(Student student, StudentInterface studentInt) {
         this.student = student;
-        // this.studentInt = studentInt;
+        this.studentInt = studentInt;
         availableCourses = new ArrayList<Course>();
         selectedCourses = new ArrayList<Course>();
         scanner = new Scanner(System.in);
-        // showStudentInf();
-        // stuRegMenu();
     }
 
     public void stuRegMenu() {
         while (true) {
+            showStudentInf();
             System.out.println(
                     "\n---------------------------------Student Course Registration System---------------------------------\n");
             System.out.println("Choose an option by entering the corresponding number:\n");
@@ -51,15 +50,15 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void showStudentInf() {
-        System.out.println("Student ID - Name and Surname: " + student.getID() + " - " + student.getName() + " "
-                + student.getSurname());
-        System.out.print("Advisor: " + student.getAdvisor().getName() + " " + student.getAdvisor().getSurname());
-        System.out.println("Advisor ID: " + student.getAdvisor().getID());
-        System.out.println("Semester: " + student.getSemester());
+        System.out.printf("%n%-12s%-3s%-22s%-10s%-2s%-40s%n", "Student ID","-", "Name and Surname:", student.getID(),"-", student.getName() + " " + student.getSurname());
+        System.out.printf("%-10s%-30s%n","Advisor: ", student.getAdvisor().getName() + " " + student.getAdvisor().getSurname());
+        System.out.printf("%-10s%-5s%n","Semester: ", student.getSemester());
+      
     }
 
     private void selectedCoursesMenu() {
         while (true) {
+            showStudentInf();
             System.out.println(
                     "\n---------------------------------Selected Course Menu---------------------------------\n");
             System.out.println("Choose an option by entering the corresponding number:\n");
@@ -109,9 +108,10 @@ public class StudentCourseRegistrationInterface {
     private void deleteSelectedCourses() {
         showSelectedCourses();
         while (true) {
+            showStudentInf();
             System.out.println(
                     "\n---------------------------------Delete Selected Course Menu---------------------------------\n");
-                    System.out.println("Choose an option by entering the corresponding number:\n");
+            System.out.println("Choose an option by entering the corresponding number:\n");
             System.out.println("1. Delete all selected courses");
             System.out.println("2. Delete a selected course");
             System.out.println("0. Go back to Selected Course Menu\n");
@@ -121,7 +121,8 @@ public class StudentCourseRegistrationInterface {
                     selectedCourses.clear();
                     return;
                 case "2":
-                    System.out.print("Enter the number of the courses you want to delete (for example -> 1-2-3) or cancel with entering 0: ");
+                    System.out.print(
+                            "Enter the number of the courses you want to delete (for example -> 1-2-3) or cancel with entering 0: ");
                     var selectedIndexes = scanner.next().split("-");
                     if (selectedIndexes[0].equals("0")) {
                         break;
@@ -178,9 +179,10 @@ public class StudentCourseRegistrationInterface {
 
     private void availableCoursesMenu() {
         while (true) {
-             System.out.println(
+            showStudentInf();
+            System.out.println(
                     "\n---------------------------------Available Course Menu---------------------------------\n");
-                    System.out.println("Choose an option by entering the corresponding number:\n");
+            System.out.println("Choose an option by entering the corresponding number:\n");
 
             System.out.println("1. Show available courses");
             System.out.println("0. Go back to Student Course Registration System\n");
@@ -189,7 +191,8 @@ public class StudentCourseRegistrationInterface {
                 case "1":
                     calculateAvailableCourses();
                     showAvailableCourses();
-                    System.out.print("Select courses you want to add (for example -> 1-2-3) or cancel with entering 0: ");
+                    System.out
+                            .print("Select courses you want to add (for example -> 1-2-3) or cancel with entering 0: ");
                     var input = scanner.next();
                     if (input.equals("0")) {
                         break;
