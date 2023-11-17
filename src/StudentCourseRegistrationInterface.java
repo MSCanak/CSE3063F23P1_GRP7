@@ -76,7 +76,7 @@ public class StudentCourseRegistrationInterface {
                     showSelectedCourses();
                     break;
                 case "2":
-                    deleteSelectedCourses();
+                    deleteSelectedCourseMenu();
                     break;
                 case "3":
                     sendRegRequest();
@@ -105,7 +105,7 @@ public class StudentCourseRegistrationInterface {
         System.out.println();
     }
 
-    private void deleteSelectedCourses() {
+    private void deleteSelectedCourseMenu() {
         showSelectedCourses();
         while (true) {
             showStudentInf();
