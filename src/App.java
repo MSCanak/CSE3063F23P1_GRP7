@@ -1,26 +1,17 @@
-import java.util.ArrayList;
-
 public class App {
 
     public static void main(String[] args) throws Exception {
         // Create Login object and login
         Json json = new Json();
 
-        Person person = json.searchPerson("150101");
-        System.out.println(person.getID());
+        //Person person = json.searchPerson("150101");
+        //System.out.println(person.getID());
+        //Student person = new Student("kadir", "bat", "kadirbatmarun", "5372073625", "150120012", "kadirr", "engineer", "cse", 3, null);
+        //StudentInterface studentInterface = new StudentInterface(person,loginInterface);
+       
+       LoginInterface loginInterface = new LoginInterface();
 
-        Person student = json.searchPerson("150120000");
-        System.out.println(student.getID());
-
-        ArrayList<Student> students = new ArrayList<Student>();
-        students.add((Student)student);
-        person.setStudents(students);
-
-        // AdvisorCourseRegistrationInterface advRegInt = new AdvisorCourseRegistrationInterface((Advisor) person);
-        // advRegInt.advRegMenu();
-
-        StudentCourseRegistrationInterface stuRegInt = new StudentCourseRegistrationInterface((Student) student);
-        stuRegInt.stuRegMenu();
+        loginInterface.login();
     }
     
 }

@@ -17,7 +17,7 @@ public class AdvisorInterface{
     public void advMenu(){
 
         scanner = new Scanner(System.in);
-        System.out.print("1) Course registiration System\n2) Logout\n3) Exit\n");
+        System.out.print("1) Course registiration System\n*) Logout\nx) Exit\n");
         char caseToken = scanner.next(). charAt(0);
         
         switch(caseToken){

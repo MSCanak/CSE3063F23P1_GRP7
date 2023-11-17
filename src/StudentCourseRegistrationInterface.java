@@ -15,7 +15,7 @@ public class StudentCourseRegistrationInterface {
     private StudentInterface studentInt;
     private Scanner scanner;
 
-    public StudentCourseRegistrationInterface(Student student/* , StudentInterface studentInt */) {
+    public StudentCourseRegistrationInterface(Student student, StudentInterface studentInt) {
         this.student = student;
         // this.studentInt = studentInt;
         availableCourses = new ArrayList<Course>();
