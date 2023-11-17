@@ -337,12 +337,20 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void showAvailableCourses() {
+        int courseNumber=1;
+         System.out.printf("%n%-8s%-13s%-70s%-8s%-15s%n", "Number", "CourseID", "CourseName", "Credit", "CourseType" );
+         System.out.printf(
+                "--------------------------------------------------------------------------------------------------------------%n");
+           
         for (var course : availableCourses) {
-            System.out.println("Course ID: " + course.getCourseID());
-            System.out.println("Course name: " + course.getCourseName());
-            System.out.println("Course credits: " + course.getCredit());
-            System.out.println("Course is elective: " + course.isElective());
+
+            
+            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++ ,course.getCourseID(), course.getCourseName(),course.getCredit(),
+                    course.isElective() ? "Elective" : "Mandatory" );
+
+           
         }
+        System.out.println();
     }
 
     private void saveAvailableCourses(String[] selectedIndexes) {
