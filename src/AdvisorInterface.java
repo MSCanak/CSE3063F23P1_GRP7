@@ -11,7 +11,8 @@ public class AdvisorInterface{
 
     public AdvisorInterface(Advisor advisor, LoginInterface loginInt){
         this.advisor = advisor;
-        this.loginInt = loginInt;   
+        this.loginInt = loginInt;
+         advCourseRegInt = new AdvisorCourseRegistrationInterface(advisor, this);
     }
     
     public void advMenu(){
@@ -19,6 +20,7 @@ public class AdvisorInterface{
         scanner = new Scanner(System.in);
         System.out.print("1) Course registiration System\n*) Logout\nx) Exit\n");
         char caseToken = scanner.next(). charAt(0);
+       
         
         switch(caseToken){
             case '1': //for course Registration system

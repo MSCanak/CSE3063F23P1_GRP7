@@ -26,7 +26,7 @@ public class AdvisorCourseRegistrationInterface {
         this.selectionCourses = new ArrayList<String>();
         this.courses = new ArrayList<String>();
         try {
-            requestsObj = new JSONParser().parse(new FileReader("./jsons/registrationRequests.json"));
+            requestsObj = new JSONParser().parse(new FileReader("./jsons/RegistrationRequests.json"));
             requestJson = (JSONArray) requestsObj;
             coursObject = new JSONParser().parse(new FileReader("./jsons/courses.json"));
             courseJson = (JSONArray) coursObject;
@@ -75,6 +75,7 @@ public class AdvisorCourseRegistrationInterface {
         // System.out.println(advisor.getStudents().size());
         for (Student student : advisor.getStudents()) {
             System.out.println(numberOfStudents + " : " + student.getName() + " " + student.getSurname() + " " + student.getID());
+            numberOfStudents++;
             
         }
         System.out.println("//////////////////////////////////");
