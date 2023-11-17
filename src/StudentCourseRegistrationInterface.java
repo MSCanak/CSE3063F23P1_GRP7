@@ -156,22 +156,24 @@ public class StudentCourseRegistrationInterface {
 
     private void sendRegRequest() {
         // Convert the selected courses to JSON
-        var selectedCoursesJsonArray = new JSONArray();
-        for (var course : selectedCourses) {
-            var courseJson = new JSONObject();
-            courseJson.put("CourseID", course.getCourseID());
-            selectedCoursesJsonArray.add(courseJson);
+        JSONArray selectedCoursesJsonArray = new JSONArray();
+        for (Course course : selectedCourses) {
+            selectedCoursesJsonArray.add(course.getCourseID());
         }
 
-        // Create the final JSON object
-        var registrationJson = new JSONObject();
-        registrationJson.put("StudentID", student.getID());
+        // Create the JSON object
+        JSONObject registrationJson = new JSONObject();
         registrationJson.put("SelectedCourses", selectedCoursesJsonArray);
+        registrationJson.put("StudentID", student.getID());
+
+        // Create the final JSON array
+        JSONArray registrationArray = new JSONArray();
+        registrationArray.add(registrationJson);
 
         // Write the selected courses JSON to the file
-        try (var fileWriter = new FileWriter("jsons/RegistrationRequests.json")) {
-            fileWriter.write(registrationJson.toJSONString());
-            System.out.println("\n!!! Registration request written to RegistrationRequests.json !!!\n");
+        try (FileWriter fileWriter = new FileWriter("jsons/RegistrationRequests.json")) {
+            fileWriter.write(registrationArray.toJSONString());
+            System.out.println("!!! Registration request written to RegistrationRequests.json !!!");
         } catch (IOException e) {
             e.printStackTrace();
         }
