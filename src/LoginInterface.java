@@ -3,7 +3,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileReader;
 import java.io.IOException;
@@ -188,7 +187,7 @@ public class LoginInterface {
         // user attributes in json
         String name = (String) student.get("Name");
         String surname = (String) student.get("Surname");
-        String email = (String) student.get("Email");
+        String email = (String) student.get("Mail");
         String phoneNumber = (String) student.get("PhoneNumber");
         String department = (String) student.get("Department");
         String advisorId = (String) student.get("AdvisorId");
