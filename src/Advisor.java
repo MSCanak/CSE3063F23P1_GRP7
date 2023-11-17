@@ -4,7 +4,7 @@ class Advisor extends Person {
 
     private ArrayList<Student> students = new ArrayList<Student>();
 
-    public Advisor(String name, String surname, String ID, String password, String email, String phoneNumber, String faculty, String department, ArrayList<Student> students){
+    public Advisor(String name, String surname, String email, String phoneNumber, String faculty, String department, String ID, String password){
         super(name, surname, ID, password, email, phoneNumber, faculty, department);
         this.students = students;
     }
@@ -13,7 +13,7 @@ class Advisor extends Person {
         return students;
     }
 
-    public void setStudents(ArrayList<Student> students){
-        this.students = students;
+    public void setStudent(Student student){
+        this.students.add(student);
     }
 }
