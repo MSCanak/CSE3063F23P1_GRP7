@@ -13,29 +13,40 @@ public class Course {
 
     private String courseName, courseID;
     private int credit;
-    private boolean isElective;
+    private String type;
     private int semester;
-
-    
-    public int getSemester() {
-        return semester;
-    }
-
-    public void setSemester(int semester) {
-        this.semester = semester;
-    }
-
-
+    private double grade;
 
     private ArrayList<Course> optionalPrerequisite;
     private ArrayList<Course> mandatoryPrerequisite;
 
-    public Course(String courseName, String courseID, int credit, boolean isElective, int semester) {
+    public Course(String courseName, String courseID, int credit, String type, int semester) {
         this.courseName = courseName;
         this.courseID = courseID;
         this.credit = credit;
-        this.isElective = isElective;
+        this.type = type;
         this.semester = semester;
+    }
+
+    public Course(String courseName, String courseID, int credit, String type, int semester, double grade) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.credit = credit;
+        this.type = type;
+        this.semester = semester;
+        this.grade = grade;
+    }
+
+    public Course(String courseName, String courseID, int credit, String type, int semester,
+            ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.credit = credit;
+        this.type = type;
+        this.semester = semester;
+        this.optionalPrerequisite = optionalPrerequisite;
+        this.mandatoryPrerequisite = mandatoryPrerequisite;
+
     }
 
     public String getCourseName() {
@@ -62,12 +73,12 @@ public class Course {
         this.credit = credit;
     }
 
-    public boolean isElective() {
-        return isElective;
+    public String getType() {
+        return type;
     }
 
-    public void setElective(boolean isElective) {
-        this.isElective = isElective;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public ArrayList<Course> getOptionalPrerequisite() {
@@ -86,55 +97,21 @@ public class Course {
         this.mandatoryPrerequisite = mandatoryPrerequisite;
     }
 
-
-
-    public void showCourses() throws Exception {
-
-        Object coursesJSONobj;
-        JSONArray courseJSONarr;
-        coursesJSONobj = new JSONParser().parse(new FileReader("./jsons/courses.json"));
-
-        courseJSONarr = (JSONArray) coursesJSONobj;
-
-        int previousSemester = -1;
-        for (Object courseObj : courseJSONarr) {
-            JSONObject course = (JSONObject) courseObj;
-
-            String CourseID = (String) course.get("CourseID");
-            String CourseName = (String) course.get("CourseName");
-            String CourseType = (String) course.get("CourseType");
-            long Credit = (long) course.get("Credit");
-            long Semester = (long) course.get("Semester");
-            JSONArray OptionalPrerequisites = (JSONArray) course.get("OptionalPrerequisites");
-            JSONArray MandatoryPrerequisites = (JSONArray) course.get("MandatoryPrerequisites");
-
-            if (CourseType.equals("M")) {
-                CourseType = "Mandatory";
-            } else if (CourseType.equals("E")) {
-                CourseType = "Elective";
-            }
-
-            String optionalPrerequisitesString = OptionalPrerequisites.toString().replace("\"", "").replace("[", "")
-                    .replace("]", "").replace(", ", "-");
-            String mandatoryPrerequisitesString = MandatoryPrerequisites.toString().replace("\"", "").replace("[", "")
-                    .replace("]", "").replace(", ", "-");
-
-            if (previousSemester != Semester) {
-                System.out.printf(
-                        "-----------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
-                System.out.printf("Semester %s", Semester);
-                System.out.printf("\t%-10s%-45s%-15s%-8s%-35s%-35s%n%n",
-                        "CourseID", "CourseName", "CourseType", "Credit",
-                        "OptionalPrerequisites", "MandatoryPrerequisites");
-                previousSemester = (int) Semester;
-            }
-
-            System.out.printf("\t\t%-10s%-45s%-15s%-8s%-35s%-35s%n",
-                    CourseID, CourseName, CourseType, Credit,
-                    optionalPrerequisitesString, mandatoryPrerequisitesString);
-
-        }
-
+    public int getSemester() {
+        return semester;
     }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(double grade) {
+        this.grade = grade;
+    }
+
 
 }
