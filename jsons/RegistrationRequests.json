@@ -1,0 +1,20 @@
+{
+    "SelectedCourses": [
+        {
+            "CourseID": "CSE3048"
+        },
+        {
+            "CourseID": "CSE3063"
+        },
+        {
+            "CourseID": "CSE3073"
+        },
+        {
+            "CourseID": "CSE3075"
+        },
+        {
+            "CourseID": "CSE3077"
+        }
+    ],
+    "StudentID": "150120000"
+}
