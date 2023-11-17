@@ -1,19 +1,25 @@
 {
     "SelectedCourses": [
         {
-            "CourseID": "CSE3048"
+            "CourseID": "CSE2023"
         },
         {
-            "CourseID": "CSE3063"
+            "CourseID": "CSE2225"
         },
         {
-            "CourseID": "CSE3073"
+            "CourseID": "ECON2004"
         },
         {
-            "CourseID": "CSE3075"
+            "CourseID": "EE2031"
         },
         {
-            "CourseID": "CSE3077"
+            "CourseID": "MATH2055"
+        },
+        {
+            "CourseID": "MATH2059"
+        },
+        {
+            "CourseID": "ATA121"
         }
     ],
     "StudentID": "150120000"
