@@ -220,7 +220,7 @@ public class LoginInterface {
                     // user attributes in json
                     String name = (String) advisor.get("Name");
                     String surname = (String) advisor.get("Surname");
-                    String email = (String) advisor.get("Email");
+                    String email = (String) advisor.get("Mail");
                     String phoneNumber = (String) advisor.get("PhoneNumber");
                     String faculty = (String) advisor.get("Faculty");
                     String department = (String) advisor.get("Department");
