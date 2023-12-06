@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -155,15 +156,16 @@ public class AdvisorCourseRegistrationInterface {
     private void saveApprovel(String studentID) {
         for (Object requestObj : requestJson) {
             JSONObject request = (JSONObject) requestObj;
-            String requestID = (String) request.get("Id");
+            String requestID = (String) request.get("StudentID");
             if(studentID.equals(requestID)) {
                 JSONArray approvedCoursesJsonArray= (JSONArray) request.get("ApprovedCourses");
                 JSONArray selectedCourses = (JSONArray) request.get("SelectedCourses");
 
-                selectedCourses.clear();
+                
                 for(String course : selectionCourses) {
                     approvedCoursesJsonArray.add(course);
                 }
+                selectedCourses.clear();
             }
         }
 
@@ -192,7 +194,7 @@ public class AdvisorCourseRegistrationInterface {
             ArrayList<JSONObject> finalizedArrayList = new ArrayList<JSONObject>();
 
             JSONObject request = (JSONObject) requestObj;
-            String requestID = (String) request.get("Id");
+            String requestID = (String) request.get("StudentID");
             if(!curStudent.getID().equals(requestID)) {
                 continue;
             }
@@ -222,12 +224,19 @@ public class AdvisorCourseRegistrationInterface {
                 JSONArray newCourses = new JSONArray();
                 newCourses.add(finalizedArrayList);
                 semArray.add(newCourses);
-                PrintWriter pw = new PrintWriter("./jsons/student/"+ filename); 
-                pw.write(student.toJSONString()); 
+                PrintWriter studentPw = new PrintWriter("./jsons/student/"+ filename); 
+                studentPw.write(student.toJSONString()); 
           
-                pw.flush(); 
-                pw.close();
+                studentPw.flush(); 
+                studentPw.close();
                 
+                request.remove("ApprovedCourses");
+                request.remove("SelectedCourses");
+                request.remove("StudentID");
+                PrintWriter requestPw = new PrintWriter("./jsons/RegistrationRequests.json");
+                requestPw.write(requestJson.toJSONString());
+                requestPw.flush();
+                requestPw.close();
 
             } catch (Exception e) {
 

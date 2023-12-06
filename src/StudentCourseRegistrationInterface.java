@@ -157,6 +157,8 @@ public class StudentCourseRegistrationInterface {
     private void sendRegRequest() {
         // Convert the selected courses to JSON
         JSONArray selectedCoursesJsonArray = new JSONArray();
+        JSONArray ApprovedCoursesJsonArray = new JSONArray();
+        
         for (Course course : selectedCourses) {
             selectedCoursesJsonArray.add(course.getCourseID());
         }
@@ -165,6 +167,7 @@ public class StudentCourseRegistrationInterface {
         JSONObject registrationJson = new JSONObject();
         registrationJson.put("SelectedCourses", selectedCoursesJsonArray);
         registrationJson.put("StudentID", student.getID());
+        registrationJson.put("ApprovedCourses", ApprovedCoursesJsonArray);
 
         // Create the final JSON array
         JSONArray registrationArray = new JSONArray();
