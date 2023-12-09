@@ -32,7 +32,7 @@ courses = df.rename(
 ).to_dict(orient="records")
 
 # Write the list of dictionaries to a JSON file
-with open("jsons/courses_offered.json", "w", encoding="utf-8") as outfile:
+with open("jsons/CoursesOffered.json", "w", encoding="utf-8") as outfile:
     json.dump(courses, outfile, indent=4, ensure_ascii=False)
 
-print("courses_offered.json created")
+print("CoursesOffered.json created")
