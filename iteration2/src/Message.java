@@ -59,10 +59,4 @@ public class Message {
         return subject;
     }
 
-    public LocalDateTime setTimeSent(LocalDateTime timeSent) {
-        this.timeSent = timeSent;
-        return timeSent;
-    }   
-
-
 }
