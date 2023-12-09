@@ -1,5 +1,6 @@
 public class Lab extends Course{
 
+    
     private String labCourseId;
 
     public Lab(String labCourseId, String courseName, String courseID, int credit, String type, int semester, double grade, ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite){
