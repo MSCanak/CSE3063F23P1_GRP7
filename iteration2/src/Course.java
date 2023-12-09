@@ -1,24 +1,15 @@
-
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.*;
 
 public class Course {
 
     // initialize variables
 
-    private String courseName, courseID;
-    private int credit;
-    private String type;
-    private int semester;
-    private double grade;
-
+    private String courseName, courseID, type;
+    private int credit, theoric, practice;
     private ArrayList<Course> optionalPrerequisite;
     private ArrayList<Course> mandatoryPrerequisite;
+    private ArrayList<Student> courseStudent;
+    private Lecturer lecturer;
 
     public Course(String courseName, String courseID, int credit, String type, int semester) {
         this.courseName = courseName;
@@ -97,21 +88,35 @@ public class Course {
         this.mandatoryPrerequisite = mandatoryPrerequisite;
     }
 
-    public int getSemester() {
-        return semester;
+    public int getTheoric() {
+        return theoric;
     }
 
-    public void setSemester(int semester) {
-        this.semester = semester;
+    public void setTheoric(int theoric) {
+        this.theoric = theoric;
     }
 
-    public double getGrade() {
-        return grade;
+    public int getPractice() {
+        return practice;
     }
 
-    public void setGrade(double grade) {
-        this.grade = grade;
+    public void setPractice(int practice) {
+        this.practice = practice;
     }
 
+    public ArrayList<Student> getCourseStudent() {
+        return courseStudent;
+    }
 
+    public void setCourseStudent(ArrayList<Student> courseStudent) {
+        this.courseStudent = courseStudent;
+    }
+
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
+    }
 }
