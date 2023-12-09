@@ -1,20 +1,21 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdvisorInterface{
     
-    private Advisor advisor;
     private Scanner scanner;
-
+    private Session session;
+    private ArrayList<Notification> notifications;
     private LoginInterface loginInt;
     private AdvisorCourseRegistrationInterface advCourseRegInt;
 
 
-    public AdvisorInterface(Advisor advisor, LoginInterface loginInt){
+    public AdvisorInterface(Lecturer lecturer, LoginInterface loginInt){
         this.advisor = advisor;
         this.loginInt = loginInt;
          advCourseRegInt = new AdvisorCourseRegistrationInterface(advisor, this);
     }
-    
+
     public void advMenu(){
 
         scanner = new Scanner(System.in);
@@ -37,4 +38,12 @@ public class AdvisorInterface{
                 advCourseRegInt.advRegMenu();
         }
     }
+
+    public void lecturerSchedule(){}
+    public void calculateSchedule(){}
+    public void showSchedule(){}
+    private void showNotifications(){}
+    private void notificationsMenu(){}
+    private ArrayListN<Notification> calculateNotifications(){}
+    public void showGivenCourses(){}
 }
