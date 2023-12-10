@@ -2,33 +2,13 @@ import java.util.ArrayList;
 
 public class Semester {
 
-    private int year;
     private int takenCredit;
     private int completedCredit;
-    private String term;
     private double yano;
     private ArrayList<Course> courses;
 
-    public Semester(int year, String term, ArrayList<Course> courses) {
-        this.year = year;
-        this.term = term;
+    public Semester(ArrayList<Course> courses) {
         this.courses = courses;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public String getTerm() {
-        return term;
-    }
-
-    public void setTerm(String term) {
-        this.term = term;
     }
 
     public ArrayList<Course> getCourses() {
@@ -39,12 +19,24 @@ public class Semester {
         this.courses = courses;
     }
 
+    public int getTakenCredit() {
+        return takenCredit;
+    }
+
     public void setTakenCredit(int takenCredit) {
         this.takenCredit = takenCredit;
     }
 
+    public int getCompletedCredit() {
+        return completedCredit;
+    }
+
     public void setCompletedCredit(int completedCredit) {
         this.completedCredit = completedCredit;
+    }
+
+    public double getYano() {
+        return yano;
     }
 
     public void setYano(double yano) {

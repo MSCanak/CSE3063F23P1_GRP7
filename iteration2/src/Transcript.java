@@ -1,7 +1,6 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,9 +14,9 @@ public class Transcript {
 	private ArrayList<Semester> semesters;
 
 	public Transcript(Student student) {
+		this.student = student;
 		this.gano = new ArrayList<Double>();
 		this.semesters = new ArrayList<Semester>();
-		this.student = student;
 
 		createTranscript();
 	}
@@ -173,46 +172,6 @@ public class Transcript {
 		}
 	}
 
-	public HashMap<Integer, Double> getYano() {
-		return yano;
-	}
-
-	public void setYano(HashMap<Integer, Double> yano) {
-		this.yano = yano;
-	}
-
-	public HashMap<Integer, Double> getGano() {
-		return gano;
-	}
-
-	public void setGano(HashMap<Integer, Double> gano) {
-		this.gano = gano;
-	}
-
-	public HashMap<Integer, ArrayList<Course>> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(HashMap<Integer, ArrayList<Course>> courses) {
-		this.courses = courses;
-	}
-
-	public HashMap<Integer, Integer> getTakenCredit() {
-		return takenCredit;
-	}
-
-	public void setTakenCredit(HashMap<Integer, Integer> takenCredit) {
-		this.takenCredit = takenCredit;
-	}
-
-	public HashMap<Integer, Integer> getCompletedCredit() {
-		return completedCredit;
-	}
-
-	public void setCompletedCredit(HashMap<Integer, Integer> completedCredit) {
-		this.completedCredit = completedCredit;
-	}
-
 	public Student getStudent() {
 		return student;
 	}
@@ -221,4 +180,19 @@ public class Transcript {
 		this.student = student;
 	}
 
+	public void setGano(ArrayList<Double> gano) {
+		this.gano = gano;
+	}
+
+	public ArrayList<Double> getGano() {
+		return gano;
+	}
+
+	public ArrayList<Semester> getSemesters() {
+		return semesters;
+	}
+
+	public void setSemesters(ArrayList<Semester> semesters) {
+		this.semesters = semesters;
+	}
 }
