@@ -42,7 +42,7 @@ public class StudentCourseRegistrationInterface {
                     availableCoursesMenu();
                     break;
                 case "0":
-                    return;
+                    studentInt.stuMenu();
                 default:
                     System.out.println("Invalid choice");
             }
