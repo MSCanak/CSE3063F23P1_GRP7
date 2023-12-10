@@ -26,13 +26,14 @@ public class StudentInterface {
     public void stuMenu() {
 
         // prompting
-        System.out.println("-------------------- Student Menu --------------------\n");
+        System.out.println(
+                Colors.RED + "\n--------------------Student Menu--------------------\n" + Colors.RESET);
         System.out.println("What do you want to do?\n");
-        System.out.println("Enter '1' to view transcript");
-        System.out.println("Enter '2' to view courses");
-        System.out.println("Enter '3' to go to Course Registration System");
-        System.out.println("Enter '*' to logout");
-        System.out.println("Enter 'x' to exit");
+        System.out.println("Enter '" + Colors.YELLOW + "1" + Colors.RESET + "' to view Transcript");
+        System.out.println("Enter '" + Colors.YELLOW + "2" + Colors.RESET + "' to view Curriculum");
+        System.out.println("Enter '" + Colors.YELLOW + "3" + Colors.RESET + "' to go to Course Registration System");
+        System.out.println("Enter '" + Colors.YELLOW + "*" + Colors.RESET + "' to logout");
+        System.out.println("Enter '" + Colors.YELLOW + "x" + Colors.RESET + "' to exit");
 
         input = new Scanner(System.in);
         char choice = input.next().charAt(0);
@@ -44,12 +45,13 @@ public class StudentInterface {
                 student.getTranscript().viewTranscript();
                 boolean a = true;
                 while (a) {
-                    System.out.println("Enter '0' to go back to the main menu.");
+                    System.out.println(
+                            "Enter '" + Colors.YELLOW + "0" + Colors.RESET + "' to go back to the Student Menu.");
                     char backChoice = input.next().charAt(0);
                     if (backChoice == '0') {
                         stuMenu();
                     } else {
-                        System.out.println("Invalid input. Please try again.");
+                        System.out.println(Colors.YELLOW + "Invalid input. Please try again." + Colors.RESET);
                     }
                 }
 
@@ -77,13 +79,15 @@ public class StudentInterface {
             // exiting
             case 'x':
                 System.out.println(
-                        "\n-----------------------Thank you for using Marmara Course Registration System-----------------------");
+                        Colors.RED
+                                + "\n-----------------------Thank you for using Marmara Course Registration System-----------------------\n"
+                                + Colors.RESET);
                 loginInterface.exit();
                 break;
 
             // invalid input
             default:
-                System.out.println("Invalid input.Please try again.");
+                System.out.println(Colors.YELLOW + "Invalid input.Please try again." + Colors.RESET);
                 stuMenu();
                 break;
         }
@@ -136,13 +140,13 @@ public class StudentInterface {
         }
         boolean a = true;
         while (a) {
-            System.out.println("\nEnter '0' to go back to the Student Menu.");
+            System.out.println("\nEnter '" + Colors.YELLOW + "0" + Colors.RESET + "' to go back to the Student Menu.");
             input = new Scanner(System.in);
             char backChoice = input.next().charAt(0);
             if (backChoice == '0') {
                 stuMenu();
             } else {
-                System.out.println("Invalid input. Please try again.");
+                System.out.println(Colors.YELLOW + "Invalid input. Please try again." + Colors.RESET);
             }
         }
     }
