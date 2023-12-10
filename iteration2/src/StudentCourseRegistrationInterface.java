@@ -8,23 +8,24 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class StudentCourseRegistrationInterface {
+public class StudentCourseRegistrationInterface extends MessagesInterface {
     private ArrayList<Course> availableCourses;
     private ArrayList<Course> selectedCourses;
 
     private Session session;
-    private ArrayList<Message> sentMessages;
-    private ArrayList<Message> receivedMessages;
 
+    private MessagesInterface messagesInt;
     private StudentInterface studentInt;
     private Scanner scanner;
 
-    public StudentCourseRegistrationInterface(Session session, StudentInterface studentInt) {
+    public StudentCourseRegistrationInterface(Session session, StudentInterface studentInt,
+            MessagesInterface messagesInt) {
         this.session = session;
         this.studentInt = studentInt;
-        availableCourses = new ArrayList<Course>();
-        selectedCourses = new ArrayList<Course>();
-        scanner = new Scanner(System.in);
+        this.messagesInt = messagesInt;
+        this.availableCourses = new ArrayList<Course>();
+        this.selectedCourses = new ArrayList<Course>();
+        this.scanner = new Scanner(System.in);
     }
 
     public void stuRegMenu() {
@@ -428,37 +429,5 @@ public class StudentCourseRegistrationInterface {
             var index = Integer.parseInt(selectedIndex);
             selectedCourses.add(availableCourses.get(index - 1));
         }
-    }
-
-    private void messagesMenu() {
-
-    }
-
-    private void showSentMessages() {
-
-    }
-
-    private void newMessage() {
-
-    }
-
-    private void showReceivedMessages() {
-
-    }
-
-    private void calculateReceivedMessages() {
-
-    }
-
-    private void calculateSentMessages() {
-
-    }
-
-    private void sentMessagesMenu() {
-
-    }
-
-    private void receivedMessagesMenu() {
-
     }
 }
