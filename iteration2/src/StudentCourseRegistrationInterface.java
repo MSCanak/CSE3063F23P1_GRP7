@@ -11,7 +11,11 @@ import org.json.simple.parser.JSONParser;
 public class StudentCourseRegistrationInterface {
     private ArrayList<Course> availableCourses;
     private ArrayList<Course> selectedCourses;
-    private Student student;
+
+    private Session session;
+    private ArrayList<Message> sentMessages;
+    private ArrayList<Message> receivedMessages;
+
     private StudentInterface studentInt;
     private Scanner scanner;
 
@@ -50,10 +54,12 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void showStudentInf() {
-        System.out.printf("%n%-12s%-3s%-22s%-10s%-2s%-40s%n", "Student ID","-", "Name and Surname:", student.getID(),"-", student.getName() + " " + student.getSurname());
-        System.out.printf("%-10s%-30s%n","Advisor: ", student.getAdvisor().getName() + " " + student.getAdvisor().getSurname());
-        System.out.printf("%-10s%-5s%n","Semester: ", student.getSemester());
-      
+        System.out.printf("%n%-12s%-3s%-22s%-10s%-2s%-40s%n", "Student ID", "-", "Name and Surname:", student.getID(),
+                "-", student.getName() + " " + student.getSurname());
+        System.out.printf("%-10s%-30s%n", "Advisor: ",
+                student.getAdvisor().getName() + " " + student.getAdvisor().getSurname());
+        System.out.printf("%-10s%-5s%n", "Semester: ", student.getSemester());
+
     }
 
     private void selectedCoursesMenu() {
@@ -158,7 +164,7 @@ public class StudentCourseRegistrationInterface {
         // Convert the selected courses to JSON
         JSONArray selectedCoursesJsonArray = new JSONArray();
         JSONArray ApprovedCoursesJsonArray = new JSONArray();
-        
+
         for (Course course : selectedCourses) {
             selectedCoursesJsonArray.add(course.getCourseID());
         }
@@ -421,5 +427,37 @@ public class StudentCourseRegistrationInterface {
             var index = Integer.parseInt(selectedIndex);
             selectedCourses.add(availableCourses.get(index - 1));
         }
+    }
+
+    private void messagesMenu() {
+
+    }
+
+    private void showSentMessages() {
+
+    }
+
+    private void newMessage() {
+
+    }
+
+    private void showReceivedMessages() {
+
+    }
+
+    private void calculateReceivedMessages() {
+
+    }
+
+    private void calculateSentMessages() {
+
+    }
+
+    private void sentMessagesMenu() {
+
+    }
+
+    private void receivedMessagesMenu() {
+
     }
 }

@@ -14,6 +14,7 @@ columns_to_remove = [
     "Öğrenci Sayısı (İlk Kez)",
     "Öğrenci Sayısı (Tekrar Alan)",
     "Öğrenci Sayısı (KY Devam Eden)",
+    "Uzem Dersi",
 ]
 df = df.drop(columns=columns_to_remove, errors="ignore")
 
