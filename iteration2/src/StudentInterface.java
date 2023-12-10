@@ -29,11 +29,11 @@ public class StudentInterface {
         System.out.println(
                 Colors.RED + "\n--------------------Student Menu--------------------\n" + Colors.RESET);
         System.out.println("What do you want to do?\n");
-        System.out.println("Enter '" + Colors.YELLOW + "1" + Colors.RESET + "' to view Transcript");
-        System.out.println("Enter '" + Colors.YELLOW + "2" + Colors.RESET + "' to view Curriculum");
-        System.out.println("Enter '" + Colors.YELLOW + "3" + Colors.RESET + "' to go to Course Registration System");
-        System.out.println("Enter '" + Colors.YELLOW + "*" + Colors.RESET + "' to logout");
-        System.out.println("Enter '" + Colors.YELLOW + "x" + Colors.RESET + "' to exit");
+        System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   View Transcript");
+        System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   View Curriculum");
+        System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   Go to Course Registration System");
+        System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Logout");
+        System.out.println(Colors.YELLOW + "x" + Colors.RESET + ".   Exit");
 
         input = new Scanner(System.in);
         char choice = input.next().charAt(0);
@@ -45,13 +45,12 @@ public class StudentInterface {
                 student.getTranscript().viewTranscript();
                 boolean a = true;
                 while (a) {
-                    System.out.println(
-                            "Enter '" + Colors.YELLOW + "0" + Colors.RESET + "' to go back to the Student Menu.");
+                    System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Student Menu.");
                     char backChoice = input.next().charAt(0);
                     if (backChoice == '0') {
                         stuMenu();
                     } else {
-                        System.out.println(Colors.YELLOW + "Invalid input. Please try again." + Colors.RESET);
+                        System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
                     }
                 }
 
@@ -80,7 +79,7 @@ public class StudentInterface {
             case 'x':
                 System.out.println(
                         Colors.RED
-                                + "\n-----------------------Thank you for using Marmara Course Registration System-----------------------\n"
+                                + "\n<<<--------Thank you for using Marmara Course Registration System-------->>>\n"
                                 + Colors.RESET);
                 loginInterface.exit();
                 break;
@@ -140,7 +139,7 @@ public class StudentInterface {
         }
         boolean a = true;
         while (a) {
-            System.out.println("\nEnter '" + Colors.YELLOW + "0" + Colors.RESET + "' to go back to the Student Menu.");
+            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Student Menu.");
             input = new Scanner(System.in);
             char backChoice = input.next().charAt(0);
             if (backChoice == '0') {
