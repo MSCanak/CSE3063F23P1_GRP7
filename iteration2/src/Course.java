@@ -5,39 +5,26 @@ public class Course {
     // initialize variables
 
     private String courseName, courseID, type;
-    private int credit, theoric, practice;
+    private int credit, theoric, practice, quota;
     private ArrayList<Course> optionalPrerequisite;
     private ArrayList<Course> mandatoryPrerequisite;
     private ArrayList<Student> courseStudent;
     private Lecturer lecturer;
 
-    public Course(String courseName, String courseID, int credit, String type, int semester) {
+    public Course(String courseName, String courseID, String type, int credit, int theoric, int practice,
+                  int quota, ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite,
+                  ArrayList<Student> courseStudent, Lecturer lecturer) {
         this.courseName = courseName;
         this.courseID = courseID;
-        this.credit = credit;
         this.type = type;
-        this.semester = semester;
-    }
-
-    public Course(String courseName, String courseID, int credit, String type, int semester, double grade) {
-        this.courseName = courseName;
-        this.courseID = courseID;
         this.credit = credit;
-        this.type = type;
-        this.semester = semester;
-        this.grade = grade;
-    }
-
-    public Course(String courseName, String courseID, int credit, String type, int semester,
-            ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite) {
-        this.courseName = courseName;
-        this.courseID = courseID;
-        this.credit = credit;
-        this.type = type;
-        this.semester = semester;
+        this.theoric = theoric;
+        this.practice = practice;
+        this.quota = quota;
         this.optionalPrerequisite = optionalPrerequisite;
         this.mandatoryPrerequisite = mandatoryPrerequisite;
-
+        this.courseStudent = courseStudent;
+        this.lecturer = lecturer;
     }
 
     public String getCourseName() {
@@ -118,5 +105,13 @@ public class Course {
 
     public void setLecturer(Lecturer lecturer) {
         this.lecturer = lecturer;
+    }
+
+    public int getQuota() {
+        return quota;
+    }
+
+    public void setQuota(int quota) {
+        this.quota = quota;
     }
 }
