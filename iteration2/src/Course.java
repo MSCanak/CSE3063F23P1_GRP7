@@ -5,11 +5,29 @@ public class Course {
     // initialize variables
 
     private String courseName, courseID, type;
-    private int credit, theoric, practice, quota;
+    private int credit, theoric, practice, quota, semester;
+    private double grade;
     private ArrayList<Course> optionalPrerequisite;
     private ArrayList<Course> mandatoryPrerequisite;
     private ArrayList<Student> courseStudent;
     private Lecturer lecturer;
+
+    public Course(String courseName, String courseID, int credit, String type, int semester) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.credit = credit;
+        this.type = type;
+        this.semester = semester;
+    }
+
+    public Course(String courseName, String courseID, int credit, String type, int semester, double grade) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.credit = credit;
+        this.type = type;
+        this.semester = semester;
+        this.grade = grade;
+    }
 
     public Course(String courseName, String courseID, String type, int credit, int theoric, int practice,
                   int quota, ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite,
