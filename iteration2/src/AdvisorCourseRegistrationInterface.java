@@ -20,8 +20,7 @@ public class AdvisorCourseRegistrationInterface{
     JSONArray requestJson;
     Object coursObject;
     JSONArray courseJson;
-    Object messageObject;
-    JSONArray messageJson;
+
     
 
     public AdvisorCourseRegistrationInterface(Session session, AdvisorInterface advisorInt) {
@@ -35,8 +34,7 @@ public class AdvisorCourseRegistrationInterface{
             requestJson = (JSONArray) requestsObj;
             coursObject = new JSONParser().parse(new FileReader("./jsons/courses.json"));
             courseJson = (JSONArray) coursObject;
-            messageObject = new JSONParser().parse(new FileReader("./jsons/messages.json"));
-            messageJson = (JSONArray) messageObject;
+
         } 
         catch (Exception e) {
             // TODO: handle exception
