@@ -150,4 +150,18 @@ public class StudentInterface {
             }
         }
     }
+
+    private void notificationMenu(){
+        System.out.println(
+                Colors.RED + "\n--------------------Notification Menu--------------------\n" + Colors.RESET);
+        System.out.println("What do you want to do?\n");
+        System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   view notifications");
+        System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   delete notifications");
+        System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".   go back to Student Menu");
+
+    }
+    input = new Scanner(System.in);
+    char choice = input.next().charAt(0);
+    
+
 }
