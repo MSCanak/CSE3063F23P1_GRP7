@@ -9,20 +9,24 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class AdvisorCourseRegistrationInterface {
+public class AdvisorCourseRegistrationInterface{
+    private Session session;
     private Advisor advisor;
-    private AdvisorInterface advisorInt;
     private Scanner scanner;
     private ArrayList<String> selectionCourses;
     private ArrayList<String> courses;
+
     Object requestsObj;
     JSONArray requestJson;
     Object coursObject;
     JSONArray courseJson;
+    Object messageObject;
+    JSONArray messageJson;
+    
 
-    public AdvisorCourseRegistrationInterface(Advisor advisor, AdvisorInterface advisorInt) {
-        this.advisor = advisor;
-        this.advisorInt = advisorInt;
+    public AdvisorCourseRegistrationInterface(Session session, AdvisorInterface advisorInt) {
+        this.session= session;
+        this.advisor = (Advisor)session.getUser();
         this.scanner = new Scanner(System.in);
         this.selectionCourses = new ArrayList<String>();
         this.courses = new ArrayList<String>();
@@ -31,6 +35,8 @@ public class AdvisorCourseRegistrationInterface {
             requestJson = (JSONArray) requestsObj;
             coursObject = new JSONParser().parse(new FileReader("./jsons/courses.json"));
             courseJson = (JSONArray) coursObject;
+            messageObject = new JSONParser().parse(new FileReader("./jsons/messages.json"));
+            messageJson = (JSONArray) messageObject;
         } 
         catch (Exception e) {
             // TODO: handle exception
@@ -150,9 +156,6 @@ public class AdvisorCourseRegistrationInterface {
         
     }
     
-    // private void showStudentsCourses() {
-
-    // }
     private void saveApprovel(String studentID) {
         for (Object requestObj : requestJson) {
             JSONObject request = (JSONObject) requestObj;
@@ -181,9 +184,7 @@ public class AdvisorCourseRegistrationInterface {
         }
         
     }
-    // private void showStudentsApproved(String studentID) {
-        
-    // }
+
     private void finalizeRegistrationMenu() {
         showStudents();
         int choice = scanner.nextInt();
@@ -266,4 +267,5 @@ public class AdvisorCourseRegistrationInterface {
         }
     }
 
+    
 }
