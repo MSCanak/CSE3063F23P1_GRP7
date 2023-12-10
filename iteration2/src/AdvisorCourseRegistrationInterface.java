@@ -208,7 +208,22 @@ public class AdvisorCourseRegistrationInterface {
                     JSONObject courseList = (JSONObject) courseListObject;
                     String courseID = (String) courseList.get("CourseID");
                     if(course.equals(courseID)) {
-                        finalizedArrayList.add(courseList);
+                        String newCourseID = (String) courseList.get("CourseID");
+                        String newCourseName = (String) courseList.get("CourseName");
+                        String newCourseType = (String) courseList.get("CourseType");
+                        Long newCourseCredit = (Long)(courseList.get("Credit"));
+                        Long newCourseSemester = (Long) courseList.get("Semester");
+                        Double newCourseGrade = 0.0;
+
+                        JSONObject newCourse = new JSONObject();
+                        newCourse.put("CourseID", newCourseID);
+                        newCourse.put("CourseName", newCourseName);
+                        newCourse.put("CourseType", newCourseType);
+                        newCourse.put("Credit", newCourseCredit);
+                        newCourse.put("Semester", newCourseSemester);
+                        newCourse.put("Grade", newCourseGrade);
+
+                        finalizedArrayList.add(newCourse);
                     }
                 }
                     
@@ -221,9 +236,14 @@ public class AdvisorCourseRegistrationInterface {
                 JSONObject transcriptObj = (JSONObject) student.get("Transcript");
                 JSONArray semArray = (JSONArray) transcriptObj.get("Semester");
 
-                JSONArray newCourses = new JSONArray();
-                newCourses.add(finalizedArrayList);
+                
+                JSONObject newCourses = new JSONObject();
+                
+                
+                newCourses.put("Courses", finalizedArrayList);
+
                 semArray.add(newCourses);
+
                 PrintWriter studentPw = new PrintWriter("./jsons/student/"+ filename); 
                 studentPw.write(student.toJSONString()); 
           
