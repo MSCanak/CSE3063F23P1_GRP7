@@ -55,7 +55,7 @@ public class StudentInterface {
         // show courses
         case '2':
         try {
-            showCourses();
+            showCurriculum();
         } catch (FileNotFoundException e) {
         } catch (IOException e) {
         } catch (ParseException e) {
@@ -86,7 +86,7 @@ public class StudentInterface {
             break;
         }
     }
-    private void showCourses() throws FileNotFoundException, IOException, ParseException {
+    private void showCurriculum() throws FileNotFoundException, IOException, ParseException {
         Object coursesJSONobj;
             JSONArray courseJSONarr;
             coursesJSONobj = new JSONParser().parse(new FileReader("./jsons/courses.json"));
