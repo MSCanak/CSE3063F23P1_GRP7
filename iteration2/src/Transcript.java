@@ -10,20 +10,13 @@ import org.json.simple.parser.ParseException;
 
 public class Transcript {
 
-	// first argument for semester value
-	private HashMap<Integer, Double> yano;
-	private HashMap<Integer, Double> gano;
-	private HashMap<Integer, ArrayList<Course>> courses;
-	private HashMap<Integer, Integer> takenCredit;
-	private HashMap<Integer, Integer> completedCredit;
 	private Student student;
+	private ArrayList<Double> gano;
+	private ArrayList<Semester> semesters;
 
 	public Transcript(Student student) {
-		this.yano = new HashMap<>();
-		this.gano = new HashMap<>();
-		this.courses = new HashMap<>();
-		this.takenCredit = new HashMap<>();
-		this.completedCredit = new HashMap<>();
+		this.gano = new ArrayList<Double>();
+		this.semesters = new ArrayList<Semester>();
 		this.student = student;
 
 		createTranscript();
