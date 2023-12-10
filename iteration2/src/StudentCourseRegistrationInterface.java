@@ -19,8 +19,8 @@ public class StudentCourseRegistrationInterface {
     private StudentInterface studentInt;
     private Scanner scanner;
 
-    public StudentCourseRegistrationInterface(Student student, StudentInterface studentInt) {
-        this.student = student;
+    public StudentCourseRegistrationInterface(Session session, StudentInterface studentInt) {
+        this.session = session;
         this.studentInt = studentInt;
         availableCourses = new ArrayList<Course>();
         selectedCourses = new ArrayList<Course>();
@@ -54,11 +54,12 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void showStudentInf() {
-        System.out.printf("%n%-12s%-3s%-22s%-10s%-2s%-40s%n", "Student ID", "-", "Name and Surname:", student.getID(),
-                "-", student.getName() + " " + student.getSurname());
+        System.out.printf("%n%-12s%-3s%-22s%-10s%-2s%-40s%n", "Student ID", "-", "Name and Surname:",
+                session.getUser().getID(),
+                "-", session.getUser().getName() + " " + session.getUser().getSurname());
         System.out.printf("%-10s%-30s%n", "Advisor: ",
-                student.getAdvisor().getName() + " " + student.getAdvisor().getSurname());
-        System.out.printf("%-10s%-5s%n", "Semester: ", student.getSemester());
+                session.getUser().getAdvisor().getName() + " " + session.getUser().getAdvisor().getSurname());
+        System.out.printf("%-10s%-5s%n", "Semester: ", session.getUser().getSemester());
 
     }
 
@@ -172,7 +173,7 @@ public class StudentCourseRegistrationInterface {
         // Create the JSON object
         JSONObject registrationJson = new JSONObject();
         registrationJson.put("SelectedCourses", selectedCoursesJsonArray);
-        registrationJson.put("StudentID", student.getID());
+        registrationJson.put("StudentID", session.getUser().getID());
         registrationJson.put("ApprovedCourses", ApprovedCoursesJsonArray);
 
         // Create the final JSON array
@@ -235,7 +236,7 @@ public class StudentCourseRegistrationInterface {
 
     private void calculateAvailableCourses() {
         var allCourses = new ArrayList<Course>();
-        var targetSemester = student.getSemester();
+        var targetSemester = session.getUser().getSemester();
 
         // Read courses from JSON file
         try {
@@ -314,7 +315,7 @@ public class StudentCourseRegistrationInterface {
 
         // student information reading
         try {
-            var stuId = student.getID();
+            var stuId = session.getUser().getID();
             var studentJson = "jsons/student/" + stuId + ".json";
             var studentObj = new JSONParser().parse(new FileReader(studentJson));
             var studentJSONObject = (JSONObject) studentObj;

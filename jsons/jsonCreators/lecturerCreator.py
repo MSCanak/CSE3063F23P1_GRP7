@@ -20,6 +20,7 @@ for i in range(2, 148):
 
 
 lecturers = []
+id = 150102
 
 for(key, value) in data.items():
    
@@ -36,7 +37,7 @@ for(key, value) in data.items():
     name = name[0] + name[1:].lower()
     surname = surname[0] + surname[1:].lower()
     split[1] = split[1][0] + split[1][1:].lower()
-    id = 150102
+    
     id += 1
     password = (str)(id) + split[1]
     # print(name, surname, id, password)
