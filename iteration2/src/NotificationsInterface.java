@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class NotificationsInterface {
+    private ArrayList<Notification> notifications;
     // shows the notifications
     private void showNotifications(){
 
