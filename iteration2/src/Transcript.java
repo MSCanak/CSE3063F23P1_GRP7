@@ -1,10 +1,8 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Transcript {
@@ -124,28 +122,7 @@ public class Transcript {
 		}
 	}
 
-	// find json file with the corresponding studentId to parse - debug0
-
-	public void readAndParseStudentJson() {
-		String filePath = "./jsons/student/" + student.getID() + ".json";
-		JSONParser parser = new JSONParser();
-
-		try {
-			// read json
-			Object obj = parser.parse(new FileReader(filePath));
-			// parse json
-			JSONObject jsonObject = (JSONObject) obj;
-			String name = (String) jsonObject.get("Name");
-			String surname = (String) jsonObject.get("Surname");
-
-			// Print or use the retrieved information as needed
-			System.out.println("Student Name: " + name);
-			System.out.println("Student Surname: " + surname);
-
-		} catch (IOException | ParseException e) {
-			e.printStackTrace();
-		}
-	}
+	// find json file with the corresponding studentId to parse - debug
 
 	public Student getStudent() {
 		return student;
