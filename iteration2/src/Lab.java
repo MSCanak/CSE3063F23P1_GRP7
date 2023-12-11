@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Lab extends Course{
     
-    private String labCourseId;
+    private String labId;
 
     public Lab(String courseName,  String courseID, int credit, String type, int semester){
         super(courseName, courseID, credit, type, semester);
@@ -16,11 +16,11 @@ public class Lab extends Course{
         super(courseName, courseID, courseSession);
     }
 
-    public String getLabCourseId(){
-        return labCourseId;
+    public String getLabId(){
+        return labId;
     }
     
-    public void setCourseId(String courseId){
-        this.labCourseId = courseId;
+    public void setLabId(String courseId){
+        this.labId = courseId;
     }   
 }
