@@ -46,6 +46,12 @@ public class Course {
         this.lecturer = lecturer;
     }
 
+    public Course(String courseName, String courseID, CourseSession courseSession) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.courseSession = courseSession;
+    }
+
     public String getCourseName() {
         return courseName;
     }
@@ -114,7 +120,7 @@ public class Course {
         return courseStudents;
     }
 
-    public void setCourseStudent(ArrayList<Student> courseStudents) {
+    public void setCourseStudents(ArrayList<Student> courseStudents) {
         this.courseStudents = courseStudents;
     }
 
