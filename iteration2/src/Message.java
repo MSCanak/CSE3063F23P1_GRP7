@@ -1,8 +1,8 @@
 import java.time.LocalDateTime;
 
 public class Message {
-    private Person sender; // Person who sent the message
-    private Person receiver; // Person who received the message
+    private String senderID; // Person who sent the message
+    private String receiverID; // Person who received the message
 
     private String description; // Message content
     private String subject; // Message subject
@@ -10,21 +10,21 @@ public class Message {
     private LocalDateTime timeSent; // Time the message was sent
 
     // Constructor
-    public Message(Person sender, Person receiver, String description, String subject) {
-        this.sender = sender;
-        this.receiver = receiver;
+    public Message(String senderID, String receiverID, String description, String subject) {
+        this.senderID = senderID;
+        this.receiverID = receiverID;
         this.description = description;
         this.subject = subject;
         this.timeSent = LocalDateTime.now();
     }
 
     // Getters and Setters
-    public Person getSender() {
-        return sender;
+    public String getSenderID() {
+        return senderID;
     }
 
-    public Person getReceiver() {
-        return receiver;
+    public String getReceiverID() {
+        return receiverID;
     }
 
     public String getDescription() {
@@ -39,14 +39,12 @@ public class Message {
         return timeSent;
     }
 
-    public Person setSender(Person sender) {
-        this.sender = sender;
-        return sender;
+    public void setSenderID(String senderID) {
+        this.senderID = senderID;
     }
 
-    public Person setReceiver(Person receiver) {
-        this.receiver = receiver;
-        return receiver;
+    public void setReceiverID(String receiverID) {
+        this.receiverID = receiverID;
     }
 
     public String setDescription(String description) {
