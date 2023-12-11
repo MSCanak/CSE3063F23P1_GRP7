@@ -13,7 +13,7 @@ public class AdvisorInterface implements Schedule, NotificationsMenu{
     public AdvisorInterface(Session session, LoginInterface loginInt){
         this.session = session;
         this.loginInt = loginInt;
-        advCourseRegInt = new AdvisorCourseRegistrationInterface(advisor, this);
+        advCourseRegInt = new AdvisorCourseRegistrationInterface(session, this);
     }
 
     //the terminal inteface for advisor
