@@ -1,5 +1,5 @@
 interface Schedule {
 
-    public void calculateSchedule();
-    public void showSchedule();
+    public void calculateWeeklySchedule();
+    public void showWeeklySchedule();
 }
