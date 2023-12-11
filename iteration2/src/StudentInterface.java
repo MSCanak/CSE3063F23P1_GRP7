@@ -11,14 +11,15 @@ import org.json.simple.parser.ParseException;
 public class StudentInterface {
 
     // attributes
-    private Student student;
+    private Session session;
+    private NotificationInterface notificationInterface;
     private LoginInterface loginInterface;
     private StudentCourseRegistrationInterface studentCourseRegistrationInterface;
-    Scanner input;
+    private Scanner input;
 
     // constructor
-    public StudentInterface(Student person, LoginInterface loginInterface) {
-        this.student = person;
+    public StudentInterface(Session session, LoginInterface loginInterface) {
+        this.session = session;
         this.loginInterface = loginInterface;
 
     }
@@ -162,5 +163,17 @@ public class StudentInterface {
     input = new Scanner(System.in);
     char choice = input.next().charAt(0);
     
+    public void showWeeklySchedule() {
+
+    }
+
+    public void showNotificatons() {
+
+    }
+
+    public void calculateWeeklySchedule() {
+
+    }
+
 
 }
