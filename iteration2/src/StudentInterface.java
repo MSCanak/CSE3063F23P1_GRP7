@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -43,7 +44,7 @@ public class StudentInterface {
 
             // viewing transcript
             case '1':
-                student.getTranscript().viewTranscript();
+                ((Student) session.getUser()).getTranscript().viewTranscript();
                 boolean a = true;
                 while (a) {
                     System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Student Menu.");
@@ -67,7 +68,7 @@ public class StudentInterface {
 
             // going to course registration system
             case '3':
-                studentCourseRegistrationInterface = new StudentCourseRegistrationInterface(student, this);
+                studentCourseRegistrationInterface = new StudentCourseRegistrationInterface(session, this);
                 studentCourseRegistrationInterface.stuRegMenu();
                 break;
 
@@ -160,8 +161,6 @@ public class StudentInterface {
         System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".   go back to Student Menu");
 
     }
-    input = new Scanner(System.in);
-    char choice = input.next().charAt(0);
     
     public void showWeeklySchedule() {
 
@@ -172,7 +171,8 @@ public class StudentInterface {
     }
 
     public void calculateWeeklySchedule() {
-
+        ArrayList<Course> currentTakenCourses = ((Student) (session.getUser())).getCurrentTakenCourses();
+        
     }
 
 

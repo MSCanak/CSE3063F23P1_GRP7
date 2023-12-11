@@ -147,7 +147,7 @@ public class LoginInterface {
     private boolean userExists(String fileName, String ID) {
         JSONParser parser = new JSONParser();
         try {
-            FileReader reader = new FileReader("./jsons/" + fileName + ".json");
+            FileReader reader = new FileReader("jsons/" + fileName + ".json");
             Object obj = parser.parse(reader);
             JSONArray userList = (JSONArray) obj;
 
@@ -168,7 +168,7 @@ public class LoginInterface {
         while (true) {
             JSONParser parser = new JSONParser();
             try {
-                FileReader reader = new FileReader("./jsons/" + fileName + ".json");
+                FileReader reader = new FileReader("jsons/" + fileName + ".json");
                 Object obj = parser.parse(reader);
                 JSONArray userList = (JSONArray) obj;
 
@@ -191,7 +191,7 @@ public class LoginInterface {
     private Student createStudent(String ID, Advisor advisor) {
         Object studentObj = null;
         try {
-            studentObj = new JSONParser().parse(new FileReader("../../jsons/student/" + ID + ".json"));
+            studentObj = new JSONParser().parse(new FileReader("jsons/student/" + ID + ".json"));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -224,7 +224,7 @@ public class LoginInterface {
     private Advisor createAdvisor(String advisorID, String studentId) {
         JSONParser parser = new JSONParser();
         try {
-            FileReader reader = new FileReader("../../jsons/advisors.json");
+            FileReader reader = new FileReader("jsons/advisors.json");
             Object obj = parser.parse(reader);
             JSONArray advisorList = (JSONArray) obj;
 
@@ -272,7 +272,7 @@ public class LoginInterface {
     private Lecturer createLecturer(String lecturerID) {
         JSONParser parser = new JSONParser();
         try {
-            FileReader reader = new FileReader("../../jsons/lecturers.json");
+            FileReader reader = new FileReader("jsons/lecturers.json");
             Object obj = parser.parse(reader);
             JSONArray lecturerList = (JSONArray) obj;
 
@@ -312,7 +312,7 @@ public class LoginInterface {
     private Course createCourse(String courseCode) {
         JSONParser parser = new JSONParser();
         try {
-            FileReader reader = new FileReader("../../jsons/CoursesOffered.json");
+            FileReader reader = new FileReader("jsons/CoursesOffered.json");
             Object obj = parser.parse(reader);
             JSONArray coursesList = (JSONArray) obj;
 
@@ -351,6 +351,7 @@ public class LoginInterface {
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+        return null; // return null if no course with the given code is found
     }
     // create course session object
     private CourseSession createCourseSession(String courseDayTimeLocation) {

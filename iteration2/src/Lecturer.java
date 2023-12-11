@@ -9,6 +9,10 @@ public class Lecturer extends Person{
         this.givenCourses = givenCourses;
         this.academicTitle = academicTitle;
     }
+    public Lecturer(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department, String academicTitle ) {
+        super(name, surname, email, phoneNumber, ID, password, faculty, department);
+        this.academicTitle = academicTitle;
+    }
 
     public ArrayList<Course> getGivenCourses() {
         return givenCourses;
@@ -21,5 +25,8 @@ public class Lecturer extends Person{
     }   
     public void setAcademicTitle(String academicTitle) {
         this.academicTitle = academicTitle;
+    }
+    public void setCourse(Course course){
+        this.givenCourses.add(course);
     }
 }

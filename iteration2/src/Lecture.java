@@ -1,6 +1,6 @@
 public class Lecture extends Course {
 
-    String lectureCourseId;
+    String lectureId;
 
     public Lecture(String courseName, String courseID, int credit, String type, int semester) {
         super(courseName, courseID, credit, type, semester);
@@ -14,11 +14,15 @@ public class Lecture extends Course {
         super(courseName, courseID, courseSession);
     }
 
-    public String getLectureCourseId() {
-        return lectureCourseId;
+    public Lecture(String courseName, String courseID, CourseSession courseSession, Lecturer lecturer) {
+        super(courseName, courseID, courseSession, lecturer);
     }
 
-    public void setLectureCourseId(String lectureCourseId) {
-        this.lectureCourseId = lectureCourseId;
+    public String getLectureId() {
+        return lectureId;
+    }
+
+    public void setLectureId(String lectureId) {
+        this.lectureId = lectureId;
     }
 }
