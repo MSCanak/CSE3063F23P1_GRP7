@@ -37,7 +37,7 @@ public class LoginInterface {
                         System.out.println("You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged in.");
                         // direct student to student menu
                         System.out.println("You will be directed to the Student Menu!\n");
-                        StudentInterface studentInterface = new StudentInterface((Student) session.getUser(), this);
+                        StudentInterface studentInterface = new StudentInterface(session, this);
                         studentInterface.stuMenu();
                     }
                 } else {
@@ -55,7 +55,7 @@ public class LoginInterface {
                         System.out.println("You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged in.");
                         System.out.println("You will be directed to the Advisor Menu!\n");
                         // direct advisor to advisor menu
-                        AdvisorInterface advisorInterface = new AdvisorInterface((Advisor) session.getUser(), this);
+                        AdvisorInterface advisorInterface = new AdvisorInterface(session, this);
                         advisorInterface.advMenu();
                     } else if (checkUserLoginInfo("lecturers", ID, password)) {
                         // create lecturer object
@@ -65,10 +65,8 @@ public class LoginInterface {
                         System.out.println("You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged in.");
                         System.out.println("You will be directed to the Lecturer Menu!\n");
                         // direct lecturer to lecturer menu
-                        AdvisorInterface advisorInterface = new AdvisorInterface((Lecturer) session.getUser(), this);
+                        AdvisorInterface advisorInterface = new AdvisorInterface(session, this);
                         advisorInterface.advMenu();
-                    } else if (checkUserLoginInfo("lecturers", ID, password)) {
-                        // create lecturer object
                     } else {
                         System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
                         continue;
@@ -241,10 +239,11 @@ public class LoginInterface {
                     String faculty = (String) advisor.get("Faculty");
                     String department = (String) advisor.get("Department");
                     String password = (String) advisor.get("Password");
+                    String academicTitle = (String) advisor.get("AcademicTitle");
                     JSONArray studentList = (JSONArray) advisor.get("Students");
                     JSONArray givenCourses = (JSONArray) advisor.get("Courses");
                     Advisor adv = new Advisor(name, surname, email, phoneNumber, advisorID, password, faculty,
-                            department);
+                            department, academicTitle);
                     // add students to advisor's student list
                     for (Object studentObj : studentList) {
                         JSONObject student = (JSONObject) studentObj;
@@ -269,7 +268,7 @@ public class LoginInterface {
         }
         return null; // return null if no advisor with the given ID is found
     }
-
+    // create lecturer object
     private Lecturer createLecturer(String lecturerID) {
         JSONParser parser = new JSONParser();
         try {
@@ -309,7 +308,7 @@ public class LoginInterface {
         }
         return null; // return null if no lecturer with the given ID is found
     }
-
+    // create course object
     private Course createCourse(String courseCode) {
         JSONParser parser = new JSONParser();
         try {
@@ -353,14 +352,15 @@ public class LoginInterface {
             e.printStackTrace();
         }
     }
-
+    // create course session object
     private CourseSession createCourseSession(String courseDayTimeLocation) {
+        // parse the string and create course session object
         String[] parts = courseDayTimeLocation.split(" ");
         ArrayList<String> courseDay = new ArrayList<>();
         ArrayList<String> courseStartTime = new ArrayList<>();
         ArrayList<String> courseEndTime = new ArrayList<>();
         ArrayList<String> coursePlace = new ArrayList<>();
-
+        // each object of the list is a different course session
         for (int i = 0; i < parts.length; i += 5) {
             courseDay.add(parts[i]);
             courseStartTime.add(parts[i + 1]);
