@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
-class Advisor extends Person {
+class Advisor extends Lecturer {
 
     private ArrayList<Student> students = new ArrayList<Student>();
 
-    public Advisor(String name, String surname, String email, String phoneNumber, String faculty, String department, String ID, String password){
-        super(name, surname, email, phoneNumber, ID, password, faculty, department);
+    public Advisor(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department, ArrayList<Course> givenCourses, String academicTitle) {
+        super(name, surname, email, phoneNumber, ID, password, faculty, department, givenCourses, academicTitle);
     }
+
 
     public ArrayList<Student> getStudents(){ 
         return students;
