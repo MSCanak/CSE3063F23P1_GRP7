@@ -13,6 +13,8 @@ public class Course {
     private Lecturer lecturer;
     private CourseSession courseSession;
 
+    // constructor
+
     public Course(String courseName, String courseID, int credit, String type, int semester) {
         this.courseName = courseName;
         this.courseID = courseID;
@@ -30,20 +32,16 @@ public class Course {
         this.grade = grade;
     }
 
-    public Course(String courseName, String courseID, String type, int credit, int theoric, int practice,
-            int quota, ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite,
-            ArrayList<Student> courseStudents, Lecturer lecturer) {
+    public Course(String courseName, String courseID, int credit, String type, int semester, double grade,
+            ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite) {
         this.courseName = courseName;
         this.courseID = courseID;
-        this.type = type;
         this.credit = credit;
-        this.theoric = theoric;
-        this.practice = practice;
-        this.quota = quota;
+        this.type = type;
+        this.semester = semester;
+        this.grade = grade;
         this.optionalPrerequisite = optionalPrerequisite;
         this.mandatoryPrerequisite = mandatoryPrerequisite;
-        this.courseStudents = courseStudents;
-        this.lecturer = lecturer;
     }
 
     public Course(String courseName, String courseID, CourseSession courseSession) {
@@ -52,6 +50,14 @@ public class Course {
         this.courseSession = courseSession;
     }
 
+    public Course(String courseName, String courseID, CourseSession courseSession, Lecturer lecturer) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.courseSession = courseSession;
+        this.lecturer = lecturer;
+    }
+
+    // getters and setters
     public String getCourseName() {
         return courseName;
     }
