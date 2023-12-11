@@ -32,7 +32,7 @@ public class Course {
 
     public Course(String courseName, String courseID, String type, int credit, int theoric, int practice,
             int quota, ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite,
-            ArrayList<Student> courseStudent, Lecturer lecturer) {
+            ArrayList<Student> courseStudents, Lecturer lecturer) {
         this.courseName = courseName;
         this.courseID = courseID;
         this.type = type;
@@ -42,7 +42,7 @@ public class Course {
         this.quota = quota;
         this.optionalPrerequisite = optionalPrerequisite;
         this.mandatoryPrerequisite = mandatoryPrerequisite;
-        this.courseStudent = courseStudent;
+        this.courseStudents = courseStudents;
         this.lecturer = lecturer;
     }
 
