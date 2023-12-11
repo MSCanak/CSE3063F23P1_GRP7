@@ -5,7 +5,7 @@ public class AdvisorInterface implements Schedule, NotificationsMenu{
     
     private Scanner scanner;
     private Session session;
-    private NotificationInterface notificationInt;
+    private NotificationsInterface notificationsInt;
     private LoginInterface loginInt;
     private AdvisorCourseRegistrationInterface advCourseRegInt;
 
