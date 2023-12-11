@@ -26,7 +26,7 @@ public class Lecturer extends Person{
     public void setAcademicTitle(String academicTitle) {
         this.academicTitle = academicTitle;
     }
-    public void setCOurse(Course course){
+    public void setCourse(Course course){
         this.givenCourses.add(course);
     }
 }
