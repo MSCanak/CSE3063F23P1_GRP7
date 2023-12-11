@@ -1,13 +1,16 @@
+import java.util.ArrayList;
 public class Student extends Person {
     
     private Transcript transcript;
     private Advisor advisor;
     private int currentSemester;
-    public Student(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department,int currentSemester, Advisor advisor) {
+    private ArrayList<Course> currentTakenCourses;
+    public Student(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department,int currentSemester, Advisor advisor, ArrayList<Course> currentTakenCourses) {
         super(name, surname, email, phoneNumber, ID, password, faculty, department);
         this.advisor = advisor;
         this.transcript = new Transcript(this);
         this.currentSemester = currentSemester;
+        this.currentTakenCourses = currentTakenCourses;
     }
 
     public Transcript getTranscript() {
@@ -27,5 +30,11 @@ public class Student extends Person {
     }
     public void setCurrentSemester(int currentSemester) {
         this.currentSemester = currentSemester;
+    }
+    public ArrayList<Course> getCurrentTakenCourses() {
+        return currentTakenCourses;
+    }
+    public void setCurrentTakenCourses(ArrayList<Course> currentTakenCourses) {
+        this.currentTakenCourses = currentTakenCourses;
     }
 }
