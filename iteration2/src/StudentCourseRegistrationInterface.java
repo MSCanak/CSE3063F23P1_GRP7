@@ -240,8 +240,22 @@ public class StudentCourseRegistrationInterface {
                     if (input.equals("0")) {
                         break;
                     }
-                    System.out.println();
-                    showAvailableLabs(Integer.parseInt(input));
+                    var isLabsAvailable = showAvailableLabs(Integer.parseInt(input));
+                    if (isLabsAvailable) {
+                        System.out.print("Select labs you want to add (for example -> 1) or cancel with entering 0: ");
+                        do {
+                            input = scanner.next();
+                            if (input.length() > 1) {
+                                System.out.println("Invalid input");
+                                continue;
+                            }
+                            break;
+                        } while (true);
+                        if (input.equals("0")) {
+                            break;
+                        }
+                        saveAvailableCourses(Integer.parseInt(input), Integer.parseInt(input));
+                    }
                     saveAvailableCourses(Integer.parseInt(input));
                     break;
                 case "0":
@@ -288,7 +302,7 @@ public class StudentCourseRegistrationInterface {
         try {
             for (var courseCodeOffered : coursesCodesOffered) {
                 for (var availableCourse : availableCoursesCopy) {
-                    for (int i = 1; i < 10; i++) {
+                    for (int i = 1; i < 20; i++) {
                         if ((availableCourse.getCourseID().concat("." + i)).equals(courseCodeOffered)) {
                             ((Lecture) availableCourse).setLectureId(courseCodeOffered);
                             availableLectures.add((Lecture) availableCourse);
@@ -310,7 +324,7 @@ public class StudentCourseRegistrationInterface {
         try {
             for (var courseCodeOffered : coursesCodesOffered) {
                 for (var availableLecture : availableLecturesCopy) {
-                    for (int i = 1; i < 10; i++) {
+                    for (int i = 1; i < 20; i++) {
                         if ((((Lecture) availableLecture).getLectureId().concat("." + i))
                                 .equals(courseCodeOffered)) {
                             ((Lab) availableLecture).setLabId(courseCodeOffered);
@@ -515,7 +529,7 @@ public class StudentCourseRegistrationInterface {
         System.out.println();
     }
 
-    private void showAvailableLabs(int selectedIndex) {
+    private boolean showAvailableLabs(int selectedIndex) {
         int courseNumber = 1;
         System.out.printf("%n%-8s%-13s%-70s%-8s%-15s%n", "Number", "CourseID", "CourseName", "Credit", "CourseType");
         System.out.printf(
@@ -531,10 +545,24 @@ public class StudentCourseRegistrationInterface {
                         availableLab.getType().equals("E") ? "Elective" : "Mandatory");
             }
         }
-        System.out.println();
+        if (courseNumber == 1) {
+            System.out.println("\n!!! Currently, there are no labs available for this lecture !!!\n");
+            return false;
+        }
+        return true;
     }
 
-    private void saveAvailableCourses(int selectedIndex) {
-        selectedCourses.add(availableCourses.get(selectedIndex - 1));
+    private void saveAvailableCourses(int selectedLectureIndex, int selectedLabIndex) {
+        selectedLectures.add(availableLectures.get(selectedLectureIndex - 1));
+        selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1)));
+        selectedLabs.add(availableLabs.get(selectedLabIndex - 1));
     }
+
+    private void saveAvailableCourses(int selectedLectureIndex) {
+        selectedLectures.add(availableLectures.get(selectedLectureIndex - 1));
+        selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1)));
+        // remove from available courses and labs and lectures but it is done by
+        // calculateAvailableCourses() method
+    }
+
 }
