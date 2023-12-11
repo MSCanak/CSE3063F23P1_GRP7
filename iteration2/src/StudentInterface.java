@@ -15,7 +15,7 @@ public class StudentInterface {
     private NotificationInterface notificationInterface;
     private LoginInterface loginInterface;
     private StudentCourseRegistrationInterface studentCourseRegistrationInterface;
-    Scanner input;
+    private Scanner input;
 
     // constructor
     public StudentInterface(Session session, LoginInterface loginInterface) {
@@ -174,6 +174,6 @@ public class StudentInterface {
     public void calculateWeeklySchedule() {
 
     }
-    
+
 
 }
