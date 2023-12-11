@@ -5,12 +5,11 @@ public class Student extends Person {
     private Advisor advisor;
     private int currentSemester;
     private ArrayList<Course> currentTakenCourses;
-    public Student(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department,int currentSemester, Advisor advisor, ArrayList<Course> currentTakenCourses) {
+    public Student(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department,int currentSemester, Advisor advisor) {
         super(name, surname, email, phoneNumber, ID, password, faculty, department);
         this.advisor = advisor;
         this.transcript = new Transcript(this);
         this.currentSemester = currentSemester;
-        this.currentTakenCourses = currentTakenCourses;
     }
 
     public Transcript getTranscript() {
