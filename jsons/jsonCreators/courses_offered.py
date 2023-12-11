@@ -30,7 +30,9 @@ courses = df.rename(
         "Kontenjan": "Quota",
         "Gün Saat Derslik": "CourseDayTimeLocation",
     }
-).to_dict(orient="records")
+)
+courses["CourseStudents"] = 0
+courses = courses.to_dict("records")
 
 # Write the list of dictionaries to a JSON file
 with open("jsons/CoursesOffered.json", "w", encoding="utf-8") as outfile:
