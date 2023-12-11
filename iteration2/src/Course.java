@@ -9,8 +9,9 @@ public class Course {
     private double grade;
     private ArrayList<Course> optionalPrerequisite;
     private ArrayList<Course> mandatoryPrerequisite;
-    private ArrayList<Student> courseStudent;
+    private ArrayList<Student> courseStudents;
     private Lecturer lecturer;
+    private CourseSession courseSession;
 
     public Course(String courseName, String courseID, int credit, String type, int semester) {
         this.courseName = courseName;
@@ -30,8 +31,8 @@ public class Course {
     }
 
     public Course(String courseName, String courseID, String type, int credit, int theoric, int practice,
-                  int quota, ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite,
-                  ArrayList<Student> courseStudent, Lecturer lecturer) {
+            int quota, ArrayList<Course> optionalPrerequisite, ArrayList<Course> mandatoryPrerequisite,
+            ArrayList<Student> courseStudent, Lecturer lecturer) {
         this.courseName = courseName;
         this.courseID = courseID;
         this.type = type;
@@ -109,12 +110,12 @@ public class Course {
         this.practice = practice;
     }
 
-    public ArrayList<Student> getCourseStudent() {
-        return courseStudent;
+    public ArrayList<Student> getCourseStudents() {
+        return courseStudents;
     }
 
-    public void setCourseStudent(ArrayList<Student> courseStudent) {
-        this.courseStudent = courseStudent;
+    public void setCourseStudent(ArrayList<Student> courseStudents) {
+        this.courseStudents = courseStudents;
     }
 
     public Lecturer getLecturer() {
@@ -131,5 +132,29 @@ public class Course {
 
     public void setQuota(int quota) {
         this.quota = quota;
+    }
+
+    public CourseSession getCourseSession() {
+        return courseSession;
+    }
+
+    public void setCourseSession(CourseSession courseSession) {
+        this.courseSession = courseSession;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(double grade) {
+        this.grade = grade;
     }
 }
