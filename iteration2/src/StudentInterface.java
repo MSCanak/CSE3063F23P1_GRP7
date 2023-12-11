@@ -12,7 +12,7 @@ public class StudentInterface {
 
     // attributes
     private Session session;
-    private NotificationInterface notificationInterface;
+    private NotificationsInterface notificationInterface;
     private LoginInterface loginInterface;
     private StudentCourseRegistrationInterface studentCourseRegistrationInterface;
     private Scanner input;
