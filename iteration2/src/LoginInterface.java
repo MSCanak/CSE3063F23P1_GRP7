@@ -18,8 +18,9 @@ public class LoginInterface {
 
     // login method to get the user in
     public void login() {
-        while (true){
-            System.out.println("\n-----------------------Welcome to Marmara Course Registration System-----------------------");
+        while (true) {
+            System.out.println(Colors.RED
+                    + "\n--------------------Marmara Course Registration System--------------------\n" + Colors.RESET);
             System.out.println("Please enter your ID and password to login!\n");
             // get user login info
             String ID = getUserID();
@@ -31,17 +32,16 @@ public class LoginInterface {
                     if (checkUserLoginInfo("students", ID, password)) {
                         // create student object
                         session = new Session(createStudent(ID, null));
-                        System.out.println("\nWelcome " + session.getUser().getName() + " " + session.getUser().getSurname() + "!");
-                        System.out.println("You have successfully logged in.");
+                        System.out.println("\nWelcome " + session.getUser().getName() + " "
+                                + session.getUser().getSurname() + "!");
+                        System.out.println("You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged in.");
                         // direct student to student menu
-                        System.out.println("You will be directed to the main menu!\n");
+                        System.out.println("You will be directed to the Student Menu!\n");
                         StudentInterface studentInterface = new StudentInterface((Student) session.getUser(), this);
                         studentInterface.stuMenu();
                     }
-                }
-                else {
-                    System.out.println("Invalid ID!");
-                    System.out.println("Please try again.");
+                } else {
+                    System.out.println(Colors.YELLOW + "Invalid ID! Please try again." + Colors.RESET);
                     continue;
                 }
             } else if (getUserType(ID).equalsIgnoreCase("lecturer")) {
@@ -50,65 +50,63 @@ public class LoginInterface {
                     if (checkUserLoginInfo("advisors", ID, password)) {
                         // create advisor object
                         session = new Session(createAdvisor(ID, "null"));
-                        System.out.println("\nWelcome " + session.getUser().getName() + " " + session.getUser().getSurname() + "!");
-                        System.out.println("You have successfully logged in.");
-                        System.out.println("You will be directed to the main menu!\n");
+                        System.out.println("\nWelcome " + session.getUser().getName() + " "
+                                + session.getUser().getSurname() + "!");
+                        System.out.println("You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged in.");
+                        System.out.println("You will be directed to the Advisor Menu!\n");
                         // direct advisor to advisor menu
                         AdvisorInterface advisorInterface = new AdvisorInterface((Advisor) session.getUser(), this);
                         advisorInterface.advMenu();
-                    }
-                    else if (checkUserLoginInfo("lecturers", ID, password)) {
+                    } else if (checkUserLoginInfo("lecturers", ID, password)) {
                         // create lecturer object
                         session = new Session(createLecturer(ID));
-                        System.out.println("\nWelcome " + session.getUser().getName() + " " + session.getUser().getSurname() + "!");
-                        System.out.println("You have successfully logged in.");
-                        System.out.println("You will be directed to the main menu!\n");
+                        System.out.println("\nWelcome " + session.getUser().getName() + " "
+                                + session.getUser().getSurname() + "!");
+                        System.out.println("You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged in.");
+                        System.out.println("You will be directed to the Lecturer Menu!\n");
                         // direct lecturer to lecturer menu
                         AdvisorInterface advisorInterface = new AdvisorInterface((Lecturer) session.getUser(), this);
                         advisorInterface.advMenu();
-                    }
-                    else if (checkUserLoginInfo("lecturers", ID, password)) {
+                    } else if (checkUserLoginInfo("lecturers", ID, password)) {
                         // create lecturer object
-                        
-                    }
-                    else{
-                        System.out.println("Invalid ID or password!");
-                        System.out.println("Please try again.");
+                    } else {
+                        System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
                         continue;
                     }
                 } else {
-                    System.out.println("Invalid ID!");
-                    System.out.println("Please try again.");
+                    System.out.println(Colors.YELLOW + "Invalid ID! Please try again." + Colors.RESET);
                     continue;
                 }
             } else {
-                System.out.println("Invalid ID or password!");
-                System.out.println("Please try again.");
+                System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
                 continue;
             }
         }
-        
+
     }
 
     public void logout() {
-        while (true){
+        while (true) {
             // if user wants to logout and exit
-            System.out.println("Do you want to logout and exit? (y/n)");
+            System.out.println("Do you want to logout and exit? (" + Colors.YELLOW + "y/n" + Colors.RESET + ")");
             String answer = scanner.nextLine();
             if (answer.equals("y")) {
-                System.out.println("You have successfully logged out and exited.");
-                System.out.println("\n-----------------------Thank you for using Marmara Course Registration System-----------------------");
+                System.out.println(
+                        "You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged out and exited.");
+                System.out.println(
+                        Colors.RED
+                                + "\n<<<--------Thank you for using Marmara Course Registration System-------->>>\n"
+                                + Colors.RESET);
                 // set person to null to recreate it when logging in again
                 session.setUser(null);
                 exit();
             } else if (answer.equals("n")) {
-                System.out.println("You will be redirected to the login menu.");
+                System.out.println(Colors.YELLOW + "You will be redirected to the login menu." + Colors.RESET);
                 // set person to null to recreate it when logging in again
                 session.setUser(null);
                 login();
             } else {
-                System.out.println("Invalid input!");
-                System.out.println("Please try again.");
+                System.out.println(Colors.YELLOW + "Invalid input.Please try again." + Colors.RESET);
                 continue;
             }
         }
@@ -122,12 +120,11 @@ public class LoginInterface {
     private String getUserID() {
         // get id
         while (true) {
-            System.out.print("ID: ");
+            System.out.print(Colors.YELLOW + "ID: " + Colors.RESET);
             String ID = scanner.nextLine();
             // check id format
             if (!idFormatChecker(ID)) {
-                System.out.println("Invalid ID!");
-                System.out.println("Please try again.");
+                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
             } else {
                 return ID;
             }
@@ -138,11 +135,10 @@ public class LoginInterface {
     private String getUserPassword() {
         // get password
         while (true) {
-            System.out.print("Password: ");
+            System.out.print(Colors.YELLOW + "Password: " + Colors.RESET);
             String password = scanner.nextLine();
             if (!passwordFormatChecker(password)) {
-                System.out.println("Invalid password!");
-                System.out.println("Please try again.");
+                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
             } else {
                 return password;
             }
@@ -182,13 +178,12 @@ public class LoginInterface {
                     JSONObject user = (JSONObject) userObject;
                     if (user.get("Id").equals(ID) && user.get("Password").equals(password)) {
                         return true;
-                    } 
+                    }
                 }
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
-            System.out.println("Invalid ID or password!");
-            System.out.println("Please try again.");
+            System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
             return false;
         }
 
@@ -217,11 +212,12 @@ public class LoginInterface {
         String password = (String) student.get("Password");
 
         // if there is no advisor, create one
-        if(advisor == null) {
-           advisor = createAdvisor(advisorId, studentId);
+        if (advisor == null) {
+            advisor = createAdvisor(advisorId, studentId);
         }
 
-        Student stu = new Student(name, surname, email, phoneNumber, studentId, password, faculty, department, (int) semester, advisor);
+        Student stu = new Student(name, surname, email, phoneNumber, studentId, password, faculty, department,
+                (int) semester, advisor);
 
         return stu;
     }
@@ -233,7 +229,7 @@ public class LoginInterface {
             FileReader reader = new FileReader("../../jsons/advisors.json");
             Object obj = parser.parse(reader);
             JSONArray advisorList = (JSONArray) obj;
-    
+
             for (Object advisorObj : advisorList) {
                 JSONObject advisor = (JSONObject) advisorObj;
                 if (advisor.get("Id").equals(advisorID)) {
@@ -247,13 +243,14 @@ public class LoginInterface {
                     String password = (String) advisor.get("Password");
                     JSONArray studentList = (JSONArray) advisor.get("Students");
                     JSONArray givenCourses = (JSONArray) advisor.get("Courses");
-                    Advisor adv = new Advisor(name, surname, email,phoneNumber, advisorID, password, faculty, department);
+                    Advisor adv = new Advisor(name, surname, email, phoneNumber, advisorID, password, faculty,
+                            department);
                     // add students to advisor's student list
                     for (Object studentObj : studentList) {
                         JSONObject student = (JSONObject) studentObj;
                         String studentId2 = (String) student.get("Id");
                         // if the students exists in the advisor's student list, skip it
-                        if(studentId.equals(studentId2)) {
+                        if (studentId.equals(studentId2)) {
                             continue;
                         }
                         adv.setStudent(createStudent(studentId2, adv));
@@ -263,7 +260,7 @@ public class LoginInterface {
                         JSONObject course = (JSONObject) courseObj;
                         String courseCode = (String) course.get("Id");
                         adv.setCourse(createCourse(courseCode));
-                    }                   
+                    }
                     return adv;
                 }
             }
@@ -279,7 +276,7 @@ public class LoginInterface {
             FileReader reader = new FileReader("../../jsons/lecturers.json");
             Object obj = parser.parse(reader);
             JSONArray lecturerList = (JSONArray) obj;
-    
+
             for (Object lecturerObj : lecturerList) {
                 JSONObject lecturer = (JSONObject) lecturerObj;
                 if (lecturer.get("Id").equals(lecturerID)) {
@@ -293,7 +290,8 @@ public class LoginInterface {
                     String password = (String) lecturer.get("Password");
                     JSONArray givenCourses = (JSONArray) lecturer.get("Courses");
                     String academicTitle = (String) lecturer.get("AcademicTitle");
-                    Lecturer lec = new Lecturer(name, surname, email, phoneNumber, lecturerID, password, faculty, department, academicTitle);
+                    Lecturer lec = new Lecturer(name, surname, email, phoneNumber, lecturerID, password, faculty,
+                            department, academicTitle);
 
                     // add courses to advisor's course list
                     for (Object courseObj : givenCourses) {
@@ -312,14 +310,14 @@ public class LoginInterface {
         return null; // return null if no lecturer with the given ID is found
     }
 
-    private Course createCourse(String courseCode){
+    private Course createCourse(String courseCode) {
         JSONParser parser = new JSONParser();
         try {
             FileReader reader = new FileReader("../../jsons/CoursesOffered.json");
             Object obj = parser.parse(reader);
             JSONArray coursesList = (JSONArray) obj;
-            
-            for (Object courseObj : coursesList){
+
+            for (Object courseObj : coursesList) {
                 JSONObject course = (JSONObject) courseObj;
                 if (course.get("CourseCode").equals(courseCode)) {
                     // course attributes in json
@@ -341,7 +339,7 @@ public class LoginInterface {
                         // create lab
                         Lab lab = new Lab(courseCode, courseName, courseSession);
                         return lab;
-                    } else if(dotCount == 0) {
+                    } else if (dotCount == 0) {
                         // create lab
                         Course cou = new Course(courseCode, courseName, courseSession);
                         return cou;
@@ -356,22 +354,23 @@ public class LoginInterface {
         }
     }
 
-    private CourseSession createCourseSession(String courseDayTimeLocation){
+    private CourseSession createCourseSession(String courseDayTimeLocation) {
         String[] parts = courseDayTimeLocation.split(" ");
         ArrayList<String> courseDay = new ArrayList<>();
         ArrayList<String> courseStartTime = new ArrayList<>();
         ArrayList<String> courseEndTime = new ArrayList<>();
         ArrayList<String> coursePlace = new ArrayList<>();
-        
+
         for (int i = 0; i < parts.length; i += 5) {
             courseDay.add(parts[i]);
-            courseStartTime.add(parts[i+1]);
-            courseEndTime.add(parts[i+3]);
-            coursePlace.add(parts[i+4]);
+            courseStartTime.add(parts[i + 1]);
+            courseEndTime.add(parts[i + 3]);
+            coursePlace.add(parts[i + 4]);
         }
-    
+
         return new CourseSession(courseDay, courseStartTime, courseEndTime, coursePlace);
     }
+
     // returns false if id format is wrong
     private boolean idFormatChecker(String ID) {
         if (ID.isEmpty()) {
