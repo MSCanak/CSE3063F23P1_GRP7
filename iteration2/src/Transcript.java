@@ -1,11 +1,11 @@
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Transcript {
 
@@ -23,6 +23,7 @@ public class Transcript {
 
 	private void createTranscript() {
 		initializeSemesters();
+		initializeGanoList();
 	}
 
 	private void initializeSemesters() {
@@ -91,11 +92,9 @@ public class Transcript {
 			// fetch each semester's yano
 			for (int i = 0; i < arrayOfSemesters.size(); i++) {
 				JSONObject semester = (JSONObject) arrayOfSemesters.get(i);
-				// since the its a long value cast to number then get double value
-				Double yanoVal = ((Number) ((JSONObject) semester.get("SemesterInf")).get("Yano")).doubleValue();
+				// since getting a value from JSON returns a long value cast to number then get double value
 				Double ganoVal = ((Number) ((JSONObject) semester.get("SemesterInf")).get("Gano")).doubleValue();
-				yano.put(i + 1, yanoVal);
-				gano.put(i + 1, ganoVal);
+				gano.add(ganoVal);
 			}
 
 		} catch (Exception exception) {
@@ -106,24 +105,22 @@ public class Transcript {
 	public void viewTranscript() {
 		System.out.printf("%nStudent ID: %s\nName and Surname: %s%n", student.getID(),
 				student.getName() + " " + student.getSurname());
-		for (int i = 1; i <= student.getSemester(); i++) {
-			if (courses.get(i) != null) {
-				System.out.println(
-						"-------------------------------------------------------------------------------------------------------------");
-				System.out.println("Semester " + i + "\n");
-				System.out.printf("\t%-15s%-70s%-10s%-10s%n%n", "Course Code", "Course Name", "Credit", "Grade");
-				ArrayList<Course> coursesForPrinting = courses.get(i);
-				for (int j = 0; j < coursesForPrinting.size(); j++) {
-					System.out.printf("\t%-15s%-70s%-10s%-10s%n", coursesForPrinting.get(j).getCourseID(),
-							coursesForPrinting.get(j).getCourseName(), coursesForPrinting.get(j).getCredit(),
-							coursesForPrinting.get(j).getGrade());
-				}
-				System.out.println("\nTaken Credit: " + takenCredit.get(i));
-				System.out.println("Completed Credit: " + completedCredit.get(i));
-				System.out.println("Yano: " + String.format("%.2f", yano.get(i)));
-				System.out.println("Gano: " + String.format("%.2f", gano.get(i)));
-				System.out.println();
-			}
+		for (int i = 0; i < semesters.size(); i++) {
+			System.out.println(
+					"-------------------------------------------------------------------------------------------------------------");
+			System.out.println("Semester " + (i + 1) + "\n");
+			System.out.printf("\t%-15s%-70s%-10s%-10s%n%n", "Course Code", "Course Name", "Credit", "Grade");
+			Semester currentSemester = semesters.get(i);
+            for (Course course : currentSemester.getCourses()) {
+                System.out.printf("\t%-15s%-70s%-10s%-10s%n", course.getCourseID(),
+                        course.getCourseName(), course.getCredit(),
+                        course.getGrade());
+            }
+			System.out.println("\nTaken Credit: " + currentSemester.getTakenCredit());
+			System.out.println("Completed Credit: " + currentSemester.getCompletedCredit());
+			System.out.println("Yano: " + String.format("%.2f", currentSemester.getYano()));
+			System.out.println("Gano: " + String.format("%.2f", gano.get(i)));
+			System.out.println();
 		}
 	}
 
