@@ -22,12 +22,10 @@ public class Transcript {
 	}
 
 	private void createTranscript() {
-		initializeYanoAndGano();
-		initializeTakenAndCompletedCredit();
-		initializeAndConstructCourses();
+		initializeSemesters();
 	}
 
-	private void initializeAndConstructCourses() {
+	private void initializeSemesters() {
 		String filePath = "./jsons/student/" + student.getID() + ".json";
 		JSONParser parser = new JSONParser();
 
@@ -42,14 +40,14 @@ public class Transcript {
 			// fetch each semester's courses
 			for (int i = 0; i < arrayOfSemesters.size(); i++) {
 				// get current semester with its corresponding courses
-				JSONObject semester = (JSONObject) arrayOfSemesters.get(i);
-				JSONArray coursesArray = (JSONArray) semester.get("Courses");
-
+				JSONObject semesterJson = (JSONObject) arrayOfSemesters.get(i);
+				JSONArray coursesArray = (JSONArray) semesterJson.get("Courses");
 				ArrayList<Course> semesterCourses = new ArrayList<>();
+
 				for (int j = 0; j < coursesArray.size(); j++) {
 					JSONObject jsonCourse = (JSONObject) coursesArray.get(j);
 
-					// variables to create course objects
+					// variable parameters to create course objects
 					// get method in json-simple returns object as an Object needs a cast
 					String courseName = (String) jsonCourse.get("CourseName");
 					String courseID = (String) jsonCourse.get("CourseID");
@@ -61,7 +59,15 @@ public class Transcript {
 					Course course = new Course(courseName, courseID, credit, type, semesterVal, grade);
 					semesterCourses.add(course);
 				}
-				courses.put(i + 1, semesterCourses);
+
+				// construct Semester objects and initialize other attributes
+				Semester semester = new Semester(semesterCourses);
+				JSONObject semesterInf = (JSONObject) semesterJson.get("SemesterInf");
+				semester.setTakenCredit(((Number) semesterInf.get("TakenCredit")).intValue());
+				semester.setCompletedCredit(((Number) semesterInf.get("CompletedCredit")).intValue());
+				semester.setYano(((Number) semesterInf.get("Yano")).doubleValue());
+
+				semesters.add(semester);
 			}
 
 		} catch (Exception exception) {
@@ -69,36 +75,8 @@ public class Transcript {
 		}
 	}
 
-	private void initializeTakenAndCompletedCredit() {
-		String filePath = "./jsons/student/" + student.getID() + ".json";
-		JSONParser parser = new JSONParser();
-
-		try {
-			// read student json file
-			Object obj = parser.parse(new FileReader(filePath));
-			JSONObject studentJson = (JSONObject) obj;
-			// get transcript attribute then obtain the array of courses inside
-			JSONObject transcript = (JSONObject) studentJson.get("Transcript");
-			JSONArray arrayOfSemesters = (JSONArray) transcript.get("Semester");
-
-			// fetch each semester's completed and taken credits
-			for (int i = 0; i < arrayOfSemesters.size(); i++) {
-				JSONObject semester = (JSONObject) arrayOfSemesters.get(i);
-				Integer takenCreditVal = ((Number) ((JSONObject) semester.get("SemesterInf")).get("TakenCredit"))
-						.intValue();
-				Integer completedCreditVal = ((Number) ((JSONObject) semester.get("SemesterInf"))
-						.get("CompletedCredit")).intValue();
-				takenCredit.put(i + 1, takenCreditVal);
-				completedCredit.put(i + 1, completedCreditVal);
-			}
-
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-	}
-
-	// initialize YANO and GANO from studentID.json
-	private void initializeYanoAndGano() {
+	// initialize GANO from studentID.json
+	private void initializeGanoList() {
 		String filePath = "./jsons/student/" + student.getID() + ".json";
 		JSONParser parser = new JSONParser();
 
