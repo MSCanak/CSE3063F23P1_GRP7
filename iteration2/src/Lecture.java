@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Lecture extends Course {
 
     String lectureCourseId;
@@ -12,12 +10,8 @@ public class Lecture extends Course {
         super(courseName, courseID, credit, type, semester, grade);
     }
 
-    public Lecture(String lectureCourseId, String courseName, String courseID, String type, int credit,
-            int theoric, int practice, int quota, ArrayList<Course> optionalPrerequisite,
-            ArrayList<Course> mandatoryPrerequisite, ArrayList<Student> courseStudent, Lecturer lecturer) {
-        super(courseName, courseID, type, credit, theoric, practice, quota, optionalPrerequisite, mandatoryPrerequisite,
-                courseStudent, lecturer);
-        this.lectureCourseId = lectureCourseId;
+    public Lecture(String courseName, String courseID, CourseSession courseSession) {
+        super(courseName, courseID, courseSession);
     }
 
     public String getLectureCourseId() {
