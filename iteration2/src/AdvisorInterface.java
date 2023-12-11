@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AdvisorInterface implements Schedule, NotificationsMenu{
+public class AdvisorInterface extends NotificationsInterface implements Schedule{
     
     private Scanner scanner;
     private Session session;
