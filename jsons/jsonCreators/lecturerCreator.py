@@ -41,6 +41,7 @@ for(key, value) in data.items():
     id += 1
     password = (str)(id) + split[1]
     # print(name, surname, id, password)
+    title = split[0]
 
     courses = value
     # print(value)
@@ -54,7 +55,8 @@ for(key, value) in data.items():
         "Password": password,
         "Faculty": "Engineering",
         "Department": "Computer Science Engineering",
-        "Courses": courses
+        "Courses": courses,
+        "AcademicTitle": title
     }
 
     lecturers.append(lecturer)
