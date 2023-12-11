@@ -5,17 +5,18 @@ public class AdvisorInterface implements Schedule, NotificationsMenu{
     
     private Scanner scanner;
     private Session session;
-    private ArrayList<Notification> notifications;
+    private NotificationInterface notificationInt;
     private LoginInterface loginInt;
     private AdvisorCourseRegistrationInterface advCourseRegInt;
 
 
-    public AdvisorInterface(Lecturer lecturer, LoginInterface loginInt){
-        this.advisor = advisor;
+    public AdvisorInterface(Session session, LoginInterface loginInt){
+        this.session = session;
         this.loginInt = loginInt;
-         advCourseRegInt = new AdvisorCourseRegistrationInterface(advisor, this);
+        advCourseRegInt = new AdvisorCourseRegistrationInterface(advisor, this);
     }
 
+    //the terminal inteface for advisor
     public void advMenu(){
 
         scanner = new Scanner(System.in);
@@ -38,12 +39,10 @@ public class AdvisorInterface implements Schedule, NotificationsMenu{
                 advCourseRegInt.advRegMenu();
         }
     }
-
-    public void lecturerSchedule(){}
-    public void calculateSchedule(){}
-    public void showSchedule(){}
-    private void showNotifications(){}
-    private void notificationsMenu(){}
-    private ArrayListN<Notification> calculateNotifications(){}
+    //it calculates the weekly schedule of advisor and stores it 
+    public void calculateWeeklySchedule(){}
+    //it prints the weekly schedule of advisor
+    public void showWeeklySchedule(){}
+    //
     public void showGivenCourses(){}
 }
