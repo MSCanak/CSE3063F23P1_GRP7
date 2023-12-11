@@ -2,10 +2,12 @@ public class Student extends Person {
     
     private Transcript transcript;
     private Advisor advisor;
-    public Student(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department,Advisor advisor) {
+    private int currentSemester;
+    public Student(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department,int currentSemester, Advisor advisor) {
         super(name, surname, email, phoneNumber, ID, password, faculty, department);
         this.advisor = advisor;
         this.transcript = new Transcript(this);
+        this.currentSemester = currentSemester;
     }
 
     public Transcript getTranscript() {
@@ -19,5 +21,11 @@ public class Student extends Person {
     }
     public void setAdvisor(Advisor advisor) {
         this.advisor = advisor;
+    }
+    public int getCurrentSemester() {
+        return currentSemester;
+    }
+    public void setCurrentSemester(int currentSemester) {
+        this.currentSemester = currentSemester;
     }
 }
