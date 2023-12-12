@@ -28,6 +28,11 @@ public class StudentCourseRegistrationInterface {
         this.studentInt = studentInt;
         this.availableCourses = new ArrayList<Course>();
         this.selectedCourses = new ArrayList<Course>();
+        this.availableLectures = new ArrayList<Lecture>();
+        this.selectedLectures = new ArrayList<Lecture>();
+        this.availableLabs = new ArrayList<Lab>();
+        this.selectedLabs = new ArrayList<Lab>();
+        this.coursesCodesOffered = new ArrayList<String>();
         this.scanner = new Scanner(System.in);
     }
 
@@ -272,7 +277,7 @@ public class StudentCourseRegistrationInterface {
                         System.out.println("!!! Selected lecture and lab added !!!");
                     } else {
                         saveAvailableCourses(Integer.parseInt(input));
-                        System.out.println("!!! Selected lecture added onlu !!!");
+                        System.out.println("!!! Selected lecture added only !!!");
                     }
 
                     break;
