@@ -9,6 +9,10 @@ public class Colors {
     public static final String PURPLE = "\u001B[35m";
     public static final String CYAN = "\u001B[36m";
     public static final String WHITE = "\u001B[37m";
+
+    public static final String GRAY_BACKGROUND = "\u001B[100m";//for using unread notifications and messages
+    public static final String BLACK_BACKGROUND = "\u001B[40m";
+    public static final String WHITE_BACKGROUND = "\u001B[47m";
     // END: abpxx6d04wxr
 }
 // FILEPATH: /C:/GitHub/CSE3063F23P1_GRP7/iteration2/src/colors.java
