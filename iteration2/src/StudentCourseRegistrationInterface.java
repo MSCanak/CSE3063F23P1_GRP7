@@ -68,7 +68,7 @@ public class StudentCourseRegistrationInterface {
                 "-", session.getUser().getName() + " " + session.getUser().getSurname());
         System.out.printf("%-10s%-30s%n", "Advisor: ",
                 session.getUser().getAdvisor().getName() + " " + session.getUser().getAdvisor().getSurname());
-        System.out.printf("%-10s%-5s%n", "Semester: ", session.getUser().getSemester());
+        System.out.printf("%-10s%-5s%n", "Semester: ", ((Student) (session.getUser())).getCurrentSemester());
 
     }
 
@@ -304,7 +304,6 @@ public class StudentCourseRegistrationInterface {
             var parser = new JSONParser();
             var obj = parser.parse(new FileReader(coursesOfferedJson));
             var coursesOfferedArray = (JSONArray) obj;
-            var coursesCodesOffered = new ArrayList<String>();
 
             for (var courseObj : coursesOfferedArray) {
                 var courseJson = (JSONObject) courseObj;
@@ -364,7 +363,7 @@ public class StudentCourseRegistrationInterface {
 
     private void calculateAvailableCourses() {
         var allCourses = new ArrayList<Course>();
-        var targetSemester = session.getUser().getSemester();
+        var targetSemester = ((Student) (session.getUser())).getCurrentSemester();
 
         // Read courses from JSON file
         try {
@@ -433,7 +432,7 @@ public class StudentCourseRegistrationInterface {
 
             // filter by target semester and add to availableCourses
             for (var course : allCourses) {
-                if (course.getSemester() == targetSemester || course.getSemester() == targetSemester + 1)
+                if (course.getSemester() == targetSemester)
                     availableCourses.add(course);
             }
 
