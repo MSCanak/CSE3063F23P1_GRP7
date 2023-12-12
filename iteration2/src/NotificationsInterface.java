@@ -19,9 +19,12 @@ public class NotificationsInterface {
 
     // shows the notifications
     private void showNotifications() {
+        // indexer is for showing notifications with numbers or not
         calculateNotifications();
         int i = 1;
         char isReadSign = 'o';
+        String BG;
+        String blank = " ";
         for (Notification notification : notifications) {
 
             String isRead = notification.getIsRead() ? "Read" : "Unread";
@@ -30,10 +33,15 @@ public class NotificationsInterface {
             String timeSent = notification.getTimeSent().toString();
             String description = notification.getDescription();
 
-    
-            // need modify @karagül
-            System.out.println(
-                    i + " " + senderID + " " + notificationType + " " + isRead + " " + timeSent + " " + description);
+            if (notification.getIsRead()) {
+                BG = Colors.BLACK_BACKGROUND;
+            } else {
+                BG = Colors.GRAY_BACKGROUND;
+            }
+
+            System.out.println("--------------------");
+            System.out.printf("%n%s %3s %-15s%10s %n %3s %-s %n %3s %-3s%-10s %s%n", BG, blank, senderID, timeSent, i,
+                    notificationType, blank, isReadSign, description, Colors.RESET);
             i++;
         }
     }
@@ -111,7 +119,7 @@ public class NotificationsInterface {
         // notifications with numbers
 
         while (true) {
-
+            showNotifications();
             System.out.println("Which notification do you want to mark as read?");
             System.out.println("Select a notification number to mark as read or select x to mark all as read.");
             System.out.println("(For example -> 1-2-3 or  x )");
@@ -144,7 +152,7 @@ public class NotificationsInterface {
     private void deleteNotification() {
         // notifications with numbers
         while (true) {
-
+            showNotifications(true);
             System.out.println("Which notification do you want to delete?");
             System.out.println("Select a notification number to delete or select x to delete all.");
             System.out.println("(For example -> 1-2-3 or  x )");
