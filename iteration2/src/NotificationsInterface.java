@@ -14,13 +14,15 @@ public class NotificationsInterface {
 
     public NotificationsInterface(Session session) {
         this.person = session.getUser();
-        
+
     }
+
     // shows the notifications
-    private void showNotifications(){
+    private void showNotifications() {
         calculateNotifications();
         int i = 1;
-        for(Notification notification : notifications){
+        char isReadSign = 'o';
+        for (Notification notification : notifications) {
 
             String isRead = notification.getIsRead() ? "Read" : "Unread";
             String notificationType = notification.getNotificationType();
@@ -28,21 +30,23 @@ public class NotificationsInterface {
             String timeSent = notification.getTimeSent().toString();
             String description = notification.getDescription();
 
+    
             // need modify @karagül
-            System.out.println(i + " "+ senderID + " " + notificationType + " " + isRead + " " + timeSent + " " + description);
+            System.out.println(
+                    i + " " + senderID + " " + notificationType + " " + isRead + " " + timeSent + " " + description);
             i++;
         }
     }
 
     // calculates the notifications by reading json file
-    private void calculateNotifications(){
+    private void calculateNotifications() {
         try {
             Object notificationObject = new JSONParser().parse(new FileReader("./jsons/notifications.json"));
             JSONArray notificationJSONObject = (JSONArray) notificationObject;
 
-            for(Object notification : notificationJSONObject) {
+            for (Object notification : notificationJSONObject) {
                 JSONObject notificationJSON = (JSONObject) notification;
-                if(notificationJSON.get("receiverID").equals(person.getID())) {
+                if (notificationJSON.get("receiverID").equals(person.getID())) {
 
                     String receiverID = (String) notificationJSON.get("receiverID");
                     boolean isRead = (boolean) notificationJSON.get("isRead");
@@ -51,31 +55,31 @@ public class NotificationsInterface {
                     String notificationType = (String) notificationJSON.get("notificationType");
                     String senderID = (String) notificationJSON.get("senderID");
 
-                    Notification newNotification = new Notification(receiverID, isRead, description, timeSent, notificationType, senderID);
+                    Notification newNotification = new Notification(receiverID, isRead, description, timeSent,
+                            notificationType, senderID);
                     notifications.add(newNotification);
                 }
             }
-            
-        }
-        catch (Exception e) {
-            System.out.println("Error: " + e);
+
+        } catch (Exception e) {
+            System.out.println(Colors.YELLOW + "Error: " + Colors.rese + e);
         }
     }
+
     // shows the notifications menu and let user take action in notifications
-    public void notificationsMenu(){
-        
-        System.out.println(Colors.RED + "\n--------------------Notifications Menu--------------------\n" + Colors.RESET);
-        
-        //notifications
+    public void notificationsMenu() {
+
+        System.out
+                .println(Colors.RED + "\n--------------------Notifications Menu--------------------\n" + Colors.RESET);
+
+        // notifications
         showNotifications();
 
-        
-        System.out.println("\nWhat do you want to do?\n");
         System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Mark as Read");
         System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Delete Notification");
-        System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Go back to the Student Menu");
+        System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Go back to the Course Registration System"); // ???
+        System.out.println("\nWhat do you want to do?\n");
 
-        
         char choice = input.next().charAt(0);
 
         switch (choice) {
@@ -101,13 +105,12 @@ public class NotificationsInterface {
                 break;
         }
 
-        
     }
 
-    private void markAsRead(){
-        //notifications with numbers
-        
-        while(true) {
+    private void markAsRead() {
+        // notifications with numbers
+
+        while (true) {
 
             System.out.println("Which notification do you want to mark as read?");
             System.out.println("Select a notification number to mark as read or select x to mark all as read.");
@@ -123,7 +126,7 @@ public class NotificationsInterface {
 
                 // mark all as read
                 case 'x':
-                    for(Notification notification : notifications) {
+                    for (Notification notification : notifications) {
                         notification.setIsRead(true);
                     }
                     break;
@@ -133,15 +136,14 @@ public class NotificationsInterface {
                     notifications.get(choice - 1).setIsRead(true);
                     break;
             }
-            
+
         }
-        
 
     }
 
-    private void deleteNotification(){
-        //notifications with numbers
-        while(true) {
+    private void deleteNotification() {
+        // notifications with numbers
+        while (true) {
 
             System.out.println("Which notification do you want to delete?");
             System.out.println("Select a notification number to delete or select x to delete all.");
@@ -166,8 +168,8 @@ public class NotificationsInterface {
                     // jsondan silme işlemi eklenecek
                     break;
             }
-            
+
         }
     }
 
-}   
+}
