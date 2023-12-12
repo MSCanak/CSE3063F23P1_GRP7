@@ -70,7 +70,7 @@ public class NotificationsInterface {
             }
 
         } catch (Exception e) {
-            System.out.println(Colors.YELLOW + "Error: " + Colors.rese + e);
+            System.out.println(Colors.YELLOW + "Error: " + Colors.RESET + e);
         }
     }
 
@@ -152,7 +152,7 @@ public class NotificationsInterface {
     private void deleteNotification() {
         // notifications with numbers
         while (true) {
-            showNotifications(true);
+            showNotifications();
             System.out.println("Which notification do you want to delete?");
             System.out.println("Select a notification number to delete or select x to delete all.");
             System.out.println("(For example -> 1-2-3 or  x )");
