@@ -33,7 +33,7 @@ public class NotificationsInterface {
             String timeSent = notification.getTimeSent().toString();
             String description = notification.getDescription();
 
-            if (notification.getIsRead()) {
+            if (isRead.equals("Read")) {
                 BG = Colors.BLACK_BACKGROUND;
             } else {
                 BG = Colors.GRAY_BACKGROUND;
@@ -85,7 +85,8 @@ public class NotificationsInterface {
 
         System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Mark as Read");
         System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Delete Notification");
-        System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Go back to the Course Registration System"); // ???
+        System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Go back to the Course Registration System"); 
+        //we dont knw where did it go back?
         System.out.println("\nWhat do you want to do?\n");
 
         char choice = input.next().charAt(0);
