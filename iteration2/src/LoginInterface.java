@@ -343,7 +343,7 @@ public class LoginInterface {
                         Course cou = new Course(courseCode, courseName, courseSession);
                         return cou;
                     } else {
-                        System.out.println(Colors.CYAN + "Invalid course code!");
+                        System.out.println(Colors.CYAN + "Invalid course code!"+ Colors.RESET);
                         continue;
                     }
                 }
