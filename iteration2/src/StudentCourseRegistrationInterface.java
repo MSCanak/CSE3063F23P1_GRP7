@@ -226,11 +226,24 @@ public class StudentCourseRegistrationInterface {
                     calculateAvailableLectures();
                     calculateAvailableLabs();
                     showAvailableLectures();
+                    if (selectedCourses.size() == 5) {
+                        System.out.println("5 courses already selected, press 0 to go back");
+                        var input = "";
+                        do {
+                            input = scanner.next();
+                            if (input.equals("0")) {
+                                System.out.println("Invalid input");
+                                continue;
+                            }
+                            return;
+                        } while (true);
+                    }
                     System.out.print("Select courses you want to add (for example -> 1) or cancel with entering 0: ");
                     var input = "";
                     do {
                         input = scanner.next();
-                        if (input.length() > 1) {
+                        if (input.length() > 1 || Integer.parseInt(input) > availableLectures.size()
+                                || input.length() == 0) {
                             System.out.println("Invalid input");
                             continue;
                         }
@@ -238,8 +251,9 @@ public class StudentCourseRegistrationInterface {
                     } while (true);
 
                     if (input.equals("0")) {
-                        break;
+                        return;
                     }
+
                     var isLabsAvailable = showAvailableLabs(Integer.parseInt(input));
                     if (isLabsAvailable) {
                         System.out.print("Select labs you want to add (for example -> 1) or cancel with entering 0: ");
@@ -255,8 +269,12 @@ public class StudentCourseRegistrationInterface {
                             break;
                         }
                         saveAvailableCourses(Integer.parseInt(input), Integer.parseInt(input));
+                        System.out.println("!!! Selected lecture and lab added !!!");
+                    } else {
+                        saveAvailableCourses(Integer.parseInt(input));
+                        System.out.println("!!! Selected lecture added onlu !!!");
                     }
-                    saveAvailableCourses(Integer.parseInt(input));
+
                     break;
                 case "0":
                     return;
@@ -410,7 +428,7 @@ public class StudentCourseRegistrationInterface {
 
             // filter by target semester and add to availableCourses
             for (var course : allCourses) {
-                if (course.getSemester() == targetSemester)
+                if (course.getSemester() == targetSemester || course.getSemester() == targetSemester + 1)
                     availableCourses.add(course);
             }
 
@@ -546,23 +564,21 @@ public class StudentCourseRegistrationInterface {
             }
         }
         if (courseNumber == 1) {
-            System.out.println("\n!!! Currently, there are no labs available for this lecture !!!\n");
+            System.err.println("\n!!! Currently, there are no labs available for this lecture !!!\n");
             return false;
         }
         return true;
     }
 
     private void saveAvailableCourses(int selectedLectureIndex, int selectedLabIndex) {
-        selectedLectures.add(availableLectures.get(selectedLectureIndex - 1));
         selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1)));
+        selectedLectures.add(availableLectures.get(selectedLectureIndex - 1));
         selectedLabs.add(availableLabs.get(selectedLabIndex - 1));
     }
 
     private void saveAvailableCourses(int selectedLectureIndex) {
-        selectedLectures.add(availableLectures.get(selectedLectureIndex - 1));
         selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1)));
-        // remove from available courses and labs and lectures but it is done by
-        // calculateAvailableCourses() method
+        selectedLectures.add(availableLectures.get(selectedLectureIndex - 1));
     }
 
 }
