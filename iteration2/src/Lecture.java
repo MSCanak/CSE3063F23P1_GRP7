@@ -1,32 +1,52 @@
 public class Lecture extends Course {
 
-    private String lectureId;
+    private String lectureID;
 
-    public Lecture(String courseName, String courseID, int credit, String type, int semester) {
-        super(courseName, courseID, credit, type, semester);
+    public Lecture(String courseName, String lectureID, int credit, String type, int semester) {
+        super(courseName, lectureID, credit, type, semester);
+        var lastIndex = lectureID.indexOf(".");
+        var courseID = lectureID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.lectureID = lectureID;
     }
 
-    public Lecture(String courseName, String courseID, int credit, String type, int semester, double grade) {
-        super(courseName, courseID, credit, type, semester, grade);
+    public Lecture(String courseName, String lectureID, int credit, String type, int semester, double grade) {
+        super(courseName, lectureID, credit, type, semester, grade);
+        var lastIndex = lectureID.indexOf(".");
+        var courseID = lectureID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.lectureID = lectureID;
     }
 
-    public Lecture(String courseName, String courseID, CourseSession courseSession) {
-        super(courseName, courseID, courseSession);
+    public Lecture(String courseName, String lectureID, CourseSession courseSession) {
+        super(courseName, lectureID, courseSession);
+        var lastIndex = lectureID.indexOf(".");
+        var courseID = lectureID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.lectureID = lectureID;
     }
 
-    public Lecture(String courseName, String courseID, CourseSession courseSession, Lecturer lecturer) {
-        super(courseName, courseID, courseSession, lecturer);
+    public Lecture(String courseName, String lectureID, CourseSession courseSession, Lecturer lecturer) {
+        super(courseName, lectureID, courseSession, lecturer);
+        var lastIndex = lectureID.indexOf(".");
+        var courseID = lectureID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.lectureID = lectureID;
     }
 
-    public Lecture(String courseName, String courseID, int quota, CourseSession courseSession) {
-        super(courseName, courseID, quota, courseSession);
+    public Lecture(String courseName, String lectureID, int quota, CourseSession courseSession) {
+        super(courseName, lectureID, quota, courseSession);
+        var lastIndex = lectureID.indexOf(".");
+        var courseID = lectureID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.lectureID = lectureID;
     }
 
-    public String getLectureId() {
-        return lectureId;
+    public String getLectureID() {
+        return lectureID;
     }
 
-    public void setLectureId(String lectureId) {
-        this.lectureId = lectureId;
+    public void setLectureID(String lectureId) {
+        this.lectureID = lectureId;
     }
 }

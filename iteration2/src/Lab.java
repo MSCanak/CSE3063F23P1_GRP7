@@ -1,34 +1,52 @@
-import java.util.ArrayList;
-
 public class Lab extends Course{
     
-    private String labId;
+    private String labID;
 
-    public Lab(String courseName,  String courseID, int credit, String type, int semester){
-        super(courseName, courseID, credit, type, semester);
+    public Lab(String courseName,  String labID, int credit, String type, int semester){
+        super(courseName, labID, credit, type, semester);
+        var lastIndex = labID.indexOf(".");
+        var courseID = labID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.labID = labID;
     }
 
-    public Lab(String courseName, String courseID, int credit, String type, int semester, double grade){
-        super(courseName, courseID, credit, type, semester);
+    public Lab(String courseName, String labID, int credit, String type, int semester, double grade){
+        super(courseName, labID, credit, type, semester);
+        var lastIndex = labID.indexOf(".");
+        var courseID = labID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.labID = labID;
     }
     
-    public Lab(String courseName, String courseID, CourseSession courseSession){
-        super(courseName, courseID, courseSession);
+    public Lab(String courseName, String labID, CourseSession courseSession){
+        super(courseName, labID, courseSession);
+        var lastIndex = labID.indexOf(".");
+        var courseID = labID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.labID = labID;
     }
 
-    public Lab(String courseName, String courseID, CourseSession courseSession, Lecturer lecturer){
-        super(courseName, courseID, courseSession,lecturer);
+    public Lab(String courseName, String labID, CourseSession courseSession, Lecturer lecturer){
+        super(courseName, labID, courseSession,lecturer);
+        var lastIndex = labID.indexOf(".");
+        var courseID = labID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.labID = labID;
     }
 
-    public Lab(String courseName, String courseID, int quota, CourseSession courseSession){
-        super(courseName, courseID, quota, courseSession);
+    public Lab(String courseName, String labID, int quota, CourseSession courseSession){
+        super(courseName, labID, quota, courseSession);
+        var lastIndex = labID.indexOf(".");
+        var courseID = labID.substring(0, lastIndex);
+        this.setCourseID(courseID);
+        this.labID = labID;
     }
 
-    public String getLabId(){
-        return labId;
+    public String getLabID(){
+        return labID;
     }
     
-    public void setLabId(String courseId){
-        this.labId = courseId;
+    public void setLabID(String courseId){
+        this.labID = courseId;
     }   
 }

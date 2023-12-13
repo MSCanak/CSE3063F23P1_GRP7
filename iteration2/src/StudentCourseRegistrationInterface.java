@@ -187,11 +187,11 @@ public class StudentCourseRegistrationInterface {
         }
 
         for (Lecture lecture : selectedLectures) {
-            selectedLecturesJsonArray.add(lecture.getLectureId());
+            selectedLecturesJsonArray.add(lecture.getLectureID());
         }
 
         for (Lab lab : selectedLabs) {
-            selectedLabsJsonArray.add(lab.getLabId());
+            selectedLabsJsonArray.add(lab.getLabID());
         }
 
         // Create the JSON object
@@ -352,7 +352,7 @@ public class StudentCourseRegistrationInterface {
         availableLectures.clear();
         try {
             for (var courseOffered : coursesOffered) {
-                var courseIDOffered = courseOffered.getLectureId();
+                var courseIDOffered = courseOffered.getLectureID();
                 for (var availableCourse : availableCoursesCopy) {
                     for (int i = 1; i < 20; i++) {
                         if ((availableCourse.getCourseID().concat("." + i)).equals(courseIDOffered)) {
@@ -362,7 +362,7 @@ public class StudentCourseRegistrationInterface {
                                     availableCourse.getCredit(), availableCourse.getType(),
                                     availableCourse.getSemester());
 
-                            lecture.setLectureId(courseIDOffered);
+                            lecture.setLectureID(courseIDOffered);
                             availableLectures.add(lecture);
                         }
                     }
@@ -381,16 +381,16 @@ public class StudentCourseRegistrationInterface {
         availableLabs.clear();
         try {
             for (var courseOffered : coursesOffered) {
-                var courseIDOffered = courseOffered.getLectureId();
+                var courseIDOffered = courseOffered.getLectureID();
                 for (var availableLecture : availableLecturesCopy) {
                     for (int i = 1; i < 20; i++) {
-                        if ((availableLecture.getLectureId().concat("." + i))
+                        if ((availableLecture.getLectureID().concat("." + i))
                                 .equals(courseIDOffered)) {
                             var lab = new Lab(availableLecture.getCourseName(),
                                     availableLecture.getCourseID(),
                                     availableLecture.getCredit(), availableLecture.getType(),
                                     availableLecture.getSemester());
-                            lab.setLabId(courseIDOffered);
+                            lab.setLabID(courseIDOffered);
                             availableLabs.add(lab);
                         }
                     }
@@ -583,7 +583,7 @@ public class StudentCourseRegistrationInterface {
 
         for (var lecture : availableLectures) {
 
-            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, lecture.getLectureId(),
+            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, lecture.getLectureID(),
                     lecture.getCourseName(),
                     lecture.getCredit(),
                     lecture.getType().equals("E") ? "Elective" : "Mandatory");
@@ -600,10 +600,10 @@ public class StudentCourseRegistrationInterface {
         var selectedLecture = availableLectures.get(selectedIndex - 1);
 
         for (var availableLab : availableLabs) {
-            int lastIndex = availableLab.getLabId().lastIndexOf(".");
-            var correspondingLectureId = availableLab.getLabId().substring(0, lastIndex);
-            if (correspondingLectureId.equals(selectedLecture.getLectureId())) {
-                System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, availableLab.getLabId(),
+            int lastIndex = availableLab.getLabID().lastIndexOf(".");
+            var correspondingLectureId = availableLab.getLabID().substring(0, lastIndex);
+            if (correspondingLectureId.equals(selectedLecture.getLectureID())) {
+                System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, availableLab.getLabID(),
                         availableLab.getCourseName(), availableLab.getCredit(),
                         availableLab.getType().equals("E") ? "Elective" : "Mandatory");
             }
