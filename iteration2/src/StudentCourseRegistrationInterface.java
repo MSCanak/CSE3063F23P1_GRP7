@@ -326,7 +326,7 @@ public class StudentCourseRegistrationInterface {
 
             for (var courseObj : coursesOfferedArray) {
                 var courseJson = (JSONObject) courseObj;
-                var courseID = (String) courseJson.get("CourseID");
+                var lectureID = (String) courseJson.get("CourseID");
                 var courseName = (String) courseJson.get("CourseName");
                 // var lecturer = ((Long) courseJson.get("Lecturer")).intValue();
                 // var theoratical = ((Long) courseJson.get("Theoratical")).intValue();
@@ -335,7 +335,7 @@ public class StudentCourseRegistrationInterface {
                 var quota = ((Long) courseJson.get("Quota")).intValue();
                 var courseDayTimeLocation = (String) courseJson.get("CourseDayTimeLocation");
                 // var courseStudents = ((Long) courseJson.get("CourseStudents")).intValue();
-                var lecture = new Lecture(courseName, courseID, quota, createCourseSession(courseDayTimeLocation));
+                var lecture = new Lecture(courseName, lectureID, quota, createCourseSession(courseDayTimeLocation));
                 coursesOffered.add(lecture);
             }
 
@@ -358,7 +358,7 @@ public class StudentCourseRegistrationInterface {
                         if ((availableCourse.getCourseID().concat("." + i)).equals(courseIDOffered)) {
                             // ((Lecture) availableCourse).setLectureId(courseIDOffered);
                             Lecture lecture = new Lecture(availableCourse.getCourseName(),
-                                    availableCourse.getCourseID(),
+                                    courseIDOffered,
                                     availableCourse.getCredit(), availableCourse.getType(),
                                     availableCourse.getSemester());
 
@@ -387,7 +387,7 @@ public class StudentCourseRegistrationInterface {
                         if ((availableLecture.getLectureID().concat("." + i))
                                 .equals(courseIDOffered)) {
                             var lab = new Lab(availableLecture.getCourseName(),
-                                    availableLecture.getCourseID(),
+                                    courseIDOffered,
                                     availableLecture.getCredit(), availableLecture.getType(),
                                     availableLecture.getSemester());
                             lab.setLabID(courseIDOffered);
