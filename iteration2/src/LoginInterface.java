@@ -256,9 +256,10 @@ public class LoginInterface {
                     }
                     // add courses to advisor's course list
                     for (Object courseObj : givenCourses) {
-                        JSONObject course = (JSONObject) courseObj;
-                        String courseCode = (String) course.get("Id");
-                        adv.setCourse(createCourse(courseCode));
+                        String courseCode = (String) courseObj;
+
+                        Course course = (Course) createCourse(courseCode);
+                        adv.setCourse(course);
                     }
                     return adv;
                 }
