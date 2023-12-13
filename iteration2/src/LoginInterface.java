@@ -153,7 +153,7 @@ public class LoginInterface {
 
             for (Object userObject : userList) {
                 JSONObject user = (JSONObject) userObject;
-                if (user.get("Id").equals(ID)) {
+                if (user.get("ID").equals(ID)) {
                     return true;
                 }
             }
@@ -174,7 +174,7 @@ public class LoginInterface {
 
                 for (Object userObject : userList) {
                     JSONObject user = (JSONObject) userObject;
-                    if (user.get("Id").equals(ID) && user.get("Password").equals(password)) {
+                    if (user.get("ID").equals(ID) && user.get("Password").equals(password)) {
                         return true;
                     }
                 }
@@ -200,21 +200,33 @@ public class LoginInterface {
         // user attributes in json
         String name = (String) student.get("Name");
         String surname = (String) student.get("Surname");
-        String email = (String) student.get("Mail");
+        String email = (String) student.get("EMail");
         String phoneNumber = (String) student.get("PhoneNumber");
         String department = (String) student.get("Department");
-        String advisorId = (String) student.get("AdvisorId");
+        String advisorID = (String) student.get("AdvisorID");
         long semester = (long) student.get("Semester");
         String faculty = (String) student.get("Faculty");
-        String studentId = (String) student.get("Id");
+        String studentID = (String) student.get("ID");
         String password = (String) student.get("Password");
+        JSONArray takenCoursesArray = (JSONArray) student.get("TakenCourses");
+        // if student has no taken courses, skip this part
+        if (takenCoursesArray.isEmpty()) {
+            // do nothing
+        } else {
+            // Create a course object with the given course id's
+            for (Object courseID : takenCoursesArray) {
+                Course course = createCourse((String) courseID);
+                // add the course to student's taken courses list
+                ((Student) session.getUser()).setCurrentTakenCourses(course);
+            }
+        }
 
         // if there is no advisor, create one
         if (advisor == null) {
-            advisor = createAdvisor(advisorId, studentId);
+            advisor = createAdvisor(advisorID, studentID);
         }
 
-        Student stu = new Student(name, surname, email, phoneNumber, studentId, password, faculty, department,
+        Student stu = new Student(name, surname, email, phoneNumber, studentID, password, faculty, department,
                 (int) semester, advisor);
 
         return stu;
@@ -230,11 +242,11 @@ public class LoginInterface {
 
             for (Object advisorObj : advisorList) {
                 JSONObject advisor = (JSONObject) advisorObj;
-                if (advisor.get("Id").equals(advisorID)) {
+                if (advisor.get("ID").equals(advisorID)) {
                     // user attributes in json
                     String name = (String) advisor.get("Name");
                     String surname = (String) advisor.get("Surname");
-                    String email = (String) advisor.get("Mail");
+                    String email = (String) advisor.get("EMail");
                     String phoneNumber = (String) advisor.get("PhoneNumber");
                     String faculty = (String) advisor.get("Faculty");
                     String department = (String) advisor.get("Department");
@@ -247,7 +259,7 @@ public class LoginInterface {
                     // add students to advisor's student list
                     for (Object studentObj : studentList) {
                         JSONObject student = (JSONObject) studentObj;
-                        String studentId2 = (String) student.get("Id");
+                        String studentId2 = (String) student.get("ID");
                         // if the students exists in the advisor's student list, skip it
                         if (studentId.equals(studentId2)) {
                             continue;
@@ -279,11 +291,11 @@ public class LoginInterface {
 
             for (Object lecturerObj : lecturerList) {
                 JSONObject lecturer = (JSONObject) lecturerObj;
-                if (lecturer.get("Id").equals(lecturerID)) {
+                if (lecturer.get("ID").equals(lecturerID)) {
                     // user attributes in json
                     String name = (String) lecturer.get("Name");
                     String surname = (String) lecturer.get("Surname");
-                    String email = (String) lecturer.get("Mail");
+                    String email = (String) lecturer.get("EMail");
                     String phoneNumber = (String) lecturer.get("PhoneNumber");
                     String faculty = (String) lecturer.get("Faculty");
                     String department = (String) lecturer.get("Department");
@@ -296,7 +308,7 @@ public class LoginInterface {
                     // add courses to advisor's course list
                     for (Object courseObj : givenCourses) {
                         JSONObject course = (JSONObject) courseObj;
-                        String courseCode = (String) course.get("Id");
+                        String courseCode = (String) course.get("ID");
                         lec.setCourse(createCourse(courseCode));
                     }
 
@@ -319,7 +331,7 @@ public class LoginInterface {
 
             for (Object courseObj : coursesList) {
                 JSONObject course = (JSONObject) courseObj;
-                if (course.get("CourseCode").equals(courseCode)) {
+                if (course.get("CourseID").equals(courseCode)) {
                     // course attributes in json
                     String courseName = (String) course.get("CourseName");
                     String courseDayTimeLocation = (String) course.get("CourseDayTimeLocation");
