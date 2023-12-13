@@ -23,8 +23,4 @@ public class Session {
     public void setUser(Person user) {
         this.user = user;
     }  
-    
-    public void setStartingTime(LocalDateTime startingTime) {
-        this.startingTime = startingTime;
-    }
 }
