@@ -1,6 +1,6 @@
 public class Lecture extends Course {
 
-    String lectureId;
+    private String lectureId;
 
     public Lecture(String courseName, String courseID, int credit, String type, int semester) {
         super(courseName, courseID, credit, type, semester);
