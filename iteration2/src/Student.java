@@ -4,7 +4,7 @@ public class Student extends Person {
     private Transcript transcript;
     private Advisor advisor;
     private int currentSemester;
-    private ArrayList<Course> currentTakenCourses;
+    private ArrayList<Course> currentTakenCourses = new ArrayList<Course>();
     public Student(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department,int currentSemester, Advisor advisor) {
         super(name, surname, email, phoneNumber, ID, password, faculty, department);
         this.advisor = advisor;
