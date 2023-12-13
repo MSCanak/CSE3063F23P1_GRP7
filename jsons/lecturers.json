@@ -1,707 +1,707 @@
 [
     {
-      "Name": "Hülya",
-      "Surname": "Özler",
-      "Email": "HülyaÖzler@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150103",
-      "Password": "150103Hülya",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "ATA121.1"
-      ],
-      "AcademicTitle": "Öğr.Gör."
+        "Name": "Hulya",
+        "Surname": "Ozler",
+        "EMail": "HülyaOzler@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150103",
+        "Password": "150103Hulya",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "ATA121.1"
+        ],
+        "AcademicTitle": "Ogr.Gor."
     },
     {
-      "Name": "Hülya",
-      "Surname": "Aslanoğlu",
-      "Email": "HülyaAslanoğlu@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150104",
-      "Password": "150104Hülya",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "BUS1003.1",
-        "BUS1003.2",
-        "MGT4083.1",
-        "MGT4083.2",
-        "MGT4084.1"
-      ],
-      "AcademicTitle": "Öğr.Gör."
+        "Name": "Hulya",
+        "Surname": "Aslanoglu",
+        "EMail": "HülyaAslanoglu@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150104",
+        "Password": "150104Hulya",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "BUS1003.1",
+            "BUS1003.2",
+            "MGT4083.1",
+            "MGT4083.2",
+            "MGT4084.1"
+        ],
+        "AcademicTitle": "Ogr.Gor."
     },
     {
-      "Name": "Di̇dem",
-      "Surname": "Aycan",
-      "Email": "Di̇demAycan@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150105",
-      "Password": "150105Di̇dem",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CHEM1007.3"
-      ],
-      "AcademicTitle": "Arş.Gör.Dr."
+        "Name": "Di̇dem",
+        "Surname": "Aycan",
+        "EMail": "Di̇demAycan@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150105",
+        "Password": "150105Di̇dem",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CHEM1007.3"
+        ],
+        "AcademicTitle": "Ars.Gor.Dr."
     },
     {
-      "Name": "Fatma feyza",
-      "Surname": "Başaran",
-      "Email": "FatmaBaşaran@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150106",
-      "Password": "150106Fatma",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "COMM2060.1"
-      ],
-      "AcademicTitle": "Öğr.Gör."
+        "Name": "Fatma feyza",
+        "Surname": "Basaran",
+        "EMail": "FatmaBasaran@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150106",
+        "Password": "150106Fatma",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "COMM2060.1"
+        ],
+        "AcademicTitle": "Ogr.Gor."
     },
     {
-      "Name": "Fatma corut",
-      "Surname": "Ergi̇n",
-      "Email": "FatmaErgi̇n@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150107",
-      "Password": "150107Fatma",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE1100.1",
-        "CSE1200.1",
-        "CSE4077.1",
-        "CSE4197.8",
-        "CSE4198.8",
-        "CSE4297.8"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Fatma corut",
+        "Surname": "Ergi̇n",
+        "EMail": "FatmaErgi̇n@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150107",
+        "Password": "150107Fatma",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE1100.1",
+            "CSE1200.1",
+            "CSE4077.1",
+            "CSE4197.8",
+            "CSE4198.8",
+            "CSE4297.8"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Sanem arslan",
-      "Surname": "Yilmaz",
-      "Email": "SanemYilmaz@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150108",
-      "Password": "150108Sanem",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE1141.1",
-        "CSE1141.1.1",
-        "CSE1141.1.2",
-        "CSE1141.1.3",
-        "CSE1241.1",
-        "CSE1241.1.1",
-        "CSE1241.1.2",
-        "CSE1241.1.3",
-        "CSE4095.1",
-        "CSE4197.13",
-        "CSE4219.1",
-        "CSE4219.1.1",
-        "CSE4297.13"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Sanem arslan",
+        "Surname": "Yilmaz",
+        "EMail": "SanemYilmaz@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150108",
+        "Password": "150108Sanem",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE1141.1",
+            "CSE1141.1.1",
+            "CSE1141.1.2",
+            "CSE1141.1.3",
+            "CSE1241.1",
+            "CSE1241.1.1",
+            "CSE1241.1.2",
+            "CSE1241.1.3",
+            "CSE4095.1",
+            "CSE4197.13",
+            "CSE4219.1",
+            "CSE4219.1.1",
+            "CSE4297.13"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Ali̇ fuat",
-      "Surname": "Alkaya",
-      "Email": "Ali̇Alkaya@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150109",
-      "Password": "150109Ali̇",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE2023.1",
-        "CSE4086.1",
-        "CSE4197.4",
-        "CSE4198.4",
-        "CSE4297.4"
-      ],
-      "AcademicTitle": "Prof.Dr."
+        "Name": "Ali̇ fuat",
+        "Surname": "Alkaya",
+        "EMail": "Ali̇Alkaya@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150109",
+        "Password": "150109Ali̇",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE2023.1",
+            "CSE4086.1",
+            "CSE4197.4",
+            "CSE4198.4",
+            "CSE4297.4"
+        ],
+        "AcademicTitle": "Prof.Dr."
     },
     {
-      "Name": "Mustafa borahan",
-      "Surname": "Tümer",
-      "Email": "MustafaTümer@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150110",
-      "Password": "150110Mustafa",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE2025.1",
-        "CSE2025.1.1",
-        "CSE2225.1",
-        "CSE2225.1.1",
-        "CSE4197.2",
-        "CSE4198.2",
-        "CSE4297.2"
-      ],
-      "AcademicTitle": "Prof.Dr."
+        "Name": "Mustafa borahan",
+        "Surname": "Tumer",
+        "EMail": "MustafaTumer@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150110",
+        "Password": "150110Mustafa",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE2025.1",
+            "CSE2025.1.1",
+            "CSE2225.1",
+            "CSE2225.1.1",
+            "CSE4197.2",
+            "CSE4198.2",
+            "CSE4297.2"
+        ],
+        "AcademicTitle": "Prof.Dr."
     },
     {
-      "Name": "Betul",
-      "Surname": "Boz",
-      "Email": "bboz@marmara.edu.tr",
-      "PhoneNumber": "05555555551",
-      "Id": "150102",
-      "Password": "150102Betul",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE3015.1",
-        "CSE3015.1.1",
-        "CSE3015.1.2",
-        "CSE3215.1",
-        "CSE3215.1.1",
-        "CSE3215.1.2",
-        "CSE4197.11",
-        "CSE4198.11",
-        "CSE4297.11"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Betul",
+        "Surname": "Boz",
+        "EMail": "bboz@marmara.edu.tr",
+        "PhoneNumber": "05555555551",
+        "ID": "150102",
+        "Password": "150102Betul",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE3015.1",
+            "CSE3015.1.1",
+            "CSE3015.1.2",
+            "CSE3215.1",
+            "CSE3215.1.1",
+            "CSE3215.1.2",
+            "CSE4197.11",
+            "CSE4198.11",
+            "CSE4297.11"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Ali̇ haydar",
-      "Surname": "Özer",
-      "Email": "Ali̇Özer@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150112",
-      "Password": "150112Ali̇",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE3033.1",
-        "CSE3033.1.1",
-        "CSE3033.1.2",
-        "CSE4082.1",
-        "CSE4197.9",
-        "CSE4198.9",
-        "CSE4297.9"
-      ],
-      "AcademicTitle": "Doç.Dr."
+        "Name": "Ali̇ haydar",
+        "Surname": "Ozer",
+        "EMail": "Ali̇Ozer@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150112",
+        "Password": "150112Ali̇",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE3033.1",
+            "CSE3033.1.1",
+            "CSE3033.1.2",
+            "CSE4082.1",
+            "CSE4197.9",
+            "CSE4198.9",
+            "CSE4297.9"
+        ],
+        "AcademicTitle": "Doc.Dr."
     },
     {
-      "Name": "Mustafa",
-      "Surname": "Ağaoğlu",
-      "Email": "MustafaAğaoğlu@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150113",
-      "Password": "150113Mustafa",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE3055.1",
-        "CSE3055.1.1",
-        "CSE3055.1.2",
-        "CSE4197.12",
-        "CSE4198.12",
-        "CSE4297.12"
-      ],
-      "AcademicTitle": "Doç.Dr."
+        "Name": "Mustafa",
+        "Surname": "Agaoglu",
+        "EMail": "MustafaAgaoglu@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150113",
+        "Password": "150113Mustafa",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE3055.1",
+            "CSE3055.1.1",
+            "CSE3055.1.2",
+            "CSE4197.12",
+            "CSE4198.12",
+            "CSE4297.12"
+        ],
+        "AcademicTitle": "Doc.Dr."
     },
     {
-      "Name": "Murat",
-      "Surname": "Ganiz",
-      "Email": "mganiz@marmara.edu.tr",
-      "PhoneNumber": "05555555550",
-      "Id": "150101",
-      "Password": "150101Murat",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE3063.1",
-        "CSE4197.3",
-        "CSE4198.3",
-        "CSE4297.3"
-      ],
-      "AcademicTitle": "Doç.Dr."
+        "Name": "Murat",
+        "Surname": "Ganiz",
+        "EMail": "mganiz@marmara.edu.tr",
+        "PhoneNumber": "05555555550",
+        "ID": "150101",
+        "Password": "150101Murat",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE3063.1",
+            "CSE4197.3",
+            "CSE4198.3",
+            "CSE4297.3"
+        ],
+        "AcademicTitle": "Doc.Dr."
     },
     {
-      "Name": "Mehmet kadi̇r",
-      "Surname": "Baran",
-      "Email": "MehmetBaran@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150115",
-      "Password": "150115Mehmet",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE4017.1",
-        "CSE4017.1.1",
-        "CSE4083.1",
-        "CSE4117.1",
-        "CSE4117.1.1",
-        "CSE4197.6",
-        "CSE4198.6",
-        "CSE4297.6"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Mehmet kadi̇r",
+        "Surname": "Baran",
+        "EMail": "MehmetBaran@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150115",
+        "Password": "150115Mehmet",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE4017.1",
+            "CSE4017.1.1",
+            "CSE4083.1",
+            "CSE4117.1",
+            "CSE4117.1.1",
+            "CSE4197.6",
+            "CSE4198.6",
+            "CSE4297.6"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Hüseyi̇n",
-      "Surname": "Ergün",
-      "Email": "Hüseyi̇nErgün@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150116",
-      "Password": "150116Hüseyi̇n",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE4067.1"
-      ],
-      "AcademicTitle": "Dr."
+        "Name": "Huseyi̇n",
+        "Surname": "Ergun",
+        "EMail": "Hüseyi̇nErgun@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150116",
+        "Password": "150116Huseyi̇n",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE4067.1"
+        ],
+        "AcademicTitle": "Dr."
     },
     {
-      "Name": "Ömer",
-      "Surname": "Korçak",
-      "Email": "ÖmerKorçak@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150117",
-      "Password": "150117Ömer",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE4074.1",
-        "CSE4197.7",
-        "CSE4198.7",
-        "CSE4297.7"
-      ],
-      "AcademicTitle": "Doç.Dr."
+        "Name": "Omer",
+        "Surname": "Korcak",
+        "EMail": "ÖmerKorcak@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150117",
+        "Password": "150117Omer",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE4074.1",
+            "CSE4197.7",
+            "CSE4198.7",
+            "CSE4297.7"
+        ],
+        "AcademicTitle": "Doc.Dr."
     },
     {
-      "Name": "Çi̇ğdem eroğlu",
-      "Surname": "Erdem",
-      "Email": "Çi̇ğdemErdem@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150118",
-      "Password": "150118Çi̇ğdem",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE4088.1",
-        "CSE4197.5",
-        "CSE4198.5",
-        "CSE4288.1",
-        "CSE4297.5",
-        "EE2031.1",
-        "MATH2059.1"
-      ],
-      "AcademicTitle": "Prof.Dr."
+        "Name": "Çi̇gdem eroglu",
+        "Surname": "Erdem",
+        "EMail": "Çi̇ğdemErdem@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150118",
+        "Password": "150118Çi̇gdem",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE4088.1",
+            "CSE4197.5",
+            "CSE4198.5",
+            "CSE4288.1",
+            "CSE4297.5",
+            "EE2031.1",
+            "MATH2059.1"
+        ],
+        "AcademicTitle": "Prof.Dr."
     },
     {
-      "Name": "Haluk rahmi̇",
-      "Surname": "Topcuoğlu",
-      "Email": "HalukTopcuoğlu@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150119",
-      "Password": "150119Haluk",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE4197.1",
-        "CSE4198.1",
-        "CSE4297.1"
-      ],
-      "AcademicTitle": "Prof.Dr."
+        "Name": "Haluk rahmi̇",
+        "Surname": "Topcuoglu",
+        "EMail": "HalukTopcuoglu@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150119",
+        "Password": "150119Haluk",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE4197.1",
+            "CSE4198.1",
+            "CSE4297.1"
+        ],
+        "AcademicTitle": "Prof.Dr."
     },
     {
-      "Name": "Müjdat",
-      "Surname": "Soytürk",
-      "Email": "MüjdatSoytürk@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150120",
-      "Password": "150120Müjdat",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE4197.10",
-        "CSE4198.10",
-        "CSE4297.10",
-        "IE3081.1"
-      ],
-      "AcademicTitle": "Doç.Dr."
+        "Name": "Mujdat",
+        "Surname": "Soyturk",
+        "EMail": "MüjdatSoyturk@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150120",
+        "Password": "150120Mujdat",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE4197.10",
+            "CSE4198.10",
+            "CSE4297.10",
+            "IE3081.1"
+        ],
+        "AcademicTitle": "Doc.Dr."
     },
     {
-      "Name": "yesi sanem",
-      "Surname": "Arslan",
-      "Email": "yesiArslan@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150121",
-      "Password": "150121yesi",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "CSE4198.13"
-      ],
-      "AcademicTitle": "Dr.Öğr."
+        "Name": "yesi sanem",
+        "Surname": "Arslan",
+        "EMail": "yesiArslan@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150121",
+        "Password": "150121yesi",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE4198.13"
+        ],
+        "AcademicTitle": "Dr.Ogr."
     },
     {
-      "Name": "Ayşe bengi̇",
-      "Surname": "Özlüarda",
-      "Email": "AyşeÖzlüarda@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150122",
-      "Password": "150122Ayşe",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "ECON2004.1"
-      ],
-      "AcademicTitle": "Dr."
+        "Name": "Ayse bengi̇",
+        "Surname": "Ozluarda",
+        "EMail": "AyşeOzluarda@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150122",
+        "Password": "150122Ayse",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "ECON2004.1"
+        ],
+        "AcademicTitle": "Dr."
     },
     {
-      "Name": "Berna",
-      "Surname": "Balta",
-      "Email": "BernaBalta@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150123",
-      "Password": "150123Berna",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "IE4055.1"
-      ],
-      "AcademicTitle": "Dr."
+        "Name": "Berna",
+        "Surname": "Balta",
+        "EMail": "BernaBalta@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150123",
+        "Password": "150123Berna",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "IE4055.1"
+        ],
+        "AcademicTitle": "Dr."
     },
     {
-      "Name": "Mahmure övül",
-      "Surname": "Arioğlu",
-      "Email": "MahmureArioğlu@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150124",
-      "Password": "150124Mahmure",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "IE4087.1"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Mahmure ovul",
+        "Surname": "Arioglu",
+        "EMail": "MahmureArioglu@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150124",
+        "Password": "150124Mahmure",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "IE4087.1"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Si̇nan",
-      "Surname": "Çaya",
-      "Email": "Si̇nanÇaya@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150125",
-      "Password": "150125Si̇nan",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "IKT1054.1",
-        "OB2040.1",
-        "OB2041.1"
-      ],
-      "AcademicTitle": "Doç.Dr."
+        "Name": "Si̇nan",
+        "Surname": "Çaya",
+        "EMail": "Si̇nanÇaya@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150125",
+        "Password": "150125Si̇nan",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "IKT1054.1",
+            "OB2040.1",
+            "OB2041.1"
+        ],
+        "AcademicTitle": "Doc.Dr."
     },
     {
-      "Name": "Ayşe hande",
-      "Surname": "Erol",
-      "Email": "AyşeErol@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150126",
-      "Password": "150126Ayşe",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "ISG121.1"
-      ],
-      "AcademicTitle": "Öğr.Gör.Dr."
+        "Name": "Ayse hande",
+        "Surname": "Erol",
+        "EMail": "AyşeErol@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150126",
+        "Password": "150126Ayse",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "ISG121.1"
+        ],
+        "AcademicTitle": "Ogr.Gor.Dr."
     },
     {
-      "Name": "M. nureddi̇n",
-      "Surname": "Türkan",
-      "Email": "M.Türkan@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150127",
-      "Password": "150127M.",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "MATH1001.1",
-        "MATH2055.1"
-      ],
-      "AcademicTitle": "Prof.Dr."
+        "Name": "M. nureddi̇n",
+        "Surname": "Turkan",
+        "EMail": "M.Turkan@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150127",
+        "Password": "150127M.",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "MATH1001.1",
+            "MATH2055.1"
+        ],
+        "AcademicTitle": "Prof.Dr."
     },
     {
-      "Name": "Mustafa cem",
-      "Surname": "Çeli̇k",
-      "Email": "MustafaÇeli̇k@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150128",
-      "Password": "150128Mustafa",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "MATH1002.1"
-      ],
-      "AcademicTitle": "Arş.Gör.Dr."
+        "Name": "Mustafa cem",
+        "Surname": "Çeli̇k",
+        "EMail": "MustafaÇeli̇k@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150128",
+        "Password": "150128Mustafa",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "MATH1002.1"
+        ],
+        "AcademicTitle": "Ars.Gor.Dr."
     },
     {
-      "Name": "Şebnem",
-      "Surname": "Öztürk",
-      "Email": "ŞebnemÖztürk@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150129",
-      "Password": "150129Şebnem",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "MBG1201.1"
-      ],
-      "AcademicTitle": "Dr."
+        "Name": "Şebnem",
+        "Surname": "Ozturk",
+        "EMail": "ŞebnemOzturk@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150129",
+        "Password": "150129Şebnem",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "MBG1201.1"
+        ],
+        "AcademicTitle": "Dr."
     },
     {
-      "Name": "Beytullah gülteki̇n",
-      "Surname": "Çeti̇ner",
-      "Email": "BeytullahÇeti̇ner@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150130",
-      "Password": "150130Beytullah",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "MGT4082.1"
-      ],
-      "AcademicTitle": "Prof.Dr."
+        "Name": "Beytullah gulteki̇n",
+        "Surname": "Çeti̇ner",
+        "EMail": "BeytullahÇeti̇ner@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150130",
+        "Password": "150130Beytullah",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "MGT4082.1"
+        ],
+        "AcademicTitle": "Prof.Dr."
     },
     {
-      "Name": "Özlem",
-      "Surname": "Yilmaz",
-      "Email": "ÖzlemYilmaz@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150131",
-      "Password": "150131Özlem",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "MGT4090.1",
-        "NTE1015.1"
-      ],
-      "AcademicTitle": "Öğr.Gör."
+        "Name": "Ozlem",
+        "Surname": "Yilmaz",
+        "EMail": "ÖzlemYilmaz@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150131",
+        "Password": "150131Ozlem",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "MGT4090.1",
+            "NTE1015.1"
+        ],
+        "AcademicTitle": "Ogr.Gor."
     },
     {
-      "Name": "Aytün",
-      "Surname": "Alakuş",
-      "Email": "AytünAlakuş@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150132",
-      "Password": "150132Aytün",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "MRK3084.1"
-      ],
-      "AcademicTitle": "Öğr.Gör."
+        "Name": "Aytun",
+        "Surname": "Alakus",
+        "EMail": "AytünAlakus@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150132",
+        "Password": "150132Aytun",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "MRK3084.1"
+        ],
+        "AcademicTitle": "Ogr.Gor."
     },
     {
-      "Name": "Caner",
-      "Surname": "Di̇lmener",
-      "Email": "CanerDi̇lmener@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150133",
-      "Password": "150133Caner",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "NTE1017.1"
-      ],
-      "AcademicTitle": "Dr."
+        "Name": "Caner",
+        "Surname": "Di̇lmener",
+        "EMail": "CanerDi̇lmener@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150133",
+        "Password": "150133Caner",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "NTE1017.1"
+        ],
+        "AcademicTitle": "Dr."
     },
     {
-      "Name": "Mustafa",
-      "Surname": "Tuysuz",
-      "Email": "MustafaTuysuz@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150134",
-      "Password": "150134Mustafa",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "OB3043.1"
-      ],
-      "AcademicTitle": "Dr."
+        "Name": "Mustafa",
+        "Surname": "Tuysuz",
+        "EMail": "MustafaTuysuz@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150134",
+        "Password": "150134Mustafa",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "OB3043.1"
+        ],
+        "AcademicTitle": "Dr."
     },
     {
-      "Name": "Mustafa",
-      "Surname": "Alevli̇",
-      "Email": "MustafaAlevli̇@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150135",
-      "Password": "150135Mustafa",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "PHYS1101.1"
-      ],
-      "AcademicTitle": "Prof.Dr."
+        "Name": "Mustafa",
+        "Surname": "Alevli̇",
+        "EMail": "MustafaAlevli̇@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150135",
+        "Password": "150135Mustafa",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "PHYS1101.1"
+        ],
+        "AcademicTitle": "Prof.Dr."
     },
     {
-      "Name": "Caner",
-      "Surname": "Değer",
-      "Email": "CanerDeğer@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150136",
-      "Password": "150136Caner",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "PHYS1102.1",
-        "PHYS1102.2"
-      ],
-      "AcademicTitle": "Doç.Dr."
+        "Name": "Caner",
+        "Surname": "Deger",
+        "EMail": "CanerDeger@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150136",
+        "Password": "150136Caner",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "PHYS1102.1",
+            "PHYS1102.2"
+        ],
+        "AcademicTitle": "Doc.Dr."
     },
     {
-      "Name": "Hüseyi̇n",
-      "Surname": "Yaltirik",
-      "Email": "Hüseyi̇nYaltirik@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150137",
-      "Password": "150137Hüseyi̇n",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "PHYS1103.1",
-        "PHYS1103.10",
-        "PHYS1103.11",
-        "PHYS1103.12",
-        "PHYS1103.13",
-        "PHYS1103.14",
-        "PHYS1103.15",
-        "PHYS1103.16",
-        "PHYS1103.17",
-        "PHYS1103.18",
-        "PHYS1103.19",
-        "PHYS1103.2",
-        "PHYS1103.3",
-        "PHYS1103.4",
-        "PHYS1103.5",
-        "PHYS1103.6",
-        "PHYS1103.7",
-        "PHYS1103.8",
-        "PHYS1103.9",
-        "PHYS1104.1"
-      ],
-      "AcademicTitle": "Arş.Gör."
+        "Name": "Huseyi̇n",
+        "Surname": "Yaltirik",
+        "EMail": "Hüseyi̇nYaltirik@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150137",
+        "Password": "150137Huseyi̇n",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "PHYS1103.1",
+            "PHYS1103.10",
+            "PHYS1103.11",
+            "PHYS1103.12",
+            "PHYS1103.13",
+            "PHYS1103.14",
+            "PHYS1103.15",
+            "PHYS1103.16",
+            "PHYS1103.17",
+            "PHYS1103.18",
+            "PHYS1103.19",
+            "PHYS1103.2",
+            "PHYS1103.3",
+            "PHYS1103.4",
+            "PHYS1103.5",
+            "PHYS1103.6",
+            "PHYS1103.7",
+            "PHYS1103.8",
+            "PHYS1103.9",
+            "PHYS1104.1"
+        ],
+        "AcademicTitle": "Ars.Gor."
     },
     {
-      "Name": "Funda gökçe",
-      "Surname": "Bağci",
-      "Email": "FundaBağci@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150138",
-      "Password": "150138Funda",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "TRD121.3"
-      ],
-      "AcademicTitle": "Öğr.Gör."
+        "Name": "Funda gokce",
+        "Surname": "Bagci",
+        "EMail": "FundaBagci@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150138",
+        "Password": "150138Funda",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "TRD121.3"
+        ],
+        "AcademicTitle": "Ogr.Gor."
     },
     {
-      "Name": "Hasan basri̇",
-      "Surname": "Özpek",
-      "Email": "HasanÖzpek@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150139",
-      "Password": "150139Hasan",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "UNI 111.1"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Hasan basri̇",
+        "Surname": "Ozpek",
+        "EMail": "HasanOzpek@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150139",
+        "Password": "150139Hasan",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "UNI 111.1"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Oya ayhan",
-      "Surname": "Gi̇ri̇t",
-      "Email": "OyaGi̇ri̇t@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150140",
-      "Password": "150140Oya",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "UNI 201.1"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Oya ayhan",
+        "Surname": "Gi̇ri̇t",
+        "EMail": "OyaGi̇ri̇t@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150140",
+        "Password": "150140Oya",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "UNI 201.1"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Güli̇zar semra",
-      "Surname": "Özkurt",
-      "Email": "Güli̇zarÖzkurt@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150141",
-      "Password": "150141Güli̇zar",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "YDA1001.1",
-        "YDA1001.2",
-        "YDA1001.3",
-        "YDA1002.1",
-        "YDA1002.2",
-        "YDA1003.1"
-      ],
-      "AcademicTitle": "Öğr.Gör."
+        "Name": "Guli̇zar semra",
+        "Surname": "Ozkurt",
+        "EMail": "Güli̇zarOzkurt@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150141",
+        "Password": "150141Guli̇zar",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "YDA1001.1",
+            "YDA1001.2",
+            "YDA1001.3",
+            "YDA1002.1",
+            "YDA1002.2",
+            "YDA1003.1"
+        ],
+        "AcademicTitle": "Ogr.Gor."
     },
     {
-      "Name": "Mohammad abdulaziz",
-      "Surname": "Alsunaidi",
-      "Email": "MohammadAlsunaidi@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150142",
-      "Password": "150142Mohammad",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "YDAR1001.1"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Mohammad abdulaziz",
+        "Surname": "Alsunaidi",
+        "EMail": "MohammadAlsunaidi@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150142",
+        "Password": "150142Mohammad",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "YDAR1001.1"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Feyza",
-      "Surname": "Uçkun",
-      "Email": "FeyzaUçkun@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150143",
-      "Password": "150143Feyza",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "YDC1001.1"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Feyza",
+        "Surname": "Uckun",
+        "EMail": "FeyzaUckun@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150143",
+        "Password": "150143Feyza",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "YDC1001.1"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Rosa maria",
-      "Surname": "Flores",
-      "Email": "RosaFlores@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150144",
-      "Password": "150144Rosa",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "YDIS1001.1"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Rosa maria",
+        "Surname": "Flores",
+        "EMail": "RosaFlores@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150144",
+        "Password": "150144Rosa",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "YDIS1001.1"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     },
     {
-      "Name": "Naoki",
-      "Surname": "Yamamoto",
-      "Email": "NaokiYamamoto@marmara.edu.com",
-      "PhoneNumber": "05555555550",
-      "Id": "150145",
-      "Password": "150145Naoki",
-      "Faculty": "Engineering",
-      "Department": "Computer Science Engineering",
-      "Courses": [
-        "YDJ1001.1"
-      ],
-      "AcademicTitle": "Dr.Öğr.Üyesi"
+        "Name": "Naoki",
+        "Surname": "Yamamoto",
+        "EMail": "NaokiYamamoto@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150145",
+        "Password": "150145Naoki",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "YDJ1001.1"
+        ],
+        "AcademicTitle": "Dr.Ogr.Uyesi"
     }
-  ]
+]

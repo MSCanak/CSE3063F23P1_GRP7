@@ -1,6 +1,6 @@
 import json
 from openpyxl import Workbook,load_workbook
-
+Tr2Eng = str.maketrans("çğıöşüÖÜİ", "cgiosuOUI")
 # Load the workbook
 wb = load_workbook(filename='data.xlsx')
 ws = wb['Page1']
@@ -43,15 +43,21 @@ for(key, value) in data.items():
     # print(name, surname, id, password)
     title = split[0]
 
+    name = name.translate(Tr2Eng)
+    surname = surname.translate(Tr2Eng)
+    title = title.translate(Tr2Eng)
+    password = password.translate(Tr2Eng)
+
+
     courses = value
     # print(value)
 
     lecturer = {
         "Name": name,
         "Surname": surname,
-        "Email": split[1]+surname+"@marmara.edu.com",
+        "EMail": split[1]+surname+"@marmara.edu.com",
         "PhoneNumber": "05555555550",
-        "Id": (str)(id),
+        "ID": (str)(id),
         "Password": password,
         "Faculty": "Engineering",
         "Department": "Computer Science Engineering",
