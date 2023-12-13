@@ -1,5 +1,8 @@
-interface Schedule {
+import java.util.ArrayList;
 
-    public void calculateWeeklySchedule();
-    public void showWeeklySchedule();
+interface Schedule {
+    // calculates the weekly schedule by reading json file
+    public abstract ArrayList<Course> calculateWeeklySchedule();
+    // shows the weekly schedule by printing courses arraylist
+    public abstract void showWeeklySchedule(ArrayList<Course> courses);
 }
