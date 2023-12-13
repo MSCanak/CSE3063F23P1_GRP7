@@ -153,11 +153,12 @@ public class AdvisorInterface implements Schedule {
     public void showGivenCourses() {
 
     }
+// bunların hepsini ıd yapmayı unutma 
 
     private String printMonday(Course course, CourseSession courseSession ) {
         for (int j = 0; j < courseSession.getCourseDay().size(); j++) {
             if (courseSession.getCourseDay().get(j).equals("Pazartesi")) {
-                return course.getCourseName();
+                return course.getCourseID();
             } else {
                 return "";
             }
@@ -169,7 +170,7 @@ public class AdvisorInterface implements Schedule {
     private String printTuesday( Course course,CourseSession courseSession) {
         for (int j = 0; j < courseSession.getCourseDay().size(); j++) {
             if (courseSession.getCourseDay().get(j).equals("Salı")) {
-                return course.getCourseName();
+                return course.getCourseID();
             } else {
                 return "";
             }
