@@ -15,7 +15,8 @@ public class StudentCourseRegistrationInterface {
     private ArrayList<Course> selectedCourses;
     private ArrayList<Lecture> selectedLectures;
     private ArrayList<Lab> selectedLabs;
-    private ArrayList<String> coursesCodesOffered;
+    // private ArrayList<String> coursesCodesOffered;
+    private ArrayList<Lecture> coursesOffered;
 
     private Session session;
 
@@ -32,7 +33,9 @@ public class StudentCourseRegistrationInterface {
         this.selectedLectures = new ArrayList<Lecture>();
         this.availableLabs = new ArrayList<Lab>();
         this.selectedLabs = new ArrayList<Lab>();
-        this.coursesCodesOffered = new ArrayList<String>();
+        // this.coursesCodesOffered = new ArrayList<String>();
+        this.coursesOffered = new ArrayList<Lecture>();
+        getCoursesOffered();
         this.scanner = new Scanner(System.in);
     }
 
@@ -67,7 +70,7 @@ public class StudentCourseRegistrationInterface {
                 session.getUser().getID(),
                 "-", session.getUser().getName() + " " + session.getUser().getSurname());
         System.out.printf("%-10s%-30s%n", "Advisor: ",
-                session.getUser().getAdvisor().getName() + " " + session.getUser().getAdvisor().getSurname());
+                session.getUser().getName() + " " + session.getUser().getSurname());
         System.out.printf("%-10s%-5s%n", "Semester: ", ((Student) (session.getUser())).getCurrentSemester());
 
     }
@@ -226,7 +229,6 @@ public class StudentCourseRegistrationInterface {
             var choice = scanner.next();
             switch (choice) {
                 case "1":
-                    getCoursesCodesOffered();
                     calculateAvailableCourses();
                     calculateAvailableLectures();
                     calculateAvailableLabs();
@@ -247,8 +249,7 @@ public class StudentCourseRegistrationInterface {
                     var input = "";
                     do {
                         input = scanner.next();
-                        if (input.length() > 1 || Integer.parseInt(input) > availableLectures.size()
-                                || input.length() == 0) {
+                        if (input.length() == 0 || Integer.parseInt(input) > availableLectures.size()) {
                             System.out.println("Invalid input");
                             continue;
                         }
@@ -264,7 +265,7 @@ public class StudentCourseRegistrationInterface {
                         System.out.print("Select labs you want to add (for example -> 1) or cancel with entering 0: ");
                         do {
                             input = scanner.next();
-                            if (input.length() > 1) {
+                            if (input.length() == 0 || Integer.parseInt(input) > availableLabs.size()) {
                                 System.out.println("Invalid input");
                                 continue;
                             }
@@ -298,7 +299,25 @@ public class StudentCourseRegistrationInterface {
         return null; // returns when course not found
     }
 
-    private void getCoursesCodesOffered() {
+    private CourseSession createCourseSession(String courseDayTimeLocation) {
+        // parse the string and create course session object
+        String[] parts = courseDayTimeLocation.split(" ");
+        ArrayList<String> courseDay = new ArrayList<>();
+        ArrayList<String> courseStartTime = new ArrayList<>();
+        ArrayList<String> courseEndTime = new ArrayList<>();
+        ArrayList<String> coursePlace = new ArrayList<>();
+        // each object of the list is a different course session
+        for (int i = 0; i < parts.length; i += 5) {
+            courseDay.add(parts[i]);
+            courseStartTime.add(parts[i + 1]);
+            courseEndTime.add(parts[i + 3]);
+            coursePlace.add(parts[i + 4]);
+        }
+
+        return new CourseSession(courseDay, courseStartTime, courseEndTime, coursePlace);
+    }
+
+    private void getCoursesOffered() {
         try {
             var coursesOfferedJson = "jsons/CoursesOffered.json";
             var parser = new JSONParser();
@@ -307,8 +326,17 @@ public class StudentCourseRegistrationInterface {
 
             for (var courseObj : coursesOfferedArray) {
                 var courseJson = (JSONObject) courseObj;
-                var courseCode = (String) courseJson.get("CourseCode");
-                coursesCodesOffered.add(courseCode);
+                var courseID = (String) courseJson.get("CourseID");
+                var courseName = (String) courseJson.get("CourseName");
+                // var lecturer = ((Long) courseJson.get("Lecturer")).intValue();
+                // var theoratical = ((Long) courseJson.get("Theoratical")).intValue();
+                // var practical = ((Long) courseJson.get("Practical")).intValue();
+                // var credit = ((Long) courseJson.get("Credit")).intValue();
+                var quota = ((Long) courseJson.get("Quota")).intValue();
+                var courseDayTimeLocation = (String) courseJson.get("CourseDayTimeLocation");
+                // var courseStudents = ((Long) courseJson.get("CourseStudents")).intValue();
+                var lecture = new Lecture(courseName, courseID, quota, createCourseSession(courseDayTimeLocation));
+                coursesOffered.add(lecture);
             }
 
         } catch (Exception e) {
@@ -321,36 +349,49 @@ public class StudentCourseRegistrationInterface {
         for (var availableCourse : availableCourses) {
             availableCoursesCopy.add(availableCourse);
         }
+        availableLectures.clear();
         try {
-            for (var courseCodeOffered : coursesCodesOffered) {
+            for (var courseOffered : coursesOffered) {
+                var courseIDOffered = courseOffered.getLectureId();
                 for (var availableCourse : availableCoursesCopy) {
                     for (int i = 1; i < 20; i++) {
-                        if ((availableCourse.getCourseID().concat("." + i)).equals(courseCodeOffered)) {
-                            ((Lecture) availableCourse).setLectureId(courseCodeOffered);
-                            availableLectures.add((Lecture) availableCourse);
+                        if ((availableCourse.getCourseID().concat("." + i)).equals(courseIDOffered)) {
+                            // ((Lecture) availableCourse).setLectureId(courseIDOffered);
+                            Lecture lecture = new Lecture(availableCourse.getCourseName(),
+                                    availableCourse.getCourseID(),
+                                    availableCourse.getCredit(), availableCourse.getType(),
+                                    availableCourse.getSemester());
+
+                            lecture.setLectureId(courseIDOffered);
+                            availableLectures.add(lecture);
                         }
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void calculateAvailableLabs() {
-        var availableLecturesCopy = new ArrayList<Course>();
+        var availableLecturesCopy = new ArrayList<Lecture>();
         for (var availableCourse : availableLectures) {
             availableLecturesCopy.add(availableCourse);
         }
+        availableLabs.clear();
         try {
-            for (var courseCodeOffered : coursesCodesOffered) {
+            for (var courseOffered : coursesOffered) {
+                var courseIDOffered = courseOffered.getLectureId();
                 for (var availableLecture : availableLecturesCopy) {
                     for (int i = 1; i < 20; i++) {
-                        if ((((Lecture) availableLecture).getLectureId().concat("." + i))
-                                .equals(courseCodeOffered)) {
-                            ((Lab) availableLecture).setLabId(courseCodeOffered);
-                            availableLabs.add((Lab) availableLecture);
+                        if ((availableLecture.getLectureId().concat("." + i))
+                                .equals(courseIDOffered)) {
+                            var lab = new Lab(availableLecture.getCourseName(),
+                                    availableLecture.getCourseID(),
+                                    availableLecture.getCredit(), availableLecture.getType(),
+                                    availableLecture.getSemester());
+                            lab.setLabId(courseIDOffered);
+                            availableLabs.add(lab);
                         }
                     }
                 }
@@ -379,7 +420,7 @@ public class StudentCourseRegistrationInterface {
                 var semester = ((Long) courseJson.get("Semester")).intValue();
                 var courseID = ((String) courseJson.get("CourseID")).trim();
                 var credit = ((Long) courseJson.get("Credit")).intValue();
-                var courseType = (String) courseJson.get("CourseType");
+                var courseType = (String) courseJson.get("Type");
 
                 var course = new Course(courseName, courseID, credit, courseType, semester);
                 allCourses.add(course);
@@ -540,12 +581,12 @@ public class StudentCourseRegistrationInterface {
         System.out.printf(
                 "--------------------------------------------------------------------------------------------------------------%n");
 
-        for (var course : availableLectures) {
+        for (var lecture : availableLectures) {
 
-            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, course.getLectureId(),
-                    course.getCourseName(),
-                    course.getCredit(),
-                    course.getType().equals("E") ? "Elective" : "Mandatory");
+            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, lecture.getLectureId(),
+                    lecture.getCourseName(),
+                    lecture.getCredit(),
+                    lecture.getType().equals("E") ? "Elective" : "Mandatory");
 
         }
         System.out.println();
@@ -578,11 +619,14 @@ public class StudentCourseRegistrationInterface {
         selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1)));
         selectedLectures.add(availableLectures.get(selectedLectureIndex - 1));
         selectedLabs.add(availableLabs.get(selectedLabIndex - 1));
+        System.out.println("\nSelected Lecture: " + availableLectures.get(selectedLectureIndex - 1) + "\nSelected Lab: "
+                + availableLabs.get(selectedLabIndex - 1));
     }
 
     private void saveAvailableCourses(int selectedLectureIndex) {
         selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1)));
         selectedLectures.add(availableLectures.get(selectedLectureIndex - 1));
+        System.out.println("\nSelected Lecture: " + availableLectures.get(selectedLectureIndex - 1));
     }
 
 }
