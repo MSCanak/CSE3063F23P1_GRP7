@@ -32,7 +32,7 @@ public class AdvisorInterface implements Schedule {
 
         switch (caseToken) {
             case '1': // view weekly schedule
-                showWeeklySchedule();
+                showWeeklySchedule(calculateWeeklySchedule());
                 break;
             case '2': // view given courses
                 showGivenCourses();
@@ -54,48 +54,37 @@ public class AdvisorInterface implements Schedule {
     }
 
     // it calculates the weekly schedule of advisor and stores it
+    @Override
+    
+    public ArrayList<Course> calculateWeeklySchedule() {
+        ArrayList<Course> weeklySchedule = new ArrayList<Course>();
+        ArrayList<Course> givenCourses = ((Lecturer) session.getUser()).getGivenCourses();
+        
+        for (int i = 0; i < givenCourses.size(); i++) {
+            Course course = givenCourses.get(i);
+            weeklySchedule.add(course);
+        }
+        
+        //course id
+        //course class
+        return weeklySchedule;
 
-    // public ArrayList<Course> calculateWeeklySchedule() {
-    //     ArrayList<Course> weeklySchedule = new ArrayList<Course>();
-    //     ArrayList<Course> givenCourses = ((Lecturer) session.getUser()).getGivenCourses();
-    //     for (int i = 0; i < givenCourses.size(); i++) {
-    //         Course course = givenCourses.get(i);
-    //         ArrayList<Slot> slots = course.getSlots();
-    //         for (int j = 0; j < slots.size(); j++) {
-    //             Slot slot = slots.get(j);
-    //             if (slot.getDay().equals("Monday")) {
-    //                 weeklySchedule.add(course);
-    //             } else if (slot.getDay().equals("Tuesday")) {
-    //                 weeklySchedule.add(course);
-    //             } else if (slot.getDay().equals("Wednesday")) {
-    //                 weeklySchedule.add(course);
-    //             } else if (slot.getDay().equals("Thursday")) {
-    //                 weeklySchedule.add(course);
-    //             } else if (slot.getDay().equals("Friday")) {
-    //                 weeklySchedule.add(course);
-    //             }
-    //         }
-    //     }
-
-    //     // ilk önce ders kodlarını bul sonra saatlerini yerlerini filan al yazdır bir
-    //     // arraya listin içine bu şekilde showWeeklySchedule() de yazdır
-    //     return weeklySchedule;
-
-    // }
+    }
 
     // it prints the weekly schedule of advisor
-    public void showWeeklySchedule() {
+    @Override
+    public void showWeeklySchedule(ArrayList<Course> courses) {
         // // course arraylist döndürecek
-        // // ArrayList<Course> weeklySchedule = calculateWeeklySchedule();
-        // System.out.println(Colors.RED + "\n--------------------Weekly Schedule--------------------\n" + Colors.RESET);
-        // for (int i = 0; i < weeklySchedule.size(); i++) {
-        //     Course course = weeklySchedule.get(i);
-        //     System.out.println(Colors.YELLOW + (i + 1) + Colors.RESET + ". " + course.getCourseID() + " "
-        //             + course.getCourseName());
-        // }
-        // System.out.println(Colors.YELLOW + "0" + Colors.RESET + ". Back");
-        // System.out.println("\nWhich course do you want to see?\n");
-        // int choice = scanner.nextInt();
+        
+        System.out.println(Colors.RED + "\n--------------------Weekly Schedule--------------------\n" + Colors.RESET);
+        for (int i = 0; i < courses.size(); i++) {
+            Course course = courses.get(i);
+            System.out.println(Colors.YELLOW + (i + 1) + Colors.RESET + ". " + course.getCourseID() + " "
+                    + course.getCourseName());
+        }
+        System.out.println(Colors.YELLOW + "0" + Colors.RESET + ". Back");
+        System.out.println("\nWhich course do you want to see?\n");
+        int choice = scanner.nextInt();
 
     }
 
