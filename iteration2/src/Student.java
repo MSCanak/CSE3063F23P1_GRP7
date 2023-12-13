@@ -33,7 +33,7 @@ public class Student extends Person {
     public ArrayList<Course> getCurrentTakenCourses() {
         return currentTakenCourses;
     }
-    public void setCurrentTakenCourses(ArrayList<Course> currentTakenCourses) {
-        this.currentTakenCourses = currentTakenCourses;
+    public void setCurrentTakenCourses(Course course) {
+        this.currentTakenCourses.add(course);
     }
 }
