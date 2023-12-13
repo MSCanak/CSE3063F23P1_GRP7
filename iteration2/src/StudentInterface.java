@@ -71,7 +71,10 @@ public class StudentInterface implements Schedule{
                 studentCourseRegistrationInterface = new StudentCourseRegistrationInterface(session, this);
                 studentCourseRegistrationInterface.stuRegMenu();
                 break;
-
+            
+            case '4':
+                showWeeklySchedule(calculateWeeklySchedule());
+                break;
             // logging out
             case '*':
                 loginInterface.logout();

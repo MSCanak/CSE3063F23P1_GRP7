@@ -1,5 +1,5 @@
 {
-    "Id": "150120004",
+    "ID": "150120004",
     "Name": "Muhammet",
     "Surname": "Karagul",
     "Password": "150120004Muhammet",
@@ -9,6 +9,7 @@
     "AdvisorID": "150101",
     "PhoneNumber" : "05321234569",
     "Semester": 5,
+    "TakenCourses": [],
     "Transcript": {
       "Semester": [
         {

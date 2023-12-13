@@ -9,6 +9,7 @@
     "AdvisorID": "150102",
     "PhoneNumber" : "00054181181",
     "Semester": 5,
+    "TakenCourses": [],
     "Transcript": {
       "Semester": [
         {
