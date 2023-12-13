@@ -1,7 +1,7 @@
 import json
 import random
-names = ["Ensar", "Ayse", "Turan", "Said", "Muhammet", "Kadir", "Feyz", "Adullah", "Muhamammed", "Barbara"]
-surnames = ["Yozgat", "Demir", "Kaya", "Canak", "Karagul", "Bat", "Asil", "Kan", "Nael", "Palvin"]
+names = ["Ensar", "Fernando", "Turan", "Said", "Muhammet", "Kadir", "Feyz", "Adullah", "Muhamammed", "Chris"]
+surnames = ["Yozgat", "Alonso", "Kaya", "Canak", "Karagul", "Bat", "Asil", "Kan", "Nael", "Bumstead"]
 
 faculty = "Engineering"
 depart = "Computer Science Engineering"
@@ -18,7 +18,7 @@ for i in range(0, 10):
 
 
     students = {
-        "Id" : id,
+        "ID" : id,
 
         "Name" : name,
 
@@ -26,7 +26,7 @@ for i in range(0, 10):
 
         "Password" : (str)(id) + (str)(name),
 
-        "Mail" : name + "@marun.edu.tr",
+        "EMail" : name + "@marun.edu.tr",
 
         "Faculty" : faculty,
 
@@ -34,7 +34,7 @@ for i in range(0, 10):
 
         "AdvisorID" : advisorsID,
 
-        "Semester": 3,
+        "Semester": 5,
 
         "Transcript": {
             "Semester": [
@@ -42,7 +42,7 @@ for i in range(0, 10):
                     "Courses" : [   
                         {
                             "CourseID": "ATA121",
-                            "CourseName": "Ataturk’s Principles and the History of Turkish Renovation I",
+                            "CourseName": "Ataturks Principles and the History of Turkish Renovation I",
                             "CourseType": "M",
                             "Credit": 2,
                             "Semester": 1,

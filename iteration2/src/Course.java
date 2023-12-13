@@ -57,6 +57,13 @@ public class Course {
         this.lecturer = lecturer;
     }
 
+    public Course(String courseName, String courseID, int quota, CourseSession courseSession) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.quota = quota;
+        this.courseSession = courseSession;
+    }
+
     // getters and setters
     public String getCourseName() {
         return courseName;

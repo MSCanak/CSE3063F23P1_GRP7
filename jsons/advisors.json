@@ -2,9 +2,9 @@
     {
         "Name": "Murat",
         "Surname": "Ganiz",
-        "Email": "mganiz@marmara.edu.tr",
+        "EMail": "mganiz@marmara.edu.tr",
         "PhoneNumber": "05555555550",
-        "Id": "150101",
+        "ID": "150101",
         "Password": "150101Murat",
         "Faculty": "Engineering",
         "Department": "Computer Science Engineering",
@@ -17,27 +17,27 @@
         ],
         "Students": [
             {
-                "Id": "150120000",
+                "ID": "150120000",
                 "Name": "Ensar",
                 "Surname": "Yozgat"
             },
             {
-                "Id": "150120002",
+                "ID": "150120002",
                 "Name": "Turan",
                 "Surname": "Kaya"
             },
             {
-                "Id": "150120004",
+                "ID": "150120004",
                 "Name": "Muhammet",
                 "Surname": "Karagul"
             },
             {
-                "Id": "150120006",
+                "ID": "150120006",
                 "Name": "Feyz",
                 "Surname": "Asil"
             },
             {
-                "Id": "150120008",
+                "ID": "150120008",
                 "Name": "Muhamammed",
                 "Surname": "Nael"
             }
@@ -46,9 +46,9 @@
     {
         "Name": "Betul",
         "Surname": "Boz",
-        "Email": "bboz@marmara.edu.tr",
+        "EMail": "bboz@marmara.edu.tr",
         "PhoneNumber": "05555555551",
-        "Id": "150102",
+        "ID": "150102",
         "Password": "150102Betul",
         "Faculty": "Engineering",
         "Department": "Computer Science Engineering",
@@ -66,27 +66,27 @@
         ],
         "Students": [
             {
-                "Id": "150120001",
+                "ID": "150120001",
                 "Name": "Ayse",
                 "Surname": "Demir"
             },
             {
-                "Id": "150120003",
+                "ID": "150120003",
                 "Name": "Said",
                 "Surname": "Canak"
             },
             {
-                "Id": "150120005",
+                "ID": "150120005",
                 "Name": "Kadir",
                 "Surname": "Bat"
             },
             {
-                "Id": "150120007",
+                "ID": "150120007",
                 "Name": "Adullah",
                 "Surname": "Kan"
             },
             {
-                "Id": "150120009",
+                "ID": "150120009",
                 "Name": "Barbara",
                 "Surname": "Palvin"
             }

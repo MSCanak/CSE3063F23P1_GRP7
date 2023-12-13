@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Lecturer extends Person{
 
-    private ArrayList<Course> givenCourses;
+    private ArrayList<Course> givenCourses = new ArrayList<Course>();
     private String academicTitle;
 
     public Lecturer(String name, String surname, String email, String phoneNumber, String ID, String password, String faculty, String department, ArrayList<Course> givenCourses, String academicTitle ) {

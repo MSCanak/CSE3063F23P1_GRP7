@@ -205,7 +205,7 @@ public class AdvisorCourseRegistrationInterface {
                     if (course.equals(courseID)) {
                         String newCourseID = (String) courseList.get("CourseID");
                         String newCourseName = (String) courseList.get("CourseName");
-                        String newCourseType = (String) courseList.get("CourseType");
+                        String newCourseType = (String) courseList.get("Type");
                         Long newCourseCredit = (Long) (courseList.get("Credit"));
                         Long newCourseSemester = (Long) courseList.get("Semester");
                         Double newCourseGrade = 0.0;
@@ -213,7 +213,7 @@ public class AdvisorCourseRegistrationInterface {
                         JSONObject newCourse = new JSONObject();
                         newCourse.put("CourseID", newCourseID);
                         newCourse.put("CourseName", newCourseName);
-                        newCourse.put("CourseType", newCourseType);
+                        newCourse.put("Type", newCourseType);
                         newCourse.put("Credit", newCourseCredit);
                         newCourse.put("Semester", newCourseSemester);
                         newCourse.put("Grade", newCourseGrade);

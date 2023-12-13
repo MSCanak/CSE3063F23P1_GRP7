@@ -1,9 +1,9 @@
 {
-    "Id": "150120008",
+    "ID": "150120008",
     "Name": "Muhamammed",
     "Surname": "Nael",
     "Password": "150120008Muhamammed",
-    "Mail": "Muhamammed@marun.edu.tr",
+    "EMail": "Muhamammed@marun.edu.tr",
     "Faculty": "Engineering",
     "Department": "Computer Science Engineering",
     "AdvisorID": "150101",
@@ -15,8 +15,8 @@
           "Courses": [
             {
               "CourseID": "ATA121",
-              "CourseName": "Ataturkâ€™s Principles and the History of Turkish Renovation I",
-              "CourseType": "M",
+              "CourseName": "Ataturks Principles and the History of Turkish Renovation I",
+              "Type": "M",
               "Credit": 2,
               "Semester": 1,
               "Grade": 2.5
@@ -24,7 +24,7 @@
             {
               "CourseID": "MBG1201",
               "CourseName": "Introduction to Modern Biology",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 5,
               "Semester": 1,
               "Grade": 2
@@ -32,7 +32,7 @@
             {
               "CourseID": "CSE1200",
               "CourseName": "Introduction to Computer Engineering",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 4,
               "Semester": 1,
               "Grade": 0
@@ -40,7 +40,7 @@
             {
               "CourseID": "CSE1241",
               "CourseName": "Computer Programming I",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 6,
               "Semester": 1,
               "Grade": 2.5
@@ -48,7 +48,7 @@
             {
               "CourseID": "MATH1001",
               "CourseName": "Calculus I",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 6,
               "Semester": 1,
               "Grade": 2.5
@@ -56,7 +56,7 @@
             {
               "CourseID": "PHYS1101",
               "CourseName": "Physics I",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 4,
               "Semester": 1,
               "Grade": 3
@@ -64,7 +64,7 @@
             {
               "CourseID": "PHYS1103",
               "CourseName": "Physics Lab I",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 2,
               "Semester": 1,
               "Grade": 3
@@ -72,7 +72,7 @@
             {
               "CourseID": "TRD121",
               "CourseName": "Turk Dili I",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 2,
               "Semester": 1,
               "Grade": 1.5
@@ -89,8 +89,8 @@
           "Courses": [
             {
               "CourseID": "ATA122",
-              "CourseName": "Ataturkâ€™s Principles and the History of Turkish Renovation II",
-              "CourseType": "M",
+              "CourseName": "Ataturks Principles and the History of Turkish Renovation II",
+              "Type": "M",
               "Credit": 2,
               "Semester": 2,
               "Grade": 3.5
@@ -98,7 +98,7 @@
             {
               "CourseID": "CSE1242",
               "CourseName": "Computer Programming II",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 6,
               "Semester": 2,
               "Grade": 2
@@ -106,7 +106,7 @@
             {
               "CourseID": "MATH1002",
               "CourseName": "Calculus II",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 6,
               "Semester": 2,
               "Grade": 2.5
@@ -114,7 +114,7 @@
             {
               "CourseID": "MATH2256",
               "CourseName": "Linear Algebra for Computer Engineering",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 5,
               "Semester": 2,
               "Grade": 2
@@ -122,7 +122,7 @@
             {
               "CourseID": "PHYS1102",
               "CourseName": "Physics II",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 4,
               "Semester": 2,
               "Grade": 3
@@ -130,7 +130,7 @@
             {
               "CourseID": "PHYS1104",
               "CourseName": "Physics Lab II",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 2,
               "Semester": 2,
               "Grade": 0
@@ -138,7 +138,7 @@
             {
               "CourseID": "TRD122",
               "CourseName": "Turk Dili II",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 2,
               "Semester": 2,
               "Grade": 3
@@ -146,7 +146,7 @@
             {
               "CourseID": "NTE1",
               "CourseName": "Non-Technical Elective - 1",
-              "CourseType": "E",
+              "Type": "E",
               "Credit": 3,
               "Semester": 2,
               "Grade": 3
@@ -164,7 +164,7 @@
             {
               "CourseID": "CSE2023",
               "CourseName": "Discrete Computational Structures",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 6,
               "Semester": 3,
               "Grade": 4
@@ -172,7 +172,7 @@
             {
               "CourseID": "CSE2225",
               "CourseName": "Data Structures",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 7,
               "Semester": 3,
               "Grade": 3.5
@@ -180,7 +180,7 @@
             {
               "CourseID": "ECON2004",
               "CourseName": "Engineering Economy",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 4,
               "Semester": 3,
               "Grade": 1
@@ -188,7 +188,7 @@
             {
               "CourseID": "EE2031",
               "CourseName": "Electric Circuits",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 5,
               "Semester": 3,
               "Grade": 2
@@ -196,7 +196,7 @@
             {
               "CourseID": "MATH2055",
               "CourseName": "Differential Equations",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 4,
               "Semester": 3,
               "Grade": 2
@@ -204,7 +204,7 @@
             {
               "CourseID": "MATH2059",
               "CourseName": "Numerical Methods",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 4,
               "Semester": 3,
               "Grade": 3
@@ -222,7 +222,7 @@
             {
               "CourseID": "CSE2246",
               "CourseName": "Analysis of Algorithms",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 6,
               "Semester": 4,
               "Grade": 2
@@ -230,7 +230,7 @@
             {
               "CourseID": "CSE2138",
               "CourseName": "Systems Programming",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 7,
               "Semester": 4,
               "Grade": 2.5
@@ -238,7 +238,7 @@
             {
               "CourseID": "CSE2260",
               "CourseName": "Principles of Programming Languages",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 6,
               "Semester": 4,
               "Grade": 2
@@ -246,7 +246,7 @@
             {
               "CourseID": "EE2032",
               "CourseName": "Electronics",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 5,
               "Semester": 4,
               "Grade": 1.5
@@ -254,7 +254,7 @@
             {
               "CourseID": "STAT2253",
               "CourseName": "Introduction to Probability and Statistics",
-              "CourseType": "M",
+              "Type": "M",
               "Credit": 5,
               "Semester": 4,
               "Grade": 2.5
