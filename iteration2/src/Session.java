@@ -6,18 +6,8 @@ public class Session {
     private LocalDateTime startingTime; // start time of the session
 
     // Constructors
-    public Session(Lecturer lecturer) {
-        this.user = lecturer;
-        this.startingTime = LocalDateTime.now();
-    }
-
-    public Session(Student student) {
-        this.user = student;
-        this.startingTime = LocalDateTime.now();
-    }
-
-    public Session(Advisor advisor) {
-        this.user = advisor;
+    public Session(Person user) {
+        this.user = user;
         this.startingTime = LocalDateTime.now();
     }
 
