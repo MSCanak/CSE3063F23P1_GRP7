@@ -47,14 +47,12 @@ public class Message {
         this.receiverID = receiverID;
     }
 
-    public String setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return description;
     }
 
-    public String setSubject(String subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
-        return subject;
     }
 
 }
