@@ -350,15 +350,15 @@ public class LoginInterface {
                     }
                     if (dotCount == 1) {
                         // create lecture
-                        Lecture lec = new Lecture(courseCode, courseName, courseSession);
+                        Lecture lec = new Lecture(courseName, courseCode, courseSession);
                         return lec;
                     } else if (dotCount == 2) {
                         // create lab
-                        Lab lab = new Lab(courseCode, courseName, courseSession);
+                        Lab lab = new Lab(courseName, courseCode, courseSession);
                         return lab;
                     } else if (dotCount == 0) {
                         // create lab
-                        Course cou = new Course(courseCode, courseName, courseSession);
+                        Course cou = new Course(courseName, courseCode, courseSession);
                         return cou;
                     } else {
                         System.out.println(Colors.CYAN + "Invalid course code!"+ Colors.RESET);
