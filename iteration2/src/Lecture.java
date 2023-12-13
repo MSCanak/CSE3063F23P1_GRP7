@@ -18,6 +18,10 @@ public class Lecture extends Course {
         super(courseName, courseID, courseSession, lecturer);
     }
 
+    public Lecture(String courseName, String courseID, int quota, CourseSession courseSession) {
+        super(courseName, courseID, quota, courseSession);
+    }
+
     public String getLectureId() {
         return lectureId;
     }

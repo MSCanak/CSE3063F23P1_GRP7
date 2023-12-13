@@ -20,6 +20,10 @@ public class Lab extends Course{
         super(courseName, courseID, courseSession,lecturer);
     }
 
+    public Lab(String courseName, String courseID, int quota, CourseSession courseSession){
+        super(courseName, courseID, quota, courseSession);
+    }
+
     public String getLabId(){
         return labId;
     }
