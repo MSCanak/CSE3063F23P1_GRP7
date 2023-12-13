@@ -40,6 +40,10 @@ public class LoginInterface {
                         StudentInterface studentInterface = new StudentInterface(session, this);
                         studentInterface.stuMenu();
                     }
+                    else {
+                        System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
+                        continue;
+                    }
                 } else {
                     System.out.println(Colors.YELLOW + "Invalid ID! Please try again." + Colors.RESET);
                     continue;
@@ -181,7 +185,6 @@ public class LoginInterface {
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
-            System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
             return false;
         }
 
@@ -209,17 +212,6 @@ public class LoginInterface {
         String studentID = (String) student.get("ID");
         String password = (String) student.get("Password");
         JSONArray takenCoursesArray = (JSONArray) student.get("TakenCourses");
-        // if student has no taken courses, skip this part
-        if (takenCoursesArray.isEmpty()) {
-            // do nothing
-        } else {
-            // Create a course object with the given course id's
-            for (Object courseID : takenCoursesArray) {
-                Course course = createCourse((String) courseID);
-                // add the course to student's taken courses list
-                ((Student) session.getUser()).setCurrentTakenCourses(course);
-            }
-        }
 
         // if there is no advisor, create one
         if (advisor == null) {
@@ -228,6 +220,19 @@ public class LoginInterface {
 
         Student stu = new Student(name, surname, email, phoneNumber, studentID, password, faculty, department,
                 (int) semester, advisor);
+
+        // if student has no taken courses, skip this part
+        if (takenCoursesArray.isEmpty()) {
+            // do nothing
+        } else {
+            // Create a course object with the given course id's
+            for (Object courseObj : takenCoursesArray) {
+                JSONObject course = (JSONObject) courseObj;
+                String courseID = (String) course.get("ID");
+                // add the course to student's taken courses list
+                stu.setCurrentTakenCourses(createCourse(courseID));
+            }
+        }
 
         return stu;
     }
