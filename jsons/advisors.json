@@ -8,7 +8,7 @@
         "Password": "150101Murat",
         "Faculty": "Engineering",
         "Department": "Computer Science Engineering",
-        "AcademicTitle": "Doç.Dr.",
+        "AcademicTitle": "Doc.Dr.",
         "Courses": [
             "CSE3063.1",
             "CSE4197.3",
@@ -52,7 +52,7 @@
         "Password": "150102Betul",
         "Faculty": "Engineering",
         "Department": "Computer Science Engineering",
-        "AcademicTitle": "Dr.Öğr.Üyesi",
+        "AcademicTitle": "Dr.Oğr.Uyesi",
         "Courses": [
             "CSE3015.1",
             "CSE3015.1.1",
@@ -87,8 +87,8 @@
             },
             {
                 "ID": "150120009",
-                "Name": "Barbara",
-                "Surname": "Palvin"
+                "Name": "Chris",
+                "Surname": "Bumstead"
             }
         ]
     }

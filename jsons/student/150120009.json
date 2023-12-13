@@ -1,7 +1,7 @@
 {
     "ID": "150120009",
-    "Name": "Barbara",
-    "Surname": "Palvin",
+    "Name": "Chris",
+    "Surname": "Bumstead",
     "Password": "150120009Barbara",
     "EMail": "Barbara@marun.edu.tr",
     "Faculty": "Engineering",
@@ -9,6 +9,7 @@
     "AdvisorID": "150102",
     "PhoneNumber" : "05321234568",
     "Semester": 5,
+    "TakenCourses": [],
     "Transcript": {
       "Semester": [
         {
