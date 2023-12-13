@@ -174,45 +174,59 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void sendRegRequest() {
-        // Convert the selected courses to JSON
-        JSONArray selectedCoursesJsonArray = new JSONArray();
-        JSONArray selectedLecturesJsonArray = new JSONArray();
-        JSONArray selectedLabsJsonArray = new JSONArray();
-        JSONArray approvedCoursesJsonArray = new JSONArray();
-        JSONArray approvedLecturesJsonArray = new JSONArray();
-        JSONArray approvedLabsJsonArray = new JSONArray();
+        try {
+            // Read the existing JSON content
+            JSONParser parser = new JSONParser();
+            JSONArray existingRegistrationArray;
 
-        for (Course course : selectedCourses) {
-            selectedCoursesJsonArray.add(course.getCourseID());
-        }
+            try (FileReader reader = new FileReader("jsons/RegistrationRequests.json")) {
+                Object obj = parser.parse(reader);
+                existingRegistrationArray = (JSONArray) obj;
+            } catch (Exception e) {
+                existingRegistrationArray = new JSONArray();
+            }
 
-        for (Lecture lecture : selectedLectures) {
-            selectedLecturesJsonArray.add(lecture.getLectureID());
-        }
+            // Convert the selected courses to JSON
+            JSONArray selectedCoursesJsonArray = new JSONArray();
+            JSONArray selectedLecturesJsonArray = new JSONArray();
+            JSONArray selectedLabsJsonArray = new JSONArray();
+            JSONArray approvedCoursesJsonArray = new JSONArray();
+            JSONArray approvedLecturesJsonArray = new JSONArray();
+            JSONArray approvedLabsJsonArray = new JSONArray();
 
-        for (Lab lab : selectedLabs) {
-            selectedLabsJsonArray.add(lab.getLabID());
-        }
+            for (Course course : selectedCourses) {
+                selectedCoursesJsonArray.add(course.getCourseID());
+            }
 
-        // Create the JSON object
-        JSONObject registrationJson = new JSONObject();
-        registrationJson.put("StudentID", session.getUser().getID());
-        registrationJson.put("SelectedCourses", selectedCoursesJsonArray);
-        registrationJson.put("SelectedLectures", selectedLecturesJsonArray);
-        registrationJson.put("SelectedLabs", selectedLabsJsonArray);
-        registrationJson.put("ApprovedCourses", approvedCoursesJsonArray);
-        registrationJson.put("ApprovedLectures", approvedLecturesJsonArray);
-        registrationJson.put("ApprovedLabs", approvedLabsJsonArray);
+            for (Lecture lecture : selectedLectures) {
+                selectedLecturesJsonArray.add(lecture.getLectureID());
+            }
 
-        // Create the final JSON array
-        JSONArray registrationArray = new JSONArray();
-        registrationArray.add(registrationJson);
+            for (Lab lab : selectedLabs) {
+                selectedLabsJsonArray.add(lab.getLabID());
+            }
 
-        // Write the selected courses JSON to the file
-        try (FileWriter fileWriter = new FileWriter("jsons/RegistrationRequests.json")) {
-            fileWriter.write(registrationArray.toJSONString());
-            System.out.println("!!! Registration request written to RegistrationRequests.json !!!");
-        } catch (IOException e) {
+            // Create the JSON object
+            JSONObject registrationJson = new JSONObject();
+            registrationJson.put("StudentID", session.getUser().getID());
+            registrationJson.put("SelectedCourses", selectedCoursesJsonArray);
+            registrationJson.put("SelectedLectures", selectedLecturesJsonArray);
+            registrationJson.put("SelectedLabs", selectedLabsJsonArray);
+            registrationJson.put("ApprovedCourses", approvedCoursesJsonArray);
+            registrationJson.put("ApprovedLectures", approvedLecturesJsonArray);
+            registrationJson.put("ApprovedLabs", approvedLabsJsonArray);
+
+            // Append the new data to the existing JSON array
+            existingRegistrationArray.add(registrationJson);
+
+            // Write the updated JSON array back to the file
+            try (FileWriter fileWriter = new FileWriter("jsons/RegistrationRequests.json")) {
+                fileWriter.write(existingRegistrationArray.toJSONString());
+                System.out.println("!!! Registration request appended to RegistrationRequests.json !!!");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -356,8 +370,7 @@ public class StudentCourseRegistrationInterface {
                 for (var availableCourse : availableCoursesCopy) {
                     for (int i = 1; i < 20; i++) {
                         if ((availableCourse.getCourseID().concat("." + i)).equals(courseIDOffered)) {
-                            // ((Lecture) availableCourse).setLectureId(courseIDOffered);
-                            Lecture lecture = new Lecture(availableCourse.getCourseName(),
+                            var lecture = new Lecture(availableCourse.getCourseName(),
                                     courseIDOffered,
                                     availableCourse.getCredit(), availableCourse.getType(),
                                     availableCourse.getSemester());

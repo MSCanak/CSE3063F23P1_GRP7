@@ -1,1 +1,30 @@
-[{}]
+[
+    {
+        "SelectedLabs": [
+            "CSE1242.1.1"
+        ],
+        "ApprovedCourses": [],
+        "ApprovedLabs": [],
+        "ApprovedLectures": [],
+        "SelectedCourses": [
+            "CSE1242"
+        ],
+        "StudentID": "150120000",
+        "SelectedLectures": [
+            "CSE1242.1"
+        ]
+    },
+    {
+        "SelectedLabs": [],
+        "ApprovedCourses": [],
+        "ApprovedLabs": [],
+        "ApprovedLectures": [],
+        "SelectedCourses": [
+            "PHYS1101"
+        ],
+        "StudentID": "150120000",
+        "SelectedLectures": [
+            "PHYS1101.1"
+        ]
+    }
+]
