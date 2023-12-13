@@ -80,11 +80,6 @@ public class Notification {
         return timeSent;
     }
 
-    public String setReceiver(String receiverID) {
-        this.receiverID = receiverID;
-        return receiverID;
-    }
-
     public String getNotificationType() {
         return notificationType;
     }
@@ -92,9 +87,20 @@ public class Notification {
     public String getSenderID() {
         return senderID;
     }
-    
 
-    public boolean setIsRead(boolean isRead) {
+    public void setReceiverID(String receiverID) {
+        this.receiverID = receiverID;
+    }
+
+    public void setNotificationType(String notificationType) {
+        this.notificationType = notificationType;
+    }
+
+    public void setSenderID(String senderID) {
+        this.senderID = senderID;
+    }
+
+    public void setIsRead(boolean isRead) {
         this.isRead = isRead;
 
         try {
@@ -110,21 +116,16 @@ public class Notification {
                 
                     pw.flush(); 
                     pw.close();
-                    return true;
                 }
             }
             
         }
         catch (Exception e) {
             System.out.println("Error: " + e);
-            return false;
         }
-
-        return isRead;
     }
 
-    public String setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return description;
     }
 }

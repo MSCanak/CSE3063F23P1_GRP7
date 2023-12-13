@@ -92,41 +92,4 @@ public abstract class Person {
         this.department = department;
     }
 
-    // Abstract methods
-
-    public int getSemester() {
-        return 0;
-    }
-
-    public ArrayList<Course> getCoursesTaken() {
-        return null;
-    }
-
-    public Transcript getTranscript() {
-        return null;
-    }
-
-    public Advisor getAdvisor() {
-        return null;
-    }
-
-    public ArrayList<Student> getStudents() {
-        return null;
-    }
-    
-    public void setSemester(int semester) {
-    }
-
-    public void setCoursesTaken(ArrayList<Course> coursesTaken) {
-    }
-
-    public void setTranscript(Transcript transcript) {
-    }
-
-    public void setAdvisor(Advisor advisor) {
-    }
-
-    public void setStudents(ArrayList<Student> students) {
-    }
-
 }

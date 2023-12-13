@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class StudentInterface {
+public class StudentInterface implements Schedule{
 
     // attributes
     private Session session;
@@ -170,8 +170,13 @@ public class StudentInterface {
 
     }
 
-    public void calculateWeeklySchedule() {
+    public ArrayList<Course> calculateWeeklySchedule() {
         ArrayList<Course> currentTakenCourses = ((Student) (session.getUser())).getCurrentTakenCourses();
+        return currentTakenCourses;
+    }
+
+    @Override
+    public void showWeeklySchedule(ArrayList<Course> courses) {
         
     }
 
