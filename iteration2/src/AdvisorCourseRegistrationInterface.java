@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -11,11 +12,16 @@ import org.json.simple.parser.JSONParser;
 
 public class AdvisorCourseRegistrationInterface {
     private Session session;
-    private Advisor advisor;
     private Scanner scanner;
     private ArrayList<String> selectionCourses;
     private ArrayList<String> courses;
 
+
+    private HashMap<String, String> courseToLecture;
+    private HashMap<String, String> courseToLab;
+
+
+    private MessagesInterface messagesInterface;
     Object requestsObj;
     JSONArray requestJson;
     Object coursObject;
@@ -23,10 +29,12 @@ public class AdvisorCourseRegistrationInterface {
 
     public AdvisorCourseRegistrationInterface(Session session, AdvisorInterface advisorInt) {
         this.session = session;
-        this.advisor = (Advisor) session.getUser();
         this.scanner = new Scanner(System.in);
         this.selectionCourses = new ArrayList<String>();
         this.courses = new ArrayList<String>();
+        this.courseToLecture = new HashMap<String, String>();
+        this.courseToLab = new HashMap<String, String>();
+
         try {
             requestsObj = new JSONParser().parse(new FileReader("./jsons/RegistrationRequests.json"));
             requestJson = (JSONArray) requestsObj;
@@ -72,6 +80,7 @@ public class AdvisorCourseRegistrationInterface {
 
     private void showStudents() {
         // System.out.println("//////////////////////////////////");
+        Advisor advisor = (Advisor) session.getUser();
 
         System.out.println(Colors.RED + "\n----------Students----------\n" + Colors.RESET);
         int numberOfStudents = 1;
@@ -92,6 +101,7 @@ public class AdvisorCourseRegistrationInterface {
 
     private void approveCoursesMenu() {
         while (true) {
+            Advisor advisor = (Advisor) session.getUser();
 
             showStudents();
             System.out.println("Select student for approval or press 0 for back to menu: ");
@@ -100,7 +110,7 @@ public class AdvisorCourseRegistrationInterface {
             if (choice == 0) {
                 return;
             }
-
+            
             Student student = advisor.getStudents().get(choice - 1);
             System.out.println("----------------------------------");
             System.out.println("Student: " + student.getName() + " " + student.getSurname() + " " + student.getID());
@@ -118,12 +128,31 @@ public class AdvisorCourseRegistrationInterface {
             String requestID = (String) request.get("StudentID");
             if (studentID.equals(requestID)) {
                 JSONArray selectedCourses = (JSONArray) request.get("SelectedCourses");
+                JSONArray selectedLectures = (JSONArray) request.get("SelectedLectures");
+                JSONArray selectedLabs = (JSONArray) request.get("SelectedLabs");
 
                 for (Object courseObj : selectedCourses) {
                     String course = (String) courseObj;
+                    for(Object lectureObj : selectedLectures) {
+                        String lecture = (String) lectureObj;
+                        if(lecture.contains(course)) {
+                            courseToLecture.put(course, lecture);
+                        }
+                    }
+
+                    for(Object labObj : selectedLabs) {
+                        String lab = (String) labObj;
+                        if(lab.contains(course)) {
+                            courseToLab.put(course, lab);
+                        }
+                    }
                     courses.add(course);
-                    System.out.println(numberOfCourses + " : " + course);
                     numberOfCourses++;
+                }
+
+                //print lectures and labs
+                for (String course : courses) {
+                    System.out.println(numberOfCourses - 1 + " : " + course + " " + courseToLecture.get(course) + " " + courseToLab.get(course));
                 }
 
             }
@@ -159,11 +188,28 @@ public class AdvisorCourseRegistrationInterface {
             if (studentID.equals(requestID)) {
                 JSONArray approvedCoursesJsonArray = (JSONArray) request.get("ApprovedCourses");
                 JSONArray selectedCourses = (JSONArray) request.get("SelectedCourses");
+                
+                JSONArray approvedLectureJsonArray = (JSONArray) request.get("ApprovedLectures");
+                JSONArray selectedLectures = (JSONArray) request.get("SelectedLectures");
+
+                JSONArray approvedLabJsonArray = (JSONArray) request.get("ApprovedLabs");
+                JSONArray selectedLabs = (JSONArray) request.get("SelectedLabs");
+
+
 
                 for (String course : selectionCourses) {
                     approvedCoursesJsonArray.add(course);
+                    if(courseToLab.get(course) != null) {
+                        approvedLabJsonArray.add(courseToLab.get(course));
+                    }
+                    if(courseToLecture.get(course) != null) {
+                        approvedLectureJsonArray.add(courseToLecture.get(course));
+                    }
                 }
                 selectedCourses.clear();
+                selectedLectures.clear();
+                selectedLabs.clear();
+
             }
         }
 
@@ -182,6 +228,7 @@ public class AdvisorCourseRegistrationInterface {
     private void finalizeRegistrationMenu() {
         showStudents();
         int choice = scanner.nextInt();
+        Advisor advisor = (Advisor) session.getUser();
 
         Student curStudent = advisor.getStudents().get(choice - 1);
 
@@ -219,6 +266,7 @@ public class AdvisorCourseRegistrationInterface {
                         newCourse.put("Grade", newCourseGrade);
 
                         finalizedArrayList.add(newCourse);
+
                     }
                 }
 
@@ -230,6 +278,20 @@ public class AdvisorCourseRegistrationInterface {
                 JSONObject student = (JSONObject) studentObj;
                 JSONObject transcriptObj = (JSONObject) student.get("Transcript");
                 JSONArray semArray = (JSONArray) transcriptObj.get("Semester");
+
+                JSONArray takenCourses = (JSONArray) student.get("TakenCourses");
+                
+
+                for(Object courseObj : approvedCoursesJsonArray) {
+                    String course = (String) courseObj;
+                    takenCourses.add(course);
+                    if(courseToLab.get(course) != null) {
+                        takenCourses.add(courseToLab.get(course));
+                    }
+                    if(courseToLecture.get(course) != null) {
+                        takenCourses.add(courseToLecture.get(course));
+                    }
+                }
 
                 JSONObject newCourses = new JSONObject();
 
@@ -243,16 +305,16 @@ public class AdvisorCourseRegistrationInterface {
                 studentPw.flush();
                 studentPw.close();
 
-                request.remove("ApprovedCourses");
-                request.remove("SelectedCourses");
-                request.remove("StudentID");
+                requestJson.remove(request);
                 PrintWriter requestPw = new PrintWriter("./jsons/RegistrationRequests.json");
                 requestPw.write(requestJson.toJSONString());
                 requestPw.flush();
                 requestPw.close();
-
+                if(requestJson.isEmpty()) {
+                    break;
+                }
             } catch (Exception e) {
-
+                System.out.println(e);
             }
 
         }
