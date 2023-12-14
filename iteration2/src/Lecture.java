@@ -26,7 +26,7 @@ public class Lecture extends Course {
         this.lectureID = lectureID;
     }
 
-    public Lecture(String courseName, String lectureID, CourseSession courseSession, Lecturer lecturer) {
+    public Lecture(String courseName, String lectureID, CourseSession courseSession, String lecturer) {
         super(courseName, lectureID, courseSession, lecturer);
         var lastIndex = lectureID.indexOf(".");
         var courseID = lectureID.substring(0, lastIndex);
