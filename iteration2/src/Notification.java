@@ -18,20 +18,13 @@ public class Notification {
     private String senderID;
 
     // Constructor
-    public Notification(String receiverID, String description) {
+    public Notification(String receiverID, String description, String notificationType, String senderID) {
         this.receiverID = receiverID;
         this.description = description;
-        this.isRead = false;
-        this.timeSent = LocalDateTime.now();
-    }
-
-    public Notification(String receiverID, boolean isRead, String description, String timeSent, String notificationType, String senderID) {
-        this.receiverID = receiverID;
-        this.isRead = isRead;
-        this.description = description;
-        this.timeSent = LocalDateTime.parse(timeSent);
         this.notificationType = notificationType;
         this.senderID = senderID;
+        this.isRead = false;
+        this.timeSent = LocalDateTime.now();
     }
 
     public boolean sendNotification(String notificationType, String senderID) {
