@@ -57,14 +57,11 @@ public class NotificationsInterface {
                 if (notificationJSON.get("receiverID").equals(person.getID())) {
 
                     String receiverID = (String) notificationJSON.get("receiverID");
-                    boolean isRead = (boolean) notificationJSON.get("isRead");
                     String description = (String) notificationJSON.get("description");
-                    String timeSent = (String) notificationJSON.get("timeSent");
                     String notificationType = (String) notificationJSON.get("notificationType");
                     String senderID = (String) notificationJSON.get("senderID");
 
-                    Notification newNotification = new Notification(receiverID, isRead, description, timeSent,
-                            notificationType, senderID);
+                    Notification newNotification = new Notification(receiverID, description, notificationType, senderID);
                     notifications.add(newNotification);
                 }
             }
