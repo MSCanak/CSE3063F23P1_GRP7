@@ -34,6 +34,8 @@ public class StudentInterface implements Schedule{
         System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   View Transcript");
         System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   View Curriculum");
         System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   Go to Course Registration System");
+        System.out.println(Colors.YELLOW + "4" + Colors.RESET + ".   View Weekly Schedule");
+        System.out.println(Colors.YELLOW + "5" + Colors.RESET + ".   View Notifications");
         System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Logout");
         System.out.println(Colors.YELLOW + "x" + Colors.RESET + ".   Exit");
 
@@ -75,7 +77,7 @@ public class StudentInterface implements Schedule{
             case '4':
                 showWeeklySchedule(calculateWeeklySchedule());
                 break;
-                
+
             case '5':
                 notificationInterface = new NotificationsInterface(session);
                 notificationInterface.notificationsMenu();
