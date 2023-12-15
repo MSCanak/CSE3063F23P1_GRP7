@@ -9,7 +9,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 
 public class Notification {
-    
+
     private String receiverID;
     private boolean isRead;
     private String description;
@@ -43,14 +43,13 @@ public class Notification {
             notificationJSONObject.add(newNotification);
 
             PrintWriter pw = new PrintWriter("./jsons/notifications.json");
-            pw.write(notificationJSONObject.toJSONString()); 
-          
-            pw.flush(); 
+            pw.write(notificationJSONObject.toJSONString());
+
+            pw.flush();
             pw.close();
             return true;
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e);
             return false;
         }
@@ -100,20 +99,20 @@ public class Notification {
             Object notificationObject = new JSONParser().parse(new FileReader("./jsons/notifications.json"));
             JSONArray notificationJSONObject = (JSONArray) notificationObject;
 
-            for(Object notification : notificationJSONObject) {
+            for (Object notification : notificationJSONObject) {
                 JSONObject notificationJSON = (JSONObject) notification;
-                if(notificationJSON.get("receiverID").equals(receiverID) && notificationJSON.get("description").equals(description)) {
+                if (notificationJSON.get("receiverID").equals(receiverID)
+                        && notificationJSON.get("description").equals(description)) {
                     notificationJSON.put("isRead", isRead);
                     PrintWriter pw = new PrintWriter("./jsons/notifications.json");
-                    pw.write(notificationJSONObject.toJSONString()); 
-                
-                    pw.flush(); 
+                    pw.write(notificationJSONObject.toJSONString());
+
+                    pw.flush();
                     pw.close();
                 }
             }
-            
-        }
-        catch (Exception e) {
+
+        } catch (Exception e) {
             System.out.println("Error: " + e);
         }
     }

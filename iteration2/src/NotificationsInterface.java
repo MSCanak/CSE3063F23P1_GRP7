@@ -21,6 +21,12 @@ public class NotificationsInterface {
     private void showNotifications() {
         // indexer is for showing notifications with numbers or not
         calculateNotifications();
+
+        if (notifications.isEmpty()) {
+            System.out.println(Colors.YELLOW + "There are no notifications available at the moment!\n" + Colors.RESET);
+            return;
+        }
+
         int i = 1;
         char isReadSign = 'o';
         String BG;
@@ -61,7 +67,8 @@ public class NotificationsInterface {
                     String notificationType = (String) notificationJSON.get("notificationType");
                     String senderID = (String) notificationJSON.get("senderID");
 
-                    Notification newNotification = new Notification(receiverID, description, notificationType, senderID);
+                    Notification newNotification = new Notification(receiverID, description, notificationType,
+                            senderID);
                     notifications.add(newNotification);
                 }
             }
@@ -82,9 +89,9 @@ public class NotificationsInterface {
 
         System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Mark as Read");
         System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Delete Notification");
-        System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Go back to the Course Registration System"); 
-        //we dont knw where did it go back?
-        System.out.println("\nWhat do you want to do?\n");
+        System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to the Main Menu");
+        // we dont knw where did it go back?
+        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?\n");
 
         char choice = input.next().charAt(0);
 
@@ -101,7 +108,7 @@ public class NotificationsInterface {
                 break;
 
             // go back to student menu
-            case '*':
+            case '0':
                 return;
 
             // invalid input
@@ -120,14 +127,15 @@ public class NotificationsInterface {
             showNotifications();
             System.out.println("Which notification do you want to mark as read?");
             System.out.println("Select a notification number to mark as read or select x to mark all as read.");
-            System.out.println("(For example -> 1-2-3 or  x )");
-            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Notifications Menu.");
-            int choice = input.nextInt();
+            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Notifications Menu.\n");
+            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Notifications Menu.\n");
+
+            char choice = input.next().charAt(0);
 
             switch (choice) {
 
                 // go back to notifications menu
-                case 0:
+                case '0':
                     return;
 
                 // mark all as read
@@ -153,14 +161,15 @@ public class NotificationsInterface {
             showNotifications();
             System.out.println("Which notification do you want to delete?");
             System.out.println("Select a notification number to delete or select x to delete all.");
-            System.out.println("(For example -> 1-2-3 or  x )");
-            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Notifications Menu.");
-            int choice = input.nextInt();
+            System.out.println("(For example -> " + Colors.YELLOW + "1-2-3" + Colors.RESET + " or" + Colors.YELLOW
+                    + "  x" + Colors.RESET + " )");
+            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Notifications Menu.\n");
+            char choice = input.next().charAt(0);
 
             switch (choice) {
 
                 // go back to notifications menu
-                case 0:
+                case '0':
                     return;
 
                 // delete all
