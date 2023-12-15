@@ -27,10 +27,10 @@ public class AdvisorInterface implements Schedule {
         System.out.println(Colors.YELLOW + "4" + Colors.RESET + ".   Go to Course Registration System");
         System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Logout");
         System.out.println(Colors.YELLOW + "x" + Colors.RESET + ".   Exit");
-        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?\n");
-
+        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+        System.out.print(Colors.BLUE);
         char caseToken = scanner.next().charAt(0);
-
+        System.out.print(Colors.RESET);
         switch (caseToken) {
             case '1': // view notifications
                 notificationsInt = new NotificationsInterface(session);
@@ -280,9 +280,10 @@ public class AdvisorInterface implements Schedule {
                 "------------------------------------------------------------------------------------------------------------------------------------------\n");
 
         System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Back to Advisor Menu");
-        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?\n");
+        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+        System.out.print(Colors.BLUE);
         char caseToken = scanner.next().charAt(0);
-
+        System.out.print(Colors.RESET);
         switch (caseToken) {
             case '0':
                 advMenu();
@@ -322,9 +323,10 @@ public class AdvisorInterface implements Schedule {
         System.out.println("---------------------------------------------------------\n");
 
         System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Back to Advisor Menu");
-        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?\n");
-
+        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+        System.out.print(Colors.BLUE);
         char caseToken = scanner.next().charAt(0);
+        System.out.print(Colors.RESET);
         switch (caseToken) {
             case '0':
                 advMenu();

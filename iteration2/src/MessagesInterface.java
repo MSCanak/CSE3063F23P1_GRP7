@@ -34,20 +34,22 @@ public class MessagesInterface {
         int choice = 0;
         while (true) {
             System.out.println(Colors.RED + "\n--------------------Messages Menu--------------------\n" + Colors.RESET);
-            System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Send Message");
+            System.out
+                    .println(Colors.YELLOW + "1" + Colors.RESET + ".   " + Colors.GREEN + "New Message" + Colors.RESET);
             System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Received Messages");
             System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   Sent Messages");
             System.out
-                    .println(Colors.YELLOW + "*" + Colors.RESET + ".   Go back to the Course Registration System Menu");
-            System.out.println("\nWhat do you want to do?\n");
-
+                    .println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to the Course Registration System Menu");
+            System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+            System.out.print(Colors.BLUE);
             choice = scanner.nextInt();
+            System.out.print(Colors.RESET);
             if (choice == 1) {
-                System.out.print("Enter receiver ID: ");
+                System.out.print(Colors.YELLOW + "Enter receiver ID: " + Colors.RESET);
                 String receiver = scanner.next();
-                System.out.print("\nEnter subject: ");
+                System.out.print(Colors.YELLOW + "\nEnter subject: " + Colors.RESET);
                 String subject = scanner.next();
-                System.out.print("\nEnter description: ");
+                System.out.print(Colors.YELLOW + "\nEnter description: " + Colors.RESET);
                 String description = scanner.next();
                 newMessage(description, subject, receiver);
             } else if (choice == 2) {
@@ -144,7 +146,7 @@ public class MessagesInterface {
             pw.close();
 
         } catch (Exception e) {
-            System.out.println(Colors.YELLOW+"Error: " + e+Colors.RESET);
+            System.out.println(Colors.YELLOW + "Error: " + e + Colors.RESET);
         }
     }
 }

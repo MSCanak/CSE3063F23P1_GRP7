@@ -13,6 +13,8 @@ public class Colors {
     public static final String GRAY_BACKGROUND = "\u001B[100m";//for using unread notifications and messages
     public static final String BLACK_BACKGROUND = "\u001B[40m";
     public static final String WHITE_BACKGROUND = "\u001B[47m";
+    public static final String RED_BACKGROUND = "\u001B[41m";//for using read notifications and messages
+    public static final String GREEN_BACKGROUND = "\u001B[42m";
     // END: abpxx6d04wxr
 }
 // FILEPATH: /C:/GitHub/CSE3063F23P1_GRP7/iteration2/src/colors.java
