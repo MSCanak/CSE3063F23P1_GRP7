@@ -72,7 +72,7 @@ public class StudentCourseRegistrationInterface {
         }
     }
 
-    private void showStudentInf() {
+    private void showStudentInf() { // advisor information is wrong
         System.out.printf("%n%-12s%-3s%-22s%-10s%-2s%-40s%n", "Student ID", "-", "Name and Surname:",
                 session.getUser().getID(),
                 "-", session.getUser().getName() + " " + session.getUser().getSurname());
@@ -115,17 +115,18 @@ public class StudentCourseRegistrationInterface {
         }
     }
 
-    private void showSelectedCourses() {
+    private void showSelectedCourses() { // lecturer must be added
         int courseNumber = 1;
         System.out.printf("%n%-8s%-13s%-70s%-8s%-15s%n", "Number", "CourseID", "CourseName", "Credit", "CourseType");
         System.out.printf(
                 "--------------------------------------------------------------------------------------------------------------%n");
 
-        for (var course : selectedCourses) {
+        for (var lecture : selectedLectures) {
 
-            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, course.getCourseID(), course.getCourseName(),
-                    course.getCredit(),
-                    course.getType().equals("E") ? "Elective" : "Mandatory");
+            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, lecture.getLectureID(),
+                    lecture.getCourseName(),
+                    lecture.getCredit(),
+                    lecture.getType().equals("E") ? "Elective" : "Mandatory");
 
         }
         System.out.println();
@@ -251,8 +252,6 @@ public class StudentCourseRegistrationInterface {
             switch (choice) {
                 case "1":
                     calculateAvailableCourses();
-                    calculateAvailableLectures();
-                    calculateAvailableLabs();
                     showAvailableLectures();
                     if (selectedCourses.size() == 5) {
                         System.out.println("5 courses already selected, press 0 to go back");
@@ -339,25 +338,12 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void calculateAvailableLectures() {
-        var availableCoursesCopy = new ArrayList<Course>();
-        for (var availableCourse : availableCourses) {
-            availableCoursesCopy.add(availableCourse);
-        }
         availableLectures.clear();
         try {
-            for (var courseOffered : coursesOffered) {
-                var courseIDOffered = courseOffered.getLectureID();
-                for (var availableCourse : availableCoursesCopy) {
-                    for (int i = 1; i < 20; i++) {
-                        if ((availableCourse.getCourseID().concat("." + i)).equals(courseIDOffered)) {
-                            var lecture = new Lecture(availableCourse.getCourseName(),
-                                    courseIDOffered,
-                                    availableCourse.getCredit(), availableCourse.getType(),
-                                    availableCourse.getSemester());
-
-                            lecture.setLectureID(courseIDOffered);
-                            availableLectures.add(lecture);
-                        }
+            for (var lecture : allLectures) {
+                for (var availableCourse : availableCourses) {
+                    if (lecture.getCourseID().equals(availableCourse.getCourseID())) {
+                        availableLectures.add(lecture);
                     }
                 }
             }
@@ -366,26 +352,13 @@ public class StudentCourseRegistrationInterface {
         }
     }
 
-    private void calculateAvailableLabs() {
-        var availableLecturesCopy = new ArrayList<Lecture>();
-        for (var availableCourse : availableLectures) {
-            availableLecturesCopy.add(availableCourse);
-        }
+    private void calculateAvailableLabs(Lecture selectedLecture) {
         availableLabs.clear();
         try {
-            for (var courseOffered : coursesOffered) {
-                var courseIDOffered = courseOffered.getLectureID();
-                for (var availableLecture : availableLecturesCopy) {
-                    for (int i = 1; i < 20; i++) {
-                        if ((availableLecture.getLectureID().concat("." + i))
-                                .equals(courseIDOffered)) {
-                            var lab = new Lab(availableLecture.getCourseName(),
-                                    courseIDOffered,
-                                    availableLecture.getCredit(), availableLecture.getType(),
-                                    availableLecture.getSemester());
-                            lab.setLabID(courseIDOffered);
-                            availableLabs.add(lab);
-                        }
+            for (var lab : allLabs) {
+                for (int i = 1; i < 20; i++) {
+                    if (selectedLecture.getLectureID().concat("." + i).equals(lab.getLabID())) {
+                        availableLabs.add(lab);
                     }
                 }
             }
@@ -423,10 +396,6 @@ public class StudentCourseRegistrationInterface {
 
                     if (mandatoryPrerequisiteCourse != null) {
                         mandatoryPrerequisiteList.add(mandatoryPrerequisiteCourse);
-                    } else {
-                        System.err.println(
-                                "Mandatory prerequisite course with ID " + mandatoryPrerequisiteCourseID
-                                        + " not found.");
                     }
                 }
 
@@ -436,9 +405,6 @@ public class StudentCourseRegistrationInterface {
 
                     if (optionalPrerequisiteCourse != null) {
                         optionalPrerequisiteList.add(optionalPrerequisiteCourse);
-                    } else {
-                        System.err.println(
-                                "Optional prerequisite course with ID " + optionalPrerequisiteCourseID + " not found.");
                     }
                 }
 
@@ -473,7 +439,7 @@ public class StudentCourseRegistrationInterface {
                 var dotCount = courseID.length() - courseID.replace(".", "").length();
                 if (dotCount == 1) {
                     var courseSession = createCourseSession(courseDayTimeLocation);
-                    
+
                     var lecture = new Lecture(courseName, courseID, quota, courseSession);
                     var correspondingCourse = findCourseByID(allCourses, lecture.getCourseID());
 
@@ -486,9 +452,9 @@ public class StudentCourseRegistrationInterface {
                         lecture.setTheoric(theoric);
                         lecture.setPractice(practice);
                         lecture.setCourseStudents(courseStudents);
+                        lecture.setMandatoryPrerequisite(correspondingCourse.getMandatoryPrerequisite());
+                        lecture.setOptionalPrerequisite(correspondingCourse.getOptionalPrerequisite());
                         allLectures.add(lecture);
-                    } else {
-                        System.err.println("Course with ID " + courseID + " not found.");
                     }
                 } else if (dotCount == 2) {
                     var courseSession = createCourseSession(courseDayTimeLocation);
@@ -503,12 +469,10 @@ public class StudentCourseRegistrationInterface {
                         lab.setTheoric(theoric);
                         lab.setPractice(practice);
                         lab.setCourseStudents(courseStudents);
+                        lab.setMandatoryPrerequisite(correspondingCourse.getMandatoryPrerequisite());
+                        lab.setOptionalPrerequisite(correspondingCourse.getOptionalPrerequisite());
                         allLabs.add(lab);
-                    } else {
-                        System.err.println("Course with ID " + courseID + " not found.");
                     }
-                } else {
-                    System.err.println("Course with ID " + courseID + " not found.");
                 }
             }
         } catch (Exception e) {
@@ -520,8 +484,17 @@ public class StudentCourseRegistrationInterface {
         var targetSemester = ((Student) (session.getUser())).getCurrentSemester();
         var gano = ((Student) (session.getUser())).getTranscript().getGano().get(targetSemester - 2);
 
+        availableCourses.clear();
+        for (var course : allCourses) {
+            if (gano >= 3 && course.getSemester() >= targetSemester) {
+                availableCourses.add(course);
+            } else if (course.getSemester() == targetSemester) {
+                availableCourses.add(course);
+            }
+        }
         // student information reading
         try {
+
             var stuId = session.getUser().getID();
             var studentJson = "jsons/student/" + stuId + ".json";
             var studentObj = new JSONParser().parse(new FileReader(studentJson));
@@ -591,30 +564,38 @@ public class StudentCourseRegistrationInterface {
                                 }
                             }
                         }
-                    } else {
-                        System.err.println("Course with ID " + courseID + " not found.");
                     }
                 }
             }
-            // remove from availableCourses if that course already in selectedCourses
-            var availableCoursesCopy = new ArrayList<Course>();
-            for (var availableCourse : availableCourses) {
-                availableCoursesCopy.add(availableCourse);
+            if (availableCourses.size() == 0) {
+                System.err.println("\n!!! Currently, there are no courses available !!!\n");
+                return;
             }
-            for (var availableCourse : availableCourses) {
-                for (var selectedCourse : selectedCourses) {
-                    if (selectedCourse.getCourseID().equals(availableCourse.getCourseID())) {
-                        availableCoursesCopy.remove(availableCourse);
+
+            if (selectedCourses.size() > 0) {
+                // create copy of available courses
+                var availableCoursesCopy = new ArrayList<Course>();
+                for (var availableCourse : availableCourses) {
+                    availableCoursesCopy.add(availableCourse);
+                }
+                // remove selected courses from available courses
+                for (var availableCourse : availableCoursesCopy) {
+                    for (var selectedCourse : selectedCourses) {
+                        if (selectedCourse.getCourseID().equals(availableCourse.getCourseID())) {
+                            availableCourses.remove(availableCourse);
+                        }
                     }
                 }
             }
-            availableCourses = availableCoursesCopy;
+
+            calculateAvailableLectures();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void showAvailableLectures() {
+    private void showAvailableLectures() {// lecturer must be added
         int courseNumber = 1;
         System.out.printf("%n%-8s%-13s%-70s%-8s%-15s%n", "Number", "CourseID", "CourseName", "Credit", "CourseType");
         System.out.printf(
@@ -628,24 +609,28 @@ public class StudentCourseRegistrationInterface {
                     lecture.getType().equals("E") ? "Elective" : "Mandatory");
 
         }
+
+        if (courseNumber == 1) {
+            System.err.println("\n!!! Currently, there are no lectures available !!!\n");
+            return;
+        }
         System.out.println();
     }
 
-    private boolean showAvailableLabs(int selectedIndex) {
+    private boolean showAvailableLabs(int selectedIndex) {// lecturer must be added
         int courseNumber = 1;
         System.out.printf("%n%-8s%-13s%-70s%-8s%-15s%n", "Number", "CourseID", "CourseName", "Credit", "CourseType");
         System.out.printf(
                 "--------------------------------------------------------------------------------------------------------------%n");
         var selectedLecture = availableLectures.get(selectedIndex - 1);
 
+        calculateAvailableLabs(selectedLecture);
+
         for (var availableLab : availableLabs) {
-            int lastIndex = availableLab.getLabID().lastIndexOf(".");
-            var correspondingLectureId = availableLab.getLabID().substring(0, lastIndex);
-            if (correspondingLectureId.equals(selectedLecture.getLectureID())) {
-                System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, availableLab.getLabID(),
-                        availableLab.getCourseName(), availableLab.getCredit(),
-                        availableLab.getType().equals("E") ? "Elective" : "Mandatory");
-            }
+            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, availableLab.getLabID(),
+                    availableLab.getCourseName(),
+                    availableLab.getCredit(),
+                    availableLab.getType().equals("E") ? "Elective" : "Mandatory");
         }
         if (courseNumber == 1) {
             System.err.println("\n!!! Currently, there are no labs available for this lecture !!!\n");
