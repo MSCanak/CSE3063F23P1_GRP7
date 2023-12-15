@@ -33,6 +33,7 @@ public class AdvisorInterface implements Schedule {
 
         switch (caseToken) {
             case '1': // view notifications
+                notificationsInt = new NotificationsInterface(session);
                 notificationsInt.notificationsMenu();
                 break;
             case '2': // view weekly schedule
