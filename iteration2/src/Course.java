@@ -9,8 +9,8 @@ public class Course {
     private double grade;
     private ArrayList<Course> optionalPrerequisite;
     private ArrayList<Course> mandatoryPrerequisite;
-    private ArrayList<Student> courseStudents;
-    private Lecturer lecturer;
+    private int courseStudents;
+    private String lecturer;
     private CourseSession courseSession;
 
     // constructor
@@ -50,7 +50,7 @@ public class Course {
         this.courseSession = courseSession;
     }
 
-    public Course(String courseName, String courseID, CourseSession courseSession, Lecturer lecturer) {
+    public Course(String courseName, String courseID, CourseSession courseSession, String lecturer) {
         this.courseName = courseName;
         this.courseID = courseID;
         this.courseSession = courseSession;
@@ -129,19 +129,19 @@ public class Course {
         this.practice = practice;
     }
 
-    public ArrayList<Student> getCourseStudents() {
+    public int getCourseStudents() {
         return courseStudents;
     }
 
-    public void setCourseStudents(ArrayList<Student> courseStudents) {
+    public void setCourseStudents(int courseStudents) {
         this.courseStudents = courseStudents;
     }
 
-    public Lecturer getLecturer() {
+    public String getLecturer() {
         return lecturer;
     }
 
-    public void setLecturer(Lecturer lecturer) {
+    public void setLecturer(String lecturer) {
         this.lecturer = lecturer;
     }
 

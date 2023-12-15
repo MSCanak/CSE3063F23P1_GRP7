@@ -110,16 +110,16 @@ public class StudentInterface implements Schedule{
 
             String CourseID = (String) course.get("CourseID");
             String CourseName = (String) course.get("CourseName");
-            String CourseType = (String) course.get("CourseType");
+            String Type = (String) course.get("Type");
             long Credit = (long) course.get("Credit");
             long Semester = (long) course.get("Semester");
             JSONArray OptionalPrerequisites = (JSONArray) course.get("OptionalPrerequisites");
             JSONArray MandatoryPrerequisites = (JSONArray) course.get("MandatoryPrerequisites");
 
-            if (CourseType.equals("M")) {
-                CourseType = "Mandatory";
-            } else if (CourseType.equals("E")) {
-                CourseType = "Elective";
+            if (Type.equals("M")) {
+                Type = "Mandatory";
+            } else if (Type.equals("E")) {
+                Type = "Elective";
             }
 
             String optionalPrerequisitesString = OptionalPrerequisites.toString().replace("\"", "").replace("[", "")
@@ -132,13 +132,13 @@ public class StudentInterface implements Schedule{
                         "%n-----------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
                 System.out.printf("%sSemester %s%s", Colors.RED, Semester, Colors.RESET);
                 System.out.printf("\t%s%-10s%-45s%-15s%-8s%-35s%-35s%s%n%n", Colors.YELLOW,
-                        "CourseID", "CourseName", "CourseType", "Credit",
+                        "CourseID", "CourseName", "Type", "Credit",
                         "OptionalPrerequisites", "MandatoryPrerequisites", Colors.RESET);
                 previousSemester = (int) Semester;
             }
 
             System.out.printf("\t\t%-10s%-45s%-15s%-8s%-35s%-35s%n",
-                    CourseID, CourseName, CourseType, Credit,
+                    CourseID, CourseName, Type, Credit,
                     optionalPrerequisitesString, mandatoryPrerequisitesString);
 
         }

@@ -122,16 +122,6 @@ public class Transcript {
 		}
 	}
 
-	// find json file with the corresponding studentId to parse - debug
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
 	public void setGano(ArrayList<Double> gano) {
 		this.gano = gano;
 	}

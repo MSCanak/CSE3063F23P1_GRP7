@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -11,11 +12,23 @@ import org.json.simple.parser.JSONParser;
 
 public class AdvisorCourseRegistrationInterface {
     private Session session;
-    private Advisor advisor;
     private Scanner scanner;
-    private ArrayList<String> selectionCourses;
-    private ArrayList<String> courses;
 
+    private ArrayList<String> selectionCourses;
+    private HashMap<String, String> idToSelectionCourses;
+
+    private ArrayList<String> courses;
+    private HashMap<String, ArrayList<String>> idToCourses;
+
+
+    private HashMap<String, String> courseToLectures;
+    private HashMap<String, HashMap<String, String>> idToCourseLectures;
+
+    private HashMap<String, String> courseToLabs;
+    private HashMap<String, HashMap<String, String>> idToCourseLabs;
+
+
+    private MessagesInterface messagesInterface;
     Object requestsObj;
     JSONArray requestJson;
     Object coursObject;
@@ -23,10 +36,20 @@ public class AdvisorCourseRegistrationInterface {
 
     public AdvisorCourseRegistrationInterface(Session session, AdvisorInterface advisorInt) {
         this.session = session;
-        this.advisor = (Advisor) session.getUser();
         this.scanner = new Scanner(System.in);
+
         this.selectionCourses = new ArrayList<String>();
+        this.idToSelectionCourses = new HashMap<String, String>();
+
         this.courses = new ArrayList<String>();
+        this.idToCourses = new HashMap<String, ArrayList<String>>(); 
+        
+        this.courseToLectures = new HashMap<String, String>();
+        this.idToCourseLectures = new HashMap<String, HashMap<String, String>>();
+
+        this.courseToLabs = new HashMap<String, String>();
+        this.idToCourseLabs = new HashMap<String, HashMap<String, String>>();
+
         try {
             requestsObj = new JSONParser().parse(new FileReader("./jsons/RegistrationRequests.json"));
             requestJson = (JSONArray) requestsObj;
@@ -34,7 +57,7 @@ public class AdvisorCourseRegistrationInterface {
             courseJson = (JSONArray) coursObject;
 
         } catch (Exception e) {
-            // TODO: handle exception
+            System.out.println(e);
         }
 
     }
@@ -72,6 +95,7 @@ public class AdvisorCourseRegistrationInterface {
 
     private void showStudents() {
         // System.out.println("//////////////////////////////////");
+        Advisor advisor = (Advisor) session.getUser();
 
         System.out.println(Colors.RED + "\n----------Students----------\n" + Colors.RESET);
         int numberOfStudents = 1;
@@ -92,6 +116,7 @@ public class AdvisorCourseRegistrationInterface {
 
     private void approveCoursesMenu() {
         while (true) {
+            Advisor advisor = (Advisor) session.getUser();
 
             showStudents();
             System.out.println("Select student for approval or press 0 for back to menu: ");
@@ -100,7 +125,7 @@ public class AdvisorCourseRegistrationInterface {
             if (choice == 0) {
                 return;
             }
-
+            
             Student student = advisor.getStudents().get(choice - 1);
             System.out.println("----------------------------------");
             System.out.println("Student: " + student.getName() + " " + student.getSurname() + " " + student.getID());
@@ -118,39 +143,73 @@ public class AdvisorCourseRegistrationInterface {
             String requestID = (String) request.get("StudentID");
             if (studentID.equals(requestID)) {
                 JSONArray selectedCourses = (JSONArray) request.get("SelectedCourses");
+                JSONArray selectedLectures = (JSONArray) request.get("SelectedLectures");
+                JSONArray selectedLabs = (JSONArray) request.get("SelectedLabs");
 
                 for (Object courseObj : selectedCourses) {
                     String course = (String) courseObj;
+                    for(Object lectureObj : selectedLectures) {
+                        String lecture = (String) lectureObj;
+                        if(lecture.contains(course)) {
+                            courseToLectures.put(course, lecture);
+                        }
+                    }
+
+                    for(Object labObj : selectedLabs) {
+                        String lab = (String) labObj;
+                        if(lab.contains(course)) {
+                            courseToLabs.put(course, lab);
+                        }
+                    }
                     courses.add(course);
-                    System.out.println(numberOfCourses + " : " + course);
+                    
                     numberOfCourses++;
+                }
+
+                //mapping student id to courses
+                idToCourses.put(studentID, courses);
+                idToCourseLectures.put(studentID, courseToLectures);
+                idToCourseLabs.put(studentID, courseToLabs);
+
+
+                //resetting for new student
+                courses = new ArrayList<String>();
+                courseToLectures = new HashMap<String, String>();
+                courseToLabs = new HashMap<String, String>();
+
+
+                //print lectures and labs
+                for(int i = 0 ; i < numberOfCourses -1 ; i++) {
+                    System.out.println(Colors.YELLOW + (i+1) + Colors.RESET + ". " + idToCourses.get(studentID).get(i));
+                    if(idToCourseLectures.get(studentID).get(idToCourses.get(studentID).get(i)) != null) {
+                        System.out.println("Lecture: " + idToCourseLectures.get(studentID).get(idToCourses.get(studentID).get(i)));
+                    }
+                    if(idToCourseLabs.get(studentID).get(idToCourses.get(studentID).get(i)) != null) {
+                        System.out.println("Lab: " + idToCourseLabs.get(studentID).get(idToCourses.get(studentID).get(i)));
+                    }
+                    System.out.println("----------------------------------");
                 }
 
             }
         }
-
-        while (true) {
-            System.out.println("Please select a course to approve or press 0 to exit");
-            int choice = scanner.nextInt();
-            if (choice == 0) {
-                break;
-            } else if (choice > 0 && choice <= courses.size()) {
-                selectionCourses.add(courses.get(choice - 1));
-                // courses.remove(choice-1);
-                System.out.println("Course Approved");
-            } else if (choice == '#') {
-                selectionCourses = courses;
-                System.out.println("All courses approved");
-
-            } else {
-                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
-
-            }
-        }
-
-        saveApprovel(studentID);
-
+        approveCourse(studentID);
+        
     }
+
+    private void approveCourse(String studentID) {
+        System.out.println("Select course to approve or press 0 for back to menu: ");
+        while(true) {
+            
+            int choice = scanner.nextInt();
+            if(choice == 0) {
+                break;
+            }
+            String course = idToCourses.get(studentID).get(choice - 1);
+            selectionCourses.add(course);
+        }
+        saveApprovel(studentID);
+    } 
+
 
     private void saveApprovel(String studentID) {
         for (Object requestObj : requestJson) {
@@ -159,11 +218,29 @@ public class AdvisorCourseRegistrationInterface {
             if (studentID.equals(requestID)) {
                 JSONArray approvedCoursesJsonArray = (JSONArray) request.get("ApprovedCourses");
                 JSONArray selectedCourses = (JSONArray) request.get("SelectedCourses");
+                
+                JSONArray approvedLectureJsonArray = (JSONArray) request.get("ApprovedLectures");
+                JSONArray selectedLectures = (JSONArray) request.get("SelectedLectures");
+
+                JSONArray approvedLabJsonArray = (JSONArray) request.get("ApprovedLabs");
+                JSONArray selectedLabs = (JSONArray) request.get("SelectedLabs");
+
+                HashMap<String, String> courseToLabsTemp = idToCourseLabs.get(studentID);
+                HashMap<String, String> courseToLectureTemp = idToCourseLectures.get(studentID);
 
                 for (String course : selectionCourses) {
                     approvedCoursesJsonArray.add(course);
+                    if(courseToLabsTemp.get(course) != null) {
+                        approvedLabJsonArray.add(courseToLabsTemp.get(course));
+                    }
+                    if(courseToLectureTemp.get(course) != null) {
+                        approvedLectureJsonArray.add(courseToLectureTemp.get(course));
+                    }
                 }
                 selectedCourses.clear();
+                selectedLectures.clear();
+                selectedLabs.clear();
+
             }
         }
 
@@ -182,10 +259,12 @@ public class AdvisorCourseRegistrationInterface {
     private void finalizeRegistrationMenu() {
         showStudents();
         int choice = scanner.nextInt();
+        Advisor advisor = (Advisor) session.getUser();
 
         Student curStudent = advisor.getStudents().get(choice - 1);
-
+        Object forDelete = new Object();
         for (Object requestObj : requestJson) {
+            forDelete = requestObj;
             ArrayList<JSONObject> finalizedArrayList = new ArrayList<JSONObject>();
 
             JSONObject request = (JSONObject) requestObj;
@@ -219,6 +298,7 @@ public class AdvisorCourseRegistrationInterface {
                         newCourse.put("Grade", newCourseGrade);
 
                         finalizedArrayList.add(newCourse);
+
                     }
                 }
 
@@ -230,6 +310,25 @@ public class AdvisorCourseRegistrationInterface {
                 JSONObject student = (JSONObject) studentObj;
                 JSONObject transcriptObj = (JSONObject) student.get("Transcript");
                 JSONArray semArray = (JSONArray) transcriptObj.get("Semester");
+
+                JSONArray takenCourses = (JSONArray) student.get("TakenCourses");
+                String studentID = (String) student.get("ID");
+                HashMap<String, String> courseToLabsTemp = idToCourseLabs.get(studentID);
+                HashMap<String, String> courseToLectureTemp = idToCourseLectures.get(studentID);
+                
+                for(Object courseObj : approvedCoursesJsonArray) {
+                    String course = (String) courseObj;
+                    takenCourses.add(course);
+                    if(courseToLabsTemp == null) {
+                        continue;
+                    }
+                    if(courseToLabsTemp.get(course) != null) {
+                        takenCourses.add(courseToLabsTemp.get(course));
+                    }
+                    if(courseToLectureTemp.get(course) != null) {
+                        takenCourses.add(courseToLectureTemp.get(course));
+                    }
+                }
 
                 JSONObject newCourses = new JSONObject();
 
@@ -243,18 +342,20 @@ public class AdvisorCourseRegistrationInterface {
                 studentPw.flush();
                 studentPw.close();
 
-                request.remove("ApprovedCourses");
-                request.remove("SelectedCourses");
-                request.remove("StudentID");
-                PrintWriter requestPw = new PrintWriter("./jsons/RegistrationRequests.json");
-                requestPw.write(requestJson.toJSONString());
-                requestPw.flush();
-                requestPw.close();
-
+                
             } catch (Exception e) {
-
+                System.out.println(e);
             }
 
+        }
+        try {
+            requestJson.remove(forDelete);
+            PrintWriter requestPw = new PrintWriter("./jsons/RegistrationRequests.json");
+            requestPw.write(requestJson.toJSONString());
+            requestPw.flush();
+            requestPw.close();
+
+        } catch (Exception e) {
         }
     }
 

@@ -9,33 +9,40 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class StudentCourseRegistrationInterface {
+    private ArrayList<Course> allCourses;
+    private ArrayList<Lecture> allLectures;
+    private ArrayList<Lab> allLabs;
+
     private ArrayList<Course> availableCourses;
     private ArrayList<Lecture> availableLectures;
     private ArrayList<Lab> availableLabs;
+
     private ArrayList<Course> selectedCourses;
     private ArrayList<Lecture> selectedLectures;
     private ArrayList<Lab> selectedLabs;
-    // private ArrayList<String> coursesCodesOffered;
-    private ArrayList<Lecture> coursesOffered;
+    // private ArrayList<Lecture> coursesOffered;
 
     private Session session;
-
-    // private MessagesInterface messagesInt;
     private StudentInterface studentInt;
     private Scanner scanner;
 
     public StudentCourseRegistrationInterface(Session session, StudentInterface studentInt) {
         this.session = session;
         this.studentInt = studentInt;
+
         this.availableCourses = new ArrayList<Course>();
-        this.selectedCourses = new ArrayList<Course>();
         this.availableLectures = new ArrayList<Lecture>();
-        this.selectedLectures = new ArrayList<Lecture>();
         this.availableLabs = new ArrayList<Lab>();
+
+        this.selectedCourses = new ArrayList<Course>();
+        this.selectedLectures = new ArrayList<Lecture>();
         this.selectedLabs = new ArrayList<Lab>();
-        // this.coursesCodesOffered = new ArrayList<String>();
-        this.coursesOffered = new ArrayList<Lecture>();
-        getCoursesOffered();
+
+        this.allCourses = new ArrayList<Course>();
+        this.allLectures = new ArrayList<Lecture>();
+        this.allLabs = new ArrayList<Lab>();
+        getAllCourses();
+        setAllLecturesAndLabs();
         this.scanner = new Scanner(System.in);
     }
 
@@ -174,45 +181,59 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void sendRegRequest() {
-        // Convert the selected courses to JSON
-        JSONArray selectedCoursesJsonArray = new JSONArray();
-        JSONArray selectedLecturesJsonArray = new JSONArray();
-        JSONArray selectedLabsJsonArray = new JSONArray();
-        JSONArray approvedCoursesJsonArray = new JSONArray();
-        JSONArray approvedLecturesJsonArray = new JSONArray();
-        JSONArray approvedLabsJsonArray = new JSONArray();
+        try {
+            // Read the existing JSON content
+            JSONParser parser = new JSONParser();
+            JSONArray existingRegistrationArray;
 
-        for (Course course : selectedCourses) {
-            selectedCoursesJsonArray.add(course.getCourseID());
-        }
+            try (FileReader reader = new FileReader("jsons/RegistrationRequests.json")) {
+                Object obj = parser.parse(reader);
+                existingRegistrationArray = (JSONArray) obj;
+            } catch (Exception e) {
+                existingRegistrationArray = new JSONArray();
+            }
 
-        for (Lecture lecture : selectedLectures) {
-            selectedLecturesJsonArray.add(lecture.getLectureID());
-        }
+            // Convert the selected courses to JSON
+            JSONArray selectedCoursesJsonArray = new JSONArray();
+            JSONArray selectedLecturesJsonArray = new JSONArray();
+            JSONArray selectedLabsJsonArray = new JSONArray();
+            JSONArray approvedCoursesJsonArray = new JSONArray();
+            JSONArray approvedLecturesJsonArray = new JSONArray();
+            JSONArray approvedLabsJsonArray = new JSONArray();
 
-        for (Lab lab : selectedLabs) {
-            selectedLabsJsonArray.add(lab.getLabID());
-        }
+            for (Course course : selectedCourses) {
+                selectedCoursesJsonArray.add(course.getCourseID());
+            }
 
-        // Create the JSON object
-        JSONObject registrationJson = new JSONObject();
-        registrationJson.put("StudentID", session.getUser().getID());
-        registrationJson.put("SelectedCourses", selectedCoursesJsonArray);
-        registrationJson.put("SelectedLectures", selectedLecturesJsonArray);
-        registrationJson.put("SelectedLabs", selectedLabsJsonArray);
-        registrationJson.put("ApprovedCourses", approvedCoursesJsonArray);
-        registrationJson.put("ApprovedLectures", approvedLecturesJsonArray);
-        registrationJson.put("ApprovedLabs", approvedLabsJsonArray);
+            for (Lecture lecture : selectedLectures) {
+                selectedLecturesJsonArray.add(lecture.getLectureID());
+            }
 
-        // Create the final JSON array
-        JSONArray registrationArray = new JSONArray();
-        registrationArray.add(registrationJson);
+            for (Lab lab : selectedLabs) {
+                selectedLabsJsonArray.add(lab.getLabID());
+            }
 
-        // Write the selected courses JSON to the file
-        try (FileWriter fileWriter = new FileWriter("jsons/RegistrationRequests.json")) {
-            fileWriter.write(registrationArray.toJSONString());
-            System.out.println("!!! Registration request written to RegistrationRequests.json !!!");
-        } catch (IOException e) {
+            // Create the JSON object
+            JSONObject registrationJson = new JSONObject();
+            registrationJson.put("StudentID", session.getUser().getID());
+            registrationJson.put("SelectedCourses", selectedCoursesJsonArray);
+            registrationJson.put("SelectedLectures", selectedLecturesJsonArray);
+            registrationJson.put("SelectedLabs", selectedLabsJsonArray);
+            registrationJson.put("ApprovedCourses", approvedCoursesJsonArray);
+            registrationJson.put("ApprovedLectures", approvedLecturesJsonArray);
+            registrationJson.put("ApprovedLabs", approvedLabsJsonArray);
+
+            // Append the new data to the existing JSON array
+            existingRegistrationArray.add(registrationJson);
+
+            // Write the updated JSON array back to the file
+            try (FileWriter fileWriter = new FileWriter("jsons/RegistrationRequests.json")) {
+                fileWriter.write(existingRegistrationArray.toJSONString());
+                System.out.println("!!! Registration request appended to RegistrationRequests.json !!!");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -317,33 +338,6 @@ public class StudentCourseRegistrationInterface {
         return new CourseSession(courseDay, courseStartTime, courseEndTime, coursePlace);
     }
 
-    private void getCoursesOffered() {
-        try {
-            var coursesOfferedJson = "jsons/CoursesOffered.json";
-            var parser = new JSONParser();
-            var obj = parser.parse(new FileReader(coursesOfferedJson));
-            var coursesOfferedArray = (JSONArray) obj;
-
-            for (var courseObj : coursesOfferedArray) {
-                var courseJson = (JSONObject) courseObj;
-                var lectureID = (String) courseJson.get("CourseID");
-                var courseName = (String) courseJson.get("CourseName");
-                // var lecturer = ((Long) courseJson.get("Lecturer")).intValue();
-                // var theoratical = ((Long) courseJson.get("Theoratical")).intValue();
-                // var practical = ((Long) courseJson.get("Practical")).intValue();
-                // var credit = ((Long) courseJson.get("Credit")).intValue();
-                var quota = ((Long) courseJson.get("Quota")).intValue();
-                var courseDayTimeLocation = (String) courseJson.get("CourseDayTimeLocation");
-                // var courseStudents = ((Long) courseJson.get("CourseStudents")).intValue();
-                var lecture = new Lecture(courseName, lectureID, quota, createCourseSession(courseDayTimeLocation));
-                coursesOffered.add(lecture);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private void calculateAvailableLectures() {
         var availableCoursesCopy = new ArrayList<Course>();
         for (var availableCourse : availableCourses) {
@@ -356,8 +350,7 @@ public class StudentCourseRegistrationInterface {
                 for (var availableCourse : availableCoursesCopy) {
                     for (int i = 1; i < 20; i++) {
                         if ((availableCourse.getCourseID().concat("." + i)).equals(courseIDOffered)) {
-                            // ((Lecture) availableCourse).setLectureId(courseIDOffered);
-                            Lecture lecture = new Lecture(availableCourse.getCourseName(),
+                            var lecture = new Lecture(availableCourse.getCourseName(),
                                     courseIDOffered,
                                     availableCourse.getCredit(), availableCourse.getType(),
                                     availableCourse.getSemester());
@@ -402,11 +395,7 @@ public class StudentCourseRegistrationInterface {
         }
     }
 
-    private void calculateAvailableCourses() {
-        var allCourses = new ArrayList<Course>();
-        var targetSemester = ((Student) (session.getUser())).getCurrentSemester();
-
-        // Read courses from JSON file
+    private void getAllCourses() {
         try {
             var coursesJson = "jsons/courses.json";
             var parser = new JSONParser();
@@ -421,17 +410,6 @@ public class StudentCourseRegistrationInterface {
                 var courseID = ((String) courseJson.get("CourseID")).trim();
                 var credit = ((Long) courseJson.get("Credit")).intValue();
                 var courseType = (String) courseJson.get("Type");
-
-                var course = new Course(courseName, courseID, credit, courseType, semester);
-                allCourses.add(course);
-            }
-
-            // add optional and mandatory prerequisite course to each course by finding
-            // their courseIDs
-            for (var courseObj : coursesArray) {
-                var courseJson = (JSONObject) courseObj;
-                var courseID = ((String) courseJson.get("CourseID")).trim();
-                var course = allCourses.stream().filter(c -> c.getCourseID().equals(courseID)).findFirst().get();
 
                 var mandatoryPrerequisites = (JSONArray) courseJson.get("MandatoryPrerequisites");
                 var optionalPrerequisites = (JSONArray) courseJson.get("OptionalPrerequisites");
@@ -464,22 +442,83 @@ public class StudentCourseRegistrationInterface {
                     }
                 }
 
+                var course = new Course(courseName, courseID, credit, courseType, semester);
                 course.setMandatoryPrerequisite(mandatoryPrerequisiteList);
                 course.setOptionalPrerequisite(optionalPrerequisiteList);
+                allCourses.add(course);
             }
-
-            // clear availableCourses
-            availableCourses.clear();
-
-            // filter by target semester and add to availableCourses
-            for (var course : allCourses) {
-                if (course.getSemester() == targetSemester)
-                    availableCourses.add(course);
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setAllLecturesAndLabs() {
+        try {
+            var coursesOfferedJson = "jsons/CoursesOffered.json";
+            var parser = new JSONParser();
+            var obj = parser.parse(new FileReader(coursesOfferedJson));
+            var coursesOfferedArray = (JSONArray) obj;
+
+            for (var courseObj : coursesOfferedArray) {
+                var courseJson = (JSONObject) courseObj;
+                var courseID = (String) courseJson.get("CourseID");
+                var courseName = (String) courseJson.get("CourseName");
+                var quota = ((Long) courseJson.get("Quota")).intValue();
+                var courseDayTimeLocation = (String) courseJson.get("CourseDayTimeLocation");
+                var lecturer = (String) courseJson.get("Lecturer");
+                var theoric = ((Long) courseJson.get("Theoric")).intValue();
+                var practice = ((Long) courseJson.get("Practice")).intValue();
+                var courseStudents = ((Long) courseJson.get("CourseStudents")).intValue();
+
+                var dotCount = courseID.length() - courseID.replace(".", "").length();
+                if (dotCount == 1) {
+                    var courseSession = createCourseSession(courseDayTimeLocation);
+                    
+                    var lecture = new Lecture(courseName, courseID, quota, courseSession);
+                    var correspondingCourse = findCourseByID(allCourses, lecture.getCourseID());
+
+                    if (correspondingCourse != null) {
+                        correspondingCourse.setCourseSession(courseSession);
+                        lecture.setType(correspondingCourse.getType());
+                        lecture.setCredit(correspondingCourse.getCredit());
+                        lecture.setSemester(correspondingCourse.getSemester());
+                        lecture.setLecturer(lecturer);
+                        lecture.setTheoric(theoric);
+                        lecture.setPractice(practice);
+                        lecture.setCourseStudents(courseStudents);
+                        allLectures.add(lecture);
+                    } else {
+                        System.err.println("Course with ID " + courseID + " not found.");
+                    }
+                } else if (dotCount == 2) {
+                    var courseSession = createCourseSession(courseDayTimeLocation);
+                    var lab = new Lab(courseName, courseID, quota, courseSession);
+                    var correspondingCourse = findCourseByID(allCourses, lab.getCourseID());
+                    if (correspondingCourse != null) {
+                        correspondingCourse.setCourseSession(courseSession);
+                        lab.setType(correspondingCourse.getType());
+                        lab.setCredit(correspondingCourse.getCredit());
+                        lab.setSemester(correspondingCourse.getSemester());
+                        lab.setLecturer(lecturer);
+                        lab.setTheoric(theoric);
+                        lab.setPractice(practice);
+                        lab.setCourseStudents(courseStudents);
+                        allLabs.add(lab);
+                    } else {
+                        System.err.println("Course with ID " + courseID + " not found.");
+                    }
+                } else {
+                    System.err.println("Course with ID " + courseID + " not found.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void calculateAvailableCourses() {
+        var targetSemester = ((Student) (session.getUser())).getCurrentSemester();
+        var gano = ((Student) (session.getUser())).getTranscript().getGano().get(targetSemester - 2);
 
         // student information reading
         try {

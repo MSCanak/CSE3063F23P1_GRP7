@@ -26,7 +26,7 @@ public class Lab extends Course{
         this.labID = labID;
     }
 
-    public Lab(String courseName, String labID, CourseSession courseSession, Lecturer lecturer){
+    public Lab(String courseName, String labID, CourseSession courseSession, String lecturer){
         super(courseName, labID, courseSession,lecturer);
         var lastIndex = labID.indexOf(".");
         var courseID = labID.substring(0, lastIndex);
