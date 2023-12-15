@@ -75,6 +75,11 @@ public class StudentInterface implements Schedule{
             case '4':
                 showWeeklySchedule(calculateWeeklySchedule());
                 break;
+                
+            case '5':
+                notificationInterface = new NotificationsInterface(session);
+                notificationInterface.notificationsMenu();
+                break;
             // logging out
             case '*':
                 loginInterface.logout();
