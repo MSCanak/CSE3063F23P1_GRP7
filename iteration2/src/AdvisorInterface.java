@@ -24,13 +24,16 @@ public class AdvisorInterface implements Schedule {
         System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   View Notifications");
         System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   View Weekly Schedule");
         System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   View Given Courses");
-        System.out.println(Colors.YELLOW + "4" + Colors.RESET + ".   Go to Course Registration System");
+        System.out.println(Colors.YELLOW + "4" + Colors.RESET + ".   Course Registration System");
         System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Logout");
         System.out.println(Colors.YELLOW + "x" + Colors.RESET + ".   Exit");
-        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+
+        System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+
         System.out.print(Colors.BLUE);
         char caseToken = scanner.next().charAt(0);
         System.out.print(Colors.RESET);
+
         switch (caseToken) {
             case '1': // view notifications
                 notificationsInt = new NotificationsInterface(session);
@@ -60,7 +63,6 @@ public class AdvisorInterface implements Schedule {
 
     // it calculates the weekly schedule of advisor and stores it
     @Override
-
     public ArrayList<Course> calculateWeeklySchedule() {
         ArrayList<Course> weeklySchedule = ((Lecturer) session.getUser()).getGivenCourses();
         return weeklySchedule;
@@ -280,7 +282,7 @@ public class AdvisorInterface implements Schedule {
                 "------------------------------------------------------------------------------------------------------------------------------------------\n");
 
         System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Back to Advisor Menu");
-        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+        System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
         System.out.print(Colors.BLUE);
         char caseToken = scanner.next().charAt(0);
         System.out.print(Colors.RESET);
@@ -323,7 +325,7 @@ public class AdvisorInterface implements Schedule {
         System.out.println("---------------------------------------------------------\n");
 
         System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Back to Advisor Menu");
-        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+        System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
         System.out.print(Colors.BLUE);
         char caseToken = scanner.next().charAt(0);
         System.out.print(Colors.RESET);
