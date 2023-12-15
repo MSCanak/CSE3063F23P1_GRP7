@@ -66,14 +66,6 @@ public class MessagesInterface {
 
     }
 
-    private void reveiveMessagesMenu() {
-        // karagül
-    }
-
-    private void sentMessagesMenu() {
-        // karagül
-    }
-
     private void calculateReceivedMessages() {
 
         for (Object messageObj : messageJson) {
@@ -94,11 +86,14 @@ public class MessagesInterface {
 
     private void showReceivedMessages() {
         calculateReceivedMessages();
+        System.out.println(Colors.RED + "\n--------------------Received Messages--------------------\n" + Colors.RESET);
         for (Message message : receivedMessages) {
+            System.out.println("----------------------------------------");
             System.out.println("Sender: " + message.getSenderID());
             System.out.println("Subject: " + message.getSubject());
             System.out.println("Description: " + message.getDescription());
         }
+        System.out.println("----------------------------------------");
     }
 
     private void calculateSentMessages() {
@@ -121,11 +116,14 @@ public class MessagesInterface {
 
     private void showSentMessages() {
         calculateSentMessages();
+        System.out.println(Colors.RED + "\n--------------------Sent Messages--------------------\n" + Colors.RESET);
         for (Message message : sentMessages) {
+            System.out.println("----------------------------------------");
             System.out.println("Receiver: " + message.getReceiverID());
             System.out.println("Subject: " + message.getSubject());
             System.out.println("Description: " + message.getDescription());
         }
+        System.out.println("----------------------------------------");
     }
 
     // send message specific person
