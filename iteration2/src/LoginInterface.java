@@ -274,9 +274,7 @@ public class LoginInterface {
                     // add courses to advisor's course list
                     for (Object courseObj : givenCourses) {
                         String courseCode = (String) courseObj;
-
-                        Course course = (Course) createCourse(courseCode);
-                        adv.setCourse(course);
+                        adv.setCourse(createCourse(courseCode));
                     }
                     return adv;
                 }
@@ -310,10 +308,10 @@ public class LoginInterface {
                     Lecturer lec = new Lecturer(name, surname, email, phoneNumber, lecturerID, password, faculty,
                             department, academicTitle);
 
-                    // add courses to advisor's course list
+                    // add courses to lecturer's course list
                     for (Object courseObj : givenCourses) {
-                        JSONObject course = (JSONObject) courseObj;
-                        String courseCode = (String) course.get("ID");
+                        String courseCode = (String) courseObj;
+                        
                         lec.setCourse(createCourse(courseCode));
                     }
 
