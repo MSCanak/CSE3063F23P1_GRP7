@@ -21,23 +21,27 @@ public class AdvisorInterface implements Schedule {
 
         scanner = new Scanner(System.in);
         System.out.println(Colors.RED + "\n--------------------Advisor Menu--------------------\n" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   View Weekly Schedule");
-        System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   View Given Courses");
-        System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   Go to Course Registration System");
+        System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   View Notifications");
+        System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   View Weekly Schedule");
+        System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   View Given Courses");
+        System.out.println(Colors.YELLOW + "4" + Colors.RESET + ".   Go to Course Registration System");
         System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Logout");
         System.out.println(Colors.YELLOW + "x" + Colors.RESET + ".   Exit");
-        System.out.println("\nWhat do you want to do?\n");
+        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?\n");
 
         char caseToken = scanner.next().charAt(0);
 
         switch (caseToken) {
-            case '1': // view weekly schedule
+            case '1': // view notifications
+                notificationsInt.notificationsMenu();
+                break;
+            case '2': // view weekly schedule
                 showWeeklySchedule(calculateWeeklySchedule());
                 break;
-            case '2': // view given courses
-                showGivenCourses();
+            case '3': // view given courses
+                showGivenCourses(calculateWeeklySchedule());
                 break;
-            case '3': // go to course registration system
+            case '4': // go to course registration system
                 advCourseRegInt.advRegMenu();
                 break;
             case '*': // logout
@@ -64,6 +68,8 @@ public class AdvisorInterface implements Schedule {
     // it prints the weekly schedule of advisor
     @Override
     public void showWeeklySchedule(ArrayList<Course> courses) {
+
+        scanner = new Scanner(System.in);
 
         ArrayList<String> sessionStart = new ArrayList<String>(); // bu bir class olmalı ve buradan direkt olarak
                                                                   // almalıyım
@@ -130,19 +136,14 @@ public class AdvisorInterface implements Schedule {
         ArrayList<String> saturdayCoursesPlace = new ArrayList<String>();
         ArrayList<String> sundayCoursesPlace = new ArrayList<String>();
 
-        ArrayList<String> mondayCoursesEndTime = new ArrayList<String>();
-        ArrayList<String> tuesdayCoursesEndTime = new ArrayList<String>();
-        ArrayList<String> wednesdayCoursesEndTime = new ArrayList<String>();
-        ArrayList<String> thursdayCoursesEndTime = new ArrayList<String>();
-        ArrayList<String> fridayCoursesEndTime = new ArrayList<String>();
-        ArrayList<String> saturdayCoursesEndTime = new ArrayList<String>();
-        ArrayList<String> sundayCoursesEndTime = new ArrayList<String>();
+        System.out.println(Colors.RED
+                + "\n-------------------------------------------------------------Weekly Schedule--------------------------------------------------------------\n"
+                + Colors.RESET);
+        System.out.println(
+                "------------------------------------------------------------------------------------------------------------------------------------------");
 
-        System.out.println(Colors.RED + "\n---------------------------------------------------------------Weekly Schedule---------------------------------------------------------------\n" + Colors.RESET);
-         System.out.println(
-                        "-------------------------------------------------------------------------------------------------------------------------------------------------");
-              
-        System.out.printf("|  %-13s |  %-15s|  %-15s|  %-15s|  %-15s|  %-15s|  %-15s|  %-15s|%n" ,"","Monday", "Tuesday", "Wednesday",
+        System.out.printf("|  %-15s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|%n", "", "Monday",
+                "Tuesday", "Wednesday",
                 "Thursday", "Friday", "Saturday", "Sunday");
 
         Course course;
@@ -156,147 +157,186 @@ public class AdvisorInterface implements Schedule {
                 if (courseSession.getCourseDay().get(j).equals("Pazartesi")) {
                     if (course instanceof Lecture) {
                         mondayCoursesID.add(((Lecture) course).getLectureID());
-                    }
-                    else {
-                        mondayCoursesID.add(((Lab) course).getLabID());  
+                    } else {
+                        mondayCoursesID.add(((Lab) course).getLabID());
                     }
                     mondayCoursesPlace.add(courseSession.getCoursePlace().get(j));
                     mondayCoursesStartTime.add(courseSession.getCourseStartTime().get(j));
-                    mondayCoursesEndTime.add(courseSession.getCourseEndTime().get(j));
 
                 } else if (courseSession.getCourseDay().get(j).equals("Salı")) {
                     if (course instanceof Lecture) {
                         tuesdayCoursesID.add(((Lecture) course).getLectureID());
+                    } else {
+                        tuesdayCoursesID.add(((Lab) course).getLabID());
                     }
-                    else {
-                        tuesdayCoursesID.add(((Lab) course).getLabID());  
-                    }
-                    
+
                     tuesdayCoursesPlace.add(courseSession.getCoursePlace().get(j));
                     tuesdayCoursesStartTime.add(courseSession.getCourseStartTime().get(j));
-                    tuesdayCoursesEndTime.add(courseSession.getCourseEndTime().get(j));
 
                 } else if (courseSession.getCourseDay().get(j).equals("Çarşamba")) {
                     if (course instanceof Lecture) {
                         wednesdayCoursesID.add(((Lecture) course).getLectureID());
-                    }
-                    else {
-                        wednesdayCoursesID.add(((Lab) course).getLabID());  
+                    } else {
+                        wednesdayCoursesID.add(((Lab) course).getLabID());
                     }
                     wednesdayCoursesPlace.add(courseSession.getCoursePlace().get(j));
                     wednesdayCoursesStartTime.add(courseSession.getCourseStartTime().get(j));
-                    wednesdayCoursesEndTime.add(courseSession.getCourseEndTime().get(j));
 
                 } else if (courseSession.getCourseDay().get(j).equals("Perşembe")) {
                     if (course instanceof Lecture) {
                         thursdayCoursesID.add(((Lecture) course).getLectureID());
-                    }
-                    else {
-                        thursdayCoursesID.add(((Lab) course).getLabID());  
+                    } else {
+                        thursdayCoursesID.add(((Lab) course).getLabID());
                     }
                     thursdayCoursesPlace.add(courseSession.getCoursePlace().get(j));
                     thursdayCoursesStartTime.add(courseSession.getCourseStartTime().get(j));
-                    thursdayCoursesEndTime.add(courseSession.getCourseEndTime().get(j));
 
                 } else if (courseSession.getCourseDay().get(j).equals("Cuma")) {
                     if (course instanceof Lecture) {
                         fridayCoursesID.add(((Lecture) course).getLectureID());
-                    }
-                    else {
-                        fridayCoursesID.add(((Lab) course).getLabID());  
+                    } else {
+                        fridayCoursesID.add(((Lab) course).getLabID());
                     }
 
                     fridayCoursesPlace.add(courseSession.getCoursePlace().get(j));
                     fridayCoursesStartTime.add(courseSession.getCourseStartTime().get(j));
-                    fridayCoursesEndTime.add(courseSession.getCourseEndTime().get(j));
 
                 } else if (courseSession.getCourseDay().get(j).equals("Cumartesi")) {
                     if (course instanceof Lecture) {
                         saturdayCoursesID.add(((Lecture) course).getLectureID());
-                    }
-                    else {
-                        saturdayCoursesID.add(((Lab) course).getLabID());  
+                    } else {
+                        saturdayCoursesID.add(((Lab) course).getLabID());
                     }
                     saturdayCoursesPlace.add(courseSession.getCoursePlace().get(j));
                     saturdayCoursesStartTime.add(courseSession.getCourseStartTime().get(j));
-                    saturdayCoursesEndTime.add(courseSession.getCourseEndTime().get(j));
 
                 } else if (courseSession.getCourseDay().get(j).equals("Pazar")) {
                     if (course instanceof Lecture) {
                         sundayCoursesID.add(((Lecture) course).getLectureID());
-                    }
-                    else {
-                        sundayCoursesID.add(((Lab) course).getLabID());  
+                    } else {
+                        sundayCoursesID.add(((Lab) course).getLabID());
                     }
                     sundayCoursesPlace.add(courseSession.getCoursePlace().get(j));
                     sundayCoursesStartTime.add(courseSession.getCourseStartTime().get(j));
-                    sundayCoursesEndTime.add(courseSession.getCourseEndTime().get(j));
 
                 }
             }
 
         }
+        String mondayCourses;
+        String tuesdayCourses;
+        String wednesdayCourses;
+        String thursdayCourses;
+        String fridayCourses;
+        String saturdayCourses;
+        String sundayCourses;
+
+        String mondayCoursePlace;
+        String tuesdayCoursePlace;
+        String wednesdayCoursePlace;
+        String thursdayCoursePlace;
+        String fridayCoursePlace;
+        String saturdayCoursePlace;
+        String sundayCoursePlace;
 
         for (int k = 0; k < sessionStart.size(); k++) {
 
-            String mondayCourses = printMondayCourses(mondayCoursesID, mondayCoursesStartTime, sessionStart, k);
-            String tuesdayCourses = printTuesdayCourses(tuesdayCoursesID, tuesdayCoursesStartTime, sessionStart, k);
-            String wednesdayCourses = printWednesdayCourses(wednesdayCoursesID, wednesdayCoursesStartTime, sessionStart,
-                    k);
-            String thursdayCourses = printThursdayCourses(thursdayCoursesID, thursdayCoursesStartTime, sessionStart, k);
-            String fridayCourses = printFridayCourses(fridayCoursesID, fridayCoursesStartTime, sessionStart, k);
-            String saturdayCourses = printSaturdayCourses(saturdayCoursesID, saturdayCoursesStartTime, sessionStart, k);
-            String sundayCourses = printSundayCourses(sundayCoursesID, sundayCoursesStartTime, sessionStart, k);
+            mondayCourses = printMondayCourses(mondayCoursesID, mondayCoursesStartTime, sessionStart, k);
+            tuesdayCourses = printTuesdayCourses(tuesdayCoursesID, tuesdayCoursesStartTime, sessionStart, k);
+            wednesdayCourses = printWednesdayCourses(wednesdayCoursesID, wednesdayCoursesStartTime, sessionStart, k);
+            thursdayCourses = printThursdayCourses(thursdayCoursesID, thursdayCoursesStartTime, sessionStart, k);
+            fridayCourses = printFridayCourses(fridayCoursesID, fridayCoursesStartTime, sessionStart, k);
+            saturdayCourses = printSaturdayCourses(saturdayCoursesID, saturdayCoursesStartTime, sessionStart, k);
+            sundayCourses = printSundayCourses(sundayCoursesID, sundayCoursesStartTime, sessionStart, k);
 
-            String mondayCoursePlace = printMondayCoursePlace(mondayCoursesPlace, mondayCoursesStartTime, sessionStart,
+            mondayCoursePlace = printMondayCoursePlace(mondayCoursesPlace, mondayCoursesStartTime, sessionStart, k);
+            tuesdayCoursePlace = printTuesdayCoursePlace(tuesdayCoursesPlace, tuesdayCoursesStartTime, sessionStart, k);
+            wednesdayCoursePlace = printWednesdayCoursePlace(wednesdayCoursesPlace, wednesdayCoursesStartTime,
+                    sessionStart, k);
+            thursdayCoursePlace = printThursdayCoursePlace(thursdayCoursesPlace, thursdayCoursesStartTime,
+                    sessionStart, k);
+            fridayCoursePlace = printFridayCoursePlace(fridayCoursesPlace, fridayCoursesStartTime, sessionStart, k);
+            saturdayCoursePlace = printSaturdayCoursePlace(saturdayCoursesPlace, saturdayCoursesStartTime, sessionStart,
                     k);
-            String tuesdayCoursePlace = printTuesdayCoursePlace(tuesdayCoursesPlace, tuesdayCoursesStartTime,
-                    sessionStart, k);
-            String wednesdayCoursePlace = printWednesdayCoursePlace(wednesdayCoursesPlace, wednesdayCoursesStartTime,
-                    sessionStart, k);
-            String thursdayCoursePlace = printThursdayCoursePlace(thursdayCoursesPlace, thursdayCoursesStartTime,
-
-                    sessionStart, k);
-            String fridayCoursePlace = printFridayCoursePlace(fridayCoursesPlace, fridayCoursesStartTime, sessionStart,
-                    k);
-            String saturdayCoursePlace = printSaturdayCoursePlace(saturdayCoursesPlace, saturdayCoursesStartTime,
-                    sessionStart, k);
-            String sundayCoursePlace = printSundayCoursePlace(sundayCoursesPlace, sundayCoursesStartTime, sessionStart,
-                    k);
+            sundayCoursePlace = printSundayCoursePlace(sundayCoursesPlace, sundayCoursesStartTime, sessionStart, k);
 
             if (mondayCourses != "" || tuesdayCourses != "" || wednesdayCourses != "" || thursdayCourses != ""
                     || fridayCourses != "" || saturdayCourses != "" || sundayCourses != "") {
                 System.out.println(
-                        "-------------------------------------------------------------------------------------------------------------------------------------------------");
-              System.out.printf("|  %-13s |  %-15s|  %-15s|  %-15s|  %-15s|  %-15s|  %-15s|  %-15s|%n",
+                        "------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.printf("|  %-15s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|%n",
                         "", mondayCourses,
                         tuesdayCourses, wednesdayCourses, thursdayCourses, fridayCourses, saturdayCourses,
                         sundayCourses);
-                System.out.printf("|  %-13s |  %-15s|  %-15s|  %-15s|  %-15s|  %-15s|  %-15s|  %-15s|%n", sessionStart.get(k) + " - " + sessionEnd.get(k),
+                System.out.printf("|  %-15s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|%n",
+                        sessionStart.get(k) + " - " + sessionEnd.get(k),
                         mondayCoursePlace, tuesdayCoursePlace, wednesdayCoursePlace, thursdayCoursePlace,
                         fridayCoursePlace, saturdayCoursePlace, sundayCoursePlace);
-
-                    
-
             }
-            
+
         }
         System.out.println(
-                        "-------------------------------------------------------------------------------------------------------------------------------------------------");
-                   
+                "------------------------------------------------------------------------------------------------------------------------------------------\n");
 
+        System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Back to Advisor Menu");
+        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?\n");
+        char caseToken = scanner.next().charAt(0);
 
-        System.out.println(Colors.YELLOW + "0" + Colors.RESET + ". Back");
-        System.out.println("\nWhich course do you want to see?\n");
-        int choice = scanner.nextInt();
+        switch (caseToken) {
+            case '0':
+                advMenu();
+                break;
+            default:
+                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                showWeeklySchedule(courses);
+                break;
+        }
+
     }
 
-    //
-    public void showGivenCourses() {
+    // it prints the given courses of advisor
+    public void showGivenCourses(ArrayList<Course> courses) {
+        scanner = new Scanner(System.in);
+        System.out.println(Colors.RED + "\n----------------------Given Courses----------------------\n" + Colors.RESET);
+
+        Course course;
+        ArrayList<String> courseID = new ArrayList<String>();
+
+        System.out.println("---------------------------------------------------------");
+        System.out.printf("|  %s%-13s%s|  %s%-35s%s  |%n", Colors.YELLOW, "Course ID", Colors.RESET, Colors.YELLOW,
+                "Course Name", Colors.RESET);
+
+        for (int i = 0; i < courses.size(); i++) {
+            course = courses.get(i);
+            if (course instanceof Lecture) {
+                courseID.add(((Lecture) course).getLectureID());
+            } else {
+                courseID.add(((Lab) course).getLabID());
+            }
+
+            System.out.println("---------------------------------------------------------");
+            System.out.printf("|  %-13s|  %-35s  |%n", courseID.get(i), course.getCourseName());
+
+        }
+        System.out.println("---------------------------------------------------------\n");
+
+        System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Back to Advisor Menu");
+        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?\n");
+
+        char caseToken = scanner.next().charAt(0);
+        switch (caseToken) {
+            case '0':
+                advMenu();
+                break;
+            default:
+                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                showGivenCourses(courses);
+                break;
+        }
 
     }
 
-    // bunların hepsini ıd yapmayı unutma
+    // printing course id
     private String printMondayCourses(ArrayList<String> mondayCousesID, ArrayList<String> mondayCoursesStartTime,
             ArrayList<String> sessionStart, int k) {
         String mondayCourses = "";
@@ -381,6 +421,7 @@ public class AdvisorInterface implements Schedule {
 
     }
 
+    // printing course place
     private String printMondayCoursePlace(ArrayList<String> mondayCousesPlace, ArrayList<String> mondayCoursesStartTime,
             ArrayList<String> sessionStart, int k) {
         String mondayCoursePlace = "";
