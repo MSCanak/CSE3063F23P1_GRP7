@@ -27,6 +27,7 @@ public class AdvisorCourseRegistrationInterface {
     private HashMap<String, HashMap<String, String>> idToCourseLabs;
 
     private MessagesInterface messagesInterface;
+    private AdvisorInterface advisorInt;
     Object requestsObj;
     JSONArray requestJson;
     Object coursObject;
@@ -61,32 +62,37 @@ public class AdvisorCourseRegistrationInterface {
     }
 
     public void advRegMenu() {
-        System.out.println(Colors.RED + "\n----------Advisor Course Registration Menu----------\n" + Colors.RESET);
+
         while (true) {
+            System.out.println(Colors.RED + "\n----------Advisor Course Registration Menu----------\n" + Colors.RESET);
             System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Show Students");
             System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Approve/Deny Courses");
             System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   Finalize Registration");
             System.out.println(Colors.YELLOW + "4" + Colors.RESET + ".   Messages Menu");
-            System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Go Back to Advisor Menu");
+            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".   Go Back to Advisor Menu");
             System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
             System.out.print(Colors.BLUE);
-            int choice = scanner.nextInt();
+            char choice = scanner.next().charAt(0);
             System.out.print(Colors.RESET);
+
             switch (choice) {
-                case 1:
+                case '1':
                     showStudents();
+                    showStudentsQuestionPart();
                     break;
-                case 2:
+                case '2':
                     approveCoursesMenu();
                     // return;
                     break;
-                case 3:
+                case '3':
                     finalizeRegistrationMenu();
                     break;
-                case 4:
+                case '4':
                     messagesInterface = new MessagesInterface(session);
                     messagesInterface.messagesMenu();
                     break;
+                case '0':
+                    return; // bu kısımda sıkıntılar var
                 default:
                     System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
                     advRegMenu();
@@ -97,24 +103,38 @@ public class AdvisorCourseRegistrationInterface {
     }
 
     private void showStudents() {
-        // System.out.println("//////////////////////////////////");
         Advisor advisor = (Advisor) session.getUser();
 
-        System.out.println(Colors.RED + "\n----------Students----------\n" + Colors.RESET);
+        System.out.println(
+                Colors.RED + "\n-------------------------Students---------------------------\n" + Colors.RESET);
         int numberOfStudents = 1;
+        System.out.println("------------------------------------------------------------");
 
-        // System.out.println(advisor.getStudents().size());
+        System.out.printf("| %6s | %-11s | %-33s |%n", "Number", "Student ID", "Student Name");
         for (Student student : advisor.getStudents()) {
-            System.out.println(
-                    numberOfStudents + " : " + student.getName() + " " + student.getSurname() + " " + student.getID());
+            System.out.println("------------------------------------------------------------");
+            System.out.printf("| %-6s | %-11s | %-33s |%n", numberOfStudents, student.getID(),
+                    student.getName() + " " + student.getSurname());
             numberOfStudents++;
 
         }
-        System.out.println("----------------------------------");
-        // System.out.println("//////////////////////////////////");
+        System.out.println("------------------------------------------------------------\n");
 
-        return;
+    }
 
+    private void showStudentsQuestionPart() {
+        System.out
+                .println(Colors.YELLOW + "0" + Colors.RESET
+                        + ".  Go back to the Advisor Course Registration Menu.\n");
+        System.out.print(Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+
+        System.out.print(Colors.BLUE);
+        char choice1 = scanner.next().charAt(0);
+        System.out.print(Colors.RESET);
+
+        if (choice1 == '0') {
+            return;
+        }
     }
 
     private void approveCoursesMenu() {
@@ -122,16 +142,21 @@ public class AdvisorCourseRegistrationInterface {
             Advisor advisor = (Advisor) session.getUser();
 
             showStudents();
-            System.out.println("Select student for approval or press 0 for back to menu: ");
-            int choice = scanner.nextInt();
 
+            System.out.println(
+                    Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Advisor Course Registration Menu.\n");
+            System.out.print(Colors.BLUE + "--> " + Colors.RESET + "Select student for approval: ");
+            System.out.print(Colors.BLUE);
+            int choice = scanner.nextInt();
+            System.out.print(Colors.RESET);
             if (choice == 0) {
                 return;
             }
 
             Student student = advisor.getStudents().get(choice - 1);
-            System.out.println("----------------------------------");
-            System.out.println("Student: " + student.getName() + " " + student.getSurname() + " " + student.getID());
+            System.out.println();
+            System.out.println(Colors.GREEN + "Student ID: " + student.getID() + "\n" + "Student Name: "
+                    + student.getName() + " " + student.getSurname() + Colors.RESET + "\n");
             String studentID = student.getID();
             showStudentsRequested(studentID);
         }
@@ -184,12 +209,14 @@ public class AdvisorCourseRegistrationInterface {
                     System.out
                             .println(Colors.YELLOW + (i + 1) + Colors.RESET + ". " + idToCourses.get(studentID).get(i));
                     if (idToCourseLectures.get(studentID).get(idToCourses.get(studentID).get(i)) != null) {
-                        System.out.println(
-                                "Lecture: " + idToCourseLectures.get(studentID).get(idToCourses.get(studentID).get(i)));
+                        System.out.println(Colors.YELLOW + "Lecture: " + Colors.RESET
+                                + idToCourseLectures.get(studentID).get(idToCourses.get(studentID).get(i)));
+
                     }
                     if (idToCourseLabs.get(studentID).get(idToCourses.get(studentID).get(i)) != null) {
-                        System.out.println(
-                                "Lab: " + idToCourseLabs.get(studentID).get(idToCourses.get(studentID).get(i)));
+                        System.out.println(Colors.YELLOW + "Lab: " + Colors.RESET
+                                + idToCourseLabs.get(studentID).get(idToCourses.get(studentID).get(i)));
+
                     }
                     System.out.println("----------------------------------");
                 }
@@ -201,13 +228,23 @@ public class AdvisorCourseRegistrationInterface {
     }
 
     private void approveCourse(String studentID) {
-        System.out.println("Select course to approve or press 0 for back to menu: ");
-        while (true) {
+        if (idToCourses.isEmpty()) {
+            System.out
+                    .println(Colors.YELLOW + "No courses to approve! Please select different student!" + Colors.RESET);
+            return;
+        } // doğru mu bak
 
+        System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Advisor Course Registration Menu.");
+        System.out.print(Colors.BLUE + "\n--> " + Colors.RESET + "Select course to approve: ");
+
+        while (true) {
+            System.out.print(Colors.BLUE);
             int choice = scanner.nextInt();
+            System.out.print(Colors.RESET);
             if (choice == 0) {
                 break;
             }
+
             String course = idToCourses.get(studentID).get(choice - 1);
             selectionCourses.add(course);
         }
@@ -261,7 +298,12 @@ public class AdvisorCourseRegistrationInterface {
 
     private void finalizeRegistrationMenu() {
         showStudents();
+        System.out.println(
+                Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Advisor Course Registration Menu.\n");
+        System.out.print(Colors.BLUE + "--> " + Colors.RESET + "Select student for finalization: ");
+        System.out.print(Colors.BLUE);
         int choice = scanner.nextInt();
+        System.out.print(Colors.RESET);
         Advisor advisor = (Advisor) session.getUser();
 
         Student curStudent = advisor.getStudents().get(choice - 1);
@@ -344,6 +386,9 @@ public class AdvisorCourseRegistrationInterface {
 
                 studentPw.flush();
                 studentPw.close();
+                
+                // statement ekle bu isimli öğrencinin dersleri finilization edildi diye advisor
+                // course reg menuye dönüyorsunuz tarzı aynı logindeki gibi bir senaryo olabilir
 
             } catch (Exception e) {
                 System.out.println(e);
