@@ -81,41 +81,48 @@ public class NotificationsInterface {
     // shows the notifications menu and let user take action in notifications
     public void notificationsMenu() {
 
-        System.out
-                .println(Colors.RED + "\n--------------------Notifications Menu--------------------\n" + Colors.RESET);
-
-        // notifications
         showNotifications();
+        if (notifications.isEmpty()) {
+            return;
+        }
 
-        System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Mark as Read");
-        System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Delete Notification");
-        System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to the Main Menu");
-        // we dont knw where did it go back?
-        System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?\n");
+        while(true) {
+            System.out
+                    .println(Colors.RED + "\n--------------------Notifications Menu--------------------\n" + Colors.RESET);
 
-        char choice = input.next().charAt(0);
+            // notifications
+            
 
-        switch (choice) {
+            System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Mark as Read");
+            System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Delete Notification");
+            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to the Main Menu");
+            // we dont knw where did it go back?
+            System.out.println("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?\n");
 
-            // mark as read
-            case '1':
-                markAsRead();
-                break;
+            char choice = input.next().charAt(0);
 
-            // delete notification
-            case '2':
-                deleteNotification();
-                break;
+            switch (choice) {
 
-            // go back to student menu
-            case '0':
-                return;
+                // mark as read
+                case '1':
+                    markAsRead();
+                    break;
 
-            // invalid input
-            default:
-                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
-                notificationsMenu();
-                break;
+                // delete notification
+                case '2':
+                    deleteNotification();
+                    break;
+
+                // go back to student menu
+                case '0':
+                    return;
+
+                // invalid input
+                default:
+                    System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                    notificationsMenu();
+                    break;
+            }
         }
 
     }

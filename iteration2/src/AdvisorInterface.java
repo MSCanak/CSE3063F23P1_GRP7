@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,45 +19,47 @@ public class AdvisorInterface implements Schedule {
     // the terminal inteface for advisor
     public void advMenu() {
 
-        scanner = new Scanner(System.in);
-        System.out.println(Colors.RED + "\n--------------------Advisor Menu--------------------\n" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   View Notifications");
-        System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   View Weekly Schedule");
-        System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   View Given Courses");
-        System.out.println(Colors.YELLOW + "4" + Colors.RESET + ".   Course Registration System");
-        System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Logout");
-        System.out.println(Colors.YELLOW + "x" + Colors.RESET + ".   Exit");
+        while(true) {
+            scanner = new Scanner(System.in);
+            System.out.println(Colors.RED + "\n--------------------Advisor Menu--------------------\n" + Colors.RESET);
+            System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   View Notifications");
+            System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   View Weekly Schedule");
+            System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   View Given Courses");
+            System.out.println(Colors.YELLOW + "4" + Colors.RESET + ".   Course Registration System");
+            System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Logout");
+            System.out.println(Colors.YELLOW + "x" + Colors.RESET + ".   Exit");
 
-        System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+            System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
 
-        System.out.print(Colors.BLUE);
-        char caseToken = scanner.next().charAt(0);
-        System.out.print(Colors.RESET);
+            System.out.print(Colors.BLUE);
+            char caseToken = scanner.next().charAt(0);
+            System.out.print(Colors.RESET);
 
-        switch (caseToken) {
-            case '1': // view notifications
-                notificationsInt = new NotificationsInterface(session);
-                notificationsInt.notificationsMenu();
-                break;
-            case '2': // view weekly schedule
-                showWeeklySchedule(calculateWeeklySchedule());
-                break;
-            case '3': // view given courses
-                showGivenCourses(calculateWeeklySchedule());
-                break;
-            case '4': // go to course registration system
-                advCourseRegInt.advRegMenu();
-                break;
-            case '*': // logout
-                loginInt.logout();
-                break;
-            case 'x': // exit
-                loginInt.exit();
-                break;
-            default: // invalid input
-                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
-                advMenu();
-                break;
+            switch (caseToken) {
+                case '1': // view notifications
+                    notificationsInt = new NotificationsInterface(session);
+                    notificationsInt.notificationsMenu();
+                    break;
+                case '2': // view weekly schedule
+                    showWeeklySchedule(calculateWeeklySchedule());
+                    break;
+                case '3': // view given courses
+                    showGivenCourses(calculateWeeklySchedule());
+                    break;
+                case '4': // go to course registration system
+                    advCourseRegInt.advRegMenu();
+                    break;
+                case '*': // logout
+                    loginInt.logout();
+                    break;
+                case 'x': // exit
+                    loginInt.exit();
+                    break;
+                default: // invalid input
+                    System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                    advMenu();
+                    break;
+            }
         }
     }
 
