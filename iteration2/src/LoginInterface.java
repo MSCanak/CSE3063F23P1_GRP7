@@ -39,8 +39,7 @@ public class LoginInterface {
                         System.out.println("You will be directed to the Student Menu!\n");
                         StudentInterface studentInterface = new StudentInterface(session, this);
                         studentInterface.stuMenu();
-                    }
-                    else {
+                    } else {
                         System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
                         continue;
                     }
@@ -108,7 +107,7 @@ public class LoginInterface {
                 session.setUser(null);
                 login();
             } else {
-                System.out.println(Colors.YELLOW + "Invalid input.Please try again." + Colors.RESET);
+                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
                 continue;
             }
         }
@@ -284,6 +283,7 @@ public class LoginInterface {
         }
         return null; // return null if no advisor with the given ID is found
     }
+
     // create lecturer object
     private Lecturer createLecturer(String lecturerID) {
         JSONParser parser = new JSONParser();
@@ -311,7 +311,7 @@ public class LoginInterface {
                     // add courses to lecturer's course list
                     for (Object courseObj : givenCourses) {
                         String courseCode = (String) courseObj;
-                        
+
                         lec.setCourse(createCourse(courseCode));
                     }
 
@@ -324,6 +324,7 @@ public class LoginInterface {
         }
         return null; // return null if no lecturer with the given ID is found
     }
+
     // create course object
     private Course createCourse(String courseCode) {
         JSONParser parser = new JSONParser();
@@ -359,7 +360,7 @@ public class LoginInterface {
                         Course cou = new Course(courseName, courseCode, courseSession);
                         return cou;
                     } else {
-                        System.out.println(Colors.CYAN + "Invalid course code!"+ Colors.RESET);
+                        System.out.println(Colors.CYAN + "Invalid course code!" + Colors.RESET);
                         continue;
                     }
                 }
@@ -369,6 +370,7 @@ public class LoginInterface {
         }
         return null; // return null if no course with the given code is found
     }
+
     // create course session object
     private CourseSession createCourseSession(String courseDayTimeLocation) {
         // parse the string and create course session object
