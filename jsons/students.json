@@ -58,5 +58,17 @@
         "Name": "Turan",
         "Surname": "Kaya",
         "Password": "150120002Turan"
+    },
+    {
+        "ID": "150120010",
+        "Name": "Kevin",
+        "Surname": "Lev",
+        "Password": "150120010Kevin"
+    },
+    {
+        "ID": "150120011",
+        "Name": "Max",
+        "Surname": "Ver",
+        "Password": "150120011Max"
     }
 ]
