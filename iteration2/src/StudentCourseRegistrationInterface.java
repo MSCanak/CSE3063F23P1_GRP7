@@ -47,15 +47,20 @@ public class StudentCourseRegistrationInterface {
 
     public void stuRegMenu() {
         while (true) {
+            // showing student information
             showStudentInf();
-            System.out.println(
-                    "\n---------------------------------Student Course Registration System---------------------------------\n");
-            System.out.println("Choose an option by entering the corresponding number:\n");
-            System.out.println("1. Selected courses");
-            System.out.println("2. Available courses");
-            System.out.println("0. Go back to Student Menu\n");
+            System.out.println(Colors.BOLD+Colors.RED +
+                    "\nStudent Course Registration System\n"
+                    + Colors.RESET+Colors.RESET);
+            System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Selected Courses");
+            System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Available Courses");
+            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to Student Menu");
+            System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
 
+            System.out.print(Colors.BLUE);
             var choice = scanner.next();
+            System.out.print(Colors.RESET);
+
             switch (choice) {
                 case "1":
                     selectedCoursesMenu();
@@ -66,34 +71,53 @@ public class StudentCourseRegistrationInterface {
                 case "0":
                     studentInt.stuMenu(); // this must be only return
                 default:
-                    System.out.println("Invalid choice");
+                    System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+
             }
         }
     }
 
     private void showStudentInf() { // advisor information is wrong
-        System.out.printf("%n%-12s%-3s%-22s%-10s%-2s%-40s%n", "Student ID", "-", "Name and Surname:",
-                session.getUser().getID(),
-                "-", session.getUser().getName() + " " + session.getUser().getSurname());
-        System.out.printf("%-10s%-30s%n", "Advisor: ",
-                session.getUser().getName() + " " + session.getUser().getSurname());
-        System.out.printf("%-10s%-5s%n", "Semester: ", ((Student) (session.getUser())).getCurrentSemester());
+        // printing user id and name
+        System.out.println("\n" +
+                "--------------------------------------------------------------------------------");
+        System.out.printf("| %40s%-45s |%n",
+                Colors.YELLOW + "Student ID - Name and Surname: " + Colors.RESET,
+                session.getUser().getID() +
+                        " - " + session.getUser().getName() + " " + session.getUser().getSurname());
+        // printing user advisor
+        System.out.printf("| %40s%-45s |%n", Colors.YELLOW + "Advisor: " + Colors.RESET,
+                ((Student) (session.getUser())).getAdvisor().getName() + " " +
+                        ((Student) (session.getUser())).getAdvisor().getSurname());
+
+        System.out.printf("| %40s%-45s |%n", Colors.YELLOW + "Semester: " + Colors.RESET,
+                ((Student) (session.getUser())).getCurrentSemester());
+        System.out.println(
+                "--------------------------------------------------------------------------------");
 
     }
 
     private void selectedCoursesMenu() {
         while (true) {
             showStudentInf();
-            System.out.println(
-                    "\n---------------------------------Selected Course Menu---------------------------------\n");
-            System.out.println("Choose an option by entering the corresponding number:\n");
-            System.out.println("1. Show selected courses");
-            System.out.println("2. Delete selected courses");
-            System.out.println("3. Send registration request");
-            System.out.println("0. Go back to Student Course Registration System\n");
+            System.out.println(Colors.BOLD +Colors.RED+
+                    "\nSelected Course Menu\n" + Colors.RESET+Colors.RESET);
+            System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Show selected courses");
+            System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Delete selected courses");
+            System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   Send registration request");
+            System.out
+                    .println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to Student Course Registration System");
+            System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+
+            System.out.print(Colors.BLUE);
             var choice = scanner.next();
+
+            System.out.print(Colors.RESET);
             if (selectedCourses.size() == 0) {
-                System.out.println("\n!!! Currently, there are no courses selected !!!\n");
+                System.out.println(Colors.YELLOW + "\nAt present, no courses have been selected!" + Colors.RESET);
+                System.out.println("You will be " + Colors.GREEN + "redirected" + Colors.RESET
+                        + " to Student Course Registration System");
+                System.out.println("You can add courses from Available Courses Menu\n");
                 break;
             }
             switch (choice) {
@@ -109,26 +133,47 @@ public class StudentCourseRegistrationInterface {
                 case "0":
                     return;
                 default:
-                    System.out.println("Invalid choice");
+                    System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
             }
         }
     }
 
     private void showSelectedCourses() { // lecturer must be added
         int courseNumber = 1;
-        System.out.printf("%n%-8s%-13s%-70s%-8s%-15s%n", "Number", "CourseID", "CourseName", "Credit", "CourseType");
-        System.out.printf(
-                "--------------------------------------------------------------------------------------------------------------%n");
+        System.out.println(Colors.BOLD +Colors.RED+
+                "\nSelected Course Menu"
+                + Colors.RESET+Colors.RESET);
+        System.out.println(
+                "\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-8s | %-13s | %-50s| %-50s | %-8s| %-15s |%n", "Number", "CourseID", "CourseName",
+                "Lecturer", "Credit", "CourseType");
+        System.out.println(
+                "-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         for (var lecture : selectedLectures) {
 
-            System.out.printf("%-8s%-13s%-70s%-8s%-15s%n", courseNumber++, lecture.getLectureID(),
-                    lecture.getCourseName(),
+            System.out.printf("| %-8s | %-13s | %-50s| %-50s | %-8s| %-15s |%n", courseNumber++, lecture.getLectureID(),
+                    lecture.getCourseName(), lecture.getLecturer(),
                     lecture.getCredit(),
                     lecture.getType().equals("E") ? "Elective" : "Mandatory");
 
         }
-        System.out.println();
+        System.out.println(
+                "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+
+       
+        System.out
+                .println(Colors.YELLOW + "0" + Colors.RESET
+                        + ".  Go back to the Selected Course Menu");
+        System.out.print(Colors.BLUE + "\n--> " + Colors.RESET + "What do you want to do?   ");
+
+        System.out.print(Colors.BLUE);
+        char choice1 = scanner.next().charAt(0);
+        System.out.print(Colors.RESET);
+
+        if (choice1 == '0') {
+            return;
+        }
     }
 
     private void deleteSelectedCourseMenu() {
