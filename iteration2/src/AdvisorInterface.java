@@ -19,7 +19,7 @@ public class AdvisorInterface implements Schedule {
     // the terminal inteface for advisor
     public void advMenu() {
 
-        while(true) {
+        while (true) {
             scanner = new Scanner(System.in);
             System.out.println(Colors.RED + "\n--------------------Advisor Menu--------------------\n" + Colors.RESET);
             System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   View Notifications");
@@ -76,47 +76,7 @@ public class AdvisorInterface implements Schedule {
 
         scanner = new Scanner(System.in);
 
-        ArrayList<String> sessionStart = new ArrayList<String>(); // bu bir class olmalı ve buradan direkt olarak
-                                                                  // almalıyım
-        sessionStart.add("08:30");
-        sessionStart.add("09:30");
-        sessionStart.add("10:30");
-        sessionStart.add("11:30");
-        sessionStart.add("13:00");
-        sessionStart.add("14:00");
-        sessionStart.add("15:00");
-        sessionStart.add("16:00");
-        sessionStart.add("17:00");
-        sessionStart.add("18:00");
-        sessionStart.add("19:00");
-        sessionStart.add("20:00");
-        sessionStart.add("21:00");
-
-        ArrayList<String> sessionEnd = new ArrayList<String>(); // bu bir class olmalı ve buradan direkt olarak
-                                                                // almalıyım
-        sessionEnd.add("09:20");
-        sessionEnd.add("10:20");
-        sessionEnd.add("11:20");
-        sessionEnd.add("12:20");
-        sessionEnd.add("13:50");
-        sessionEnd.add("14:50");
-        sessionEnd.add("15:50");
-        sessionEnd.add("16:50");
-        sessionEnd.add("17:50");
-        sessionEnd.add("18:50");
-        sessionEnd.add("19:50");
-        sessionEnd.add("20:50");
-        sessionEnd.add("21:50");
-
-        ArrayList<String> days = new ArrayList<String>();
-        days.add("Pazartesi");
-        days.add("Salı");
-        days.add("Çarşamba");
-        days.add("Perşembe");
-        days.add("Cuma");
-        days.add("Cumartesi");
-        days.add("Pazar");
-
+        // creating arraylists for each day of the week
         ArrayList<String> mondayCoursesID = new ArrayList<String>();
         ArrayList<String> tuesdayCoursesID = new ArrayList<String>();
         ArrayList<String> wednesdayCoursesID = new ArrayList<String>();
@@ -244,26 +204,35 @@ public class AdvisorInterface implements Schedule {
         String saturdayCoursePlace;
         String sundayCoursePlace;
 
-        for (int k = 0; k < sessionStart.size(); k++) {
+        for (int k = 0; k < SessionTimes.SESSION_START.size(); k++) {
 
-            mondayCourses = printMondayCourses(mondayCoursesID, mondayCoursesStartTime, sessionStart, k);
-            tuesdayCourses = printTuesdayCourses(tuesdayCoursesID, tuesdayCoursesStartTime, sessionStart, k);
-            wednesdayCourses = printWednesdayCourses(wednesdayCoursesID, wednesdayCoursesStartTime, sessionStart, k);
-            thursdayCourses = printThursdayCourses(thursdayCoursesID, thursdayCoursesStartTime, sessionStart, k);
-            fridayCourses = printFridayCourses(fridayCoursesID, fridayCoursesStartTime, sessionStart, k);
-            saturdayCourses = printSaturdayCourses(saturdayCoursesID, saturdayCoursesStartTime, sessionStart, k);
-            sundayCourses = printSundayCourses(sundayCoursesID, sundayCoursesStartTime, sessionStart, k);
-
-            mondayCoursePlace = printMondayCoursePlace(mondayCoursesPlace, mondayCoursesStartTime, sessionStart, k);
-            tuesdayCoursePlace = printTuesdayCoursePlace(tuesdayCoursesPlace, tuesdayCoursesStartTime, sessionStart, k);
-            wednesdayCoursePlace = printWednesdayCoursePlace(wednesdayCoursesPlace, wednesdayCoursesStartTime,
-                    sessionStart, k);
-            thursdayCoursePlace = printThursdayCoursePlace(thursdayCoursesPlace, thursdayCoursesStartTime,
-                    sessionStart, k);
-            fridayCoursePlace = printFridayCoursePlace(fridayCoursesPlace, fridayCoursesStartTime, sessionStart, k);
-            saturdayCoursePlace = printSaturdayCoursePlace(saturdayCoursesPlace, saturdayCoursesStartTime, sessionStart,
+            mondayCourses = printMondayCourses(mondayCoursesID, mondayCoursesStartTime, SessionTimes.SESSION_START, k);
+            tuesdayCourses = printTuesdayCourses(tuesdayCoursesID, tuesdayCoursesStartTime, SessionTimes.SESSION_START,
                     k);
-            sundayCoursePlace = printSundayCoursePlace(sundayCoursesPlace, sundayCoursesStartTime, sessionStart, k);
+            wednesdayCourses = printWednesdayCourses(wednesdayCoursesID, wednesdayCoursesStartTime,
+                    SessionTimes.SESSION_START, k);
+            thursdayCourses = printThursdayCourses(thursdayCoursesID, thursdayCoursesStartTime,
+                    SessionTimes.SESSION_START, k);
+            fridayCourses = printFridayCourses(fridayCoursesID, fridayCoursesStartTime, SessionTimes.SESSION_START, k);
+            saturdayCourses = printSaturdayCourses(saturdayCoursesID, saturdayCoursesStartTime,
+                    SessionTimes.SESSION_START, k);
+            sundayCourses = printSundayCourses(sundayCoursesID, sundayCoursesStartTime, SessionTimes.SESSION_START, k);
+
+            mondayCoursePlace = printMondayCoursePlace(mondayCoursesPlace, mondayCoursesStartTime,
+                    SessionTimes.SESSION_START, k);
+            tuesdayCoursePlace = printTuesdayCoursePlace(tuesdayCoursesPlace, tuesdayCoursesStartTime,
+                    SessionTimes.SESSION_START, k);
+            wednesdayCoursePlace = printWednesdayCoursePlace(wednesdayCoursesPlace, wednesdayCoursesStartTime,
+                    SessionTimes.SESSION_START, k);
+            thursdayCoursePlace = printThursdayCoursePlace(thursdayCoursesPlace, thursdayCoursesStartTime,
+                    SessionTimes.SESSION_START, k);
+            fridayCoursePlace = printFridayCoursePlace(fridayCoursesPlace, fridayCoursesStartTime,
+                    SessionTimes.SESSION_START, k);
+            saturdayCoursePlace = printSaturdayCoursePlace(saturdayCoursesPlace, saturdayCoursesStartTime,
+                    SessionTimes.SESSION_START,
+                    k);
+            sundayCoursePlace = printSundayCoursePlace(sundayCoursesPlace, sundayCoursesStartTime,
+                    SessionTimes.SESSION_START, k);
 
             if (mondayCourses != "" || tuesdayCourses != "" || wednesdayCourses != "" || thursdayCourses != ""
                     || fridayCourses != "" || saturdayCourses != "" || sundayCourses != "") {
@@ -274,7 +243,7 @@ public class AdvisorInterface implements Schedule {
                         tuesdayCourses, wednesdayCourses, thursdayCourses, fridayCourses, saturdayCourses,
                         sundayCourses);
                 System.out.printf("|  %-15s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|%n",
-                        sessionStart.get(k) + " - " + sessionEnd.get(k),
+                        SessionTimes.SESSION_START.get(k) + " - " + SessionTimes.SESSION_END.get(k),
                         mondayCoursePlace, tuesdayCoursePlace, wednesdayCoursePlace, thursdayCoursePlace,
                         fridayCoursePlace, saturdayCoursePlace, sundayCoursePlace);
             }
@@ -345,10 +314,10 @@ public class AdvisorInterface implements Schedule {
 
     // printing course id
     private String printMondayCourses(ArrayList<String> mondayCousesID, ArrayList<String> mondayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String mondayCourses = "";
         for (int i = 0; i < mondayCousesID.size(); i++) {
-            if (mondayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (mondayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 mondayCourses = mondayCousesID.get(i);
             }
         }
@@ -357,10 +326,10 @@ public class AdvisorInterface implements Schedule {
     }
 
     private String printTuesdayCourses(ArrayList<String> tuesdayCousesID, ArrayList<String> tuesdayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String tuesdayCourses = "";
         for (int i = 0; i < tuesdayCousesID.size(); i++) {
-            if (tuesdayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (tuesdayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 tuesdayCourses = tuesdayCousesID.get(i);
             }
         }
@@ -369,10 +338,10 @@ public class AdvisorInterface implements Schedule {
     }
 
     private String printWednesdayCourses(ArrayList<String> wednesdayCousesID,
-            ArrayList<String> wednesdayCoursesStartTime, ArrayList<String> sessionStart, int k) {
+            ArrayList<String> wednesdayCoursesStartTime, ArrayList<String> SESSION_START, int k) {
         String wednesdayCourses = "";
         for (int i = 0; i < wednesdayCousesID.size(); i++) {
-            if (wednesdayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (wednesdayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 wednesdayCourses = wednesdayCousesID.get(i);
             }
         }
@@ -381,10 +350,10 @@ public class AdvisorInterface implements Schedule {
     }
 
     private String printThursdayCourses(ArrayList<String> thursdayCousesID, ArrayList<String> thursdayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String thursdayCourses = "";
         for (int i = 0; i < thursdayCousesID.size(); i++) {
-            if (thursdayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (thursdayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 thursdayCourses = thursdayCousesID.get(i);
             }
         }
@@ -393,10 +362,10 @@ public class AdvisorInterface implements Schedule {
     }
 
     private String printFridayCourses(ArrayList<String> fridayCousesID, ArrayList<String> fridayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String fridayCourses = "";
         for (int i = 0; i < fridayCousesID.size(); i++) {
-            if (fridayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (fridayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 fridayCourses = fridayCousesID.get(i);
             }
         }
@@ -405,10 +374,10 @@ public class AdvisorInterface implements Schedule {
     }
 
     private String printSaturdayCourses(ArrayList<String> saturdayCousesID, ArrayList<String> saturdayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String saturdayCourses = "";
         for (int i = 0; i < saturdayCousesID.size(); i++) {
-            if (saturdayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (saturdayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 saturdayCourses = saturdayCousesID.get(i);
             }
         }
@@ -417,10 +386,10 @@ public class AdvisorInterface implements Schedule {
     }
 
     private String printSundayCourses(ArrayList<String> sundayCousesID, ArrayList<String> sundayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String sundayCourses = "";
         for (int i = 0; i < sundayCousesID.size(); i++) {
-            if (sundayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (sundayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 sundayCourses = sundayCousesID.get(i);
             }
         }
@@ -430,10 +399,10 @@ public class AdvisorInterface implements Schedule {
 
     // printing course place
     private String printMondayCoursePlace(ArrayList<String> mondayCousesPlace, ArrayList<String> mondayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String mondayCoursePlace = "";
         for (int i = 0; i < mondayCousesPlace.size(); i++) {
-            if (mondayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (mondayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 mondayCoursePlace = mondayCousesPlace.get(i);
             }
         }
@@ -443,10 +412,10 @@ public class AdvisorInterface implements Schedule {
 
     private String printTuesdayCoursePlace(ArrayList<String> tuesdayCousesPlace,
             ArrayList<String> tuesdayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String tuesdayCoursePlace = "";
         for (int i = 0; i < tuesdayCousesPlace.size(); i++) {
-            if (tuesdayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (tuesdayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 tuesdayCoursePlace = tuesdayCousesPlace.get(i);
             }
         }
@@ -455,10 +424,10 @@ public class AdvisorInterface implements Schedule {
     }
 
     private String printWednesdayCoursePlace(ArrayList<String> wednesdayCousesPlace,
-            ArrayList<String> wednesdayCoursesStartTime, ArrayList<String> sessionStart, int k) {
+            ArrayList<String> wednesdayCoursesStartTime, ArrayList<String> SESSION_START, int k) {
         String wednesdayCoursePlace = "";
         for (int i = 0; i < wednesdayCousesPlace.size(); i++) {
-            if (wednesdayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (wednesdayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 wednesdayCoursePlace = wednesdayCousesPlace.get(i);
             }
         }
@@ -468,10 +437,10 @@ public class AdvisorInterface implements Schedule {
 
     private String printThursdayCoursePlace(ArrayList<String> thursdayCousesPlace,
             ArrayList<String> thursdayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String thursdayCoursePlace = "";
         for (int i = 0; i < thursdayCousesPlace.size(); i++) {
-            if (thursdayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (thursdayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 thursdayCoursePlace = thursdayCousesPlace.get(i);
             }
         }
@@ -480,10 +449,10 @@ public class AdvisorInterface implements Schedule {
     }
 
     private String printFridayCoursePlace(ArrayList<String> fridayCousesPlace, ArrayList<String> fridayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String fridayCoursePlace = "";
         for (int i = 0; i < fridayCousesPlace.size(); i++) {
-            if (fridayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (fridayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 fridayCoursePlace = fridayCousesPlace.get(i);
             }
         }
@@ -493,10 +462,10 @@ public class AdvisorInterface implements Schedule {
 
     private String printSaturdayCoursePlace(ArrayList<String> saturdayCousesPlace,
             ArrayList<String> saturdayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String saturdayCoursePlace = "";
         for (int i = 0; i < saturdayCousesPlace.size(); i++) {
-            if (saturdayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (saturdayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 saturdayCoursePlace += saturdayCousesPlace.get(i);
             }
         }
@@ -505,10 +474,10 @@ public class AdvisorInterface implements Schedule {
     }
 
     private String printSundayCoursePlace(ArrayList<String> sundayCousesPlace, ArrayList<String> sundayCoursesStartTime,
-            ArrayList<String> sessionStart, int k) {
+            ArrayList<String> SESSION_START, int k) {
         String sundayCoursePlace = "";
         for (int i = 0; i < sundayCousesPlace.size(); i++) {
-            if (sundayCoursesStartTime.get(i).equals(sessionStart.get(k))) {
+            if (sundayCoursesStartTime.get(i).equals(SESSION_START.get(k))) {
                 sundayCoursePlace += sundayCousesPlace.get(i);
             }
         }
