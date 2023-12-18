@@ -120,7 +120,6 @@ public class NotificationsInterface {
                 // invalid input
                 default:
                     System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
-                    notificationsMenu();
                     break;
             }
         }
