@@ -322,7 +322,9 @@ public class AdvisorCourseRegistrationInterface {
             }
             JSONArray approvedCoursesJsonArray = (JSONArray) request.get("ApprovedCourses");
             if (approvedCoursesJsonArray.isEmpty()) {
-                continue;
+                System.out.println(Colors.RED + "No courses to finalize! Please select different student!"
+                        + Colors.RESET);
+                return;
             }
             for (Object courseObj : approvedCoursesJsonArray) {
                 String course = (String) courseObj;
