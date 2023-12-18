@@ -49,11 +49,11 @@ public class StudentCourseRegistrationInterface {
         while (true) {
             // showing student information
             showStudentInf();
-            System.out.println(Colors.BOLD+Colors.RED +
+            System.out.println(Colors.BOLD + Colors.RED +
                     "\nStudent Course Registration System\n"
-                    + Colors.RESET+Colors.RESET);
-            System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Selected Courses");
-            System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Available Courses");
+                    + Colors.RESET + Colors.RESET);
+            System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Selected Courses Menu");
+            System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Available Courses Menu");
             System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to Student Menu");
             System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
 
@@ -100,8 +100,8 @@ public class StudentCourseRegistrationInterface {
     private void selectedCoursesMenu() {
         while (true) {
             showStudentInf();
-            System.out.println(Colors.BOLD +Colors.RED+
-                    "\nSelected Course Menu\n" + Colors.RESET+Colors.RESET);
+            System.out.println(Colors.BOLD + Colors.RED +
+                    "\nSelected Course Menu\n" + Colors.RESET + Colors.RESET);
             System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Show selected courses");
             System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Delete selected courses");
             System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   Send registration request");
@@ -140,9 +140,9 @@ public class StudentCourseRegistrationInterface {
 
     private void showSelectedCourses() { // lecturer must be added
         int courseNumber = 1;
-        System.out.println(Colors.BOLD +Colors.RED+
+        System.out.println(Colors.BOLD + Colors.RED +
                 "\nSelected Course Menu"
-                + Colors.RESET+Colors.RESET);
+                + Colors.RESET + Colors.RESET);
         System.out.println(
                 "\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("| %-8s | %-13s | %-50s| %-50s | %-8s| %-15s |%n", "Number", "CourseID", "CourseName",
@@ -160,24 +160,9 @@ public class StudentCourseRegistrationInterface {
         }
         System.out.println(
                 "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-
-       
-        System.out
-                .println(Colors.YELLOW + "0" + Colors.RESET
-                        + ".  Go back to the Selected Course Menu");
-        System.out.print(Colors.BLUE + "\n--> " + Colors.RESET + "What do you want to do?   ");
-
-        System.out.print(Colors.BLUE);
-        char choice1 = scanner.next().charAt(0);
-        System.out.print(Colors.RESET);
-
-        if (choice1 == '0') {
-            return;
-        }
     }
 
     private void deleteSelectedCourseMenu() {
-        showSelectedCourses();
         while (true) {
             showStudentInf();
             System.out.println(
@@ -190,8 +175,11 @@ public class StudentCourseRegistrationInterface {
             switch (choice) {
                 case "1":
                     selectedCourses.clear();
+                    selectedLectures.clear();
+                    selectedLabs.clear();
                     return;
                 case "2":
+                    showSelectedCourses();
                     System.out.print(
                             "Enter the number of the courses you want to delete (for example -> 1-2-3) or cancel with entering 0: ");
                     var selectedIndexes = scanner.next().split("-");
@@ -213,15 +201,24 @@ public class StudentCourseRegistrationInterface {
     }
 
     private void deleteSelectedCourses(String[] selectedIndexes) {
-        // copy selected courses to a new list
-        var selectedCoursesCopy = new ArrayList<Course>();
-        for (var course : selectedCourses) {
-            selectedCoursesCopy.add(course);
+        // copy selected courses to a new list for preventing concurrent modification
+        var selectedLecturesCopy = new ArrayList<Lecture>();
+        for (var lecture : selectedLectures) {
+            selectedLecturesCopy.add(lecture);
         }
         // remove selected courses from selected courses
         for (var selectedIndex : selectedIndexes) {
             var index = Integer.parseInt(selectedIndex);
-            selectedCourses.remove(selectedCoursesCopy.get(index - 1));
+            var lecture = selectedLecturesCopy.get(index - 1);
+            // find corresponding lab and remove it from selected labs
+            for (var lab : selectedLabs) {
+                if (lab.getLabID().contains(lecture.getLectureID())) {
+                    selectedLabs.remove(lab);
+                    break;
+                }
+            }
+            selectedLectures.remove(lecture);
+            selectedCourses.remove(lecture);
         }
     }
 
@@ -297,12 +294,12 @@ public class StudentCourseRegistrationInterface {
                 case "1":
                     calculateAvailableCourses();
                     showAvailableLectures();
-                    if (selectedCourses.size() == 5) { // if student selected 5 courses already then return
+                    if (selectedCourses.size() >= 5) { // if student selected 5 courses already then return
                         System.out.println("5 courses already selected, press 0 to go back");
                         var input = "";
                         do {
                             input = scanner.next();
-                            if (input.equals("0")) {
+                            if (!input.equals("0")) {
                                 System.out.println("Invalid input");
                                 continue;
                             }
@@ -326,10 +323,11 @@ public class StudentCourseRegistrationInterface {
 
                     var isLabsAvailable = showAvailableLabs(Integer.parseInt(input));
                     if (isLabsAvailable) {
+                        var labInput = "";
                         System.out.print("Select labs you want to add (for example -> 1) or cancel with entering 0: ");
                         do {
-                            input = scanner.next();
-                            if (input.length() == 0 || Integer.parseInt(input) > availableLabs.size()) {
+                            labInput = scanner.next();
+                            if (labInput.length() == 0 || Integer.parseInt(labInput) > availableLabs.size()) {
                                 System.out.println("Invalid input");
                                 continue;
                             }
@@ -340,7 +338,7 @@ public class StudentCourseRegistrationInterface {
                             break;
                         }
 
-                        saveAvailableCourses(Integer.parseInt(input), Integer.parseInt(input));
+                        saveAvailableCourses(Integer.parseInt(input), Integer.parseInt(labInput));
                         System.out.println("!!! Selected lecture and lab added !!!");
                     } else {
                         saveAvailableCourses(Integer.parseInt(input));
@@ -585,16 +583,10 @@ public class StudentCourseRegistrationInterface {
 
                     if (courseObj != null) {
                         if ((Float) courseGrade <= 1) { // if failed
-                            // check if that course is in availableCourses already
-                            var isExists = false;
-                            for (var availableCourse : availableCoursesCopy) {
-                                if (availableCourse.getCourseID().equals(courseID)) {
-                                    isExists = true;
-                                    break;
-                                }
-                            }
-                            if (!isExists) { // if course is not in availableCourses then add it
+                            if (!courseObj.equals(findCourseByID(availableCoursesCopy, courseID))) {
+                                // if course is not in availableCourses then add it
                                 availableCourses.add(courseObj);
+                                availableCoursesCopy.add(courseObj);
                             }
 
                             for (var availableCourse : availableCoursesCopy) {
@@ -611,24 +603,27 @@ public class StudentCourseRegistrationInterface {
                                     }
                                 }
                             }
-                        } else if ((Float) courseGrade >= 1) { // if passed
-                            for (var availableCourse : availableCoursesCopy) {
-                                if (availableCourse.getCourseID().equals(courseID)) {
-                                    continue;
-                                }
-                            }
-                            for (var availableCourse : availableCoursesCopy) {
-                                var optionalPrerequisitesOfAvailableCourse = availableCourse.getOptionalPrerequisite();
-                                // iterate over optional prerequisites of current available courses and add them
-                                // if they are passed in current semester (e.g. if CSE101 is passed then add
-                                // CSE102 to available courses)
-                                for (var optionalPrerequisite : optionalPrerequisitesOfAvailableCourse) {
-                                    if (optionalPrerequisite.getCourseID().equals(courseID)) {
-                                        availableCourses.add(courseObj);
-                                    }
-                                }
-                            }
                         }
+                        // else if ((Float) courseGrade >= 1) { // if passed
+                        // for (var availableCourse : availableCoursesCopy) {
+                        // if (availableCourse.getCourseID().equals(courseID)) {
+                        // continue;
+                        // }
+                        // }
+                        // for (var availableCourse : availableCoursesCopy) {
+                        // var optionalPrerequisitesOfAvailableCourse =
+                        // availableCourse.getOptionalPrerequisite();
+                        // // iterate over optional prerequisites of current available courses and add
+                        // them
+                        // // if they are passed in current semester (e.g. if CSE101 is passed then add
+                        // // CSE102 to available courses)
+                        // for (var optionalPrerequisite : optionalPrerequisitesOfAvailableCourse) {
+                        // if (optionalPrerequisite.getCourseID().equals(courseID)) {
+                        // availableCourses.add(courseObj);
+                        // }
+                        // }
+                        // }
+                        // }
                     }
                 }
             }
@@ -708,15 +703,17 @@ public class StudentCourseRegistrationInterface {
         selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1))); // cast lecture to course
         selectedLectures.add(availableLectures.get(selectedLectureIndex - 1)); // add lecture to selected lectures
         selectedLabs.add(availableLabs.get(selectedLabIndex - 1)); // add lab to selected labs
-        System.out.println("\nSelected Lecture: " + availableLectures.get(selectedLectureIndex - 1) + "\nSelected Lab: "
-                + availableLabs.get(selectedLabIndex - 1)); // print selected lecture and lab together
+        System.out.println("\nSelected Lecture: " + availableLectures.get(selectedLectureIndex - 1).getLectureID()
+                + "\nSelected Lab: "
+                + availableLabs.get(selectedLabIndex - 1).getLabID()); // print selected lecture and lab together
     }
 
     private void saveAvailableCourses(int selectedLectureIndex) { // if there is no lab
         selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1))); // cast lecture to course
         selectedLectures.add(availableLectures.get(selectedLectureIndex - 1)); // add lecture
-        System.out.println("\nSelected Lecture: " + availableLectures.get(selectedLectureIndex - 1)); // print selected
-                                                                                                      // lecture
+        System.out.println("\nSelected Lecture: " + availableLectures.get(selectedLectureIndex - 1).getLectureID()); // print
+                                                                                                                     // selected
+        // lecture
     }
 
 }
