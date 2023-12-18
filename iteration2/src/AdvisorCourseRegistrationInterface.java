@@ -232,7 +232,7 @@ public class AdvisorCourseRegistrationInterface {
             System.out
                     .println(Colors.YELLOW + "No courses to approve! Please select different student!" + Colors.RESET);
             return;
-        } // doğru mu bak
+        } 
 
         System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Advisor Course Registration Menu.");
         System.out.print(Colors.BLUE + "\n--> " + Colors.RESET + "Select course to approve: ");
@@ -247,6 +247,9 @@ public class AdvisorCourseRegistrationInterface {
 
             String course = idToCourses.get(studentID).get(choice - 1);
             selectionCourses.add(course);
+            System.out.println(Colors.GREEN + course + " is approved!" + Colors.RESET);
+            System.out.println(Colors.BLUE+ " If your selection is finished, you can press 0. "+ Colors.RESET);
+            System.out.print(Colors.RED + " OR " + Colors.BLUE + "\n--> " + Colors.RESET + "Select course to approve: ");
         }
         saveApprovel(studentID);
     }
