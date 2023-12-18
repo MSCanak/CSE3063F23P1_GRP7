@@ -134,7 +134,7 @@ public class NotificationsInterface {
             System.out.println("Which notification do you want to mark as read?");
             System.out.println("Select a notification number to mark as read or select x to mark all as read.");
             System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Notifications Menu.\n");
-            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Notifications Menu.\n");
+
 
             char choice = input.next().charAt(0);
 
