@@ -1,4 +1,7 @@
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,10 +50,12 @@ public class MessagesInterface {
             if (choice == 1) {
                 System.out.print(Colors.YELLOW + "Enter receiver ID: " + Colors.RESET);
                 String receiver = scanner.next();
-                System.out.print(Colors.YELLOW + "\nEnter subject: " + Colors.RESET);
-                String subject = scanner.next();
-                System.out.print(Colors.YELLOW + "\nEnter description: " + Colors.RESET);
-                String description = scanner.next();
+                System.out.println(Colors.YELLOW + "\nEnter subject " + Colors.GREEN + "(Press Enter twice to go to next line) : "
+                        + Colors.RESET);
+                String subject = readMultiLineInput();
+                System.out.println(Colors.YELLOW + "\nEnter description " + Colors.GREEN + "(Press Enter twice to go to next line) : "
+                        + Colors.RESET);
+                String description = readMultiLineInput();
                 newMessage(description, subject, receiver);
             } else if (choice == 2) {
                 showReceivedMessages();
@@ -146,5 +151,22 @@ public class MessagesInterface {
         } catch (Exception e) {
             System.out.println(Colors.YELLOW + "Error: " + e + Colors.RESET);
         }
+    }
+
+    private static String readMultiLineInput() {
+        StringBuilder sb = new StringBuilder();
+        String line;
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            while ((line = br.readLine()) != null && !line.trim().isEmpty()) {
+                sb.append(line).append("\n");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString().trim();
+
     }
 }
