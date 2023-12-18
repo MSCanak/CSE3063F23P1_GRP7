@@ -40,7 +40,7 @@
                 "ID": "150120008",
                 "Name": "Muhamammed",
                 "Surname": "Nael"
-            }
+            },
             {
                 "ID": "150120010",
                 "Name": "Kevin",
@@ -57,7 +57,7 @@
         "Password": "150102Betul",
         "Faculty": "Engineering",
         "Department": "Computer Science Engineering",
-        "AcademicTitle": "Dr.Oğr.Uyesi",
+        "AcademicTitle": "Dr.O\u00c4\u0178r.Uyesi",
         "Courses": [
             "CSE3015.1",
             "CSE3015.1.1",
@@ -94,11 +94,213 @@
                 "ID": "150120009",
                 "Name": "Chris",
                 "Surname": "Bumstead"
-            }
+            },
             {
                 "ID": "150120011",
                 "Name": "Max",
                 "Surname": "Ver"
+            }
+        ]
+    },
+    {
+        "Name": "Ali haydar",
+        "Surname": "Ozer",
+        "EMail": "AliOzer@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150112",
+        "Password": "150112Ali\u00cc\u2021",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE3033.1",
+            "CSE3033.1.1",
+            "CSE3033.1.2",
+            "CSE4082.1",
+            "CSE4197.9",
+            "CSE4198.9",
+            "CSE4297.9"
+        ],
+        "AcademicTitle": "Doc.Dr.",
+        "Students": [
+            {
+                "ID": "150120012",
+                "Name": "Glenn",
+                "Surname": "Stanton"
+            },
+            {
+                "ID": "150120014",
+                "Name": "Vanessa",
+                "Surname": "Coffey"
+            },
+            {
+                "ID": "150120016",
+                "Name": "Steffan",
+                "Surname": "Huffman"
+            },
+            {
+                "ID": "150120018",
+                "Name": "Eleri",
+                "Surname": "Macdonald"
+            },
+            {
+                "ID": "150120020",
+                "Name": "Chaya",
+                "Surname": "Hahn"
+            },
+            {
+                "ID": "150120022",
+                "Name": "Blake",
+                "Surname": "Salazar"
+            },
+            {
+                "ID": "150120024",
+                "Name": "Lauren",
+                "Surname": "Walker"
+            },
+            {
+                "ID": "150120026",
+                "Name": "Adnan",
+                "Surname": "Oconnor"
+            },
+            {
+                "ID": "150120028",
+                "Name": "Jago",
+                "Surname": "Mcclain"
+            },
+            {
+                "ID": "150120030",
+                "Name": "Elin",
+                "Surname": "Cohen"
+            },
+            {
+                "ID": "150120032",
+                "Name": "Yasmin",
+                "Surname": "Sharpe"
+            },
+            {
+                "ID": "150120034",
+                "Name": "Talha",
+                "Surname": "Burns"
+            },
+            {
+                "ID": "150120036",
+                "Name": "Alistair",
+                "Surname": "Walsh"
+            },
+            {
+                "ID": "150120038",
+                "Name": "Josiah",
+                "Surname": "Hartman"
+            }
+        ]
+    },
+    {
+        "Name": "Mustafa",
+        "Surname": "Agaoglu",
+        "EMail": "MustafaAgaoglu@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150113",
+        "Password": "150113Mustafa",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE3055.1",
+            "CSE3055.1.1",
+            "CSE3055.1.2",
+            "CSE4197.12",
+            "CSE4198.12",
+            "CSE4297.12"
+        ],
+        "AcademicTitle": "Doc.Dr.",
+        "Students": [
+            {
+                "ID": "150120015",
+                "Name": "Bianca",
+                "Surname": "Duke"
+            },
+            {
+                "ID": "150120021",
+                "Name": "Liam",
+                "Surname": "Hammond"
+            },
+            {
+                "ID": "150120027",
+                "Name": "Rhea",
+                "Surname": "Galvan"
+            },
+            {
+                "ID": "150120033",
+                "Name": "Mahnoor",
+                "Surname": "Hubbard"
+            },
+            {
+                "ID": "150120039",
+                "Name": "Bruce",
+                "Surname": "Wayne"
+            }
+        ]
+    },
+    {
+        "Name": "Mujdat",
+        "Surname": "Soyturk",
+        "EMail": "MujdatSoyturk@marmara.edu.com",
+        "PhoneNumber": "05555555550",
+        "ID": "150120",
+        "Password": "150120Mujdat",
+        "Faculty": "Engineering",
+        "Department": "Computer Science Engineering",
+        "Courses": [
+            "CSE4197.10",
+            "CSE4198.10",
+            "CSE4297.10",
+            "IE3081.1"
+        ],
+        "AcademicTitle": "Doc.Dr.",
+        "Students": [
+            {
+                "ID": "150120013",
+                "Name": "Marnie",
+                "Surname": "Perez"
+            },
+            {
+                "ID": "150120017",
+                "Name": "Lexie",
+                "Surname": "Wood"
+            },
+            {
+                "ID": "150120019",
+                "Name": "Keeley",
+                "Surname": "StevensAyers"
+            },
+            {
+                "ID": "150120023",
+                "Name": "Lia",
+                "Surname": "Hines"
+            },
+            {
+                "ID": "150120025",
+                "Name": "Annika",
+                "Surname": "Allison"
+            },
+            {
+                "ID": "150120029",
+                "Name": "Bryn",
+                "Surname": "Hale"
+            },
+            {
+                "ID": "150120031",
+                "Name": "Beth",
+                "Surname": "Boyd"
+            },
+            {
+                "ID": "150120035",
+                "Name": "Ava",
+                "Surname": "Estrada"
+            },
+            {
+                "ID": "150120037",
+                "Name": "Otis",
+                "Surname": "Riley"
             }
         ]
     }
