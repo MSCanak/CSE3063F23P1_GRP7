@@ -104,7 +104,7 @@ public class StudentCourseRegistrationInterface {
 
         System.out.printf("| %40s%-45s |%n", Colors.getYELLOW() + "Semester: " + Colors.getRESET(),
                 ((Student) (session.getUser())).getCurrentSemester());
-        System.out.printf("| %40s%-45s |%n", Colors.getYELLOW() + "Semester: " + Colors.getRESET(),
+        System.out.printf("| %40s%-45s |%n", Colors.getYELLOW() + "Registiration Process: " + Colors.getRESET(),
                 registirationProcess);
         System.out.println(
                 "--------------------------------------------------------------------------------");
