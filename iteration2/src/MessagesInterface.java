@@ -159,7 +159,7 @@ public class MessagesInterface {
         }
     }
 
-    private static String readMultiLineInput() {
+    private String readMultiLineInput() {
         StringBuilder sb = new StringBuilder();
         String line;
 
