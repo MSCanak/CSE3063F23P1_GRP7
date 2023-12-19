@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class StudentInterface implements Schedule {
+    Colors Colors = new Colors();
 
     // attributes
     private Session session;
@@ -28,23 +29,22 @@ public class StudentInterface implements Schedule {
     public void stuMenu() {
 
         // prompting
-        System.out.println(
-                Colors.RED + "\n--------------------Student Menu--------------------\n" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   View Notifications");
-        System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   View Weekly Schedule");
-        System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   View Transcript");
-        System.out.println(Colors.YELLOW + "4" + Colors.RESET + ".   View Curriculum");
-        System.out.println(Colors.YELLOW + "5" + Colors.RESET + ".   Go to Course Registration System");
+        System.out.println(Colors.getRED()+Colors.getBOLD() + "\n> Student Menu\n" + Colors.getRESET());
+        System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   View Notifications");
+        System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   View Weekly Schedule");
+        System.out.println(Colors.getYELLOW() + "3" + Colors.getRESET() + ".   View Transcript");
+        System.out.println(Colors.getYELLOW() + "4" + Colors.getRESET() + ".   View Curriculum");
+        System.out.println(Colors.getYELLOW() + "5" + Colors.getRESET() + ".   Go to Course Registration System");
 
-        System.out.println(Colors.YELLOW + "*" + Colors.RESET + ".   Logout");
-        System.out.println(Colors.YELLOW + "x" + Colors.RESET + ".   Exit");
-        System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+        System.out.println(Colors.getYELLOW() + "*" + Colors.getRESET() + ".   Logout");
+        System.out.println(Colors.getYELLOW() + "x" + Colors.getRESET() + ".   Exit");
+        System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
 
         input = new Scanner(System.in);
 
-        System.out.print(Colors.BLUE);
+        System.out.print(Colors.getBLUE());
         char choice = input.next().charAt(0);
-        System.out.print(Colors.RESET);
+        System.out.print(Colors.getRESET());
 
         switch (choice) {
 
@@ -60,12 +60,12 @@ public class StudentInterface implements Schedule {
                 ((Student) session.getUser()).getTranscript().viewTranscript();
                 boolean a = true;
                 while (a) {
-                    System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Student Menu.");
+                    System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
                     char backChoice = input.next().charAt(0);
                     if (backChoice == '0') {
                         stuMenu();
                     } else {
-                        System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                        System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
                     }
                 }
 
@@ -92,15 +92,15 @@ public class StudentInterface implements Schedule {
             // exiting
             case 'x':
                 System.out.println(
-                        Colors.RED
-                                + "\n<<<--------Thank you for using Marmara Course Registration System-------->>>\n"
-                                + Colors.RESET);
+                        Colors.getYELLOW() + Colors.getBOLD()
+                                + "\n< Thank you for using Marmara Course Registration System >\n"
+                                + Colors.getRESET()+Colors.getRESET());
                 loginInterface.exit();
                 break;
 
             // invalid input
             default:
-                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
                 stuMenu();
                 break;
         }
@@ -139,10 +139,10 @@ public class StudentInterface implements Schedule {
             if (previousSemester != Semester) {
                 System.out.printf(
                         "%n-----------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
-                System.out.printf("%sSemester %s%s", Colors.RED, Semester, Colors.RESET);
-                System.out.printf("\t%s%-10s%-45s%-15s%-8s%-35s%-35s%s%n%n", Colors.YELLOW,
+                System.out.printf("%sSemester %s%s", Colors.getRED(), Semester, Colors.getRESET());
+                System.out.printf("\t%s%-10s%-45s%-15s%-8s%-35s%-35s%s%n%n", Colors.getYELLOW(),
                         "CourseID", "CourseName", "Type", "Credit",
-                        "OptionalPrerequisites", "MandatoryPrerequisites", Colors.RESET);
+                        "OptionalPrerequisites", "MandatoryPrerequisites", Colors.getRESET());
                 previousSemester = (int) Semester;
             }
 
@@ -153,13 +153,13 @@ public class StudentInterface implements Schedule {
         }
         boolean a = true;
         while (a) {
-            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Student Menu.");
+            System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
             input = new Scanner(System.in);
             char backChoice = input.next().charAt(0);
             if (backChoice == '0') {
                 stuMenu();
             } else {
-                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
             }
         }
     }
@@ -204,9 +204,9 @@ public class StudentInterface implements Schedule {
         ArrayList<String> saturdayCoursesPlace = new ArrayList<String>();
         ArrayList<String> sundayCoursesPlace = new ArrayList<String>();
 
-        System.out.println(Colors.RED
-                + "\n-------------------------------------------------------------Weekly Schedule--------------------------------------------------------------\n"
-                + Colors.RESET);
+        System.out.println(Colors.getRED()+Colors.getBOLD()
+                + "\n>> Weekly Schedule\n"
+                + Colors.getRESET()+Colors.getRESET());
         System.out.println(
                 "------------------------------------------------------------------------------------------------------------------------------------------");
 
@@ -364,17 +364,17 @@ public class StudentInterface implements Schedule {
         System.out.println(
                 "------------------------------------------------------------------------------------------------------------------------------------------\n");
 
-        System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".  Back to Student Menu");
-        System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
-        System.out.print(Colors.BLUE);
+        System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Back to Student Menu");
+        System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+        System.out.print(Colors.getBLUE());
         char caseToken = scanner.next().charAt(0);
-        System.out.print(Colors.RESET);
+        System.out.print(Colors.getRESET());
         switch (caseToken) {
             case '0':
                 stuMenu();
                 break;
             default:
-                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
                 showWeeklySchedule(courses);
                 break;
         }
