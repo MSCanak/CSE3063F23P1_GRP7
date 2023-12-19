@@ -65,9 +65,26 @@ public class StudentInterface implements Schedule {
                     if (courses.size() == 0) {
                         System.out.println(Colors.getYELLOW() + "\nYou have no courses for this semester!"
                                 + Colors.getRESET());
-                        continue;
+                        while (true) {
+                            System.out.println(
+                                    Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
+                            String backChoiceLine = input.nextLine();
+                            if (backChoiceLine.length() > 1) {
+                                System.out.println(Colors.getYELLOW() + "Invalid input! Please give a number!"
+                                        + Colors.getRESET());
+                                continue;
+                            }
+                            char backChoice = backChoiceLine.charAt(0);
+                            if (backChoice == '0') {
+                                break;
+                            } else {
+                                System.out.println(
+                                        Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
+                            }
+                        }
+                    } else {
+                        showWeeklySchedule(courses);
                     }
-                    showWeeklySchedule(courses);
                     break;
 
                 case '3': // viewing transcript
@@ -398,7 +415,7 @@ public class StudentInterface implements Schedule {
                 System.out.println(
                         Colors.getYELLOW() + "Invalid input format! Please give a number!" + Colors.getRESET());
                 continue;
-                
+
             }
             char caseToken = caseTokenLine.charAt(0);
             System.out.print(Colors.getRESET());
