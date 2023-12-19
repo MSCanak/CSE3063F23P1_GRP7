@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 public class MessagesInterface {
 
+    Colors Colors = new Colors();
+
     private Object messageObject;
     private JSONArray messageJson;
     private Session session;
@@ -36,25 +38,27 @@ public class MessagesInterface {
     public void messagesMenu() {
         int choice = 0;
         while (true) {
-            System.out.println(Colors.RED + "\n--------------------Messages Menu--------------------\n" + Colors.RESET);
+            System.out.println(Colors.getRED() + Colors.getBOLD() + "\n> Messages Menu\n" + Colors.getRESET());
             System.out
-                    .println(Colors.YELLOW + "1" + Colors.RESET + ".   " + Colors.GREEN + "New Message" + Colors.RESET);
-            System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Received Messages");
-            System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   Sent Messages");
+                    .println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   " + Colors.getGREEN() + "New Message"
+                            + Colors.getRESET());
+            System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   Received Messages");
+            System.out.println(Colors.getYELLOW() + "3" + Colors.getRESET() + ".   Sent Messages");
             System.out
-                    .println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to the Course Registration System Menu");
-            System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
-            System.out.print(Colors.BLUE);
+                    .println(Colors.getYELLOW() + "0" + Colors.getRESET()
+                            + ".   Go back to the Course Registration System Menu");
+            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+            System.out.print(Colors.getBLUE());
             choice = scanner.nextInt();
-            System.out.print(Colors.RESET);
+            System.out.print(Colors.getRESET());
             if (choice == 1) {
-                System.out.print(Colors.YELLOW + "Enter receiver ID: " + Colors.RESET);
+                System.out.print(Colors.getYELLOW() + "Enter receiver ID: " + Colors.getRESET());
                 String receiver = scanner.next();
-                System.out.println(Colors.YELLOW + "\nEnter subject " + Colors.GREEN + "(Press Enter twice to go to next line) : "
-                        + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "\nEnter subject " + Colors.getRESET()
+                        + "(Press Enter twice to go to next line) : ");
                 String subject = readMultiLineInput();
-                System.out.println(Colors.YELLOW + "\nEnter description " + Colors.GREEN + "(Press Enter twice to go to next line) : "
-                        + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "\nEnter description " + Colors.getRESET()
+                        + "(Press Enter twice to go to next line) : ");
                 String description = readMultiLineInput();
                 newMessage(description, subject, receiver);
             } else if (choice == 2) {
@@ -64,7 +68,7 @@ public class MessagesInterface {
             } else if (choice == 0) {
                 return;
             } else {
-                System.out.println(Colors.YELLOW + "Invalid choice! Please try again." + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "Invalid choice! Please try again." + Colors.getRESET());
             }
 
         }
@@ -91,8 +95,9 @@ public class MessagesInterface {
 
     private void showReceivedMessages() {
         calculateReceivedMessages();
-        System.out.println(Colors.RED + "\n--------------------Received Messages--------------------\n" + Colors.RESET);
-        for (Message message : receivedMessages) {
+        System.out.println(
+                Colors.getRED()+Colors.getBOLD() + "\n>> Received Messages\n" + Colors.getRESET()+Colors.getRESET());
+        for (Message message : receivedMessages) { //DÜZENLEME YAPILACAK
             System.out.println("----------------------------------------");
             System.out.println("Sender: " + message.getSenderID());
             System.out.println("Subject: " + message.getSubject());
@@ -121,7 +126,8 @@ public class MessagesInterface {
 
     private void showSentMessages() {
         calculateSentMessages();
-        System.out.println(Colors.RED + "\n--------------------Sent Messages--------------------\n" + Colors.RESET);
+        System.out
+                .println(Colors.getRED()+ Colors.getBOLD()+ "\n>> Sent Messages\n" + Colors.getRESET()+Colors.getRESET());
         for (Message message : sentMessages) {
             System.out.println("----------------------------------------");
             System.out.println("Receiver: " + message.getReceiverID());
@@ -149,7 +155,7 @@ public class MessagesInterface {
             pw.close();
 
         } catch (Exception e) {
-            System.out.println(Colors.YELLOW + "Error: " + e + Colors.RESET);
+            System.out.println(Colors.getYELLOW() + "Error: " + e + Colors.getRESET());
         }
     }
 
