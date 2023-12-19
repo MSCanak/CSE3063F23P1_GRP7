@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class LoginInterface {
 
+    Colors Colors = new Colors();
+
     // Attributes
     private Session session;
     private Scanner scanner = new Scanner(System.in);
@@ -19,8 +21,8 @@ public class LoginInterface {
     // login method to get the user in
     public void login() {
         while (true) {
-            System.out.println(Colors.RED
-                    + "\n--------------------Marmara Course Registration System--------------------\n" + Colors.RESET);
+            System.out.println(Colors.getBOLD()+Colors.getRED()
+                    + "\nMarmara Course Registration System\n" + Colors.getRESET()+Colors.getRESET());
             System.out.println("Please enter your ID and password to login!\n");
             // get user login info
             String ID = getUserID();
@@ -34,17 +36,17 @@ public class LoginInterface {
                         session = new Session(createStudent(ID, null));
                         System.out.println("\nWelcome " + session.getUser().getName() + " "
                                 + session.getUser().getSurname() + "!");
-                        System.out.println("You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged in.");
+                        System.out.println("You have " + Colors.getGREEN() + "successfully" + Colors.getRESET() + " logged in.");
                         // direct student to student menu
                         System.out.println("You will be directed to the Student Menu!\n");
                         StudentInterface studentInterface = new StudentInterface(session, this);
                         studentInterface.stuMenu();
                     } else {
-                        System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
+                        System.out.println(Colors.getYELLOW() + "Invalid ID or password! Please try again." + Colors.getRESET());
                         continue;
                     }
                 } else {
-                    System.out.println(Colors.YELLOW + "Invalid ID! Please try again." + Colors.RESET);
+                    System.out.println(Colors.getYELLOW() + "Invalid ID! Please try again." + Colors.getRESET());
                     continue;
                 }
             } else if (getUserType(ID).equalsIgnoreCase("lecturer")) {
@@ -55,7 +57,7 @@ public class LoginInterface {
                         session = new Session(createAdvisor(ID, "null"));
                         System.out.println("\nWelcome " + session.getUser().getName() + " "
                                 + session.getUser().getSurname() + "!");
-                        System.out.println("You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged in.");
+                        System.out.println("You have " + Colors.getGREEN() + "successfully" + Colors.getRESET() + " logged in.");
                         System.out.println("You will be directed to the Advisor Menu!\n");
                         // direct advisor to advisor menu
                         AdvisorInterface advisorInterface = new AdvisorInterface(session, this);
@@ -65,21 +67,21 @@ public class LoginInterface {
                         session = new Session(createLecturer(ID));
                         System.out.println("\nWelcome " + session.getUser().getName() + " "
                                 + session.getUser().getSurname() + "!");
-                        System.out.println("You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged in.");
+                        System.out.println("You have " + Colors.getGREEN() + "successfully" + Colors.getRESET() + " logged in.");
                         System.out.println("You will be directed to the Lecturer Menu!\n");
                         // direct lecturer to lecturer menu
                         AdvisorInterface advisorInterface = new AdvisorInterface(session, this);
                         advisorInterface.advMenu();
                     } else {
-                        System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
+                        System.out.println(Colors.getYELLOW() + "Invalid ID or password! Please try again." + Colors.getRESET());
                         continue;
                     }
                 } else {
-                    System.out.println(Colors.YELLOW + "Invalid ID! Please try again." + Colors.RESET);
+                    System.out.println(Colors.getYELLOW() + "Invalid ID! Please try again." + Colors.getRESET());
                     continue;
                 }
             } else {
-                System.out.println(Colors.YELLOW + "Invalid ID or password! Please try again." + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "Invalid ID or password! Please try again." + Colors.getRESET());
                 continue;
             }
         }
@@ -89,25 +91,25 @@ public class LoginInterface {
     public void logout() {
         while (true) {
             // if user wants to logout and exit
-            System.out.println("Do you want to logout and exit? (" + Colors.YELLOW + "y/n" + Colors.RESET + ")");
+            System.out.println("Do you want to logout and exit? (" + Colors.getYELLOW() + "y/n" + Colors.getRESET() + ")");
             String answer = scanner.nextLine();
             if (answer.equals("y")) {
                 System.out.println(
-                        "You have " + Colors.GREEN + "successfully" + Colors.RESET + " logged out and exited.");
+                        "You have " + Colors.getGREEN() + "successfully" + Colors.getRESET() + " logged out and exited.");
                 System.out.println(
-                        Colors.RED
-                                + "\n<<<--------Thank you for using Marmara Course Registration System-------->>>\n"
-                                + Colors.RESET);
+                        Colors.getRED()+Colors.getBOLD()
+                                + "\nThank you for using Marmara Course Registration System\n"
+                                + Colors.getRESET()+Colors.getRESET());
                 // set person to null to recreate it when logging in again
                 session.setUser(null);
                 exit();
             } else if (answer.equals("n")) {
-                System.out.println(Colors.YELLOW + "You will be redirected to the login menu." + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "You will be redirected to the login menu." + Colors.getRESET());
                 // set person to null to recreate it when logging in again
                 session.setUser(null);
                 login();
             } else {
-                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
                 continue;
             }
         }
@@ -121,11 +123,11 @@ public class LoginInterface {
     private String getUserID() {
         // get id
         while (true) {
-            System.out.print(Colors.YELLOW + "ID: " + Colors.RESET);
+            System.out.print(Colors.getYELLOW() + "ID: " + Colors.getRESET());
             String ID = scanner.nextLine();
             // check id format
             if (!idFormatChecker(ID)) {
-                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
             } else {
                 return ID;
             }
@@ -136,10 +138,10 @@ public class LoginInterface {
     private String getUserPassword() {
         // get password
         while (true) {
-            System.out.print(Colors.YELLOW + "Password: " + Colors.RESET);
+            System.out.print(Colors.getYELLOW() + "Password: " + Colors.getRESET());
             String password = scanner.nextLine();
             if (!passwordFormatChecker(password)) {
-                System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
             } else {
                 return password;
             }
@@ -360,7 +362,7 @@ public class LoginInterface {
                         Course cou = new Course(courseName, courseCode, courseSession);
                         return cou;
                     } else {
-                        System.out.println(Colors.CYAN + "Invalid course code!" + Colors.RESET);
+                        System.out.println(Colors.getCYAN() + "Invalid course code!" + Colors.getRESET());
                         continue;
                     }
                 }
