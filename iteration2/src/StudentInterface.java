@@ -29,81 +29,90 @@ public class StudentInterface implements Schedule {
     public void stuMenu() {
 
         // prompting
-        System.out.println(Colors.getRED()+Colors.getBOLD() + "\n> Student Menu\n" + Colors.getRESET());
-        System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   View Notifications");
-        System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   View Weekly Schedule");
-        System.out.println(Colors.getYELLOW() + "3" + Colors.getRESET() + ".   View Transcript");
-        System.out.println(Colors.getYELLOW() + "4" + Colors.getRESET() + ".   View Curriculum");
-        System.out.println(Colors.getYELLOW() + "5" + Colors.getRESET() + ".   Go to Course Registration System");
+        while (true) {
+            System.out.println(Colors.getRED() + Colors.getBOLD() + "\n> Student Menu\n" + Colors.getRESET());
+            System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   View Notifications");
+            System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   View Weekly Schedule");
+            System.out.println(Colors.getYELLOW() + "3" + Colors.getRESET() + ".   View Transcript");
+            System.out.println(Colors.getYELLOW() + "4" + Colors.getRESET() + ".   View Curriculum");
+            System.out.println(Colors.getYELLOW() + "5" + Colors.getRESET() + ".   Go to Course Registration System");
 
-        System.out.println(Colors.getYELLOW() + "*" + Colors.getRESET() + ".   Logout");
-        System.out.println(Colors.getYELLOW() + "x" + Colors.getRESET() + ".   Exit");
-        System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+            System.out.println(Colors.getYELLOW() + "*" + Colors.getRESET() + ".   Logout");
+            System.out.println(Colors.getYELLOW() + "x" + Colors.getRESET() + ".   Exit");
+            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
 
-        input = new Scanner(System.in);
+            input = new Scanner(System.in);
+            // get user choice
+            System.out.print(Colors.getBLUE());
+            if (input.nextLine().length() > 1) {
+                System.out.println(Colors.getYELLOW() + "Invalid input format! Please give a number!" + Colors.getRESET());
+                continue;
+            }
+            char choice = input.next().charAt(0);
 
-        System.out.print(Colors.getBLUE());
-        char choice = input.next().charAt(0);
-        System.out.print(Colors.getRESET());
+            System.out.print(Colors.getRESET());
 
-        switch (choice) {
+            switch (choice) {
 
-            case '1': // viewing notifications
-                showNotificatons();
-                break;
+                case '1': // viewing notifications
+                    showNotificatons();
+                    break;
 
-            case '2': // viewing weekly schedule
-                showWeeklySchedule(calculateWeeklySchedule());
-                break;
+                case '2': // viewing weekly schedule
+                    showWeeklySchedule(calculateWeeklySchedule());
+                    break;
 
-            case '3': // viewing transcript
-                ((Student) session.getUser()).getTranscript().viewTranscript();
-                boolean a = true;
-                while (a) {
-                    System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
-                    char backChoice = input.next().charAt(0);
-                    if (backChoice == '0') {
-                        stuMenu();
-                    } else {
-                        System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
+                case '3': // viewing transcript
+                    ((Student) session.getUser()).getTranscript().viewTranscript();
+                    boolean a = true;
+                    while (a) {
+                        System.out.println(
+                                Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
+                        char backChoice = input.next().charAt(0);
+                        if (backChoice == '0') {
+                            stuMenu();
+                        } else {
+                            System.out.println(
+                                    Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
+                        }
                     }
-                }
 
-            case '4': // show curriculum
-                try {
-                    showCurriculum();
-                } catch (FileNotFoundException e) {
-                } catch (IOException e) {
-                } catch (ParseException e) {
-                }
-                break;
+                case '4': // show curriculum
+                    try {
+                        showCurriculum();
+                    } catch (FileNotFoundException e) {
+                    } catch (IOException e) {
+                    } catch (ParseException e) {
+                    }
+                    break;
 
-            // going to course registration system
-            case '5':
-                studentCourseRegistrationInterface = new StudentCourseRegistrationInterface(session, this);
-                studentCourseRegistrationInterface.stuRegMenu();
-                break;
+                // going to course registration system
+                case '5':
+                    studentCourseRegistrationInterface = new StudentCourseRegistrationInterface(session, this);
+                    studentCourseRegistrationInterface.stuRegMenu();
+                    break;
 
-            // logging out
-            case '*':
-                loginInterface.logout();
-                break;
+                // logging out
+                case '*':
+                    loginInterface.logout();
+                    break;
 
-            // exiting
-            case 'x':
-                System.out.println(
-                        Colors.getYELLOW() + Colors.getBOLD()
-                                + "\n< Thank you for using Marmara Course Registration System >\n"
-                                + Colors.getRESET()+Colors.getRESET());
-                loginInterface.exit();
-                break;
+                // exiting
+                case 'x':
+                    System.out.println(
+                            Colors.getYELLOW() + Colors.getBOLD()
+                                    + "\n< Thank you for using Marmara Course Registration System >\n"
+                                    + Colors.getRESET() + Colors.getRESET());
+                    loginInterface.exit();
+                    break;
 
-            // invalid input
-            default:
-                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
-                stuMenu();
-                break;
+                // invalid input
+                default:
+                    System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
+                    continue;
+            }
         }
+
     }
 
     private void showCurriculum() throws FileNotFoundException, IOException, ParseException {
@@ -204,9 +213,9 @@ public class StudentInterface implements Schedule {
         ArrayList<String> saturdayCoursesPlace = new ArrayList<String>();
         ArrayList<String> sundayCoursesPlace = new ArrayList<String>();
 
-        System.out.println(Colors.getRED()+Colors.getBOLD()
+        System.out.println(Colors.getRED() + Colors.getBOLD()
                 + "\n>> Weekly Schedule\n"
-                + Colors.getRESET()+Colors.getRESET());
+                + Colors.getRESET() + Colors.getRESET());
         System.out.println(
                 "------------------------------------------------------------------------------------------------------------------------------------------");
 
