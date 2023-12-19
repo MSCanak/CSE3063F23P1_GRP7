@@ -195,11 +195,18 @@ public class StudentInterface implements Schedule {
         while (a) {
             System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
             input = new Scanner(System.in);
-            char backChoice = input.next().charAt(0);
+            String backChoiceLine = input.nextLine();
+            if (backChoiceLine.length() > 1) {
+                System.out.println(
+                        Colors.getYELLOW() + "Invalid input! Please give a number!" + Colors.getRESET());
+                continue;
+            }
+            char backChoice = backChoiceLine.charAt(0);
             if (backChoice == '0') {
-                stuMenu();
+                return;
             } else {
                 System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
+                continue;
             }
         }
     }
