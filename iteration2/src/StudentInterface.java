@@ -43,12 +43,14 @@ public class StudentInterface implements Schedule {
 
             input = new Scanner(System.in);
             // get user choice
+            String choiceLine = input.nextLine();
             System.out.print(Colors.getBLUE());
-            if (input.nextLine().length() > 1) {
-                System.out.println(Colors.getYELLOW() + "Invalid input format! Please give a number!" + Colors.getRESET());
+            if (choiceLine.length() > 1) {
+                System.out.println(
+                        Colors.getYELLOW() + "Invalid input format! Please give a number!" + Colors.getRESET());
                 continue;
             }
-            char choice = input.next().charAt(0);
+            char choice = choiceLine.charAt(0);
 
             System.out.print(Colors.getRESET());
 
@@ -68,7 +70,13 @@ public class StudentInterface implements Schedule {
                     while (a) {
                         System.out.println(
                                 Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
-                        char backChoice = input.next().charAt(0);
+                        String backChoiceLine = input.nextLine();
+                        if (backChoiceLine.length() > 1) {
+                            System.out.println(Colors.getYELLOW() + "Invalid input! Please give a number!"
+                                    + Colors.getRESET());
+                            continue;
+                        }
+                        char backChoice = backChoiceLine.charAt(0);
                         if (backChoice == '0') {
                             stuMenu();
                         } else {
