@@ -206,42 +206,42 @@ public class AdvisorInterface implements Schedule {
 
         WeeklySchedule weeklySchedule = new WeeklySchedule();
 
-        for (int k = 0; k < SessionTimes.SESSION_START.size(); k++) {
+        for (int k = 0; k < CourseSessionTimes.SESSION_START.size(); k++) {
 
             mondayCourses = weeklySchedule.printMondayCourses(mondayCoursesID, mondayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             tuesdayCourses = weeklySchedule.printTuesdayCourses(tuesdayCoursesID, tuesdayCoursesStartTime,
-                    SessionTimes.SESSION_START,
+                    CourseSessionTimes.SESSION_START,
                     k);
             wednesdayCourses = weeklySchedule.printWednesdayCourses(wednesdayCoursesID, wednesdayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             thursdayCourses = weeklySchedule.printThursdayCourses(thursdayCoursesID, thursdayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             fridayCourses = weeklySchedule.printFridayCourses(fridayCoursesID, fridayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             saturdayCourses = weeklySchedule.printSaturdayCourses(saturdayCoursesID, saturdayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             sundayCourses = weeklySchedule.printSundayCourses(sundayCoursesID, sundayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
 
             mondayCoursePlace = weeklySchedule.printMondayCoursePlace(mondayCoursesPlace, mondayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             tuesdayCoursePlace = weeklySchedule.printTuesdayCoursePlace(tuesdayCoursesPlace, tuesdayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             wednesdayCoursePlace = weeklySchedule.printWednesdayCoursePlace(wednesdayCoursesPlace,
                     wednesdayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             thursdayCoursePlace = weeklySchedule.printThursdayCoursePlace(thursdayCoursesPlace,
                     thursdayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             fridayCoursePlace = weeklySchedule.printFridayCoursePlace(fridayCoursesPlace, fridayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
             saturdayCoursePlace = weeklySchedule.printSaturdayCoursePlace(saturdayCoursesPlace,
                     saturdayCoursesStartTime,
-                    SessionTimes.SESSION_START,
+                    CourseSessionTimes.SESSION_START,
                     k);
             sundayCoursePlace = weeklySchedule.printSundayCoursePlace(sundayCoursesPlace, sundayCoursesStartTime,
-                    SessionTimes.SESSION_START, k);
+                    CourseSessionTimes.SESSION_START, k);
 
             if (mondayCourses != "" || tuesdayCourses != "" || wednesdayCourses != "" || thursdayCourses != ""
                     || fridayCourses != "" || saturdayCourses != "" || sundayCourses != "") {
@@ -252,7 +252,7 @@ public class AdvisorInterface implements Schedule {
                         tuesdayCourses, wednesdayCourses, thursdayCourses, fridayCourses, saturdayCourses,
                         sundayCourses);
                 System.out.printf("|  %-15s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|%n",
-                        SessionTimes.SESSION_START.get(k) + " - " + SessionTimes.SESSION_END.get(k),
+                        CourseSessionTimes.SESSION_START.get(k) + " - " + CourseSessionTimes.SESSION_END.get(k),
                         mondayCoursePlace, tuesdayCoursePlace, wednesdayCoursePlace, thursdayCoursePlace,
                         fridayCoursePlace, saturdayCoursePlace, sundayCoursePlace);
             }
