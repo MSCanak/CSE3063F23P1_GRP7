@@ -43,12 +43,14 @@ public class StudentInterface implements Schedule {
 
             input = new Scanner(System.in);
             // get user choice
+            String choiceLine = input.nextLine();
             System.out.print(Colors.getBLUE());
-            if (input.nextLine().length() > 1) {
-                System.out.println(Colors.getYELLOW() + "Invalid input format! Please give a number!" + Colors.getRESET());
+            if (choiceLine.length() > 1) {
+                System.out.println(
+                        Colors.getYELLOW() + "Invalid input format! Please give a number!" + Colors.getRESET());
                 continue;
             }
-            char choice = input.next().charAt(0);
+            char choice = choiceLine.charAt(0);
 
             System.out.print(Colors.getRESET());
 
@@ -68,15 +70,21 @@ public class StudentInterface implements Schedule {
                     while (a) {
                         System.out.println(
                                 Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
-                        char backChoice = input.next().charAt(0);
+                        String backChoiceLine = input.nextLine();
+                        if (backChoiceLine.length() > 1) {
+                            System.out.println(Colors.getYELLOW() + "Invalid input! Please give a number!"
+                                    + Colors.getRESET());
+                            continue;
+                        }
+                        char backChoice = backChoiceLine.charAt(0);
                         if (backChoice == '0') {
-                            stuMenu();
+                            break;
                         } else {
                             System.out.println(
                                     Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
                         }
                     }
-
+                    break;
                 case '4': // show curriculum
                     try {
                         showCurriculum();
@@ -373,19 +381,26 @@ public class StudentInterface implements Schedule {
         System.out.println(
                 "------------------------------------------------------------------------------------------------------------------------------------------\n");
 
-        System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Back to Student Menu");
-        System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
-        System.out.print(Colors.getBLUE());
-        char caseToken = scanner.next().charAt(0);
-        System.out.print(Colors.getRESET());
-        switch (caseToken) {
-            case '0':
-                stuMenu();
-                break;
-            default:
-                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
-                showWeeklySchedule(courses);
-                break;
+        while (true) {
+            System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Back to Student Menu");
+            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+            System.out.print(Colors.getBLUE());
+            String caseTokenLine = scanner.nextLine();
+            if (caseTokenLine.length() > 1) {
+                System.out.println(
+                        Colors.getYELLOW() + "Invalid input format! Please give a number!" + Colors.getRESET());
+                continue;
+                
+            }
+            char caseToken = caseTokenLine.charAt(0);
+            System.out.print(Colors.getRESET());
+            switch (caseToken) {
+                case '0':
+                    return;
+                default:
+                    System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
+                    continue;
+            }
         }
 
     }
