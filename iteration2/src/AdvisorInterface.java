@@ -60,8 +60,7 @@ public class AdvisorInterface implements Schedule {
                     break;
                 default: // invalid input
                     System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
-                    advMenu();
-                    break;
+                    continue;
             }
         }
     }
