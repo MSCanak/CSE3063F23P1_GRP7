@@ -9,6 +9,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class StudentCourseRegistrationInterface {
+
+    Colors Colors = new Colors();
     private ArrayList<Course> allCourses;
     private ArrayList<Lecture> allLectures;
     private ArrayList<Lab> allLabs;
@@ -49,17 +51,17 @@ public class StudentCourseRegistrationInterface {
         while (true) {
             // showing student information
             showStudentInf();
-            System.out.println(Colors.BOLD + Colors.RED +
-                    "\nStudent Course Registration System\n"
-                    + Colors.RESET + Colors.RESET);
-            System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Selected Courses Menu");
-            System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Available Courses Menu");
-            System.out.println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to Student Menu");
-            System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+            System.out.println(Colors.getBOLD() + Colors.getRED() +
+                    "\n>> Student Course Registration System\n"
+                    + Colors.getRESET() + Colors.getRESET());
+            System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Selected Courses Menu");
+            System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   Available Courses Menu");
+            System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".   Go back to Student Menu");
+            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
 
-            System.out.print(Colors.BLUE);
+            System.out.print(Colors.getBLUE());
             var choice = scanner.next();
-            System.out.print(Colors.RESET);
+            System.out.print(Colors.getRESET());
 
             switch (choice) {
                 case "1":
@@ -71,7 +73,7 @@ public class StudentCourseRegistrationInterface {
                 case "0":
                     studentInt.stuMenu(); // this must be only return
                 default:
-                    System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                    System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
 
             }
         }
@@ -82,15 +84,15 @@ public class StudentCourseRegistrationInterface {
         System.out.println("\n" +
                 "--------------------------------------------------------------------------------");
         System.out.printf("| %40s%-45s |%n",
-                Colors.YELLOW + "Student ID - Name and Surname: " + Colors.RESET,
+                Colors.getYELLOW() + "Student ID - Name and Surname: " + Colors.getRESET(),
                 session.getUser().getID() +
                         " - " + session.getUser().getName() + " " + session.getUser().getSurname());
         // printing user advisor
-        System.out.printf("| %40s%-45s |%n", Colors.YELLOW + "Advisor: " + Colors.RESET,
+        System.out.printf("| %40s%-45s |%n", Colors.getYELLOW() + "Advisor: " + Colors.getRESET(),
                 ((Student) (session.getUser())).getAdvisor().getName() + " " +
                         ((Student) (session.getUser())).getAdvisor().getSurname());
 
-        System.out.printf("| %40s%-45s |%n", Colors.YELLOW + "Semester: " + Colors.RESET,
+        System.out.printf("| %40s%-45s |%n", Colors.getYELLOW() + "Semester: " + Colors.getRESET(),
                 ((Student) (session.getUser())).getCurrentSemester());
         System.out.println(
                 "--------------------------------------------------------------------------------");
@@ -100,22 +102,24 @@ public class StudentCourseRegistrationInterface {
     private void selectedCoursesMenu() {
         while (true) {
             showStudentInf();
-            System.out.println(Colors.BOLD + Colors.RED +
-                    "\nSelected Course Menu\n" + Colors.RESET + Colors.RESET);
-            System.out.println(Colors.YELLOW + "1" + Colors.RESET + ".   Show selected courses");
-            System.out.println(Colors.YELLOW + "2" + Colors.RESET + ".   Delete selected courses");
-            System.out.println(Colors.YELLOW + "3" + Colors.RESET + ".   Send registration request");
+            System.out.println(Colors.getBOLD() + Colors.getRED() +
+                    "\n>>> Selected Course Menu\n" + Colors.getRESET() + Colors.getRESET());
+            System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Show selected courses");
+            System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   Delete selected courses");
+            System.out.println(Colors.getYELLOW() + "3" + Colors.getRESET() + ".   Send registration request");
             System.out
-                    .println(Colors.YELLOW + "0" + Colors.RESET + ".   Go back to Student Course Registration System");
-            System.out.print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ");
+                    .println(Colors.getYELLOW() + "0" + Colors.getRESET()
+                            + ".   Go back to Student Course Registration System");
+            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
 
-            System.out.print(Colors.BLUE);
+            System.out.print(Colors.getBLUE());
             var choice = scanner.next();
 
-            System.out.print(Colors.RESET);
+            System.out.print(Colors.getRESET());
             if (selectedCourses.size() == 0) {
-                System.out.println(Colors.YELLOW + "\nAt present, no courses have been selected!" + Colors.RESET);
-                System.out.println("You will be " + Colors.GREEN + "redirected" + Colors.RESET
+                System.out.println(
+                        Colors.getYELLOW() + "\nAt present, no courses have been selected!" + Colors.getRESET());
+                System.out.println("You will be " + Colors.getGREEN() + "redirected" + Colors.getRESET()
                         + " to Student Course Registration System");
                 System.out.println("You can add courses from Available Courses Menu\n");
                 break;
@@ -133,16 +137,16 @@ public class StudentCourseRegistrationInterface {
                 case "0":
                     return;
                 default:
-                    System.out.println(Colors.YELLOW + "Invalid input! Please try again." + Colors.RESET);
+                    System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
             }
         }
     }
 
     private void showSelectedCourses() { // lecturer must be added
         int courseNumber = 1;
-        System.out.println(Colors.BOLD + Colors.RED +
-                "\nSelected Course Menu"
-                + Colors.RESET + Colors.RESET);
+        System.out.println(Colors.getBOLD() + Colors.getRED() +
+                "\n>>>> Selected Course Menu"
+                + Colors.getRESET() + Colors.getRESET());
         System.out.println(
                 "\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("| %-8s | %-13s | %-50s| %-50s | %-8s| %-15s |%n", "Number", "CourseID", "CourseName",
@@ -165,13 +169,15 @@ public class StudentCourseRegistrationInterface {
     private void deleteSelectedCourseMenu() {
         while (true) {
             showStudentInf();
-            System.out.println(
-                    "\n---------------------------------Delete Selected Course Menu---------------------------------\n");
-            System.out.println("Choose an option by entering the corresponding number:\n");
-            System.out.println("1. Delete all selected courses");
-            System.out.println("2. Delete a selected course");
-            System.out.println("0. Go back to Selected Course Menu\n");
+            System.out.println(Colors.getBOLD() + Colors.getRED() +
+                    "\n>>>> Delete Selected Course Menu\n" + Colors.getRESET() + Colors.getRESET());
+            System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Delete all selected courses");
+            System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   Delete a selected course");
+            System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".   Go back to Selected Course Menu\n");
+            System.out.print(Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+            System.out.print(Colors.getBLUE());
             var choice = scanner.next();
+            System.out.print(Colors.getRESET());
             switch (choice) {
                 case "1":
                     selectedCourses.clear();
@@ -283,9 +289,9 @@ public class StudentCourseRegistrationInterface {
     private void availableCoursesMenu() {
         while (true) {
             showStudentInf();
-            System.out.println(
-                    "\n---------------------------------Available Course Menu---------------------------------\n");
-            System.out.println("Choose an option by entering the corresponding number:\n");
+            System.out.println(Colors.getBOLD() + Colors.getRED() +
+                    "\n>>> Available Course Menu\n"+ Colors.getRESET() + Colors.getRESET());
+            System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Show available courses");
 
             System.out.println("1. Show available courses");
             System.out.println("0. Go back to Student Course Registration System\n");
