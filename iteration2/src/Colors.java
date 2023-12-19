@@ -54,6 +54,34 @@ public class Colors {
     public String getUNDERLINE() {
         return UNDERLINE;
     }
+    public String getGRAY_BACKGROUND() {
+        return GRAY_BACKGROUND;
+    }
+    public String getBLACK_BACKGROUND() {
+        return BLACK_BACKGROUND;
+    }
+    public String getWHITE_BACKGROUND() {
+        return WHITE_BACKGROUND;
+    }
+    public String getRED_BACKGROUND() {
+        return RED_BACKGROUND;
+    }
+    public String getGREEN_BACKGROUND() {
+        return GREEN_BACKGROUND;
+    }
+    public String getYELLOW_BACKGROUND() {
+        return YELLOW_BACKGROUND;
+    }
+    public String getBLUE_BACKGROUND() {
+        return BLUE_BACKGROUND;
+    }
+    public String getPURPLE_BACKGROUND() {
+        return PURPLE_BACKGROUND;
+    }
+    public String getCYAN_BACKGROUND() {
+        return CYAN_BACKGROUND;
+    }
+    
 
     // END: abpxx6d04wxr
 
