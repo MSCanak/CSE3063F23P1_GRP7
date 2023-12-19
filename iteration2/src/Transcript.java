@@ -66,12 +66,12 @@ public class Transcript {
 				if (semesterJson.containsKey("SemesterInf")) {
 					// retrieve "SemesterInf" object
 					JSONObject semesterInf = (JSONObject) semesterJson.get("SemesterInf");
-	
+
 					semester.setTakenCredit(((Number) semesterInf.get("TakenCredit")).intValue());
 					semester.setCompletedCredit(((Number) semesterInf.get("CompletedCredit")).intValue());
 					semester.setYano(((Number) semesterInf.get("Yano")).doubleValue());
 				}
-	
+
 				semesters.add(semester);
 			}
 
@@ -99,9 +99,10 @@ public class Transcript {
 				// check if null
 				if (semester.containsKey("SemesterInf")) {
 					JSONObject semesterInf = (JSONObject) semester.get("SemesterInf");
-	
+
 					if (semesterInf.containsKey("Gano")) {
-						// since getting a value from JSON returns a long value, cast to number, then get double value
+						// since getting a value from JSON returns a long value, cast to number, then
+						// get double value
 						Double ganoVal = ((Number) semesterInf.get("Gano")).doubleValue();
 						gano.add(ganoVal);
 					}
@@ -122,15 +123,30 @@ public class Transcript {
 			System.out.println("Semester " + (i + 1) + "\n");
 			System.out.printf("\t%-15s%-70s%-10s%-10s%n%n", "Course Code", "Course Name", "Credit", "Grade");
 			Semester currentSemester = semesters.get(i);
-            for (Course course : currentSemester.getCourses()) {
-                System.out.printf("\t%-15s%-70s%-10s%-10s%n", course.getCourseID(),
-                        course.getCourseName(), course.getCredit(),
-                        course.getGrade());
-            }
-			System.out.println("\nTaken Credit: " + currentSemester.getTakenCredit());
-			System.out.println("Completed Credit: " + currentSemester.getCompletedCredit());
-			System.out.println("Yano: " + String.format("%.2f", currentSemester.getYano()));
-			System.out.println("Gano: " + String.format("%.2f", gano.get(i)));
+			for (Course course : currentSemester.getCourses()) {
+				System.out.printf("\t%-15s%-70s%-10s%-10s%n", course.getCourseID(),
+						course.getCourseName(), course.getCredit(),
+						course.getGrade());
+			}
+			System.out.println();
+			int takenCredit = currentSemester.getTakenCredit();
+			if (takenCredit != 0) {
+				System.out.println("Taken Credit: " + takenCredit);
+			}
+			System.out.println("Completed Credit: "
+					+ (currentSemester.getCompletedCredit() != 0 ? currentSemester.getCompletedCredit()
+							: "Semester has not been completed yet"));
+			System.out.println("Yano: "
+					+ (currentSemester.getYano() != 0.0 ? String.format("%.2f", currentSemester.getYano())
+							: "Semester has not been completed yet"));
+
+			int ganoIndex = i < gano.size() ? i : gano.size() - 1;
+			double currentGano = ganoIndex >= 0 ? gano.get(ganoIndex) : 0.0;
+			if (currentGano != 0.0) {
+				System.out.println("Gano: " + String.format("%.2f", currentGano));
+			} else {
+				System.out.println("Gano: N/A");
+			}
 			System.out.println();
 		}
 	}
