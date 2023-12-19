@@ -176,6 +176,12 @@ public class StudentCourseRegistrationInterface {
                     break;
                 case "2":
                     sendRegRequest();
+                    // send notificaiton
+                    String receiverID = ((Student) (session.getUser())).getAdvisor().getID();
+                    String description = "Student " + session.getUser().getID() + " sent a registration request!";
+                    String senderID = session.getUser().getID();
+                    Notification notification = new Notification(receiverID, description, senderID);
+                    notification.sendNotification(senderID);
                     break;
                 case "0":
                     return;

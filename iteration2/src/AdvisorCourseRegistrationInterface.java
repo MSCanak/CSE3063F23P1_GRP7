@@ -65,7 +65,8 @@ public class AdvisorCourseRegistrationInterface {
     public void advRegMenu() {
 
         while (true) {
-            System.out.println(Colors.getBOLD()+Colors.getRED() + "\nAdvisor Course Registration Menu\n" + Colors.getRESET()+Colors.getRESET());
+            System.out.println(Colors.getBOLD() + Colors.getRED() + "\nAdvisor Course Registration Menu\n"
+                    + Colors.getRESET() + Colors.getRESET());
             System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Show Students");
             System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   Approve/Deny Courses");
             System.out.println(Colors.getYELLOW() + "3" + Colors.getRESET() + ".   Finalize Registration");
@@ -106,8 +107,8 @@ public class AdvisorCourseRegistrationInterface {
     private void showStudents() {
         Advisor advisor = (Advisor) session.getUser();
 
-        System.out.println(Colors.getBOLD()+
-                Colors.getRED() + "\nStudents\n" + Colors.getRESET()+Colors.getRESET());
+        System.out.println(Colors.getBOLD() +
+                Colors.getRED() + "\nStudents\n" + Colors.getRESET() + Colors.getRESET());
         int numberOfStudents = 1;
         System.out.println("------------------------------------------------------------");
 
@@ -145,7 +146,8 @@ public class AdvisorCourseRegistrationInterface {
             showStudents();
 
             System.out.println(
-                    Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Advisor Course Registration Menu.\n");
+                    Colors.getYELLOW() + "0" + Colors.getRESET()
+                            + ".  Go back to the Advisor Course Registration Menu.\n");
             System.out.print(Colors.getBLUE() + "--> " + Colors.getRESET() + "Select student for approval: ");
             System.out.print(Colors.getBLUE());
             int choice = scanner.nextInt();
@@ -208,7 +210,8 @@ public class AdvisorCourseRegistrationInterface {
                 // print lectures and labs
                 for (int i = 0; i < numberOfCourses - 1; i++) {
                     System.out
-                            .println(Colors.getYELLOW() + (i + 1) + Colors.getRESET() + ". " + idToCourses.get(studentID).get(i));
+                            .println(Colors.getYELLOW() + (i + 1) + Colors.getRESET() + ". "
+                                    + idToCourses.get(studentID).get(i));
                     if (idToCourseLectures.get(studentID).get(idToCourses.get(studentID).get(i)) != null) {
                         System.out.println(Colors.getYELLOW() + "Lecture: " + Colors.getRESET()
                                 + idToCourseLectures.get(studentID).get(idToCourses.get(studentID).get(i)));
@@ -231,11 +234,13 @@ public class AdvisorCourseRegistrationInterface {
     private void approveCourse(String studentID) {
         if (idToCourses.isEmpty()) {
             System.out
-                    .println(Colors.getYELLOW() + "No courses to approve! Please select different student!" + Colors.getRESET());
+                    .println(Colors.getYELLOW() + "No courses to approve! Please select different student!"
+                            + Colors.getRESET());
             return;
-        } 
+        }
 
-        System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Advisor Course Registration Menu.");
+        System.out.println(
+                Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Advisor Course Registration Menu.");
         System.out.print(Colors.getBLUE() + "\n--> " + Colors.getRESET() + "Select course to approve: ");
 
         while (true) {
@@ -249,10 +254,19 @@ public class AdvisorCourseRegistrationInterface {
             String course = idToCourses.get(studentID).get(choice - 1);
             selectionCourses.add(course);
             System.out.println(Colors.getGREEN() + course + " is approved!" + Colors.getRESET());
-            System.out.println(Colors.getBLUE()+ " If your selection is finished, you can press 0. "+ Colors.getRESET());
-            System.out.print(Colors.getRED() + " OR " + Colors.getBLUE() + "\n--> " + Colors.getRESET() + "Select course to approve: ");
+            System.out.println(
+                    Colors.getBLUE() + " If your selection is finished, you can press 0. " + Colors.getRESET());
+            System.out.print(Colors.getRED() + " OR " + Colors.getBLUE() + "\n--> " + Colors.getRESET()
+                    + "Select course to approve: ");
         }
         saveApprovel(studentID);
+        // send notification to student
+        String receiverID = studentID;
+        String description = "Advisor has approved your courses!";
+        String senderID = session.getUser().getID();
+        Notification notification = new Notification(receiverID, description, senderID);
+        notification.sendNotification(senderID);
+
     }
 
     private void saveApprovel(String studentID) {
@@ -392,9 +406,17 @@ public class AdvisorCourseRegistrationInterface {
 
                 studentPw.flush();
                 studentPw.close();
-                
+
+                // send notification to student
+                String receiverID = studentID;
+                String description = "Advisor has finalized your courses!";
+                String senderID = advisor.getID();
+                Notification notification = new Notification(receiverID, description, senderID);
+                notification.sendNotification(senderID);
+
                 // statement ekle bu isimli öğrencinin dersleri finilization edildi diye advisor
                 // course reg menuye dönüyorsunuz tarzı aynı logindeki gibi bir senaryo olabilir
+                System.out.println(Colors.getGREEN() + "Courses of student " + studentID + " are finalized!" + Colors.getRESET());
 
             } catch (Exception e) {
                 System.out.println(e);
@@ -407,7 +429,6 @@ public class AdvisorCourseRegistrationInterface {
             requestPw.write(requestJson.toJSONString());
             requestPw.flush();
             requestPw.close();
-
         } catch (Exception e) {
         }
     }

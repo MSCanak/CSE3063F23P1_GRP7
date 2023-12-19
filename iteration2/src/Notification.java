@@ -1,7 +1,5 @@
 import java.io.FileReader;
-import java.io.PipedWriter;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.json.simple.JSONArray;
@@ -14,20 +12,18 @@ public class Notification {
     private boolean isRead;
     private String description;
     private LocalDateTime timeSent;
-    private String notificationType;
     private String senderID;
 
     // Constructor
-    public Notification(String receiverID, String description, String notificationType, String senderID) {
+    public Notification(String receiverID, String description, String senderID) {
         this.receiverID = receiverID;
         this.description = description;
-        this.notificationType = notificationType;
         this.senderID = senderID;
         this.isRead = false;
         this.timeSent = LocalDateTime.now();
     }
 
-    public boolean sendNotification(String notificationType, String senderID) {
+    public boolean sendNotification(String senderID) {
         try {
             Object notificationObject = new JSONParser().parse(new FileReader("./jsons/notifications.json"));
             JSONArray notificationJSONObject = (JSONArray) notificationObject;
@@ -37,7 +33,6 @@ public class Notification {
             newNotification.put("isRead", isRead);
             newNotification.put("description", description);
             newNotification.put("timeSent", timeSent.toString());
-            newNotification.put("notificationType", notificationType);
             newNotification.put("senderID", senderID);
 
             notificationJSONObject.add(newNotification);
@@ -72,20 +67,12 @@ public class Notification {
         return timeSent;
     }
 
-    public String getNotificationType() {
-        return notificationType;
-    }
-
     public String getSenderID() {
         return senderID;
     }
 
     public void setReceiverID(String receiverID) {
         this.receiverID = receiverID;
-    }
-
-    public void setNotificationType(String notificationType) {
-        this.notificationType = notificationType;
     }
 
     public void setSenderID(String senderID) {

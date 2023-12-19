@@ -1,5 +1,4 @@
 import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,7 +35,6 @@ public class NotificationsInterface {
         for (Notification notification : notifications) {
 
             String isRead = notification.getIsRead() ? "Read" : "Unread";
-            String notificationType = notification.getNotificationType();
             String senderID = notification.getSenderID();
             String timeSent = notification.getTimeSent().toString();
             String description = notification.getDescription();
@@ -48,8 +46,8 @@ public class NotificationsInterface {
             }
 
             System.out.println("--------------------");
-            System.out.printf("%n%s %3s %-15s%10s %n %3s %-s %n %3s %-3s%-10s %s%n", BG, blank, senderID, timeSent, i,
-                    notificationType, blank, isReadSign, description, Colors.getRESET());
+            System.out.printf("%n%s %3s %-15s%10s %n %3s %-3s %n %3s %-3s%-10s %s%n", BG, blank, senderID, timeSent, i,
+                    blank, isReadSign, description, Colors.getRESET());
             i++;
         }
     }
@@ -66,11 +64,9 @@ public class NotificationsInterface {
 
                     String receiverID = (String) notificationJSON.get("receiverID");
                     String description = (String) notificationJSON.get("description");
-                    String notificationType = (String) notificationJSON.get("notificationType");
                     String senderID = (String) notificationJSON.get("senderID");
 
-                    Notification newNotification = new Notification(receiverID, description, notificationType,
-                            senderID);
+                    Notification newNotification = new Notification(receiverID, description, senderID);
                     notifications.add(newNotification);
                 }
             }
