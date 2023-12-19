@@ -265,20 +265,25 @@ public class AdvisorInterface implements Schedule {
         }
         System.out.println(
                 "------------------------------------------------------------------------------------------------------------------------------------------\n");
-
-        System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Back to Advisor Menu");
-        System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
-        System.out.print(Colors.getBLUE());
-        char caseToken = scanner.next().charAt(0);
-        System.out.print(Colors.getRESET());
-        switch (caseToken) {
-            case '0':
-                advMenu();
-                break;
-            default:
-                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
-                showWeeklySchedule(courses);
-                break;
+        while (true) {
+            System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Back to Advisor Menu");
+            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+            System.out.print(Colors.getBLUE());
+            String caseTokenLine = scanner.nextLine();
+            if (caseTokenLine.length() > 1) {
+                System.out.println(
+                        Colors.getYELLOW() + "\nInvalid input format! Please give a number!" + Colors.getRESET());
+                continue;
+            }
+            char caseToken = caseTokenLine.charAt(0);
+            System.out.print(Colors.getRESET());
+            switch (caseToken) {
+                case '0':
+                    return;
+                default:
+                    System.out.println(Colors.getYELLOW() + "\nInvalid input! Please try again." + Colors.getRESET());
+                    break;
+            }
         }
 
     }
@@ -311,19 +316,25 @@ public class AdvisorInterface implements Schedule {
         }
         System.out.println("---------------------------------------------------------\n");
 
-        System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Back to Advisor Menu");
-        System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
-        System.out.print(Colors.getBLUE());
-        char caseToken = scanner.next().charAt(0);
-        System.out.print(Colors.getRESET());
-        switch (caseToken) {
-            case '0':
-                advMenu();
-                break;
-            default:
-                System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
-                showGivenCourses(courses);
-                break;
+        while (true) {
+            System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Back to Advisor Menu");
+            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+            System.out.print(Colors.getBLUE());
+            String caseTokenLine = scanner.nextLine();
+            if (caseTokenLine.length() > 1) {
+                System.out.println(
+                        Colors.getYELLOW() + "\nInvalid input format! Please give a number!\n" + Colors.getRESET());
+                continue;
+            }
+            char caseToken = caseTokenLine.charAt(0);
+            System.out.print(Colors.getRESET());
+            switch (caseToken) {
+                case '0':
+                    return;
+                default:
+                    System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
+                    break;
+            }
         }
 
     }
