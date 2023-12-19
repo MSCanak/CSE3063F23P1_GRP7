@@ -80,7 +80,7 @@ public class StudentCourseRegistrationInterface {
                     availableCoursesMenu();
                     break;
                 case "0":
-                    studentInt.stuMenu(); // this must be only return
+                    return;
                 default:
                     System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
 
