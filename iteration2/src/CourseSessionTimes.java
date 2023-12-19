@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class SessionTimes {
+public class CourseSessionTimes {
     
     public static final ArrayList<String> SESSION_START = new ArrayList<String>() {{
         add("07:30");
