@@ -61,11 +61,17 @@ public class Transcript {
 
 				// construct Semester objects and initialize other attributes
 				Semester semester = new Semester(semesterCourses);
-				JSONObject semesterInf = (JSONObject) semesterJson.get("SemesterInf");
-				semester.setTakenCredit(((Number) semesterInf.get("TakenCredit")).intValue());
-				semester.setCompletedCredit(((Number) semesterInf.get("CompletedCredit")).intValue());
-				semester.setYano(((Number) semesterInf.get("Yano")).doubleValue());
 
+				// Check if "SemesterInf" is present
+				if (semesterJson.containsKey("SemesterInf")) {
+					// retrieve "SemesterInf" object
+					JSONObject semesterInf = (JSONObject) semesterJson.get("SemesterInf");
+	
+					semester.setTakenCredit(((Number) semesterInf.get("TakenCredit")).intValue());
+					semester.setCompletedCredit(((Number) semesterInf.get("CompletedCredit")).intValue());
+					semester.setYano(((Number) semesterInf.get("Yano")).doubleValue());
+				}
+	
 				semesters.add(semester);
 			}
 
@@ -90,9 +96,16 @@ public class Transcript {
 			// fetch each semester's yano
 			for (int i = 0; i < arrayOfSemesters.size(); i++) {
 				JSONObject semester = (JSONObject) arrayOfSemesters.get(i);
-				// since getting a value from JSON returns a long value cast to number then get double value
-				Double ganoVal = ((Number) ((JSONObject) semester.get("SemesterInf")).get("Gano")).doubleValue();
-				gano.add(ganoVal);
+				// check if null
+				if (semester.containsKey("SemesterInf")) {
+					JSONObject semesterInf = (JSONObject) semester.get("SemesterInf");
+	
+					if (semesterInf.containsKey("Gano")) {
+						// since getting a value from JSON returns a long value, cast to number, then get double value
+						Double ganoVal = ((Number) semesterInf.get("Gano")).doubleValue();
+						gano.add(ganoVal);
+					}
+				}
 			}
 
 		} catch (Exception exception) {
