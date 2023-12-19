@@ -23,6 +23,7 @@ public class StudentCourseRegistrationInterface {
     private ArrayList<Lecture> selectedLectures;
     private ArrayList<Lab> selectedLabs;
 
+    private String registirationProcess;
     private Session session;
     private StudentInterface studentInt;
     private Scanner scanner;
@@ -89,6 +90,7 @@ public class StudentCourseRegistrationInterface {
 
     private void showStudentInf() { // advisor information is wrong
         // printing user id and name
+        getRegistirationProcess();
         System.out.println("\n" +
                 "--------------------------------------------------------------------------------");
         System.out.printf("| %40s%-45s |%n",
@@ -102,9 +104,43 @@ public class StudentCourseRegistrationInterface {
 
         System.out.printf("| %40s%-45s |%n", Colors.getYELLOW() + "Semester: " + Colors.getRESET(),
                 ((Student) (session.getUser())).getCurrentSemester());
+        System.out.printf("| %40s%-45s |%n", Colors.getYELLOW() + "Semester: " + Colors.getRESET(),
+                registirationProcess);
         System.out.println(
                 "--------------------------------------------------------------------------------");
 
+    }
+
+    private void getRegistirationProcess() {
+        // read RegistirationRequests.json and find corresponding student via student id
+        // and get the registiration process of student
+        try {
+            var stuId = session.getUser().getID();
+            var registrationRequestsJson = "jsons/RegistrationRequests.json";
+            var parser = new JSONParser();
+            var obj = parser.parse(new FileReader(registrationRequestsJson));
+            var registrationRequestsArray = (JSONArray) obj;
+            var isExists = false;
+            for (var registrationRequestObj : registrationRequestsArray) {
+                var registrationRequestJson = (JSONObject) registrationRequestObj;
+                var studentID = (String) registrationRequestJson.get("StudentID");
+                if (studentID.equals(stuId)) {
+                    isExists = true;
+                    var approvedCourses = (JSONArray) registrationRequestJson.get("ApprovedCourses");
+                    if (approvedCourses.size() == 0) {
+                        registirationProcess = "In Advisors Approval";
+                    } else {
+                        registirationProcess = "Advisor Approved";
+                    }
+                    break;
+                }
+            }
+            if (!isExists) {
+                registirationProcess = "Draft";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void selectedCoursesMenu() {
@@ -152,8 +188,8 @@ public class StudentCourseRegistrationInterface {
     private void showSelectedCourses() { // lecturer must be added
         int courseNumber = 1;
         // System.out.println(Colors.getBOLD() + Colors.getRED() +
-        //         "\n>>>> Selected Course Menu"
-        //         + Colors.getRESET() + Colors.getRESET());
+        // "\n>>>> Selected Course Menu"
+        // + Colors.getRESET() + Colors.getRESET());
         System.out.println(
                 "\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("| %-8s | %-13s | %-50s| %-50s | %-8s| %-15s |%n", "Number", "CourseID", "CourseName",
