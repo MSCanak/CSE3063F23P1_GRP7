@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class CourseSessionTimes {
     
-    public static final ArrayList<String> SESSION_START = new ArrayList<String>() {{
+    public final ArrayList<String> SESSION_START = new ArrayList<String>() {{
         add("07:30");
         add("08:30");
         add("09:30");
@@ -19,7 +19,7 @@ public class CourseSessionTimes {
         add("21:00");
     }};
 
-    public static final ArrayList<String> SESSION_END = new ArrayList<String>() {{
+    public final ArrayList<String> SESSION_END = new ArrayList<String>() {{
         add("08:20");
         add("09:20");
         add("10:20");
@@ -36,7 +36,7 @@ public class CourseSessionTimes {
         add("21:50");
 
     }};
-    public static final ArrayList<String> SESSION_DAYS = new ArrayList<String>() {{
+    public final ArrayList<String> SESSION_DAYS = new ArrayList<String>() {{
         add("Pazartesi");
         add("Salı");
         add("Çarşamba");
