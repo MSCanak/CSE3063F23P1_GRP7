@@ -47,6 +47,14 @@ public class StudentCourseRegistrationInterface {
         this.scanner = new Scanner(System.in);
     }
 
+    public Integer tryParseInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
     public void stuRegMenu() {
         while (true) {
             // showing student information
@@ -290,71 +298,79 @@ public class StudentCourseRegistrationInterface {
         while (true) {
             showStudentInf();
             System.out.println(Colors.getBOLD() + Colors.getRED() +
-                    "\n>>> Available Course Menu\n"+ Colors.getRESET() + Colors.getRESET());
-            System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Show available courses");
-
-            System.out.println("1. Show available courses");
-            System.out.println("0. Go back to Student Course Registration System\n");
-            var choice = scanner.next();
-            switch (choice) {
-                case "1":
-                    calculateAvailableCourses();
-                    showAvailableLectures();
-                    if (selectedCourses.size() >= 5) { // if student selected 5 courses already then return
-                        System.out.println("5 courses already selected, press 0 to go back");
-                        var input = "";
-                        do {
-                            input = scanner.next();
-                            if (!input.equals("0")) {
-                                System.out.println("Invalid input");
-                                continue;
-                            }
-                            return;
-                        } while (true);
+                    "\n>>> Available Course Menu\n" + Colors.getRESET() + Colors.getRESET());
+            if (selectedCourses.size() >= 5) { // if student selected 5 courses already then return
+                System.out.println("5 courses already selected, press 0 to go back");
+                var input = "";
+                do {
+                    input = scanner.next();
+                    if (!input.equals("0")) {
+                        System.out.println("Invalid input");
+                        continue;
                     }
-                    System.out.print("Select courses you want to add (for example -> 1) or cancel with entering 0: ");
-                    var input = "";
-                    do {
-                        input = scanner.next();
-                        if (input.length() == 0 || Integer.parseInt(input) > availableLectures.size()) {
-                            System.out.println("Invalid input");
-                            continue;
-                        }
-                        break;
-                    } while (true);
+                    return;
+                } while (true);
+            }
+            calculateAvailableCourses();
+            showAvailableLectures();
+            System.out.print("Select courses you want to add (for example -> 1) or cancel with entering 0: ");
+            var input = "";
+            do {
+                input = scanner.next();
+                if (tryParseInt(input) == null || input.length() == 0
+                        || Integer.parseInt(input) > availableLectures.size()) {
+                    System.out.println("Invalid input");
+                    continue;
+                }
+                break;
+            } while (true);
 
-                    if (input.equals("0")) { // if input is 0 then return to available courses menu
-                        return;
-                    }
+            if (input.equals("0")) { // if input is 0 then return to available courses menu
+                return;
+            }
 
-                    var isLabsAvailable = showAvailableLabs(Integer.parseInt(input));
-                    if (isLabsAvailable) {
-                        var labInput = "";
-                        System.out.print("Select labs you want to add (for example -> 1) or cancel with entering 0: ");
-                        do {
-                            labInput = scanner.next();
-                            if (labInput.length() == 0 || Integer.parseInt(labInput) > availableLabs.size()) {
-                                System.out.println("Invalid input");
-                                continue;
-                            }
-                            break;
-                        } while (true);
-
-                        if (input.equals("0")) { // if input is 0 then return to available courses menu
-                            break;
-                        }
-
-                        saveAvailableCourses(Integer.parseInt(input), Integer.parseInt(labInput));
-                        System.out.println("!!! Selected lecture and lab added !!!");
-                    } else {
-                        saveAvailableCourses(Integer.parseInt(input));
-                        System.out.println("!!! Selected lecture added only !!!");
+            var isLabsAvailable = showAvailableLabs(Integer.parseInt(input));
+            if (isLabsAvailable) {
+                var labInput = "";
+                System.out.print("Select labs you want to add (for example -> 1) or cancel with entering 0: ");
+                do {
+                    labInput = scanner.next();
+                    if (tryParseInt(input) == null || labInput.length() == 0
+                            || Integer.parseInt(labInput) > availableLabs.size()) {
+                        System.out.println("Invalid input");
+                        continue;
                     }
                     break;
-                case "0":
-                    return;
-                default:
-                    System.out.println("Invalid choice");
+                } while (true);
+
+                if (labInput.equals("0")) { // if labInput is 0 then return to available courses menu
+                    break;
+                }
+
+                saveAvailableCourses(Integer.parseInt(input), Integer.parseInt(labInput));
+                System.out.println("!!! Selected lecture and lab added !!!");
+            } else {
+                saveAvailableCourses(Integer.parseInt(input));
+                System.out.println("!!! Selected lecture added only !!!");
+            }
+            System.out.println("\n1. Select Again");
+            System.out.println("0. Go back to Student Course Registration System\n");
+            var choice = "";
+            do {
+                choice = scanner.next();
+                if (tryParseInt(input) == null || choice.length() == 0
+                        || Integer.parseInt(choice) > 1) {
+                    System.out.println("Invalid input");
+                    continue;
+                }
+                break;
+            } while (true);
+
+            if (choice.equals("0")) {
+                return;
+            }
+            if (choice.equals("1")) {
+                continue;
             }
         }
     }
