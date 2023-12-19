@@ -61,7 +61,13 @@ public class StudentInterface implements Schedule {
                     break;
 
                 case '2': // viewing weekly schedule
-                    showWeeklySchedule(calculateWeeklySchedule());
+                    ArrayList<Course> courses = calculateWeeklySchedule();
+                    if (courses.size() == 0) {
+                        System.out.println(Colors.getYELLOW() + "\nYou have no courses for this semester!"
+                                + Colors.getRESET());
+                        continue;
+                    }
+                    showWeeklySchedule(courses);
                     break;
 
                 case '3': // viewing transcript
