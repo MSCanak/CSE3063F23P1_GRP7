@@ -61,7 +61,30 @@ public class StudentInterface implements Schedule {
                     break;
 
                 case '2': // viewing weekly schedule
-                    showWeeklySchedule(calculateWeeklySchedule());
+                    ArrayList<Course> courses = calculateWeeklySchedule();
+                    if (courses.size() == 0) {
+                        System.out.println(Colors.getYELLOW() + "\nYou have no courses for this semester!"
+                                + Colors.getRESET());
+                        while (true) {
+                            System.out.println(
+                                    Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
+                            String backChoiceLine = input.nextLine();
+                            if (backChoiceLine.length() > 1) {
+                                System.out.println(Colors.getYELLOW() + "Invalid input! Please give a number!"
+                                        + Colors.getRESET());
+                                continue;
+                            }
+                            char backChoice = backChoiceLine.charAt(0);
+                            if (backChoice == '0') {
+                                break;
+                            } else {
+                                System.out.println(
+                                        Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
+                            }
+                        }
+                    } else {
+                        showWeeklySchedule(courses);
+                    }
                     break;
 
                 case '3': // viewing transcript
@@ -172,11 +195,18 @@ public class StudentInterface implements Schedule {
         while (a) {
             System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
             input = new Scanner(System.in);
-            char backChoice = input.next().charAt(0);
+            String backChoiceLine = input.nextLine();
+            if (backChoiceLine.length() > 1) {
+                System.out.println(
+                        Colors.getYELLOW() + "Invalid input! Please give a number!" + Colors.getRESET());
+                continue;
+            }
+            char backChoice = backChoiceLine.charAt(0);
             if (backChoice == '0') {
-                stuMenu();
+                return;
             } else {
                 System.out.println(Colors.getYELLOW() + "Invalid input! Please try again." + Colors.getRESET());
+                continue;
             }
         }
     }
@@ -326,42 +356,44 @@ public class StudentInterface implements Schedule {
 
         WeeklySchedule weeklySchedule = new WeeklySchedule();
 
-        for (int k = 0; k < CourseSessionTimes.SESSION_START.size(); k++) {
+        CourseSessionTimes courseSessionTimes = new CourseSessionTimes();
+
+        for (int k = 0; k < courseSessionTimes.SESSION_START.size(); k++) {
 
             mondayCourses = weeklySchedule.printMondayCourses(mondayCoursesID, mondayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             tuesdayCourses = weeklySchedule.printTuesdayCourses(tuesdayCoursesID, tuesdayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START,
+                    courseSessionTimes.SESSION_START,
                     k);
             wednesdayCourses = weeklySchedule.printWednesdayCourses(wednesdayCoursesID, wednesdayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             thursdayCourses = weeklySchedule.printThursdayCourses(thursdayCoursesID, thursdayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             fridayCourses = weeklySchedule.printFridayCourses(fridayCoursesID, fridayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             saturdayCourses = weeklySchedule.printSaturdayCourses(saturdayCoursesID, saturdayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             sundayCourses = weeklySchedule.printSundayCourses(sundayCoursesID, sundayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
 
             mondayCoursePlace = weeklySchedule.printMondayCoursePlace(mondayCoursesPlace, mondayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             tuesdayCoursePlace = weeklySchedule.printTuesdayCoursePlace(tuesdayCoursesPlace, tuesdayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             wednesdayCoursePlace = weeklySchedule.printWednesdayCoursePlace(wednesdayCoursesPlace,
                     wednesdayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             thursdayCoursePlace = weeklySchedule.printThursdayCoursePlace(thursdayCoursesPlace,
                     thursdayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             fridayCoursePlace = weeklySchedule.printFridayCoursePlace(fridayCoursesPlace, fridayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
             saturdayCoursePlace = weeklySchedule.printSaturdayCoursePlace(saturdayCoursesPlace,
                     saturdayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START,
+                    courseSessionTimes.SESSION_START,
                     k);
             sundayCoursePlace = weeklySchedule.printSundayCoursePlace(sundayCoursesPlace, sundayCoursesStartTime,
-                    CourseSessionTimes.SESSION_START, k);
+                    courseSessionTimes.SESSION_START, k);
 
             if (mondayCourses != "" || tuesdayCourses != "" || wednesdayCourses != "" || thursdayCourses != ""
                     || fridayCourses != "" || saturdayCourses != "" || sundayCourses != "") {
@@ -372,7 +404,7 @@ public class StudentInterface implements Schedule {
                         tuesdayCourses, wednesdayCourses, thursdayCourses, fridayCourses, saturdayCourses,
                         sundayCourses);
                 System.out.printf("|  %-15s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|%n",
-                        CourseSessionTimes.SESSION_START.get(k) + " - " + CourseSessionTimes.SESSION_END.get(k),
+                        courseSessionTimes.SESSION_START.get(k) + " - " + courseSessionTimes.SESSION_END.get(k),
                         mondayCoursePlace, tuesdayCoursePlace, wednesdayCoursePlace, thursdayCoursePlace,
                         fridayCoursePlace, saturdayCoursePlace, sundayCoursePlace);
             }
@@ -390,7 +422,7 @@ public class StudentInterface implements Schedule {
                 System.out.println(
                         Colors.getYELLOW() + "Invalid input format! Please give a number!" + Colors.getRESET());
                 continue;
-                
+
             }
             char caseToken = caseTokenLine.charAt(0);
             System.out.print(Colors.getRESET());
