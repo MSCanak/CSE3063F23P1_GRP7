@@ -253,7 +253,7 @@ public class AdvisorCourseRegistrationInterface {
 
             String course = idToCourses.get(studentID).get(choice - 1);
             if (selectionCourses.contains(course)) {
-                System.out.println(Colors.getYELLOW() + "You have already approved this course!" + Colors.getRESET());
+                System.out.println(Colors.getYELLOW() + "You have already approved this course! Press 0" + Colors.getRESET());
                 continue;
             }
             else {
