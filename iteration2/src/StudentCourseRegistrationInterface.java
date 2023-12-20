@@ -50,12 +50,63 @@ public class StudentCourseRegistrationInterface {
         this.scanner = new Scanner(System.in);
     }
 
-    public Integer tryParseInt(String value) {
+    private Integer tryParseInt(String value) {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
             return null;
         }
+    }
+
+    private boolean checkConflict(Lecture selectedLecture, Lab selectedLab) {
+        if (checkConflict(selectedLecture)) {
+            return true;
+        }
+        var selectedLabCourseSession = selectedLab.getCourseSession();
+        var selectedLabCourseDays = selectedLabCourseSession.getCourseDay();
+        var selectedLabCourseStartTimes = selectedLabCourseSession.getCourseStartTime();
+
+        for (var lab : selectedLabs) {
+            var labCourseSession = lab.getCourseSession();
+            var labCourseDays = labCourseSession.getCourseDay();
+            var labCourseStartTimes = labCourseSession.getCourseStartTime();
+            for (int i = 0; i < selectedLabCourseDays.size(); i++) {
+                for (int j = 0; j < labCourseDays.size(); j++) {
+                    if (selectedLabCourseDays.get(i).equals(labCourseDays.get(j))) {
+                        if (selectedLabCourseStartTimes.get(i).equals(labCourseStartTimes.get(j))) {
+                            System.err.println("\n!!! There is a conflict between " + selectedLab.getLabID()
+                                    + " and " + lab.getLabID() + " !!!\n");
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkConflict(Lecture selectedLecture) {
+        var selectedLectureCourseSession = selectedLecture.getCourseSession();
+        var selectedLectureCourseDays = selectedLectureCourseSession.getCourseDay();
+        var selectedLectureCourseStartTimes = selectedLectureCourseSession.getCourseStartTime();
+
+        for (var lecture : selectedLectures) {
+            var lectureCourseSession = lecture.getCourseSession();
+            var lectureCourseDays = lectureCourseSession.getCourseDay();
+            var lectureCourseStartTimes = lectureCourseSession.getCourseStartTime();
+            for (int i = 0; i < selectedLectureCourseDays.size(); i++) {
+                for (int j = 0; j < lectureCourseDays.size(); j++) {
+                    if (selectedLectureCourseDays.get(i).equals(lectureCourseDays.get(j))) {
+                        if (selectedLectureCourseStartTimes.get(i).equals(lectureCourseStartTimes.get(j))) {
+                            System.err.println("\n!!! There is a conflict between " + selectedLecture.getLectureID()
+                                    + " and " + lecture.getLectureID() + " !!!\n");
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public void stuRegMenu() {
@@ -427,11 +478,18 @@ public class StudentCourseRegistrationInterface {
                 if (labInput.equals("0")) { // if labInput is 0 then return to available courses menu
                     break;
                 }
-
-                saveAvailableCourses(Integer.parseInt(input), Integer.parseInt(labInput));
+                var selectedLecture = availableLectures.get(Integer.parseInt(input) - 1);
+                var selectedLab = availableLabs.get(Integer.parseInt(labInput) - 1);
+                var hasConflict = checkConflict(selectedLecture, selectedLab);
+                if (hasConflict) {
+                    continue;
+                }
+                saveAvailableCourses(selectedLecture, selectedLab);
                 System.out.println("!!! Selected lecture and lab added !!!");
             } else {
-                saveAvailableCourses(Integer.parseInt(input));
+                var selectedLecture = availableLectures.get(Integer.parseInt(input) - 1);
+                checkConflict(selectedLecture);
+                saveAvailableCourses(selectedLecture);
                 System.out.println("!!! Selected lecture added only !!!");
             }
             System.out.println("\n1. Select Again");
@@ -802,20 +860,20 @@ public class StudentCourseRegistrationInterface {
         return true;
     }
 
-    private void saveAvailableCourses(int selectedLectureIndex, int selectedLabIndex) {
-        selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1))); // cast lecture to course
-        selectedLectures.add(availableLectures.get(selectedLectureIndex - 1)); // add lecture to selected lectures
-        selectedLabs.add(availableLabs.get(selectedLabIndex - 1)); // add lab to selected labs
-        System.out.println("\nSelected Lecture: " + availableLectures.get(selectedLectureIndex - 1).getLectureID()
+    private void saveAvailableCourses(Lecture selectedLecture, Lab selectedLab) {
+        selectedCourses.add((Course) (selectedLecture)); // cast lecture to course
+        selectedLectures.add(selectedLecture); // add lecture to selected lectures
+        selectedLabs.add(selectedLab); // add lab to selected labs
+        System.out.println("\nSelected Lecture: " + selectedLecture.getLectureID()
                 + "\nSelected Lab: "
-                + availableLabs.get(selectedLabIndex - 1).getLabID()); // print selected lecture and lab together
+                + selectedLab.getLabID()); // print selected lecture and lab together
     }
 
-    private void saveAvailableCourses(int selectedLectureIndex) { // if there is no lab
-        selectedCourses.add((Course) (availableLectures.get(selectedLectureIndex - 1))); // cast lecture to course
-        selectedLectures.add(availableLectures.get(selectedLectureIndex - 1)); // add lecture
-        System.out.println("\nSelected Lecture: " + availableLectures.get(selectedLectureIndex - 1).getLectureID()); // print
-                                                                                                                     // selected
+    private void saveAvailableCourses(Lecture selectedLecture) { // if there is no lab
+        selectedCourses.add((Course) (selectedLecture)); // cast lecture to course
+        selectedLectures.add(selectedLecture); // add lecture
+        System.out.println("\nSelected Lecture: " + selectedLecture.getLectureID()); // print
+                                                                                     // selected
         // lecture
     }
 
