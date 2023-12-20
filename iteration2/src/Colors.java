@@ -22,6 +22,7 @@ public class Colors {
 
     private final String BOLD = "\u001B[1m";
     private final String UNDERLINE = "\u001B[4m";
+    private final String ITALIC = "\u001B[3m";
 
     public String getRESET() {
         return RESET;
@@ -80,6 +81,9 @@ public class Colors {
     }
     public String getCYAN_BACKGROUND() {
         return CYAN_BACKGROUND;
+    }
+    public String getITALIC() {
+        return ITALIC;
     }
     
 
