@@ -38,7 +38,7 @@ public class MessagesInterface {
     public void messagesMenu() {
         int choice = 0;
         while (true) {
-            System.out.println(Colors.getRED() + Colors.getBOLD() + "\n> Messages Menu\n" + Colors.getRESET());
+            System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>> Messages Menu\n" + Colors.getRESET());
             System.out
                     .println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   " + Colors.getGREEN() + "New Message"
                             + Colors.getRESET());
@@ -96,14 +96,21 @@ public class MessagesInterface {
     private void showReceivedMessages() {
         calculateReceivedMessages();
         System.out.println(
-                Colors.getRED()+Colors.getBOLD() + "\n>> Received Messages\n" + Colors.getRESET()+Colors.getRESET());
-        for (Message message : receivedMessages) { //DÜZENLEME YAPILACAK
-            System.out.println("----------------------------------------");
-            System.out.println("Sender: " + message.getSenderID());
-            System.out.println("Subject: " + message.getSubject());
-            System.out.println("Description: " + message.getDescription());
+                Colors.getRED()+Colors.getBOLD() + "\n>>> Received Messages\n" + Colors.getRESET()+Colors.getRESET());
+        int i = 1;
+        if (receivedMessages.size() == 0) {
+            
+            System.out.println(Colors.getYELLOW()+"You have no received messages.\n"+Colors.getRESET());
+            return;
         }
-        System.out.println("----------------------------------------");
+        
+        for (Message message : receivedMessages) { 
+            System.out.println(Colors.getBLUE()+"Received Message " + i++ + ":" + Colors.getRESET());
+            System.out.println(Colors.getYELLOW()+"\tSender: " +Colors.getRESET()+ message.getSenderID());
+            System.out.println(Colors.getYELLOW()+"\tSubject: " +Colors.getRESET()+ message.getSubject());
+            System.out.println(Colors.getYELLOW()+"\tDescription: " +Colors.getRESET()+ message.getDescription());
+        }
+        System.out.println("");
     }
 
     private void calculateSentMessages() {
@@ -126,15 +133,22 @@ public class MessagesInterface {
 
     private void showSentMessages() {
         calculateSentMessages();
+        int i=1;
+        
         System.out
                 .println(Colors.getRED()+ Colors.getBOLD()+ "\n>> Sent Messages\n" + Colors.getRESET()+Colors.getRESET());
-        for (Message message : sentMessages) {
-            System.out.println("----------------------------------------");
-            System.out.println("Receiver: " + message.getReceiverID());
-            System.out.println("Subject: " + message.getSubject());
-            System.out.println("Description: " + message.getDescription());
+        if (sentMessages.size() == 0) {
+            System.out.println(Colors.getYELLOW()+"You have no sent messages.\n"+Colors.getRESET());
+            return;
         }
-        System.out.println("----------------------------------------");
+
+        for (Message message : sentMessages) {
+            System.out.println(Colors.getBLUE()+"Sent Message " + i++ + ":" + Colors.getRESET());
+            System.out.println(Colors.getYELLOW()+"\tReceiver: " +Colors.getRESET()+ message.getReceiverID());
+            System.out.println(Colors.getYELLOW()+"\tSubject: " +Colors.getRESET()+ message.getSubject());
+            System.out.println(Colors.getYELLOW()+"\tDescription: " +Colors.getRESET()+ message.getDescription());
+        }
+        System.out.println("");
     }
 
     // send message specific person
