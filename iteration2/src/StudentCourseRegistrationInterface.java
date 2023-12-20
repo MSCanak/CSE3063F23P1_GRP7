@@ -27,6 +27,8 @@ public class StudentCourseRegistrationInterface {
     private Session session;
     private StudentInterface studentInt;
     private Scanner scanner;
+    private MessagesInterface messagesInterface;
+
 
     public StudentCourseRegistrationInterface(Session session, StudentInterface studentInt) {
         this.session = session;
@@ -65,6 +67,7 @@ public class StudentCourseRegistrationInterface {
                     + Colors.getRESET() + Colors.getRESET());
             System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Selected Courses Menu");
             System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   Available Courses Menu");
+            System.out.println(Colors.getYELLOW() + "3" + Colors.getRESET() + ".   Messages Menu");
             System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".   Go back to Student Menu");
             System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
 
@@ -78,6 +81,10 @@ public class StudentCourseRegistrationInterface {
                     break;
                 case "2":
                     availableCoursesMenu();
+                    break;
+                case "3":
+                    messagesInterface = new MessagesInterface(session);
+                    messagesInterface.messagesMenu();
                     break;
                 case "0":
                     return;
