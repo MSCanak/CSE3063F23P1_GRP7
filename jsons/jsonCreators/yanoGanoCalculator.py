@@ -1,9 +1,10 @@
+
 import json
-for i in range(0, 10):
+for i in range(0, 40):
     id = 150120000 + i
 
     fileName = (str)(id) + ".json"
-    with open(fileName, "r") as f:
+    with open("./newone/" + fileName, "r") as f:
         students = json.load(f)
 
     totalCredit = 0
@@ -22,10 +23,11 @@ for i in range(0, 10):
         totalCredit += semesterCredit
         yano = semesterGrade / semesterCredit
         gano = totalGrade / totalCredit
+        k["SemesterInf"] = {}
         k["SemesterInf"]["Yano"] = yano
         k["SemesterInf"]["Gano"] = gano
         k["SemesterInf"]["TakenCredit"] = totalCredit
-        k["SemesterInf"]["ComplatedCredit"] = totalCredit
+        k["SemesterInf"]["CompletedCredit"] = totalCredit
 
 
     with open(fileName, "w") as outfile:
