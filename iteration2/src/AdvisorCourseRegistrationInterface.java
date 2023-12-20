@@ -74,31 +74,27 @@ public class AdvisorCourseRegistrationInterface {
             System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".   Go Back to Advisor Menu");
             System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
             System.out.print(Colors.getBLUE());
-            String choiceLine = scanner.nextLine();
-            if (choiceLine.length() > 1) {
-                System.out.println(Colors.getYELLOW() + "\nInvalid input format! Please give a number." + Colors.getRESET());
-                continue;
-            }
-            char choice = choiceLine.charAt(0);
+            int choice = scanner.nextInt();
+
             System.out.print(Colors.getRESET());
 
             switch (choice) {
-                case '1':
+                case 1:
                     showStudents();
                     showStudentsQuestionPart();
                     break;
-                case '2':
+                case 2:
                     approveCoursesMenu();
                     // return;
                     break;
-                case '3':
+                case 3:
                     finalizeRegistrationMenu();
                     break;
-                case '4':
+                case 4:
                     messagesInterface = new MessagesInterface(session);
                     messagesInterface.messagesMenu();
                     break;
-                case '0':
+                case 0:
                     return; // go back to advisor menu
                 default:
                     System.out.println(Colors.getYELLOW() + "\nInvalid input! Please try again." + Colors.getRESET());
@@ -333,7 +329,10 @@ public class AdvisorCourseRegistrationInterface {
         int choice = scanner.nextInt();
         System.out.print(Colors.getRESET());
         Advisor advisor = (Advisor) session.getUser();
-
+        
+        if (choice == 0) {
+            return;
+        }
         Student curStudent = advisor.getStudents().get(choice - 1);
         Object forDelete = new Object();
         for (Object requestObj : requestJson) {
