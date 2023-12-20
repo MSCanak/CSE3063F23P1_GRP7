@@ -24,30 +24,45 @@ public class NotificationsInterface {
 
         if (notifications.isEmpty()) {
             System.out.println(
-                    Colors.getYELLOW() + "There are no notifications available at the moment!\n" + Colors.getRESET());
+                    Colors.getYELLOW() + "There are no notifications available at the moment!" + Colors.getRESET());
+            System.out.println(
+                    "You will be " + Colors.getGREEN() + "directed" + Colors.getRESET() + " to the Main Menu!");
             return;
         }
 
         int i = 1;
-        char isReadSign = 'o';
-        String BG;
-        String blank = " ";
+        String Color;
+
         for (Notification notification : notifications) {
 
             String isRead = notification.getIsRead() ? "Read" : "Unread";
             String senderID = notification.getSenderID();
             String timeSent = notification.getTimeSent().toString();
             String description = notification.getDescription();
+            String timeDate;
+            String time;
+            String isNew;
 
             if (isRead.equals("Read")) {
-                BG = Colors.getBLACK_BACKGROUND();
+                Color = Colors.getBLUE();
+                isNew = "";
             } else {
-                BG = Colors.getCYAN_BACKGROUND();
+                Color = Colors.getGREEN();
+                isNew = "New";
             }
 
-            System.out.println("--------------------");
-            System.out.printf("%n%s %3s %-15s%10s %n %3s %-3s %n %3s %-3s%-10s %s%n", BG, blank, senderID, timeSent, i,
-                    blank, isReadSign, description, Colors.getRESET());
+            // System.out.println("--------------------");
+            // System.out.printf("%n%s",BG);
+
+            // System.out.printf("o %-15s%n\t%-15s%n\t%30s", senderID, description,
+            // timeSent);
+            System.out.println(i + "  " + Color + isNew + " Notification " + Colors.getRESET()+ "\t"+ timeSent);
+            System.out.println("\tDescription: ");
+            System.out.println(Colors.getBLUE() + "\t  o  " + Colors.getRESET() + Colors.getITALIC() + description
+                    + Colors.getRESET());
+            System.out.print(Colors.getRESET());
+            System.out.println("");
+
             i++;
         }
     }
@@ -86,7 +101,7 @@ public class NotificationsInterface {
 
         while (true) {
             System.out
-                    .println(Colors.getRED() + Colors.getBOLD() + "\n> Notifications Menu\n" + Colors.getRESET());
+                    .println(Colors.getRED() + Colors.getBOLD() + "\n>> Notifications Menu\n" + Colors.getRESET());
 
             // notifications
             showNotifications();
@@ -130,7 +145,7 @@ public class NotificationsInterface {
         // notifications with numbers
 
         while (true) {
-            System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>> Mark as Read Menu\n" + Colors.getRESET()
+            System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>>> Mark as Read Menu\n" + Colors.getRESET()
                     + Colors.getRESET());
             showNotifications();
             System.out.println("Which notification do you want to mark as read?");
@@ -168,7 +183,7 @@ public class NotificationsInterface {
     private void deleteNotification() {
         // notifications with numbers
         while (true) {
-            System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>> Delete Notification Menu\n"
+            System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>>> Delete Notification Menu\n"
                     + Colors.getRESET() + Colors.getRESET());
             showNotifications();
             System.out.println("Which notification do you want to delete?");
