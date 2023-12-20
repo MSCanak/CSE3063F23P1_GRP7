@@ -10,6 +10,7 @@ public class Transcript {
 	private Student student;
 	private ArrayList<Double> gano;
 	private ArrayList<Semester> semesters;
+	Colors colors = new Colors();
 
 	public Transcript(Student student) {
 		this.student = student;
@@ -115,13 +116,19 @@ public class Transcript {
 	}
 
 	public void viewTranscript() {
-		System.out.printf("%nStudent ID: %s\nName and Surname: %s%n", student.getID(),
-				student.getName() + " " + student.getSurname());
+		System.out.println(
+				colors.getRED() + colors.getBOLD() + "\n>> Transcript\n" + colors.getRESET() + colors.getRESET());
+
+		System.out.print(colors.getGREEN() + "Student ID: " + colors.getRESET() + student.getID() + "\n"
+				+ colors.getGREEN() + "Name and Surname: " + colors.getRESET() + student.getName() + " "
+				+ student.getSurname() + "\n");
 		for (int i = 0; i < semesters.size(); i++) {
 			System.out.println(
 					"-------------------------------------------------------------------------------------------------------------");
-			System.out.println("Semester " + (i + 1) + "\n");
+			System.out.println(colors.getBLUE()+"Semester " + (i + 1) + "\n"+colors.getRESET());
+			System.out.print(colors.getYELLOW());
 			System.out.printf("\t%-15s%-70s%-10s%-10s%n%n", "Course Code", "Course Name", "Credit", "Grade");
+			System.out.print(colors.getRESET());
 			Semester currentSemester = semesters.get(i);
 			for (Course course : currentSemester.getCourses()) {
 				System.out.printf("\t%-15s%-70s%-10s%-10s%n", course.getCourseID(),
@@ -131,19 +138,19 @@ public class Transcript {
 			System.out.println();
 			int takenCredit = currentSemester.getTakenCredit();
 			if (takenCredit != 0) {
-				System.out.println("Taken Credit: " + takenCredit);
+				System.out.println(colors.getYELLOW()+"Taken Credit: "+colors.getRESET() + takenCredit);
 			}
-			System.out.println("Completed Credit: "
+			System.out.println(colors.getYELLOW()+"Completed Credit: "+colors.getRESET()
 					+ (currentSemester.getCompletedCredit() != 0 ? currentSemester.getCompletedCredit()
 							: "Semester has not been completed yet"));
-			System.out.println("Yano: "
+			System.out.println(colors.getYELLOW()+"Yano: "+colors.getRESET()
 					+ (currentSemester.getYano() != 0.0 ? String.format("%.2f", currentSemester.getYano())
 							: "Semester has not been completed yet"));
 
 			int ganoIndex = i < gano.size() ? i : gano.size() - 1;
 			double currentGano = ganoIndex >= 0 ? gano.get(ganoIndex) : 0.0;
 			if (currentGano != 0.0) {
-				System.out.println("Gano: " + String.format("%.2f", currentGano));
+				System.out.println(colors.getYELLOW()+"Gano: "+colors.getRESET() + String.format("%.2f", currentGano));
 			} else {
 				System.out.println("Gano: N/A");
 			}
