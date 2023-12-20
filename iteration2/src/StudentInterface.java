@@ -64,8 +64,10 @@ public class StudentInterface implements Schedule {
 
                 case '2': // viewing weekly schedule
                     ArrayList<Course> courses = calculateWeeklySchedule();
+                    System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>> Weekly Schedule\n" + Colors.getRESET()
+                            + Colors.getRESET());
                     if (courses.size() == 0) {
-                        System.out.println(Colors.getYELLOW() + "\nYou have no courses for this semester!\n"
+                        System.out.println(Colors.getYELLOW() + "You have no courses for this semester!\n"
                                 + Colors.getRESET());
                         while (true) {
                             System.out.println(
@@ -167,6 +169,7 @@ public class StudentInterface implements Schedule {
         coursesJSONobj = new JSONParser().parse(new FileReader("./jsons/courses.json"));
 
         courseJSONarr = (JSONArray) coursesJSONobj;
+        System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>> Curriculum\n" + Colors.getRESET()+Colors.getRESET());
 
         int previousSemester = -1;
         for (Object courseObj : courseJSONarr) {
@@ -192,9 +195,10 @@ public class StudentInterface implements Schedule {
                     .replace("]", "").replace(", ", "-");
 
             if (previousSemester != Semester) {
+                
                 System.out.printf(
                         "%n-----------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
-                System.out.printf("%sSemester %s%s%n", Colors.getRED(), Semester, Colors.getRESET());
+                System.out.printf("%sSemester %s%s%n", Colors.getBLUE(), Semester, Colors.getRESET());
                 System.out.printf("%n\t%s%-10s%-58s%-15s%-8s%-25s%-25s%s%n%n", Colors.getYELLOW(),
                         "CourseID", "CourseName", "Type", "Credit",
                         "OptionalPrerequisites", "MandatoryPrerequisites", Colors.getRESET());
