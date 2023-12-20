@@ -63,7 +63,7 @@ public class StudentInterface implements Schedule {
                 case '2': // viewing weekly schedule
                     ArrayList<Course> courses = calculateWeeklySchedule();
                     if (courses.size() == 0) {
-                        System.out.println(Colors.getYELLOW() + "\nYou have no courses for this semester!"
+                        System.out.println(Colors.getYELLOW() + "\nYou have no courses for this semester!\n"
                                 + Colors.getRESET());
                         while (true) {
                             System.out.println(
@@ -193,7 +193,7 @@ public class StudentInterface implements Schedule {
         }
         boolean a = true;
         while (a) {
-            System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
+            System.out.println(Colors.getYELLOW() + "\n0" + Colors.getRESET() + ".  Go back to the Student Menu.");
             input = new Scanner(System.in);
             String backChoiceLine = input.nextLine();
             if (backChoiceLine.length() > 1) {
