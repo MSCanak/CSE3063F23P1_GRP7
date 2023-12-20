@@ -40,8 +40,10 @@ public class StudentInterface implements Schedule {
             System.out.println(Colors.getYELLOW() + "*" + Colors.getRESET() + ".   Logout");
             System.out.println(Colors.getYELLOW() + "x" + Colors.getRESET() + ".   Exit");
             System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
-
+            System.out.print(Colors.getBLUE());
             input = new Scanner(System.in);
+            System.out.print(Colors.getRESET());
+
             // get user choice
             String choiceLine = input.nextLine();
             System.out.print(Colors.getBLUE());
@@ -68,7 +70,13 @@ public class StudentInterface implements Schedule {
                         while (true) {
                             System.out.println(
                                     Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
+                            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET()
+                                    + "What do you want to do?   ");
+                            System.out.print(Colors.getBLUE());
+
                             String backChoiceLine = input.nextLine();
+                            System.out.print(Colors.getRESET());
+
                             if (backChoiceLine.length() > 1) {
                                 System.out.println(Colors.getYELLOW() + "Invalid input! Please give a number!"
                                         + Colors.getRESET());
@@ -92,8 +100,15 @@ public class StudentInterface implements Schedule {
                     boolean a = true;
                     while (a) {
                         System.out.println(
+                                "-------------------------------------------------------------------------------------------------------------\n");
+
+                        System.out.println(
                                 Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Student Menu.");
+                        System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET()
+                                + "What do you want to do?   ");
+                        System.out.print(Colors.getBLUE());
                         String backChoiceLine = input.nextLine();
+                        System.out.print(Colors.getRESET());
                         if (backChoiceLine.length() > 1) {
                             System.out.println(Colors.getYELLOW() + "Invalid input! Please give a number!"
                                     + Colors.getRESET());
@@ -179,22 +194,28 @@ public class StudentInterface implements Schedule {
             if (previousSemester != Semester) {
                 System.out.printf(
                         "%n-----------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
-                System.out.printf("%sSemester %s%s", Colors.getRED(), Semester, Colors.getRESET());
-                System.out.printf("\t%s%-10s%-45s%-15s%-8s%-35s%-35s%s%n%n", Colors.getYELLOW(),
+                System.out.printf("%sSemester %s%s%n", Colors.getRED(), Semester, Colors.getRESET());
+                System.out.printf("%n\t%s%-10s%-58s%-15s%-8s%-25s%-25s%s%n%n", Colors.getYELLOW(),
                         "CourseID", "CourseName", "Type", "Credit",
                         "OptionalPrerequisites", "MandatoryPrerequisites", Colors.getRESET());
                 previousSemester = (int) Semester;
             }
 
-            System.out.printf("\t\t%-10s%-45s%-15s%-8s%-35s%-35s%n",
+            System.out.printf("\t\t%-10s%-58s%-15s%-8s%-25s%-25s%n",
                     CourseID, CourseName, Type, Credit,
                     optionalPrerequisitesString, mandatoryPrerequisitesString);
 
         }
         boolean a = true;
         while (a) {
+            System.out.printf(
+                    "%n-----------------------------------------------------------------------------------------------------------------------------------------------------------------%n");
             System.out.println(Colors.getYELLOW() + "\n0" + Colors.getRESET() + ".  Go back to the Student Menu.");
+            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET()
+                    + "What do you want to do?   ");
+            System.out.print(Colors.getBLUE());
             input = new Scanner(System.in);
+            System.out.print(Colors.getRESET());
             String backChoiceLine = input.nextLine();
             if (backChoiceLine.length() > 1) {
                 System.out.println(
