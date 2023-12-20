@@ -29,7 +29,6 @@ public class StudentCourseRegistrationInterface {
     private Scanner scanner;
     private MessagesInterface messagesInterface;
 
-
     public StudentCourseRegistrationInterface(Session session, StudentInterface studentInt) {
         this.session = session;
         this.studentInt = studentInt;
@@ -74,8 +73,9 @@ public class StudentCourseRegistrationInterface {
                 for (int j = 0; j < labCourseDays.size(); j++) {
                     if (selectedLabCourseDays.get(i).equals(labCourseDays.get(j))) {
                         if (selectedLabCourseStartTimes.get(i).equals(labCourseStartTimes.get(j))) {
-                            System.err.println("\n!!! There is a conflict between " + selectedLab.getLabID()
-                                    + " and " + lab.getLabID() + " !!!\n");
+                            System.err.println(
+                                    Colors.getYELLOW() + "\n There is a conflict between " + selectedLab.getLabID()
+                                            + " and " + lab.getLabID() + " !\n" + Colors.getRESET());
                             return true;
                         }
                     }
@@ -98,8 +98,9 @@ public class StudentCourseRegistrationInterface {
                 for (int j = 0; j < lectureCourseDays.size(); j++) {
                     if (selectedLectureCourseDays.get(i).equals(lectureCourseDays.get(j))) {
                         if (selectedLectureCourseStartTimes.get(i).equals(lectureCourseStartTimes.get(j))) {
-                            System.err.println("\n!!! There is a conflict between " + selectedLecture.getLectureID()
-                                    + " and " + lecture.getLectureID() + " !!!\n");
+                            System.err.println(Colors.getYELLOW() + "\nThere is a conflict between "
+                                    + selectedLecture.getLectureID()
+                                    + " and " + lecture.getLectureID() + " !\n" + Colors.getRESET());
                             return true;
                         }
                     }
@@ -112,10 +113,10 @@ public class StudentCourseRegistrationInterface {
     public void stuRegMenu() {
         while (true) {
             // showing student information
-            showStudentInf();
             System.out.println(Colors.getBOLD() + Colors.getRED() +
                     "\n>> Student Course Registration System\n"
                     + Colors.getRESET() + Colors.getRESET());
+            showStudentInf();
             System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Selected Courses Menu");
             System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   Available Courses Menu");
             System.out.println(Colors.getYELLOW() + "3" + Colors.getRESET() + ".   Messages Menu");
@@ -203,10 +204,11 @@ public class StudentCourseRegistrationInterface {
 
     private void selectedCoursesMenu() {
         while (true) {
+            System.out.println(Colors.getBOLD() + Colors.getRED() +
+                    "\n>>> Selected Course Menu" + Colors.getRESET() + Colors.getRESET());
             showStudentInf();
             showSelectedCourses();
-            System.out.println(Colors.getBOLD() + Colors.getRED() +
-                    "\n>>> Selected Course Menu\n" + Colors.getRESET() + Colors.getRESET());
+
             // System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ". Show
             // selected courses");
             System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Delete selected courses");
@@ -275,9 +277,10 @@ public class StudentCourseRegistrationInterface {
 
     private void deleteSelectedCourseMenu() {
         while (true) {
-            showStudentInf();
             System.out.println(Colors.getBOLD() + Colors.getRED() +
-                    "\n>>>> Delete Selected Course Menu\n" + Colors.getRESET() + Colors.getRESET());
+                    "\n>>>> Delete Selected Course Menu" + Colors.getRESET() + Colors.getRESET());
+            showStudentInf();
+
             System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Delete all selected courses");
             System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   Delete a selected course");
             System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".   Go back to Selected Course Menu\n");
@@ -287,8 +290,14 @@ public class StudentCourseRegistrationInterface {
             System.out.print(Colors.getRESET());
             switch (choice) {
                 case "1": {
-                    System.out.print("Do you want to delete selected courses? (y/n): ");
+
+                    System.out.print(
+                            Colors.getBLUE() + "--> " + Colors.getRESET() + "Do you want to delete selected courses? ("
+                                    + Colors.getYELLOW() + "y/n" + Colors.getRESET() + "): ");
+                    System.out.print(Colors.getBLUE());
+
                     var saveChoice = scanner.next();
+                    System.out.print(Colors.getRESET());
                     if (saveChoice.toLowerCase().equals("y")) {
                         selectedCourses.clear();
                         selectedLectures.clear();
@@ -300,24 +309,30 @@ public class StudentCourseRegistrationInterface {
                 case "2": {
                     // showSelectedCourses();
                     System.out.print(
-                            "Enter the number of the courses you want to delete (for example -> 1-2-3) or cancel with entering 0: ");
+                            "Enter the number of the courses you want to delete (for example -> 1-2-3): ");
+                    System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET()
+                            + ".   Go back to Student Course Registration System");
+                    System.out.print(Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+
                     String[] selectedIndexes;
                     do {
+                        System.out.print(Colors.getBLUE());
                         var input = scanner.next();
+                        System.out.print(Colors.getRESET());
                         if (input.length() == 0) {
-                            System.out.println("Invalid input");
+                            System.out.println(Colors.getYELLOW() + "Invalid choice" + Colors.getRESET());
                             continue;
                         }
                         selectedIndexes = input.split("-");
                         if (selectedIndexes.length > selectedLectures.size()) {
-                            System.out.println("Invalid input");
+                            System.out.println(Colors.getYELLOW() + "Invalid choice" + Colors.getRESET());
                             continue;
                         }
                         var isInvalid = false;
                         for (var selectedIndex : selectedIndexes) {
                             if (tryParseInt(selectedIndex) == null || Integer.parseInt(selectedIndex) > selectedLectures
                                     .size()) {
-                                System.out.println("Invalid input");
+                                System.out.println(Colors.getYELLOW() + "Invalid choice" + Colors.getRESET());
                                 isInvalid = true;
                                 break;
                             }
@@ -331,7 +346,9 @@ public class StudentCourseRegistrationInterface {
                     if (selectedIndexes[0].equals("0")) {
                         break;
                     }
-                    System.out.print("Do you want to delete selected courses? (y/n): ");
+                    System.out.print(
+                            Colors.getBLUE() + "--> " + Colors.getRESET() + "Do you want to delete selected courses? ("
+                                    + Colors.getYELLOW() + "y/n" + Colors.getRESET() + "): ");
                     var saveChoice = scanner.next();
                     if (saveChoice.toLowerCase().equals("y")) {
                         deleteSelectedCourses(selectedIndexes);
@@ -341,7 +358,7 @@ public class StudentCourseRegistrationInterface {
                 case "0":
                     return;
                 default:
-                    System.out.println("Invalid choice");
+                    System.out.println(Colors.getYELLOW() + "Invalid choice" + Colors.getRESET());
             }
         }
     }
@@ -417,7 +434,8 @@ public class StudentCourseRegistrationInterface {
             // Write the updated JSON array back to the file
             try (FileWriter fileWriter = new FileWriter("jsons/RegistrationRequests.json")) {
                 fileWriter.write(existingRegistrationArray.toJSONString());
-                System.out.println("!!! the registration request sent to advisor successfully !!!");
+                System.out.println(Colors.getGREEN() + "The registration request sent to advisor successfully !"
+                        + Colors.getRESET());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -428,16 +446,22 @@ public class StudentCourseRegistrationInterface {
 
     private void availableCoursesMenu() {
         while (true) {
-            showStudentInf();
             System.out.println(Colors.getBOLD() + Colors.getRED() +
-                    "\n>>> Available Course Menu\n" + Colors.getRESET() + Colors.getRESET());
+                    "\n>>> Available Course Menu" + Colors.getRESET() + Colors.getRESET());
+            showStudentInf();
+
             if (selectedCourses.size() >= 5) { // if student selected 5 courses already then return
-                System.out.println("5 courses already selected, press 0 to go back");
+                System.out.println("5 courses already selected");
+                System.out.println(Colors.getYELLOW() + "0" + Colors.getRESET()
+                        + ".   Go back to Student Course Registration System");
+                System.out.print(Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+                System.out.print(Colors.getBLUE());
                 var input = "";
+                System.out.print(Colors.getRESET());
                 do {
                     input = scanner.next();
                     if (!input.equals("0")) {
-                        System.out.println("Invalid input");
+                        System.out.println(Colors.getYELLOW() + "Invalid input" + Colors.getRESET());
                         continue;
                     }
                     return;
@@ -445,13 +469,17 @@ public class StudentCourseRegistrationInterface {
             }
             calculateAvailableCourses();
             showAvailableLectures();
-            System.out.print("Select courses you want to add (for example -> 1) or cancel with entering 0: ");
+            System.out.print("Select courses you want to add (for example -> 1): ");
+            System.out.println(
+                    Colors.getYELLOW() + "0" + Colors.getRESET() + ".   Go back to Student Course Registration System");
+            System.out.print(Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+            System.out.print(Colors.getBLUE());
             var input = "";
             do {
                 input = scanner.next();
                 if (tryParseInt(input) == null || input.length() == 0
                         || Integer.parseInt(input) > availableLectures.size()) {
-                    System.out.println("Invalid input");
+                    System.out.println(Colors.getYELLOW() + "Invalid input" + Colors.getRESET());
                     continue;
                 }
                 break;
@@ -464,12 +492,19 @@ public class StudentCourseRegistrationInterface {
             var isLabsAvailable = showAvailableLabs(Integer.parseInt(input));
             if (isLabsAvailable) {
                 var labInput = "";
-                System.out.print("Select labs you want to add (for example -> 1) or cancel with entering 0: ");
+                System.out.print("Select labs you want to add (for example -> 1): ");
+                System.out.println(
+                        Colors.getYELLOW() + "0" + Colors.getRESET()
+                                + ".   Go back to Student Course Registration System");
+                System.out.print(Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+
                 do {
+                    System.out.print(Colors.getBLUE());
                     labInput = scanner.next();
+                    System.out.print(Colors.getRESET());
                     if (tryParseInt(input) == null || labInput.length() == 0
                             || Integer.parseInt(labInput) > availableLabs.size()) {
-                        System.out.println("Invalid input");
+                        System.out.println(Colors.getYELLOW() + "Invalid input" + Colors.getRESET());
                         continue;
                     }
                     break;
@@ -485,21 +520,27 @@ public class StudentCourseRegistrationInterface {
                     continue;
                 }
                 saveAvailableCourses(selectedLecture, selectedLab);
-                System.out.println("!!! Selected lecture and lab added !!!");
+                System.out.println(Colors.getGREEN() + "Selected lecture and lab added !" + Colors.getRESET());
             } else {
                 var selectedLecture = availableLectures.get(Integer.parseInt(input) - 1);
                 checkConflict(selectedLecture);
                 saveAvailableCourses(selectedLecture);
-                System.out.println("!!! Selected lecture added only !!!");
+                System.out.println(Colors.getYELLOW() + "Selected lecture added only !" + Colors.getRESET());
             }
-            System.out.println("\n1. Select Again");
-            System.out.println("0. Go back to Student Course Registration System\n");
+            System.out.println(Colors.getYELLOW() + "\n1" + Colors.getRESET() + ".   Select another course");
+            System.out.println(
+                    Colors.getYELLOW() + "0" + Colors.getRESET() + ".   Go back to Student Course Registration System");
+            System.out.print(Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+
             var choice = "";
+
             do {
+                System.out.print(Colors.getBLUE());
                 choice = scanner.next();
+                System.out.print(Colors.getRESET());
                 if (tryParseInt(input) == null || choice.length() == 0
                         || Integer.parseInt(choice) > 1) {
-                    System.out.println("Invalid input");
+                    System.out.println(Colors.getYELLOW() + "Invalid input" + Colors.getRESET());
                     continue;
                 }
                 break;
@@ -789,7 +830,8 @@ public class StudentCourseRegistrationInterface {
                 }
             }
             if (availableCourses.size() == 0) {
-                System.err.println("\n!!! Currently, there are no courses available !!!\n");
+                System.out.println(
+                        Colors.getYELLOW() + "\nCurrently, there are no courses available !\n" + Colors.getRESET());
                 return;
             }
 
@@ -832,7 +874,8 @@ public class StudentCourseRegistrationInterface {
         }
 
         if (courseNumber == 1) {
-            System.err.println("\n!!! Currently, there are no lectures available !!!\n");
+            System.err.println(
+                    Colors.getYELLOW() + "\nCurrently, there are no lectures available !\n" + Colors.getRESET());
             return;
         }
         System.out.println();
@@ -864,16 +907,18 @@ public class StudentCourseRegistrationInterface {
         selectedCourses.add((Course) (selectedLecture)); // cast lecture to course
         selectedLectures.add(selectedLecture); // add lecture to selected lectures
         selectedLabs.add(selectedLab); // add lab to selected labs
-        System.out.println("\nSelected Lecture: " + selectedLecture.getLectureID()
-                + "\nSelected Lab: "
-                + selectedLab.getLabID()); // print selected lecture and lab together
+        System.out.println(
+                Colors.getYELLOW() + "\nSelected Lecture: " + Colors.getRESET() + selectedLecture.getLectureID()
+                        + Colors.getYELLOW() + "\nSelected Lab: " + Colors.getRESET()
+                        + selectedLab.getLabID()); // print selected lecture and lab together
     }
 
     private void saveAvailableCourses(Lecture selectedLecture) { // if there is no lab
         selectedCourses.add((Course) (selectedLecture)); // cast lecture to course
         selectedLectures.add(selectedLecture); // add lecture
-        System.out.println("\nSelected Lecture: " + selectedLecture.getLectureID()); // print
-                                                                                     // selected
+        System.out.println(
+                Colors.getYELLOW() + "\nSelected Lecture: " + Colors.getRESET() + selectedLecture.getLectureID()); // print
+        // selected
         // lecture
     }
 

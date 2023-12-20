@@ -290,6 +290,9 @@ public class StudentInterface implements Schedule {
         CourseSession courseSession;
         for (int i = 0; i < courses.size(); i++) {
             course = courses.get(i);
+            if (course == null) {
+                continue;
+            }
             courseSession = course.getCourseSession();
 
             for (int j = 0; j < courseSession.getCourseDay().size(); j++) {
