@@ -1,4 +1,5 @@
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,13 +15,14 @@ public class NotificationsInterface {
 
     public NotificationsInterface(Session session) {
         this.person = session.getUser();
+        notifications.clear();
+        calculateNotifications();
 
     }
 
     // shows the notifications
     private void showNotifications() {
         // indexer is for showing notifications with numbers or not
-        calculateNotifications();
 
         if (notifications.isEmpty()) {
             System.out.println(
@@ -80,8 +82,11 @@ public class NotificationsInterface {
                     String receiverID = (String) notificationJSON.get("receiverID");
                     String description = (String) notificationJSON.get("description");
                     String senderID = (String) notificationJSON.get("senderID");
+                    boolean isRead = (boolean) notificationJSON.get("isRead");
+                    long notificationID = (long) notificationJSON.get("notificationID");
 
-                    Notification newNotification = new Notification(receiverID, description, senderID);
+                    Notification newNotification = new Notification(receiverID, description, senderID, isRead,
+                            notificationID);
                     notifications.add(newNotification);
                 }
             }
@@ -178,7 +183,7 @@ public class NotificationsInterface {
 
                 // mark as read
                 default:
-                    notifications.get(choice - 1).setIsRead(true);
+                    notifications.get(choice - 49).setIsRead(true);
                     break;
             }
 
@@ -192,7 +197,9 @@ public class NotificationsInterface {
             System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>>> Delete Notification Menu\n"
                     + Colors.getRESET() + Colors.getRESET());
             showNotifications();
-
+            if (notifications.isEmpty()) {
+                return;
+            }
             System.out.println("Select a notification number to delete or select x to delete all.");
 
             System.out.println(
@@ -219,11 +226,34 @@ public class NotificationsInterface {
 
                 // delete
                 default:
-                    notifications.remove(choice - 1);
-                    // jsondan silme işlemi eklenecek
+                    // delete from json
+                    deleteInJSON(notifications.get(choice - 49).getNotificationID());
+                    notifications.remove(choice - 49);
                     break;
             }
 
+        }
+    }
+
+    private void deleteInJSON(long notificationID) {
+        try {
+            Object notificationObject = new JSONParser().parse(new FileReader("./jsons/notifications.json"));
+            JSONArray notificationJSONObject = (JSONArray) notificationObject;
+
+            for (Object notification : notificationJSONObject) {
+                JSONObject notificationJSON = (JSONObject) notification;
+                if (notificationJSON.get("notificationID").equals(notificationID)) {
+                    notificationJSONObject.remove(notification);
+                    PrintWriter pw = new PrintWriter("./jsons/notifications.json");
+                    pw.write(notificationJSONObject.toJSONString());
+
+                    pw.flush();
+                    pw.close();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(Colors.getYELLOW() + "Error: " + Colors.getRESET() + e);
         }
     }
 
