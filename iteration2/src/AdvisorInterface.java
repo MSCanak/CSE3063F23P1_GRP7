@@ -24,7 +24,7 @@ public class AdvisorInterface implements Schedule {
         while (true) {
             scanner = new Scanner(System.in);
             System.out.println(
-                    Colors.getBOLD() + Colors.getRED() + "\nAdvisor Menu\n" + Colors.getRESET() + Colors.getRESET());
+                    Colors.getBOLD() + Colors.getRED() + "\n> Advisor Menu\n" + Colors.getRESET() + Colors.getRESET());
             System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   View Notifications");
             System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   View Weekly Schedule");
             System.out.println(Colors.getYELLOW() + "3" + Colors.getRESET() + ".   View Given Courses");
@@ -104,7 +104,7 @@ public class AdvisorInterface implements Schedule {
         ArrayList<String> sundayCoursesPlace = new ArrayList<String>();
 
         System.out.println(Colors.getRED() + Colors.getBOLD()
-                + "\nWeekly Schedule\n"
+                + "\n>> Weekly Schedule\n"
                 + Colors.getRESET() + Colors.getRESET());
         System.out.println(
                 "------------------------------------------------------------------------------------------------------------------------------------------");
@@ -291,7 +291,7 @@ public class AdvisorInterface implements Schedule {
     public void showGivenCourses(ArrayList<Course> courses) {
         scanner = new Scanner(System.in);
         System.out.println(
-                Colors.getRED() + Colors.getBOLD() + "\nGiven Courses\n" + Colors.getRESET() + Colors.getRESET());
+                Colors.getRED() + Colors.getBOLD() + "\n>> Given Courses\n" + Colors.getRESET() + Colors.getRESET());
 
         Course course;
         ArrayList<String> courseID = new ArrayList<String>();

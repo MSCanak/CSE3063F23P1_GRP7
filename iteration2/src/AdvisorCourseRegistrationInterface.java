@@ -65,7 +65,7 @@ public class AdvisorCourseRegistrationInterface {
     public void advRegMenu() {
 
         while (true) {
-            System.out.println(Colors.getBOLD() + Colors.getRED() + "\nAdvisor Course Registration Menu\n"
+            System.out.println(Colors.getBOLD() + Colors.getRED() + "\n>> Advisor Course Registration Menu\n"
                     + Colors.getRESET() + Colors.getRESET());
             System.out.println(Colors.getYELLOW() + "1" + Colors.getRESET() + ".   Show Students");
             System.out.println(Colors.getYELLOW() + "2" + Colors.getRESET() + ".   Approve/Deny Courses");
@@ -108,7 +108,7 @@ public class AdvisorCourseRegistrationInterface {
         Advisor advisor = (Advisor) session.getUser();
 
         System.out.println(Colors.getBOLD() +
-                Colors.getRED() + "\nStudents\n" + Colors.getRESET() + Colors.getRESET());
+                Colors.getRED() + "\n>>> Students\n" + Colors.getRESET() + Colors.getRESET());
         int numberOfStudents = 1;
         System.out.println("------------------------------------------------------------");
 
