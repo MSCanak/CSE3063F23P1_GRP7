@@ -56,7 +56,7 @@ public class NotificationsInterface {
 
             // System.out.printf("o %-15s%n\t%-15s%n\t%30s", senderID, description,
             // timeSent);
-            System.out.println(i + "  " + Color + isNew + " Notification " + Colors.getRESET()+ "\t"+ timeSent);
+            System.out.println(i + "  " + Color + isNew + " Notification " + Colors.getRESET() + "\t" + timeSent);
             System.out.println("\tDescription: ");
             System.out.println(Colors.getBLUE() + "\t  o  " + Colors.getRESET() + Colors.getITALIC() + description
                     + Colors.getRESET());
@@ -148,12 +148,18 @@ public class NotificationsInterface {
             System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>>> Mark as Read Menu\n" + Colors.getRESET()
                     + Colors.getRESET());
             showNotifications();
-            System.out.println("Which notification do you want to mark as read?");
-            System.out.println("Select a notification number to mark as read or select x to mark all as read.");
+
+            System.out.println("Select a notification " + Colors.getBLUE() + "number" + Colors.getRESET()
+                    + " to mark as read or select " + Colors.getBLUE() + "x" + Colors.getRESET()
+                    + " to mark all as read.");
+            System.out.println(
+                    "(For example -> " + Colors.getYELLOW() + "1-2-3" + Colors.getRESET() + " or" + Colors.getYELLOW()
+                            + "  x" + Colors.getRESET() + " )");
+            System.out.println("Which notification do you want to mark as read? \n");
             System.out
                     .println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Notifications Menu.\n");
 
-            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+            System.out.print(Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
             System.out.print(Colors.getBLUE());
             char choice = input.next().charAt(0);
             System.out.print(Colors.getRESET());
@@ -186,14 +192,16 @@ public class NotificationsInterface {
             System.out.println(Colors.getRED() + Colors.getBOLD() + "\n>>> Delete Notification Menu\n"
                     + Colors.getRESET() + Colors.getRESET());
             showNotifications();
-            System.out.println("Which notification do you want to delete?");
+
             System.out.println("Select a notification number to delete or select x to delete all.");
+
             System.out.println(
                     "(For example -> " + Colors.getYELLOW() + "1-2-3" + Colors.getRESET() + " or" + Colors.getYELLOW()
                             + "  x" + Colors.getRESET() + " )");
+            System.out.println("Which notification do you want to delete? \n");
             System.out
                     .println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Notifications Menu.\n");
-            System.out.print("\n" + Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
+            System.out.print(Colors.getBLUE() + "--> " + Colors.getRESET() + "What do you want to do?   ");
             System.out.print(Colors.getBLUE());
             char choice = input.next().charAt(0);
             System.out.print(Colors.getRESET());
