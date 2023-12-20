@@ -32,7 +32,7 @@ public class TestCase {
     
         message = new Message("senderID", "receiverID", "description", "subject");
         
-        notification = new Notification("receiverID", "description", "notificationType", "senderID");
+        notification = new Notification("receiverID", "description", "senderID", false, 1);
     }
 
 
@@ -178,10 +178,6 @@ public class TestCase {
         assertEquals("description", notification.getDescription());
     }
     @Test
-    public void testNotificationNotificationType() {
-        assertEquals("notificationType", notification.getNotificationType());
-    }
-    @Test
     public void testNotificationSenderID() {
         assertEquals("senderID", notification.getSenderID());
     }
@@ -191,6 +187,11 @@ public class TestCase {
         notification.setIsRead(true);
         assertEquals(true, notification.getIsRead());
     }
+    @Test
+    public void testNotificationID() {
+        assertEquals(1, notification.getNotificationID());
+    }
+    
 
 
 }
