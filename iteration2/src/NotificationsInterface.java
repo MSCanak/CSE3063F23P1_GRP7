@@ -203,8 +203,8 @@ public class NotificationsInterface {
             System.out.println("Select a notification number to delete or select x to delete all.");
 
             System.out.println(
-                    "(For example -> " + Colors.getYELLOW() + "1-2-3" + Colors.getRESET() + " or" + Colors.getYELLOW()
-                            + "  x" + Colors.getRESET() + " )");
+                    "(For example -> " + Colors.getYELLOW() + "1" + Colors.getRESET() + " or" + Colors.getYELLOW()
+                            +  Colors.getRESET() + " )");
             System.out.println("Which notification do you want to delete? \n");
             System.out
                     .println(Colors.getYELLOW() + "0" + Colors.getRESET() + ".  Go back to the Notifications Menu.\n");
