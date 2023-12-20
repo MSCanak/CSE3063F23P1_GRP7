@@ -1,1 +1,273 @@
-{"ID": "150120011", "Name": "Max", "Surname": "Ver", "Password": "150120011Max", "EMail": "Max@marun.edu.tr", "Faculty": "Engineering", "Department": "Computer Science Engineering", "AdvisorID": "150101", "PhoneNumber": "0555555555", "Semester": 5, "TakenCourses": [], "Transcript": {"Semester": [{"Courses": [{"CourseID": "ATA121", "CourseName": "Ataturks Principles and History of Turkish Revolution I", "Credit": 2, "Type": "M", "Semester": 1, "Grade": 2}, {"CourseID": "MBG1201", "CourseName": "Introduction to Modern Biology", "Credit": 5, "Type": "M", "Semester": 1, "Grade": 2.5}, {"CourseID": "CSE1200", "CourseName": "Introduction to Computer Engineering", "Credit": 4, "Type": "M", "Semester": 1, "Grade": 3.5}, {"CourseID": "CSE1241", "CourseName": "Computer Programming I", "Credit": 6, "Type": "M", "Semester": 1, "Grade": 2.5}, {"CourseID": "MATH1001", "CourseName": "Calculus I", "Credit": 6, "Type": "M", "Semester": 1, "Grade": 2.5}, {"CourseID": "PHYS1101", "CourseName": "Physics I", "Credit": 4, "Type": "M", "Semester": 1, "Grade": 3.5}, {"CourseID": "PHYS1103", "CourseName": "Physics Lab I", "Credit": 2, "Type": "M", "Semester": 1, "Grade": 2.5}, {"CourseID": "TRD121", "CourseName": "Turk Dili I", "Credit": 2, "Type": "M", "Semester": 1, "Grade": 3}], "SemesterInf": {"Yano": 2.7580645161290325, "Gano": 2.7580645161290325, "TakenCredit": 31, "CompletedCredit": 31}}, {"Courses": [{"CourseID": "ATA122", "CourseName": "Ataturks Principles and History of Turkish Revolution II", "Credit": 2, "Type": "M", "Semester": 2, "Grade": 3.5}, {"CourseID": "CSE1242", "CourseName": "Computer Programming II", "Credit": 6, "Type": "M", "Semester": 2, "Grade": 2}, {"CourseID": "MATH1002", "CourseName": "Calculus II", "Credit": 6, "Type": "M", "Semester": 2, "Grade": 2.5}, {"CourseID": "MATH2256", "CourseName": "Linear Algebra for Computer Engineering", "Credit": 5, "Type": "M", "Semester": 2, "Grade": 3}, {"CourseID": "PHYS1102", "CourseName": "Physics II", "Credit": 4, "Type": "M", "Semester": 2, "Grade": 2}, {"CourseID": "PHYS1104", "CourseName": "Physics Lab II", "Credit": 2, "Type": "M", "Semester": 2, "Grade": 2.5}, {"CourseID": "TRD122", "CourseName": "Turk Dili II", "Credit": 2, "Type": "M", "Semester": 2, "Grade": 1}, {"CourseID": "NTE1", "CourseName": "Non-Technical Elective - 1", "Credit": 3, "Type": "E", "Semester": 2, "Grade": 2}], "SemesterInf": {"Yano": 2.3333333333333335, "Gano": 2.5491803278688523, "TakenCredit": 61, "CompletedCredit": 61}}, {"Courses": [{"CourseID": "CSE2023", "CourseName": "Discrete Computational Structures", "Credit": 6, "Type": "M", "Semester": 3, "Grade": 2.5}, {"CourseID": "CSE2225", "CourseName": "Data Structures", "Credit": 7, "Type": "M", "Semester": 3, "Grade": 4}, {"CourseID": "ECON2004", "CourseName": "Engineering Economy", "Credit": 4, "Type": "M", "Semester": 3, "Grade": 2}, {"CourseID": "EE2031", "CourseName": "Electric Circuits", "Credit": 5, "Type": "M", "Semester": 3, "Grade": 2.5}, {"CourseID": "MATH2055", "CourseName": "Differential Equations", "Credit": 4, "Type": "M", "Semester": 3, "Grade": 1.5}, {"CourseID": "MATH2059", "CourseName": "Numerical Methods", "Credit": 4, "Type": "M", "Semester": 3, "Grade": 3.5}], "SemesterInf": {"Yano": 2.783333333333333, "Gano": 2.6263736263736264, "TakenCredit": 91, "CompletedCredit": 91}}, {"Courses": [{"CourseID": "CSE2246", "CourseName": "Analysis of Algorithms", "Credit": 6, "Type": "M", "Semester": 4, "Grade": 2.5}, {"CourseID": "CSE2138", "CourseName": "Systems Programming", "Credit": 7, "Type": "M", "Semester": 4, "Grade": 4}, {"CourseID": "CSE2260", "CourseName": "Principles of Programming Languages", "Credit": 6, "Type": "M", "Semester": 4, "Grade": 3.5}, {"CourseID": "EE2032", "CourseName": "Electronics", "Credit": 5, "Type": "M", "Semester": 4, "Grade": 2.5}, {"CourseID": "STAT2253", "CourseName": "Introduction to Probability and Statistics", "Credit": 5, "Type": "M", "Semester": 4, "Grade": 2}], "SemesterInf": {"Yano": 2.9827586206896552, "Gano": 2.7125, "TakenCredit": 120, "CompletedCredit": 120}}]}}
+{
+    "ID": "150120011",
+    "Name": "Max",
+    "Surname": "Ver",
+    "Password": "150120011Max",
+    "EMail": "Max@marun.edu.tr",
+    "Faculty": "Engineering",
+    "Department": "Computer Science Engineering",
+    "AdvisorID": "150101",
+    "PhoneNumber": "0555555555",
+    "Semester": 5,
+    "TakenCourses": [],
+    "Transcript": {
+        "Semester": [
+            {
+                "Courses": [
+                    {
+                        "CourseID": "ATA121",
+                        "CourseName": "Ataturks Principles and History of Turkish Revolution I",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 2
+                    },
+                    {
+                        "CourseID": "MBG1201",
+                        "CourseName": "Introduction to Modern Biology",
+                        "Credit": 5,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "CSE1200",
+                        "CourseName": "Introduction to Computer Engineering",
+                        "Credit": 4,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 3.5
+                    },
+                    {
+                        "CourseID": "CSE1241",
+                        "CourseName": "Computer Programming I",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "MATH1001",
+                        "CourseName": "Calculus I",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "PHYS1101",
+                        "CourseName": "Physics I",
+                        "Credit": 4,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 3.5
+                    },
+                    {
+                        "CourseID": "PHYS1103",
+                        "CourseName": "Physics Lab I",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "TRD121",
+                        "CourseName": "Turk Dili I",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 3
+                    }
+                ],
+                "SemesterInf": {
+                    "Yano": 2.7580645161290325,
+                    "Gano": 2.7580645161290325,
+                    "TakenCredit": 31,
+                    "CompletedCredit": 31
+                }
+            },
+            {
+                "Courses": [
+                    {
+                        "CourseID": "ATA122",
+                        "CourseName": "Ataturks Principles and History of Turkish Revolution II",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 3.5
+                    },
+                    {
+                        "CourseID": "CSE1242",
+                        "CourseName": "Computer Programming II",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 2
+                    },
+                    {
+                        "CourseID": "MATH1002",
+                        "CourseName": "Calculus II",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "MATH2256",
+                        "CourseName": "Linear Algebra for Computer Engineering",
+                        "Credit": 5,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 3
+                    },
+                    {
+                        "CourseID": "PHYS1102",
+                        "CourseName": "Physics II",
+                        "Credit": 4,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 2
+                    },
+                    {
+                        "CourseID": "PHYS1104",
+                        "CourseName": "Physics Lab II",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "TRD122",
+                        "CourseName": "Turk Dili II",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 1
+                    },
+                    {
+                        "CourseID": "NTE1",
+                        "CourseName": "Non-Technical Elective - 1",
+                        "Credit": 3,
+                        "Type": "E",
+                        "Semester": 2,
+                        "Grade": 2
+                    }
+                ],
+                "SemesterInf": {
+                    "Yano": 2.3333333333333335,
+                    "Gano": 2.5491803278688523,
+                    "TakenCredit": 61,
+                    "CompletedCredit": 61
+                }
+            },
+            {
+                "Courses": [
+                    {
+                        "CourseID": "CSE2023",
+                        "CourseName": "Discrete Computational Structures",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 3,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "CSE2225",
+                        "CourseName": "Data Structures",
+                        "Credit": 7,
+                        "Type": "M",
+                        "Semester": 3,
+                        "Grade": 4
+                    },
+                    {
+                        "CourseID": "ECON2004",
+                        "CourseName": "Engineering Economy",
+                        "Credit": 4,
+                        "Type": "M",
+                        "Semester": 3,
+                        "Grade": 2
+                    },
+                    {
+                        "CourseID": "EE2031",
+                        "CourseName": "Electric Circuits",
+                        "Credit": 5,
+                        "Type": "M",
+                        "Semester": 3,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "MATH2055",
+                        "CourseName": "Differential Equations",
+                        "Credit": 4,
+                        "Type": "M",
+                        "Semester": 3,
+                        "Grade": 1.5
+                    },
+                    {
+                        "CourseID": "MATH2059",
+                        "CourseName": "Numerical Methods",
+                        "Credit": 4,
+                        "Type": "M",
+                        "Semester": 3,
+                        "Grade": 3.5
+                    }
+                ],
+                "SemesterInf": {
+                    "Yano": 2.783333333333333,
+                    "Gano": 2.6263736263736264,
+                    "TakenCredit": 91,
+                    "CompletedCredit": 91
+                }
+            },
+            {
+                "Courses": [
+                    {
+                        "CourseID": "CSE2246",
+                        "CourseName": "Analysis of Algorithms",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 4,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "CSE2138",
+                        "CourseName": "Systems Programming",
+                        "Credit": 7,
+                        "Type": "M",
+                        "Semester": 4,
+                        "Grade": 4
+                    },
+                    {
+                        "CourseID": "CSE2260",
+                        "CourseName": "Principles of Programming Languages",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 4,
+                        "Grade": 3.5
+                    },
+                    {
+                        "CourseID": "EE2032",
+                        "CourseName": "Electronics",
+                        "Credit": 5,
+                        "Type": "M",
+                        "Semester": 4,
+                        "Grade": 2.5
+                    },
+                    {
+                        "CourseID": "STAT2253",
+                        "CourseName": "Introduction to Probability and Statistics",
+                        "Credit": 5,
+                        "Type": "M",
+                        "Semester": 4,
+                        "Grade": 2
+                    }
+                ],
+                "SemesterInf": {
+                    "Yano": 2.9827586206896552,
+                    "Gano": 2.7125,
+                    "TakenCredit": 120,
+                    "CompletedCredit": 120
+                }
+            }
+        ]
+    }
+}

@@ -1,1 +1,16 @@
-{"ID": "150120035", "Name": "Ava", "Surname": "Estrada", "Password": "150120035Ava", "EMail": "Ava@marun.edu.tr", "Faculty": "Engineering", "Department": "Computer Science Engineering", "AdvisorID": "150120", "PhoneNumber": "0555555555", "Semester": 1, "TakenCourses": [], "Transcript": {"Semester": []}}
+{
+    "ID": "150120035",
+    "Name": "Ava",
+    "Surname": "Estrada",
+    "Password": "150120035Ava",
+    "EMail": "Ava@marun.edu.tr",
+    "Faculty": "Engineering",
+    "Department": "Computer Science Engineering",
+    "AdvisorID": "150120",
+    "PhoneNumber": "0555555555",
+    "Semester": 1,
+    "TakenCourses": [],
+    "Transcript": {
+        "Semester": []
+    }
+}

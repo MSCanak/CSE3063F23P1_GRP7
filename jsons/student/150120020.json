@@ -1,1 +1,165 @@
-{"ID": "150120020", "Name": "Chaya", "Surname": "Hahn", "Password": "150120020Chaya", "EMail": "Chaya@marun.edu.tr", "Faculty": "Engineering", "Department": "Computer Science Engineering", "AdvisorID": "150112", "PhoneNumber": "0555555555", "Semester": 3, "TakenCourses": [], "Transcript": {"Semester": [{"Courses": [{"CourseID": "ATA121", "CourseName": "Ataturks Principles and History of Turkish Revolution I", "Credit": 2, "Type": "M", "Semester": 1, "Grade": 3}, {"CourseID": "MBG1201", "CourseName": "Introduction to Modern Biology", "Credit": 5, "Type": "M", "Semester": 1, "Grade": 3.5}, {"CourseID": "CSE1200", "CourseName": "Introduction to Computer Engineering", "Credit": 4, "Type": "M", "Semester": 1, "Grade": 3}, {"CourseID": "CSE1241", "CourseName": "Computer Programming I", "Credit": 6, "Type": "M", "Semester": 1, "Grade": 3}, {"CourseID": "MATH1001", "CourseName": "Calculus I", "Credit": 6, "Type": "M", "Semester": 1, "Grade": 3.5}, {"CourseID": "PHYS1101", "CourseName": "Physics I", "Credit": 4, "Type": "M", "Semester": 1, "Grade": 1.5}, {"CourseID": "PHYS1103", "CourseName": "Physics Lab I", "Credit": 2, "Type": "M", "Semester": 1, "Grade": 2}, {"CourseID": "TRD121", "CourseName": "Turk Dili I", "Credit": 2, "Type": "M", "Semester": 1, "Grade": 2}], "SemesterInf": {"Yano": 2.8548387096774195, "Gano": 2.8548387096774195, "TakenCredit": 31, "CompletedCredit": 31}}, {"Courses": [{"CourseID": "ATA122", "CourseName": "Ataturks Principles and History of Turkish Revolution II", "Credit": 2, "Type": "M", "Semester": 2, "Grade": 2}, {"CourseID": "CSE1242", "CourseName": "Computer Programming II", "Credit": 6, "Type": "M", "Semester": 2, "Grade": 2}, {"CourseID": "MATH1002", "CourseName": "Calculus II", "Credit": 6, "Type": "M", "Semester": 2, "Grade": 3}, {"CourseID": "MATH2256", "CourseName": "Linear Algebra for Computer Engineering", "Credit": 5, "Type": "M", "Semester": 2, "Grade": 3}, {"CourseID": "PHYS1102", "CourseName": "Physics II", "Credit": 4, "Type": "M", "Semester": 2, "Grade": 3.5}, {"CourseID": "PHYS1104", "CourseName": "Physics Lab II", "Credit": 2, "Type": "M", "Semester": 2, "Grade": 3}, {"CourseID": "TRD122", "CourseName": "Turk Dili II", "Credit": 2, "Type": "M", "Semester": 2, "Grade": 3.5}, {"CourseID": "NTE1", "CourseName": "Non-Technical Elective - 1", "Credit": 3, "Type": "E", "Semester": 2, "Grade": 0}], "SemesterInf": {"Yano": 2.533333333333333, "Gano": 2.69672131147541, "TakenCredit": 61, "CompletedCredit": 61}}]}}
+{
+    "ID": "150120020",
+    "Name": "Chaya",
+    "Surname": "Hahn",
+    "Password": "150120020Chaya",
+    "EMail": "Chaya@marun.edu.tr",
+    "Faculty": "Engineering",
+    "Department": "Computer Science Engineering",
+    "AdvisorID": "150112",
+    "PhoneNumber": "0555555555",
+    "Semester": 3,
+    "TakenCourses": [],
+    "Transcript": {
+        "Semester": [
+            {
+                "Courses": [
+                    {
+                        "CourseID": "ATA121",
+                        "CourseName": "Ataturks Principles and History of Turkish Revolution I",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 3
+                    },
+                    {
+                        "CourseID": "MBG1201",
+                        "CourseName": "Introduction to Modern Biology",
+                        "Credit": 5,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 3.5
+                    },
+                    {
+                        "CourseID": "CSE1200",
+                        "CourseName": "Introduction to Computer Engineering",
+                        "Credit": 4,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 3
+                    },
+                    {
+                        "CourseID": "CSE1241",
+                        "CourseName": "Computer Programming I",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 3
+                    },
+                    {
+                        "CourseID": "MATH1001",
+                        "CourseName": "Calculus I",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 3.5
+                    },
+                    {
+                        "CourseID": "PHYS1101",
+                        "CourseName": "Physics I",
+                        "Credit": 4,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 1.5
+                    },
+                    {
+                        "CourseID": "PHYS1103",
+                        "CourseName": "Physics Lab I",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 2
+                    },
+                    {
+                        "CourseID": "TRD121",
+                        "CourseName": "Turk Dili I",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 1,
+                        "Grade": 2
+                    }
+                ],
+                "SemesterInf": {
+                    "Yano": 2.8548387096774195,
+                    "Gano": 2.8548387096774195,
+                    "TakenCredit": 31,
+                    "CompletedCredit": 31
+                }
+            },
+            {
+                "Courses": [
+                    {
+                        "CourseID": "ATA122",
+                        "CourseName": "Ataturks Principles and History of Turkish Revolution II",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 2
+                    },
+                    {
+                        "CourseID": "CSE1242",
+                        "CourseName": "Computer Programming II",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 2
+                    },
+                    {
+                        "CourseID": "MATH1002",
+                        "CourseName": "Calculus II",
+                        "Credit": 6,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 3
+                    },
+                    {
+                        "CourseID": "MATH2256",
+                        "CourseName": "Linear Algebra for Computer Engineering",
+                        "Credit": 5,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 3
+                    },
+                    {
+                        "CourseID": "PHYS1102",
+                        "CourseName": "Physics II",
+                        "Credit": 4,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 3.5
+                    },
+                    {
+                        "CourseID": "PHYS1104",
+                        "CourseName": "Physics Lab II",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 3
+                    },
+                    {
+                        "CourseID": "TRD122",
+                        "CourseName": "Turk Dili II",
+                        "Credit": 2,
+                        "Type": "M",
+                        "Semester": 2,
+                        "Grade": 3.5
+                    },
+                    {
+                        "CourseID": "NTE1",
+                        "CourseName": "Non-Technical Elective - 1",
+                        "Credit": 3,
+                        "Type": "E",
+                        "Semester": 2,
+                        "Grade": 0
+                    }
+                ],
+                "SemesterInf": {
+                    "Yano": 2.533333333333333,
+                    "Gano": 2.69672131147541,
+                    "TakenCredit": 61,
+                    "CompletedCredit": 61
+                }
+            }
+        ]
+    }
+}
