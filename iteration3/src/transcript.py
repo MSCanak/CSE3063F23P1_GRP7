@@ -1,10 +1,7 @@
 import json
-'''
 from course import Course
 from semester import Semester
 from colors import Colors
-'''
-
 
 class Transcript:
     def __init__(self, student):
