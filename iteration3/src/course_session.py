@@ -1,4 +1,4 @@
-class course_session:
+class CourseSession:
     def __init__(self, course_day, course_start_time, course_end_time, course_place):
         self.course_day = course_day
         self.course_start_time = course_start_time

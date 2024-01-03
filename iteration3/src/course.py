@@ -1,4 +1,4 @@
-class course:
+class Course:
     def __init__(
         self,
         course_name,
