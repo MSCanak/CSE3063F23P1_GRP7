@@ -1,4 +1,4 @@
-class course_session_times:
+class CourseSessionTimes:
     def __init__(self):
         self.session_start = [
             "07:30",

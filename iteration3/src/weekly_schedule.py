@@ -1,4 +1,4 @@
-class weekly_schedule:
+class WeeklySchedule:
     def print_courses(self, courses, courses_start_time, session_start, k):
         result = ""
         for i in range(len(courses)):
