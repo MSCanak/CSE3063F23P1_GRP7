@@ -1,30 +1,32 @@
 class Semester:
     def __init__(self, courses):
-        self.taken_credit = 0
-        self.completed_credit = 0
-        self.yano = 0.0
-        self.courses = courses
+        # Private attributes
+        self.__taken_credit = 0
+        self.__completed_credit = 0
+        self.__yano = 0.0
+        self.__courses = courses
 
+    # Getter and setter methods for private attributes
     def get_courses(self):
-        return self.courses
+        return self.__courses
 
     def set_courses(self, courses):
-        self.courses = courses
+        self.__courses = courses
 
     def get_taken_credit(self):
-        return self.taken_credit
+        return self.__taken_credit
 
     def set_taken_credit(self, taken_credit):
-        self.taken_credit = taken_credit
+        self.__taken_credit = taken_credit
 
     def get_completed_credit(self):
-        return self.completed_credit
+        return self.__completed_credit
 
     def set_completed_credit(self, completed_credit):
-        self.completed_credit = completed_credit
+        self.__completed_credit = completed_credit
 
     def get_yano(self):
-        return self.yano
+        return self.__yano
 
     def set_yano(self, yano):
-        self.yano = yano
+        self.__yano = yano
