@@ -11,7 +11,7 @@ class Notification:
         sender_id: str,
         is_read: bool = False,
         notification_id: int = None,
-    ):
+    ) -> None:
         self.__receiver_id = receiver_id
         self.__description = description
         self.__sender_id = sender_id
@@ -83,7 +83,7 @@ class Notification:
     def set_is_read(self, is_read: bool) -> None:
         try:
             with open("./jsons/notifications.json", "r") as file:
-                notifications = json.load(file)
+                notifications: list = json.load(file)
 
             for notification in notifications:
                 if notification["notification_id"] == self.__notification_id:
