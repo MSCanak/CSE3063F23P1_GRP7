@@ -1,12 +1,11 @@
 class Semester:
     def __init__(self, courses):
-        # Private attributes
         self.__taken_credit = 0
         self.__completed_credit = 0
         self.__yano = 0.0
         self.__courses = courses
 
-    # Getter and setter methods for private attributes
+    # getter and setter methods for private attributes
     def get_courses(self):
         return self.__courses
 
