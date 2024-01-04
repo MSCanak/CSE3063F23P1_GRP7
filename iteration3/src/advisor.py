@@ -1,11 +1,11 @@
+from lecturer import Lecturer
 class Advisor(Lecturer):
-    def __init__(self, name, surname, email, phoneNumber, ID, password, faculty, department, academicTitle):
-        super().__init__(name, surname, email, phoneNumber, ID, password, faculty, department, academicTitle)
-        self.students = []
+    def __init__(self, name, surname, email, phone_number, id, password, faculty, department, academic_title):
+        super().__init__(name, surname, email, phone_number, id, password, faculty, department, academic_title)
+        self.__students = []
 
-    def setStudent(self, student):
-        self.students.append(student)
+    def set_student(self, student):
+        self.__students.append(student)
     
-    def getStudents(self):
-        return self.students
-    
+    def get_students(self):
+        return self.__students
