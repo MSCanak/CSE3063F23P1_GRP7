@@ -1,10 +1,11 @@
 from person import Person
+from transcript import Transcript
 
 class Student(Person):
     def __init__(self, name, surname, email, phoneNumber, ID, password, faculty, department, currentSemester, advisor):
         super().__init__(name, surname, email, phoneNumber, ID, password, faculty, department)
         self.advisor = advisor
-        # self.transcript = Transcript(self)
+        self.transcript = Transcript(self)
         self.currentSemester = currentSemester
         self.currentTakenCourses = []
 
