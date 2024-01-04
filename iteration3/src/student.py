@@ -6,26 +6,26 @@ class Student(Person):
         self.currentSemester = currentSemester
         self.currentTakenCourses = []
 
-    def getTranscript(self):
+    def get_transcript(self):
         return self.transcript
 
-    def setTranscript(self, transcript):
+    def set_transcript(self, transcript):
         self.transcript = transcript
 
-    def getAdvisor(self):
+    def get_advisor(self):
         return self.advisor
 
-    def setAdvisor(self, advisor):
+    def set_advisor(self, advisor):
         self.advisor = advisor
 
-    def getCurrentSemester(self):
+    def get_current_semester(self):
         return self.currentSemester
 
-    def setCurrentSemester(self, currentSemester):
+    def set_current_semester(self, currentSemester):
         self.currentSemester = currentSemester
 
-    def getCurrentTakenCourses(self):
+    def get_current_taken_courses(self):
         return self.currentTakenCourses
 
-    def setCurrentTakenCourses(self, course):
+    def set_current_taken_courses(self, course):
         self.currentTakenCourses.append(course)
