@@ -1,11 +1,12 @@
 from advisor_course_registration_interface import AdvisorCourseRegistrationInterface
 from notifications_interface import NotificationsInterface
+from lecture import Lecture
 
 class AdvisorInterface:
     def __init__(self, session, login_int):
-        self.session = session
-        self.login_int = login_int
-        self.adv_course_reg_int = AdvisorCourseRegistrationInterface(session, self)
+        self.__session = session
+        self.__login_int = login_int
+        self.__adv_course_reg_int = AdvisorCourseRegistrationInterface(session, self)
 
     def adv_menu(self):
         while True:
@@ -19,29 +20,29 @@ class AdvisorInterface:
             choice = input("\nWhat do you want to do? ")
 
             if choice == '1':
-                notifications_int = NotificationsInterface(self.session)
+                notifications_int = NotificationsInterface(self.__session)
                 notifications_int.notifications_menu()
             elif choice == '2':
-                weekly_schedule = self.calculate_weekly_schedule()
-                self.show_weekly_schedule(weekly_schedule)
+                weekly_schedule = self.__calculate_weekly_schedule()
+                self.__show_weekly_schedule(weekly_schedule)
             elif choice == '3':
-                given_courses = self.calculate_weekly_schedule()
-                self.show_given_courses(given_courses)
+                given_courses = self.__calculate_weekly_schedule()
+                self.__show_given_courses(given_courses)
             elif choice == '4':
-                self.adv_course_reg_int.adv_reg_menu()
+                self.__adv_course_reg_int.adv_reg_menu()
             elif choice == '*':
-                self.login_int.logout()
+                self.__login_int.logout()
             elif choice == 'x':
-                self.login_int.exit()
+                self.__login_int.exit()
             else:
                 print("Invalid input! Please try again.")
 
-    def calculate_weekly_schedule(self):
+    def __calculate_weekly_schedule(self):
     # Assuming `session` contains the current session and `get_user()` returns the current user
-    weekly_schedule = session.get_user().get_given_courses()
-    return weekly_schedule
+        weekly_schedule = self.__session.get_user().get_given_courses()
+        return weekly_schedule
 
-    def show_weekly_schedule(self, courses):
+    def __show_weekly_schedule(self, courses):
         # initializing lists for each day of the week
         monday_courses_id, tuesday_courses_id, wednesday_courses_id, thursday_courses_id, friday_courses_id, saturday_courses_id, sunday_courses_id = ([] for _ in range(7))
         monday_courses_start_time, tuesday_courses_start_time, wednesday_courses_start_time, thursday_courses_start_time, friday_courses_start_time, saturday_courses_start_time, sunday_courses_start_time = ([] for _ in range(7))
@@ -86,7 +87,7 @@ class AdvisorInterface:
             else:
                 print("Invalid input! Please try again.")
 
-    def show_given_courses(self, courses):
+    def __show_given_courses(self, courses):
         course_ids = []
         print("\n>> Given Courses")
         print("---------------------------------------------------------")

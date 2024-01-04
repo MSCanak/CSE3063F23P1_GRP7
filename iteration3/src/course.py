@@ -16,102 +16,102 @@ class Course:
         quota=None,
         course_session=None,
     ):
-        self.course_name = course_name
-        self.course_id = course_id
-        self.credit = credit
-        self.course_type = course_type
-        self.semester = semester
-        self.grade = grade
-        self.optional_prerequisite = optional_prerequisite or []
-        self.mandatory_prerequisite = mandatory_prerequisite or []
-        self.theoric = theoric
-        self.practice = practice
-        self.course_students = course_students
-        self.lecturer = lecturer
-        self.quota = quota
-        self.course_session = course_session
+        self.__course_name = course_name
+        self.__course_id = course_id
+        self.__credit = credit
+        self.__course_type = course_type
+        self.__semester = semester
+        self.__grade = grade
+        self.__optional_prerequisite = optional_prerequisite or []
+        self.__mandatory_prerequisite = mandatory_prerequisite or []
+        self.__theoric = theoric
+        self.__practice = practice
+        self.__course_students = course_students
+        self.__lecturer = lecturer
+        self.__quota = quota
+        self.__course_session = course_session
 
     # getters and setters
     def get_course_name(self):
-        return self.course_name
+        return self.__course_name
 
     def set_course_name(self, course_name):
-        self.course_name = course_name
+        self.__course_name = course_name
 
     def get_course_id(self):
-        return self.course_id
+        return self.__course_id
 
     def set_course_id(self, course_id):
-        self.course_id = course_id
+        self.__course_id = course_id
 
     def get_credit(self):
-        return self.credit
+        return self.__credit
 
     def set_credit(self, credit):
-        self.credit = credit
+        self.__credit = credit
 
     def get_course_type(self):
-        return self.course_type
+        return self.__course_type
 
     def set_course_type(self, course_type):
-        self.course_type = course_type
+        self.__course_type = course_type
 
     def get_optional_prerequisite(self):
-        return self.optional_prerequisite
+        return self.__optional_prerequisite
 
     def set_optional_prerequisite(self, optional_prerequisite):
-        self.optional_prerequisite = optional_prerequisite
+        self.__optional_prerequisite = optional_prerequisite
 
     def get_mandatory_prerequisite(self):
-        return self.mandatory_prerequisite
+        return self.__mandatory_prerequisite
 
     def set_mandatory_prerequisite(self, mandatory_prerequisite):
-        self.mandatory_prerequisite = mandatory_prerequisite
+        self.__mandatory_prerequisite = mandatory_prerequisite
 
     def get_theoric(self):
-        return self.theoric
+        return self.__theoric
 
     def set_theoric(self, theoric):
-        self.theoric = theoric
+        self.__theoric = theoric
 
     def get_practice(self):
-        return self.practice
+        return self.__practice
 
     def set_practice(self, practice):
-        self.practice = practice
+        self.__practice = practice
 
     def get_course_students(self):
-        return self.course_students
+        return self.__course_students
 
     def set_course_students(self, course_students):
-        self.course_students = course_students
+        self.__course_students = course_students
 
     def get_lecturer(self):
-        return self.lecturer
+        return self.__lecturer
 
     def set_lecturer(self, lecturer):
-        self.lecturer = lecturer
+        self.__lecturer = lecturer
 
     def get_quota(self):
-        return self.quota
+        return self.__quota
 
     def set_quota(self, quota):
-        self.quota = quota
+        self.__quota = quota
 
     def get_course_session(self):
-        return self.course_session
+        return self.__course_session
 
     def set_course_session(self, course_session):
-        self.course_session = course_session
+        self.__course_session = course_session
 
     def get_semester(self):
-        return self.semester
+        return self.__semester
 
     def set_semester(self, semester):
-        self.semester = semester
+        self.__semester = semester
 
     def get_grade(self):
-        return self.grade
+        return self.__grade
 
     def set_grade(self, grade):
-        self.grade = grade
+        self.__grade = grade

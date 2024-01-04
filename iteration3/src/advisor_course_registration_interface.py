@@ -1,5 +1,5 @@
 import json
-import messages_interface
+from notifications_interface import NotificationsInterface
 from colors import Colors
 
 # color need fix
@@ -137,7 +137,7 @@ class AdvisorCourseRegistrationInterface:
         receiver_id = student_id
         description = "Advisor has approved your courses!"
         sender_id = self.__session.get_user().get_id()
-        notification = Notification(receiver_id, description, sender_id)
+        notification = NotificationsInterface(receiver_id, description, sender_id)
         notification.send_notification(sender_id)
 
     def __save_approval(self, student_id):
@@ -261,7 +261,7 @@ class AdvisorCourseRegistrationInterface:
                 receiver_id = student_id
                 description = "Advisor has finalized your courses!"
                 sender_id = advisor.get_id()
-                notification = Notification(receiver_id, description, sender_id)
+                notification = NotificationsInterface(receiver_id, description, sender_id)
                 notification.send_notification(sender_id)
 
                 print(Colors.GREEN + "Courses of student " + student_id + " are finalized!" + Colors.RESET)
