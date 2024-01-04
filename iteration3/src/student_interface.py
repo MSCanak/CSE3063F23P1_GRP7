@@ -19,25 +19,38 @@ class StudentInterface:
         self.__student_course_registration_interface: StudentCourseRegistrationInterface = (
             None
         )
+        self.__colors = Colors()
 
     def stu_menu(self):
         while True:
-            print(f"{Colors.RED}{Colors.BOLD}\n> Student Menu\n{Colors.RESET}")
-            print(f"{Colors.YELLOW}1{Colors.RESET}.   View Notifications")
-            print(f"{Colors.YELLOW}2{Colors.RESET}.   View Weekly Schedule")
-            print(f"{Colors.YELLOW}3{Colors.RESET}.   View Transcript")
-            print(f"{Colors.YELLOW}4{Colors.RESET}.   View Curriculum")
-            print(f"{Colors.YELLOW}5{Colors.RESET}.   Go to Course Registration System")
-            print(f"{Colors.YELLOW}*{Colors.RESET}.   Logout")
-            print(f"{Colors.YELLOW}x{Colors.RESET}.   Exit")
+            print(
+                f"{self.__colors.get_red()}{self.__colors.get_bold()}\n> Student Menu\n{self.__colors.get_reset()}"
+            )
+            print(
+                f"{self.__colors.get_yellow()}1{self.__colors.get_reset()}.   View Notifications"
+            )
+            print(
+                f"{self.__colors.get_yellow()}2{self.__colors.get_reset()}.   View Weekly Schedule"
+            )
+            print(
+                f"{self.__colors.get_yellow()}3{self.__colors.get_reset()}.   View Transcript"
+            )
+            print(
+                f"{self.__colors.get_yellow()}4{self.__colors.get_reset()}.   View Curriculum"
+            )
+            print(
+                f"{self.__colors.get_yellow()}5{self.__colors.get_reset()}.   Go to Course Registration System"
+            )
+            print(f"{self.__colors.get_yellow()}*{self.__colors.get_reset()}.   Logout")
+            print(f"{self.__colors.get_yellow()}x{self.__colors.get_reset()}.   Exit")
 
             choice = input(
-                f"\n{Colors.BLUE}--> {Colors.RESET}What do you want to do?   "
+                f"\n{self.__colors.get_blue()}--> {self.__colors.get_reset()}What do you want to do?   "
             ).strip()
 
             if len(choice) > 1 or not choice.isdigit():
                 print(
-                    f"{Colors.YELLOW}Invalid input format! Please give a number!{Colors.RESET}"
+                    f"{self.__colors.get_yellow()}Invalid input format! Please give a number!{self.__colors.get_reset()}"
                 )
                 continue
 
@@ -55,15 +68,15 @@ class StudentInterface:
                         "\n-------------------------------------------------------------------------------------------------------------\n"
                     )
                     print(
-                        f"{Colors.YELLOW}0{Colors.RESET}.  Go back to the Student Menu."
+                        f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.  Go back to the Student Menu."
                     )
                     back_choice = input(
-                        f"\n{Colors.BLUE}--> {Colors.RESET}What do you want to do?   "
+                        f"\n{self.__colors.get_blue()}--> {self.__colors.get_reset()}What do you want to do?   "
                     ).strip()
 
                     if len(back_choice) > 1 or not back_choice.isdigit():
                         print(
-                            f"{Colors.YELLOW}Invalid input! Please give a number!{Colors.RESET}"
+                            f"{self.__colors.get_yellow()}Invalid input! Please give a number!{self.__colors.get_reset()}"
                         )
                         continue
 
@@ -73,7 +86,7 @@ class StudentInterface:
                         break
                     else:
                         print(
-                            f"{Colors.YELLOW}Invalid input! Please try again.{Colors.RESET}"
+                            f"{self.__colors.get_yellow()}Invalid input! Please try again.{self.__colors.get_reset()}"
                         )
             elif choice == 4:
                 try:
@@ -82,24 +95,28 @@ class StudentInterface:
                     pass
             elif choice == 5:
                 self.__student_course_registration_interface = (
-                    StudentCourseRegistrationInterface(self.__session, self)
+                    StudentCourseRegistrationInterface(self.__session)
                 )
                 self.__student_course_registration_interface.stu_reg_menu()
             elif choice == "*":
                 self.__login_int.logout()
             elif choice == "x":
                 print(
-                    f"{Colors.YELLOW}{Colors.BOLD}\n< Thank you for using Marmara Course Registration System >{Colors.RESET}"
+                    f"{self.__colors.get_yellow()}{self.__colors.get_bold()}\n< Thank you for using Marmara Course Registration System >{self.__colors.get_reset()}"
                 )
                 self.__login_int.exit()
             else:
-                print(f"{Colors.YELLOW}Invalid input! Please try again.{Colors.RESET}")
+                print(
+                    f"{self.__colors.get_yellow()}Invalid input! Please try again.{self.__colors.get_reset()}"
+                )
 
     def __show_curriculum(self):
         with open("./jsons/courses.json", "r") as file:
             courses_json = json.load(file)
 
-        print(f"{Colors.RED}{Colors.BOLD}\n>> Curriculum\n{Colors.RESET}")
+        print(
+            f"{self.__colors.get_red()}{self.__colors.get_bold()}\n>> Curriculum\n{self.__colors.get_reset()}"
+        )
 
         previous_semester = -1
         for course in courses_json:
@@ -124,9 +141,11 @@ class StudentInterface:
                 print(
                     "\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------"
                 )
-                print(f"{Colors.BLUE}\nSemester {semester}{Colors.RESET}\n")
                 print(
-                    f"\t{Colors.YELLOW}%-10s%-58s%-15s%-8s%-25s%-25s{Colors.RESET}\n"
+                    f"{self.__colors.get_blue()}\nSemester {semester}{self.__colors.get_reset()}\n"
+                )
+                print(
+                    f"\t{self.__colors.get_yellow()}%-10s%-58s%-15s%-8s%-25s%-25s{self.__colors.get_reset()}\n"
                     % (
                         "CourseID",
                         "CourseName",
@@ -155,14 +174,16 @@ class StudentInterface:
             print(
                 "\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------"
             )
-            print(f"{Colors.YELLOW}\n0{Colors.RESET}.  Go back to the Student Menu.")
+            print(
+                f"{self.__colors.get_yellow()}\n0{self.__colors.get_reset()}.  Go back to the Student Menu."
+            )
             back_choice = input(
-                f"\n{Colors.BLUE}--> {Colors.RESET}What do you want to do?   "
+                f"\n{self.__colors.get_blue()}--> {self.__colors.get_reset()}What do you want to do?   "
             ).strip()
 
             if len(back_choice) > 1 or not back_choice.isdigit():
                 print(
-                    f"{Colors.YELLOW}Invalid input! Please give a number!{Colors.RESET}"
+                    f"{self.__colors.get_yellow()}Invalid input! Please give a number!{self.__colors.get_reset()}"
                 )
                 continue
 
@@ -171,7 +192,9 @@ class StudentInterface:
             if back_choice == 0:
                 return
             else:
-                print(f"{Colors.YELLOW}Invalid input! Please try again.{Colors.RESET}")
+                print(
+                    f"{self.__colors.get_yellow()}Invalid input! Please try again.{self.__colors.get_reset()}"
+                )
 
     def __show_notifications(self):
         self.__notification_interface = NotificationsInterface(self.__session)
@@ -208,11 +231,11 @@ class StudentInterface:
         sunday_courses_place = []
 
         print(
-            Colors.get_red()
-            + Colors.get_bold()
+            self.__colors.get_red()
+            + self.__colors.get_bold()
             + "\n>> Weekly Schedule\n"
-            + Colors.get_reset()
-            + Colors.get_reset()
+            + self.__colors.get_reset()
+            + self.__colors.get_reset()
         )
         print(
             "------------------------------------------------------------------------------------------------------------------------------------------"
@@ -462,37 +485,37 @@ class StudentInterface:
 
         while True:
             print(
-                Colors.get_yellow()
+                self.__colors.get_yellow()
                 + "0"
-                + Colors.get_reset()
+                + self.__colors.get_reset()
                 + ".  Back to Student Menu"
             )
             print(
                 "\n"
-                + Colors.get_blue()
+                + self.__colors.get_blue()
                 + "--> "
-                + Colors.get_reset()
+                + self.__colors.get_reset()
                 + "What do you want to do?   ",
                 end="",
             )
-            print(Colors.get_blue(), end="")
+            print(self.__colors.get_blue(), end="")
             case_token_line = input()
             if len(case_token_line) > 1:
                 print(
-                    Colors.get_yellow()
+                    self.__colors.get_yellow()
                     + "Invalid input format! Please give a number!"
-                    + Colors.get_reset()
+                    + self.__colors.get_reset()
                 )
                 continue
 
             case_token = case_token_line[0]
-            print(Colors.get_reset(), end="")
+            print(self.__colors.get_reset(), end="")
             if case_token == "0":
                 return
             else:
                 print(
-                    Colors.get_yellow()
+                    self.__colors.get_yellow()
                     + "Invalid input! Please try again."
-                    + Colors.get_reset()
+                    + self.__colors.get_reset()
                 )
                 continue

@@ -1,12 +1,12 @@
 class Course:
     def __init__(
         self,
-        course_name,
-        course_id,
-        credit,
-        course_type,
-        semester,
-        grade=None,
+        course_name: str,
+        course_id: str,
+        credit: int = 0,
+        course_type: str = None,
+        semester: int = 0,
+        grade: float = 0,
         optional_prerequisite=None,
         mandatory_prerequisite=None,
         theoric=None,

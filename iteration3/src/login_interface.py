@@ -356,6 +356,7 @@ class LoginInterface:
                             password,
                             faculty,
                             department,
+                            given_courses,
                             academic_title,
                         )
 
@@ -367,7 +368,7 @@ class LoginInterface:
             pass
         return None
 
-    def create_course(self, course_code):
+    def create_course(self, course_code: str):
         try:
             with open("jsons/CoursesOffered.json", "r") as reader:
                 courses_list = json.load(reader)
@@ -382,11 +383,23 @@ class LoginInterface:
 
                         dot_count = course_code.count(".")
                         if dot_count == 1:
-                            return Lecture(course_name, course_code, course_session)
+                            return Lecture(
+                                course_name=course_name,
+                                lecture_id=course_code,
+                                course_session=course_session,
+                            )
                         elif dot_count == 2:
-                            return Lab(course_name, course_code, course_session)
+                            return Lab(
+                                course_name=course_name,
+                                lab_id=course_code,
+                                course_session=course_session,
+                            )
                         elif dot_count == 0:
-                            return Course(course_name, course_code, course_session)
+                            return Course(
+                                course_name=course_name,
+                                course_id=course_code,
+                                course_session=course_session,
+                            )
                         else:
                             print(
                                 "{}Invalid course code!{}".format(
@@ -429,7 +442,7 @@ class LoginInterface:
         else:
             return None
 
-    def write_log(message):
-        with open("/jsons/logs.json", "a") as f:
+    def write_log(self, message: str):
+        with open("jsons/logs.json", "a") as f:
             log = {"time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "log": message}
             f.write(json.dumps(log) + "\n")

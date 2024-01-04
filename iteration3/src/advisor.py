@@ -1,7 +1,7 @@
 from lecturer import Lecturer
 class Advisor(Lecturer):
     def __init__(self, name, surname, email, phone_number, id, password, faculty, department, academic_title):
-        super().__init__(name, surname, email, phone_number, id, password, faculty, department, academic_title)
+        super().__init__(name, surname, email, phone_number, id, password, faculty, department, academic_title=academic_title)
         self.__students = []
 
     def set_student(self, student):

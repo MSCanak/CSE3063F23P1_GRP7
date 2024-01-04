@@ -1,60 +1,71 @@
 from abc import ABC, abstractmethod
 
+
 class Person(ABC):
-    def __init__(self, name, surname, email, phoneNumber, id, password, faculty, department):
-        self.name = name
-        self.surname = surname
-        self.email = email
-        self.phoneNumber = phoneNumber
-        self.id = id
-        self.password = password
-        self.faculty = faculty
-        self.department = department
+    def __init__(
+        self,
+        name: str,
+        surname: str,
+        email: str,
+        phoneNumber: str,
+        id: str,
+        password: str,
+        faculty: str,
+        department: str,
+    ):
+        self.__name = name
+        self.__surname = surname
+        self.__email = email
+        self.__phoneNumber = phoneNumber
+        self.__id = id
+        self.__password = password
+        self.__faculty = faculty
+        self.__department = department
 
-    def get_name(self):
-        return self.name
+    def get_name(self) -> str:
+        return self.__name
 
-    def get_surname(self):
-        return self.surname
+    def get_surname(self) -> str:
+        return self.__surname
 
-    def get_email(self):
-        return self.email
+    def get_email(self) -> str:
+        return self.__email
 
-    def get_phone_number(self):
-        return self.phoneNumber
+    def get_phone_number(self) -> str:
+        return self.__phoneNumber
 
-    def get_id(self):
-        return self.id
+    def get_id(self) -> str:
+        return self.__id
 
-    def get_password(self):
-        return self.password
+    def get_password(self) -> str:
+        return self.__password
 
-    def get_faculty(self):
-        return self.faculty
+    def get_faculty(self) -> str:
+        return self.__faculty
 
-    def get_department(self):
-        return self.department
+    def get_department(self) -> str:
+        return self.__department
 
     def set_name(self, name):
-        self.name = name
+        self.__name = name
 
     def set_surname(self, surname):
-        self.surname = surname
+        self.__surname = surname
 
     def set_email(self, email):
-        self.email = email
+        self.__email = email
 
     def set_phone_number(self, phoneNumber):
-        self.phoneNumber = phoneNumber
+        self.__phoneNumber = phoneNumber
 
     def set_id(self, id):
-        self.id = id
+        self.__id = id
 
     def set_password(self, password):
-        self.password = password
+        self.__password = password
 
     def set_faculty(self, faculty):
-        self.faculty = faculty
+        self.__faculty = faculty
 
     def set_department(self, department):
-        self.department = department
+        self.__department = department

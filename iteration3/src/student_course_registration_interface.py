@@ -415,7 +415,7 @@ class StudentCourseRegistrationInterface:
             print(e)
 
     def __write_log(self, message: str) -> None:
-        with open("/jsons/logs.json", "a") as f:
+        with open("jsons/logs.json", "a") as f:
             log = {"time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "log": message}
             f.write(json.dumps(log) + "\n")
 
@@ -574,7 +574,7 @@ class StudentCourseRegistrationInterface:
                         elif isinstance(course_grade, float):
                             course_grade = float(course_grade)
 
-                        course_obj = self.__find_course_by_id(course_id)
+                        course_obj = self.__find_course_by_id(self.__all_courses, course_id)
 
                         if course_obj is not None:
                             if course_grade <= 1:
