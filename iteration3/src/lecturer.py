@@ -6,18 +6,18 @@ class Lecturer(Person):
         self.__academic_title = None
 
 
-    def getGivenCourses(self):
+    def get_given_courses(self):
         return self.__given_courses
     
-    def setGivenCourses(self, given_courses):
+    def set_given_courses(self, given_courses):
         self.__given_courses = given_courses
     
-    def getAcademicTitle(self):
+    def get_academic_title(self):
         return self.__academic_title
     
-    def setAcademicTitle(self, academic_title):
+    def set_academic_title(self, academic_title):
         self.__academic_title = academic_title
     
-    def setCourse(self, course):
+    def set_course(self, course):
         self.__given_courses.append(course)
 

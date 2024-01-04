@@ -2,13 +2,13 @@ import json
 from datetime import datetime
 from colors import Colors
 from notification import Notification
-
+from session import Session
 class NotificationsInterface:
-    def __init__(self, session):
-        self.colors = Colors()
-        self.person = session.get_user()
-        self.notifications = []
-        self.input = input
+    def __init__(self, session: Session):
+        self.__colors = Colors()
+        self.__person = session.get_user()
+        self.__notifications = []
+        self.__input = input
         self._calculate_notifications()
 
     def _calculate_notifications(self):
