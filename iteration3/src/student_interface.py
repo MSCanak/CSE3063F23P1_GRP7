@@ -8,20 +8,19 @@ from student_course_registration_interface import (
 )
 from weekly_schedule import WeeklySchedule
 from session import Session
-from login_interface import LoginInterface
 from colors import Colors
 
 
 class StudentInterface:
-    def __init__(self, session: Session, login_interface: LoginInterface):
+    def __init__(self, session: Session, login_int):
         self.__session = session
-        self.__login_interface = login_interface
+        self.__login_int = login_int
         self.__notification_interface: NotificationsInterface = None
         self.__student_course_registration_interface: StudentCourseRegistrationInterface = (
             None
         )
 
-    def stuMenu(self):
+    def stu_menu(self):
         while True:
             print(f"{Colors.RED}{Colors.BOLD}\n> Student Menu\n{Colors.RESET}")
             print(f"{Colors.YELLOW}1{Colors.RESET}.   View Notifications")
@@ -87,12 +86,12 @@ class StudentInterface:
                 )
                 self.__student_course_registration_interface.stu_reg_menu()
             elif choice == "*":
-                self.__login_interface.logout()
+                self.__login_int.logout()
             elif choice == "x":
                 print(
                     f"{Colors.YELLOW}{Colors.BOLD}\n< Thank you for using Marmara Course Registration System >{Colors.RESET}"
                 )
-                self.__login_interface.exit()
+                self.__login_int.exit()
             else:
                 print(f"{Colors.YELLOW}Invalid input! Please try again.{Colors.RESET}")
 

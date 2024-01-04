@@ -5,7 +5,6 @@ from colors import Colors
 from messages_interface import MessagesInterface
 from notification import Notification
 from session import Session
-from student_interface import StudentInterface
 from course import Course
 from course_session import CourseSession
 from lecture import Lecture
@@ -13,9 +12,8 @@ from lab import Lab
 
 
 class StudentCourseRegistrationInterface:
-    def __init__(self, session: Session, student_int: StudentInterface):
+    def __init__(self, session: Session):
         self.__session = session
-        self.__student_int = student_int
 
         self.__available_courses: list[Course] = []
         self.__available_lectures: list[Lecture] = []
