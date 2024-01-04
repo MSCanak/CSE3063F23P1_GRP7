@@ -1,34 +1,50 @@
+from course import Course
 from person import Person
 from transcript import Transcript
 
+
 class Student(Person):
-    def __init__(self, name, surname, email, phoneNumber, ID, password, faculty, department, currentSemester, advisor):
-        super().__init__(name, surname, email, phoneNumber, ID, password, faculty, department)
-        self.advisor = advisor
-        self.transcript = Transcript(self)
-        self.currentSemester = currentSemester
-        self.currentTakenCourses = []
+    def __init__(
+        self,
+        name,
+        surname,
+        email,
+        phoneNumber,
+        ID,
+        password,
+        faculty,
+        department,
+        currentSemester,
+        advisor,
+    ):
+        super().__init__(
+            name, surname, email, phoneNumber, ID, password, faculty, department
+        )
+        self.__advisor = advisor
+        self.__transcript = Transcript(self)
+        self.__currentSemester = currentSemester
+        self.__currentTakenCourses: list[Course] = []
 
     def get_transcript(self):
-        return self.transcript
+        return self.__transcript
 
     def set_transcript(self, transcript):
-        self.transcript = transcript
+        self.__transcript = transcript
 
     def get_advisor(self):
-        return self.advisor
+        return self.__advisor
 
     def set_advisor(self, advisor):
-        self.advisor = advisor
+        self.__advisor = advisor
 
     def get_current_semester(self):
-        return self.currentSemester
+        return self.__currentSemester
 
     def set_current_semester(self, currentSemester):
-        self.currentSemester = currentSemester
+        self.__currentSemester = currentSemester
 
     def get_current_taken_courses(self):
-        return self.currentTakenCourses
+        return self.__currentTakenCourses
 
     def set_current_taken_courses(self, course):
-        self.currentTakenCourses.append(course)
+        self.__currentTakenCourses.append(course)
