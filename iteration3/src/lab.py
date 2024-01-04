@@ -1,3 +1,4 @@
+from course import Course
 class Lab(Course):
     def __init__(self, course_name, lab_id, *args):
         super().__init__(*args)

@@ -1,5 +1,6 @@
 import json
 from typing import List
+from colors import Colors
 class StudentInterface:
     def __init__(self, session, login_interface):
         self.session = session

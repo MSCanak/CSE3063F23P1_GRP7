@@ -1,5 +1,7 @@
 import json
 from datetime import datetime
+from colors import Colors
+from notification import Notification
 
 class NotificationsInterface:
     def __init__(self, session):

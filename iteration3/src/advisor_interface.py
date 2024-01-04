@@ -1,4 +1,7 @@
-class advisor_interface:
+from advisor_course_registration_interface import AdvisorCourseRegistrationInterface
+from notifications_interface import NotificationsInterface
+
+class AdvisorInterface:
     def __init__(self, session, login_int):
         self.session = session
         self.login_int = login_int

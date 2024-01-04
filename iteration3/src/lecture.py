@@ -1,3 +1,4 @@
+from course import Course
 class Lecture(Course):
     def __init__(self, course_name, lecture_id, *args):
         super().__init__(*args)
