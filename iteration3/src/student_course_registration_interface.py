@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import json
 
 from colors import Colors
@@ -183,21 +183,71 @@ class StudentCourseRegistrationInterface:
 
     def __selected_courses_menu(self) -> None:
         while True:
-            print("\n>>> Selected Course Menu")
+            print(
+                self.__colors.get_bold()
+                + self.__colors.get_red()
+                + "\n>>> Selected Course Menu"
+                + self.__colors.get_reset()
+                + self.__colors.get_reset()
+            )
             self.__show_student_inf()
             self.__show_selected_courses()
-            print("1. Delete selected courses")
-            print("2. Send registration request")
-            print("0. Go back to Student Course Registration System")
-            choice = input("--> What do you want to do? ")
+
+            print(
+                self.__colors.get_yellow()
+                + "1"
+                + self.__colors.get_reset()
+                + ".   Delete selected courses"
+            )
+            print(
+                self.__colors.get_yellow()
+                + "2"
+                + self.__colors.get_reset()
+                + ".   Send registration request"
+            )
+            print(
+                self.__colors.get_yellow()
+                + "0"
+                + self.__colors.get_reset()
+                + ".   Go back to Student Course Registration System"
+            )
+            print(
+                "\n"
+                + self.__colors.get_blue()
+                + "--> "
+                + self.__colors.get_reset()
+                + "What do you want to do?   "
+            )
+
+            choice = input(self.__colors.get_blue())
+            print(self.__colors.get_reset())
+
+            if not self.__selected_courses:
+                print(
+                    self.__colors.get_yellow()
+                    + "\nAt present, no courses have been selected!"
+                    + self.__colors.get_reset()
+                )
+                print(
+                    "You will be "
+                    + self.__colors.get_green()
+                    + "redirected"
+                    + self.__colors.get_reset()
+                    + " to Student Course Registration System"
+                )
+                print("You can add courses from Available Courses Menu\n")
+                break
 
             if choice == "1":
                 self.__delete_selected_course_menu()
             elif choice == "2":
                 self.__send_reg_request()
+                # send notification
                 receiver_id = self.__session.get_user().get_advisor().get_id()
-                description = "Student {} sent a registration request!".format(
-                    self.__session.get_user().get_id()
+                description = (
+                    "Student "
+                    + self.__session.get_user().get_id()
+                    + " sent a registration request!"
                 )
                 sender_id = self.__session.get_user().get_id()
                 notification = Notification(receiver_id, description, sender_id)
@@ -205,19 +255,42 @@ class StudentCourseRegistrationInterface:
             elif choice == "0":
                 return
             else:
-                print("Invalid input! Please try again.")
+                print(
+                    self.__colors.get_yellow()
+                    + "Invalid input! Please try again."
+                    + self.__colors.get_reset()
+                )
 
     def __show_selected_courses(self) -> None:
-        if not self.__selected_courses:
-            print("\nNo courses selected.")
-        else:
-            print("\nSelected Courses:")
-            for course in self.__selected_courses:
-                print(
-                    "Course ID: {}, Course Name: {}".format(
-                        course.get_course_id(), course.get_course_name()
-                    )
+        course_number = 1
+        print(
+            "\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------"
+        )
+        print(
+            "| %-8s | %-13s | %-50s| %-50s | %-8s| %-15s |"
+            % ("Number", "CourseID", "CourseName", "Lecturer", "Credit", "CourseType")
+        )
+        print(
+            "-----------------------------------------------------------------------------------------------------------------------------------------------------------------"
+        )
+
+        for lecture in self.__selected_lectures:
+            print(
+                "| %-8s | %-13s | %-50s| %-50s | %-8s| %-15s |"
+                % (
+                    course_number,
+                    lecture.get_lecture_id(),
+                    lecture.get_course_name(),
+                    lecture.get_lecturer(),
+                    lecture.get_credit(),
+                    "Elective" if lecture.get_type() == "E" else "Mandatory",
                 )
+            )
+            course_number += 1
+
+        print(
+            "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
+        )
 
     def __delete_selected_course_menu(self) -> None:
         while True:
@@ -226,7 +299,7 @@ class StudentCourseRegistrationInterface:
                 + self.__colors.get_red()
                 + "\n>>>> Delete Selected Course Menu"
                 + self.__colors.get_reset()
-                + self.__colors.get_reset()()
+                + self.__colors.get_reset()
             )
             self.__show_student_inf()
 
@@ -497,7 +570,7 @@ class StudentCourseRegistrationInterface:
 
     def __create_course_session(self, course_day_time_location: str) -> CourseSession:
         # Parse the string and create a course __session object
-        parts = course_day_time_location.split(" ")
+        parts = course_day_time_location.strip().split(" ")
         course_day = []
         course_start_time = []
         course_end_time = []
@@ -574,7 +647,9 @@ class StudentCourseRegistrationInterface:
                         elif isinstance(course_grade, float):
                             course_grade = float(course_grade)
 
-                        course_obj = self.__find_course_by_id(self.__all_courses, course_id)
+                        course_obj = self.__find_course_by_id(
+                            self.__all_courses, course_id
+                        )
 
                         if course_obj is not None:
                             if course_grade <= 1:
@@ -650,7 +725,13 @@ class StudentCourseRegistrationInterface:
                     if self.__find_course_by_id(self.__all_courses, course_id)
                 ]
 
-                course = Course(course_name, course_id, credit, course_type, semester)
+                course = Course(
+                    course_name=course_name,
+                    course_id=course_id,
+                    credit=credit,
+                    course_type=course_type,
+                    semester=semester,
+                )
                 course.set_mandatory_prerequisite(mandatory_prerequisite_list)
                 course.set_optional_prerequisite(optional_prerequisite_list)
                 self.__all_courses.append(course)
@@ -664,7 +745,7 @@ class StudentCourseRegistrationInterface:
                 courses_offered_array = json.load(file)
 
             for course_json in courses_offered_array:
-                course_id = course_json["CourseID"]
+                course_id: str = course_json["CourseID"]
                 course_name = course_json["CourseName"]
                 quota = int(course_json["Quota"])
                 course_day_time_location = course_json["CourseDayTimeLocation"]
@@ -678,7 +759,12 @@ class StudentCourseRegistrationInterface:
                     course_session = self.__create_course_session(
                         course_day_time_location
                     )
-                    lecture = Lecture(course_name, course_id, quota, course_session)
+                    lecture = Lecture(
+                        course_name=course_name,
+                        lecture_id=course_id,
+                        quota=quota,
+                        course_session=course_session,
+                    )
                     corresponding_course = self.__find_course_by_id(
                         self.__all_courses, lecture.get_course_id()
                     )
@@ -704,7 +790,12 @@ class StudentCourseRegistrationInterface:
                     course_session = self.__create_course_session(
                         course_day_time_location
                     )
-                    lab = Lab(course_name, course_id, quota, course_session)
+                    lab = Lab(
+                        course_name=course_name,
+                        lab_id=course_id,
+                        quota=quota,
+                        course_session=course_session,
+                    )
                     corresponding_course = self.__find_course_by_id(
                         self.__all_courses, lab.get_course_id()
                     )

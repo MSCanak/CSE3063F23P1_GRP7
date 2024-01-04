@@ -1,3 +1,6 @@
+from course_session import CourseSession
+
+
 class Course:
     def __init__(
         self,
@@ -14,7 +17,7 @@ class Course:
         course_students=None,
         lecturer=None,
         quota=None,
-        course_session=None,
+        course_session: CourseSession = None,
     ):
         self.__course_name = course_name
         self.__course_id = course_id
@@ -98,7 +101,7 @@ class Course:
     def set_quota(self, quota):
         self.__quota = quota
 
-    def get_course_session(self):
+    def get_course_session(self) -> CourseSession:
         return self.__course_session
 
     def set_course_session(self, course_session):
@@ -115,3 +118,9 @@ class Course:
 
     def set_grade(self, grade):
         self.__grade = grade
+
+    def get_type(self) -> str:
+        return self.__course_type
+
+    def set_type(self, course_type: str):
+        self.__course_type = course_type

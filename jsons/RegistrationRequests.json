@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "StudentID": "150120000",
+        "SelectedCourses": [
+            "CSE2225"
+        ],
+        "SelectedLectures": [
+            "CSE2225.1"
+        ],
+        "SelectedLabs": [
+            "CSE2225.1.1"
+        ],
+        "ApprovedCourses": [],
+        "ApprovedLectures": [],
+        "ApprovedLabs": []
+    }
+]
