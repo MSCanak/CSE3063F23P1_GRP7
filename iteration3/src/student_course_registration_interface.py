@@ -1,41 +1,52 @@
+import datetime
 import json
+
+from iteration3.src.notification import Notification
+from iteration3.src.session import Session
+from iteration3.src.student_interface import StudentInterface
+from iteration3.src.course import Course
+from iteration3.src.course_session import CourseSession
+from iteration3.src.lecture import Lecture
+from iteration3.src.lab import Lab
 
 
 class StudentCourseRegistrationInterface:
-    def __init__(self, session, student_int):
+    def __init__(self, session: Session, student_int: StudentInterface):
         self.session = session
         self.student_int = student_int
 
-        self.available_courses = []
-        self.available_lectures = []
-        self.available_labs = []
+        self.available_courses: list[Course] = []
+        self.available_lectures: list[Lecture] = []
+        self.available_labs: list[Lab] = []
 
-        self.selected_courses = []
-        self.selected_lectures = []
-        self.selected_labs = []
+        self.selected_courses: list[Course] = []
+        self.selected_lectures: list[Lecture] = []
+        self.selected_labs: list[Lab] = []
 
-        self.all_courses = []
-        self.all_lectures = []
-        self.all_labs = []
+        self.all_courses: list[Course] = []
+        self.all_lectures: list[Lecture] = []
+        self.all_labs: list[Lab] = []
 
         self.get_all_courses()  # Load all courses from courses.json
         self.set_all_lectures_and_labs()  # Load all lectures and labs from CoursesOffered.json
-        self.registiration_process = None
+        self.registiration_process: str = None
 
-    def try_parse_int(self, value):
+    def try_parse_int(self, value: str) -> int or None:
         try:
             return int(value)
         except ValueError:
             return None
 
-    def check_conflict(self, selected_lecture, selected_lab=None):
+    def check_conflict(
+        self, selected_lecture: Lecture, selected_lab: Lab = None
+    ) -> bool:
         if self.check_conflict_lecture(selected_lecture):
             return True
         if selected_lab and self.check_conflict_lab(selected_lab):
             return True
         return False
 
-    def check_conflict_lecture(self, selected_lecture):
+    def check_conflict_lecture(self, selected_lecture: Lecture) -> bool:
         selected_lecture_course_session = selected_lecture.get_course_session()
         selected_lecture_course_days = selected_lecture_course_session.get_course_day()
         selected_lecture_course_start_times = (
@@ -63,8 +74,8 @@ class StudentCourseRegistrationInterface:
                             return True
         return False
 
-    def check_conflict_lab(self, selected_lab):
-        selected_lab_course_session = selected_lab.get_course_session()
+    def check_conflict_lab(self, selected_lab: Lab) -> bool:
+        selected_lab_course_session: CourseSession = selected_lab.get_course_session()
         selected_lab_course_days = selected_lab_course_session.get_course_day()
         selected_lab_course_start_times = (
             selected_lab_course_session.get_course_start_time()
@@ -90,7 +101,7 @@ class StudentCourseRegistrationInterface:
                             return True
         return False
 
-    def stu_reg_menu(self):
+    def stu_reg_menu(self) -> None:
         while True:
             print("\n>> Student Course Registration System")
             self.show_student_inf()
@@ -112,7 +123,7 @@ class StudentCourseRegistrationInterface:
             else:
                 print("Invalid input! Please try again.")
 
-    def show_student_inf(self):
+    def show_student_inf(self) -> None:
         self.get_registration_process()
         print("\n--------------------------------------------------------")
         print(
@@ -146,7 +157,7 @@ class StudentCourseRegistrationInterface:
         )
         print("--------------------------------------------------------")
 
-    def get_registration_process(self):
+    def get_registration_process(self) -> None:
         try:
             student_id = self.session.get_user().get_id()
             registration_requests_json = "jsons/RegistrationRequests.json"
@@ -169,7 +180,7 @@ class StudentCourseRegistrationInterface:
         except Exception as e:
             print(e)
 
-    def selected_courses_menu(self):
+    def selected_courses_menu(self) -> None:
         while True:
             print("\n>>> Selected Course Menu")
             self.show_student_inf()
@@ -195,7 +206,7 @@ class StudentCourseRegistrationInterface:
             else:
                 print("Invalid input! Please try again.")
 
-    def show_selected_courses(self):
+    def show_selected_courses(self) -> None:
         if not self.selected_courses:
             print("\nNo courses selected.")
         else:
@@ -207,7 +218,7 @@ class StudentCourseRegistrationInterface:
                     )
                 )
 
-    def delete_selected_course_menu(self):
+    def delete_selected_course_menu(self) -> None:
         while self.selected_courses:
             self.show_selected_courses()
             print("0. Go back to Selected Course Menu")
@@ -228,7 +239,7 @@ class StudentCourseRegistrationInterface:
             else:
                 print("Invalid Course ID. Please try again.")
 
-    def delete_selected_courses(self, selected_indexes):
+    def delete_selected_courses(self, selected_indexes: list[int]) -> None:
         # Copy selected lectures to a new list for preventing concurrent modification
         selected_lectures_copy = list(self.selected_lectures)
 
@@ -248,7 +259,7 @@ class StudentCourseRegistrationInterface:
                 self.selected_lectures.remove(lecture)
                 self.selected_courses.remove(lecture)
 
-    def send_reg_request(self):
+    def send_reg_request(self) -> None:
         try:
             existing_registration_array = []
 
@@ -285,10 +296,19 @@ class StudentCourseRegistrationInterface:
                 "\033[92mThe registration request sent to advisor successfully !\033[0m"
             )
 
+            self.write_log(
+                f"StudentID: {self.session.get_user().get_id()}, The registration request sent to advisor successfully !"
+            )
+
         except Exception as e:
             print(e)
 
-    def available_courses_menu(self):
+    def write_log(self, message: str) -> None:
+        with open("/jsons/logs.json", "a") as f:
+            log = {"time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "log": message}
+            f.write(json.dumps(log) + "\n")
+
+    def available_courses_menu(self) -> None:
         while True:
             print("\n>>> Available Course Menu")
             self.show_student_inf()
@@ -358,13 +378,13 @@ class StudentCourseRegistrationInterface:
             else:
                 print("\033[93mInvalid input\033[0m")
 
-    def find_course_by_id(self, courses, course_id):
+    def find_course_by_id(self, courses: list[Course], course_id: str) -> Course:
         for course in courses:
             if course.get_course_id() == course_id:
                 return course
         return None  # returns when the course is not found
 
-    def create_course_session(self, course_day_time_location):
+    def create_course_session(self, course_day_time_location: str) -> CourseSession:
         # Parse the string and create a course session object
         parts = course_day_time_location.split(" ")
         course_day = []
@@ -383,7 +403,7 @@ class StudentCourseRegistrationInterface:
             course_day, course_start_time, course_end_time, course_place
         )
 
-    def calculate_available_lectures(self):
+    def calculate_available_lectures(self) -> None:
         self.available_lectures.clear()
         try:
             for lecture in self.all_lectures:
@@ -393,7 +413,7 @@ class StudentCourseRegistrationInterface:
         except Exception as e:
             print(e)
 
-    def calculate_available_labs(self, selected_lecture):
+    def calculate_available_labs(self, selected_lecture: Lecture) -> None:
         self.available_labs.clear()
         try:
             for lab in self.all_labs:
@@ -407,7 +427,7 @@ class StudentCourseRegistrationInterface:
         except Exception as e:
             print(e)
 
-    def calculate_available_courses(self):
+    def calculate_available_courses(self) -> None:
         target_semester = self.session.user.get_current_semester()
         gano = self.session.user.get_transcript().get_gano()[target_semester - 2]
 
@@ -423,7 +443,7 @@ class StudentCourseRegistrationInterface:
             stu_id = self.session.user.get_id()
             student_json = f"jsons/student/{stu_id}.json"
             with open(student_json, "r") as file:
-                student_data = json.load(file)
+                student_data: list = json.load(file)
 
                 transcript = student_data["Transcript"]
                 all_semester_array = transcript["Semester"]
@@ -485,7 +505,7 @@ class StudentCourseRegistrationInterface:
         except Exception as e:
             print(e)
 
-    def get_all_courses(self):
+    def get_all_courses(self) -> None:
         try:
             with open("jsons/courses.json") as file:
                 courses_array = json.load(file)
@@ -525,7 +545,7 @@ class StudentCourseRegistrationInterface:
         except Exception as e:
             print(e)
 
-    def set_all_lectures_and_labs(self):
+    def set_all_lectures_and_labs(self) -> None:
         try:
             with open("jsons/CoursesOffered.json") as file:
                 courses_offered_array = json.load(file)
@@ -596,7 +616,7 @@ class StudentCourseRegistrationInterface:
         except Exception as e:
             print(e)
 
-    def show_available_lectures(self):
+    def show_available_lectures(self) -> None:
         course_number = 1
         print(
             "\n{:<8}{:<13}{:<70}{:<8}{:<15}".format(
@@ -622,7 +642,7 @@ class StudentCourseRegistrationInterface:
         if course_number == 1:
             print("\n!!! Currently, there are no lectures available !!!\n")
 
-    def show_available_labs(self, selected_index):
+    def show_available_labs(self, selected_index: int) -> bool:
         course_number = 1
         print(
             "\n{:<8}{:<13}{:<70}{:<8}{:<15}".format(
@@ -653,7 +673,9 @@ class StudentCourseRegistrationInterface:
             return False
         return True
 
-    def save_available_courses(self, selected_lecture, selected_lab=None):
+    def save_available_courses(
+        self, selected_lecture: Lecture, selected_lab: Lab = None
+    ) -> None:
         self.selected_courses.append(selected_lecture)
         self.selected_lectures.append(selected_lecture)
 
