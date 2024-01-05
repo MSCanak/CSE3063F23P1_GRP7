@@ -370,7 +370,7 @@ class LoginInterface:
 
     def create_course(self, course_code: str):
         try:
-            with open("jsons/CoursesOffered.json", "r") as reader:
+            with open("jsons/CoursesOffered.json", "r", encoding='utf-8') as reader:
                 courses_list = json.load(reader)
 
                 for course_obj in courses_list:
