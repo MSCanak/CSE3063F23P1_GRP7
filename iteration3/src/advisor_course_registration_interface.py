@@ -1,10 +1,11 @@
 import json
 from notifications_interface import NotificationsInterface
 from colors import Colors
+from session import Session
 
 # color need fix
 class AdvisorCourseRegistrationInterface:
-    def __init__(self, session):
+    def __init__(self, session : Session):
         self
         self.__session = session
 

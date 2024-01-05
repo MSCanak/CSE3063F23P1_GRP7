@@ -5,10 +5,9 @@ from lecture import Lecture
 
 
 class AdvisorInterface:
-    def __init__(self, session: Session, login_int):
+    def __init__(self, session: Session):
         self.__session = session
-        self.__login_int = login_int
-        self.__adv_course_reg_int = AdvisorCourseRegistrationInterface(session, self)
+        self.__adv_course_reg_int = AdvisorCourseRegistrationInterface(session=self.__session)
 
     def adv_menu(self):
         while True:

@@ -92,7 +92,7 @@ class LoginInterface:
                                 self.__session.get_user().get_id()
                             )
                         )
-                        advisor_interface = AdvisorInterface(self.__session, self)
+                        advisor_interface = AdvisorInterface(session=self.__session)
                         advisor_interface.adv_menu()
                     elif self.check_user_login_info("lecturers", ID, password):
                         self.__session = Session(self.create_lecturer(ID))
@@ -221,7 +221,7 @@ class LoginInterface:
 
     def user_exists(self, file_name, ID):
         try:
-            with open("jsons/{}.json".format(file_name), "r") as reader:
+            with open("jsons/{}.json".format(file_name), "r", encoding='utf-8') as reader:
                 user_list = json.load(reader)
 
                 for user in user_list:
