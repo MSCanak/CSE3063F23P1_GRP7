@@ -30,14 +30,14 @@ class LoginInterface:
                 + self.__colors.get_reset()
             )
             print("Please enter your ID and password to login!\n")
-            ID = self.__get_user_id()
+            id = self.__get_user_id()
             password = self.__get_user_password()
 
-            user_type = self.__get_user_type(ID)
+            user_type = self.__get_user_type(id)
             if user_type == "student":
-                if self.__user_exists("students", ID):
-                    if self.__check_user_login_info("students", ID, password):
-                        self.__session = Session(self.__create_student(ID, None))
+                if self.__user_exists("students", id):
+                    if self.__check_user_login_info("students", id, password):
+                        self.__session = Session(self.__create_student(id, None))
                         print(
                             "\nWelcome {} {}!".format(
                                 self.__session.get_user().get_name(),
@@ -72,9 +72,9 @@ class LoginInterface:
                     )
                     continue
             elif user_type == "lecturer":
-                if self.__user_exists("lecturers", ID):
-                    if self.__check_user_login_info("advisors", ID, password):
-                        self.__session = Session(self.__create_advisor(ID, "null"))
+                if self.__user_exists("lecturers", id):
+                    if self.__check_user_login_info("advisors", id, password):
+                        self.__session = Session(self.__create_advisor(id, "null"))
                         print(
                             "\nWelcome {} {}!".format(
                                 self.__session.get_user().get_name(),
@@ -94,8 +94,8 @@ class LoginInterface:
                         )
                         advisor_interface = AdvisorInterface(session=self.__session)
                         advisor_interface.adv_menu()
-                    elif self.__check_user_login_info("lecturers", ID, password):
-                        self.__session = Session(self.__create_lecturer(ID))
+                    elif self.__check_user_login_info("lecturers", id, password):
+                        self.__session = Session(self.__create_lecturer(id))
                         print(
                             "\nWelcome {} {}!".format(
                                 self.__session.get_user().get_name(),
@@ -191,15 +191,15 @@ class LoginInterface:
                 ),
                 end="",
             )
-            ID = input()
-            if not self.__id_format_checker(ID):
+            id = input()
+            if not self.__id_format_checker(id):
                 print(
                     "{}Invalid input! Please try again.{}".format(
                         self.__colors.get_yellow(), self.__colors.get_reset()
                     )
                 )
             else:
-                return ID
+                return id
 
     def __get_user_password(self):
         while True:
@@ -219,34 +219,34 @@ class LoginInterface:
             else:
                 return password
 
-    def __user_exists(self, file_name, ID):
+    def __user_exists(self, file_name, id):
         try:
             with open("jsons/{}.json".format(file_name), "r", encoding='utf-8') as reader:
                 user_list = json.load(reader)
 
                 for user in user_list:
-                    if user["ID"] == ID:
+                    if user["ID"] == id:
                         return True
         except (IOError, json.JSONDecodeError):
             pass
         return False
 
-    def __check_user_login_info(self, file_name, ID, password):
+    def __check_user_login_info(self, file_name, id, password):
         while True:
             try:
                 with open("jsons/{}.json".format(file_name), "r") as reader:
                     user_list = json.load(reader)
 
                     for user in user_list:
-                        if user["ID"] == ID and user["Password"] == password:
+                        if user["ID"] == id and user["Password"] == password:
                             return True
             except (IOError, json.JSONDecodeError):
                 pass
             return False
 
-    def __create_student(self, ID, advisor):
+    def __create_student(self, id, advisor):
         try:
-            with open("jsons/student/{}.json".format(ID), "r") as reader:
+            with open("jsons/student/{}.json".format(id), "r") as reader:
                 student = json.load(reader)
 
                 name = student["Name"]
@@ -254,22 +254,22 @@ class LoginInterface:
                 email = student["EMail"]
                 phone_number = student["PhoneNumber"]
                 department = student["Department"]
-                advisor_ID = student["AdvisorID"]
+                advisor_id = student["AdvisorID"]
                 semester = student["Semester"]
                 faculty = student["Faculty"]
-                student_ID = student["ID"]
+                student_id = student["ID"]
                 password = student["Password"]
                 taken_courses_array = student["TakenCourses"]
 
                 if advisor is None:
-                    advisor = self.__create_advisor(advisor_ID, student_ID)
+                    advisor = self.__create_advisor(advisor_id, student_id)
 
                 stu = Student(
                     name,
                     surname,
                     email,
                     phone_number,
-                    student_ID,
+                    student_id,
                     password,
                     faculty,
                     department,
@@ -278,21 +278,21 @@ class LoginInterface:
                 )
 
                 if taken_courses_array:
-                    for course_ID in taken_courses_array:
-                        stu.set_current_taken_courses(self.__create_course(course_ID))
+                    for course_id in taken_courses_array:
+                        stu.set_current_taken_courses(self.__create_course(course_id))
 
                 return stu
         except (IOError, json.JSONDecodeError):
             pass
         return None
 
-    def __create_advisor(self, advisor_ID, student_ID):
+    def __create_advisor(self, advisor_id, student_id):
         try:
             with open("jsons/advisors.json", "r") as reader:
                 advisor_list: list = json.load(reader)
 
                 for advisor in advisor_list:
-                    if advisor["ID"] == advisor_ID:
+                    if advisor["ID"] == advisor_id:
                         name = advisor["Name"]
                         surname = advisor["Surname"]
                         email = advisor["EMail"]
@@ -309,7 +309,7 @@ class LoginInterface:
                             surname,
                             email,
                             phone_number,
-                            advisor_ID,
+                            advisor_id,
                             password,
                             faculty,
                             department,
@@ -317,10 +317,10 @@ class LoginInterface:
                         )
 
                         for student in student_list:
-                            student_ID_2 = student["ID"]
-                            if student_ID == student_ID_2:
+                            student_id_2 = student["ID"]
+                            if student_id == student_id_2:
                                 continue
-                            adv.set_student(self.__create_student(student_ID_2, adv))
+                            adv.set_student(self.__create_student(student_id_2, adv))
 
                         for course_code in given_courses:
                             adv.set_course(self.__create_course(course_code))
@@ -330,13 +330,13 @@ class LoginInterface:
             pass
         return None
 
-    def __create_lecturer(self, lecturer_ID):
+    def __create_lecturer(self, lecturer_id):
         try:
             with open("jsons/lecturers.json", "r") as reader:
                 lecturer_list: list = json.load(reader)
 
                 for lecturer in lecturer_list:
-                    if lecturer["ID"] == lecturer_ID:
+                    if lecturer["ID"] == lecturer_id:
                         name = lecturer["Name"]
                         surname = lecturer["Surname"]
                         email = lecturer["EMail"]
@@ -352,7 +352,7 @@ class LoginInterface:
                             surname,
                             email,
                             phone_number,
-                            lecturer_ID,
+                            lecturer_id,
                             password,
                             faculty,
                             department,
@@ -422,10 +422,10 @@ class LoginInterface:
             course_day, course_start_time, course_end_time, course_place
         )
 
-    def __id_format_checker(self, ID: str):
-        if not ID or not ID.isdigit():
+    def __id_format_checker(self, id: str):
+        if not id or not id.isdigit():
             return False
-        if len(ID) != 9 and len(ID) != 6:
+        if len(id) != 9 and len(id) != 6:
             return False
         return True
 
@@ -434,10 +434,10 @@ class LoginInterface:
             return False
         return True
 
-    def __get_user_type(self, ID):
-        if len(ID) == 9:
+    def __get_user_type(self, id):
+        if len(id) == 9:
             return "student"
-        elif len(ID) == 6:
+        elif len(id) == 6:
             return "lecturer"
         else:
             return None

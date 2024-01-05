@@ -9,21 +9,21 @@ class Student(Person):
         name,
         surname,
         email,
-        phoneNumber,
-        ID,
+        phone_number,
+        id,
         password,
         faculty,
         department,
-        currentSemester,
+        current_semester,
         advisor,
     ):
         super().__init__(
-            name, surname, email, phoneNumber, ID, password, faculty, department
+            name, surname, email, phone_number, id, password, faculty, department
         )
         self.__advisor = advisor
         self.__transcript = Transcript(self)
-        self.__currentSemester = currentSemester
-        self.__currentTakenCourses: list[Course] = []
+        self.__current_semester = current_semester
+        self.__current_taken_courses: list[Course] = []
 
     def get_transcript(self) -> Transcript:
         return self.__transcript
@@ -38,13 +38,13 @@ class Student(Person):
         self.__advisor = advisor
 
     def get_current_semester(self) -> int:
-        return self.__currentSemester
+        return self.__current_semester
 
-    def set_current_semester(self, currentSemester):
-        self.__currentSemester = currentSemester
+    def set_current_semester(self, current_semester):
+        self.__current_semester = current_semester
 
     def get_current_taken_courses(self) -> list[Course]:
-        return self.__currentTakenCourses
+        return self.__current_taken_courses
 
     def set_current_taken_courses(self, course):
-        self.__currentTakenCourses.append(course)
+        self.__current_taken_courses.append(course)

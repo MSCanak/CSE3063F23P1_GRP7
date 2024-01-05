@@ -7,7 +7,7 @@ class Person(ABC):
         name: str,
         surname: str,
         email: str,
-        phoneNumber: str,
+        phone_number: str,
         id: str,
         password: str,
         faculty: str,
@@ -16,7 +16,7 @@ class Person(ABC):
         self.__name = name
         self.__surname = surname
         self.__email = email
-        self.__phoneNumber = phoneNumber
+        self.__phone_number = phone_number
         self.__id = id
         self.__password = password
         self.__faculty = faculty
@@ -32,7 +32,7 @@ class Person(ABC):
         return self.__email
 
     def get_phone_number(self) -> str:
-        return self.__phoneNumber
+        return self.__phone_number
 
     def get_id(self) -> str:
         return self.__id
@@ -55,8 +55,8 @@ class Person(ABC):
     def set_email(self, email):
         self.__email = email
 
-    def set_phone_number(self, phoneNumber):
-        self.__phoneNumber = phoneNumber
+    def set_phone_number(self, phone_number):
+        self.__phone_number = phone_number
 
     def set_id(self, id):
         self.__id = id
