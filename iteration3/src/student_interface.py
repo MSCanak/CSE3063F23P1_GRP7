@@ -48,20 +48,16 @@ class StudentInterface:
                 f"\n{self.__colors.get_blue()}--> {self.__colors.get_reset()}What do you want to do?   "
             ).strip()
 
-            if len(choice) > 1 or not choice.isdigit():
-                print(
-                    f"{self.__colors.get_yellow()}Invalid input format! Please give a number!{self.__colors.get_reset()}"
-                )
-                continue
+    
 
-            choice = int(choice)
+         
 
-            if choice == 1:
+            if choice == "1":
                 self.__show_notifications()
-            elif choice == 2:
+            elif choice == "2":
                 courses = self.calculate_weekly_schedule()
                 self.show_weekly_schedule(courses)
-            elif choice == 3:
+            elif choice == "3":
                 self.__session.get_user().get_transcript().view_transcript()
                 while True:
                     print(
@@ -88,12 +84,12 @@ class StudentInterface:
                         print(
                             f"{self.__colors.get_yellow()}Invalid input! Please try again.{self.__colors.get_reset()}"
                         )
-            elif choice == 4:
+            elif choice == "4":
                 try:
                     self.__show_curriculum()
                 except Exception:
                     pass
-            elif choice == 5:
+            elif choice == "5":
                 self.__student_course_registration_interface = (
                     StudentCourseRegistrationInterface(self.__session)
                 )
@@ -144,31 +140,28 @@ class StudentInterface:
                 print(
                     f"{self.__colors.get_blue()}\nSemester {semester}{self.__colors.get_reset()}\n"
                 )
-                print(
-                    f"\t{self.__colors.get_yellow()}%-10s%-58s%-15s%-8s%-25s%-25s{self.__colors.get_reset()}\n"
-                    % (
-                        "CourseID",
-                        "CourseName",
-                        "Type",
-                        "Credit",
-                        "OptionalPrerequisites",
-                        "MandatoryPrerequisites",
-                    )
-                )
+                print(self.__colors.get_yellow() + "{:<10} {:<10} {:<58} {:<15} {:<8} {:<25} {:<25}\n".format(
+                    "",
+                    "CourseID",
+                    "CourseName",
+                    "Type",
+                    "Credit",
+                    "OptionalPrerequisites",
+                    "MandatoryPrerequisites"
+                ) + self.__colors.get_reset())
 
                 previous_semester = semester
 
-            print(
-                "\t\t%-10s%-58s%-15s%-8s%-25s%-25s"
-                % (
-                    course_id,
-                    course_name,
-                    course_type,
-                    credit,
-                    optional_prerequisites,
-                    mandatory_prerequisites,
-                )
-            )
+            print("{:<10} {:<10} {:<58} {:<15} {:<8} {:<25} {:<25}".format(
+                "",
+                course_id,
+                course_name,
+                course_type,
+                credit,
+                optional_prerequisites,
+                mandatory_prerequisites,
+            ))
+
 
         while True:
             print(
@@ -241,19 +234,17 @@ class StudentInterface:
             "------------------------------------------------------------------------------------------------------------------------------------------"
         )
 
-        print(
-            "|  %-15s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|%n"
-            % (
-                "",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-                "Sunday",
-            )
-        )
+        print("|  {:<15}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|".format(
+            "",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        ))
+
 
         for i in range(len(courses)):
             course = courses[i]
@@ -351,92 +342,93 @@ class StudentInterface:
         weekly_schedule = WeeklySchedule()
         course_session_times = CourseSessionTimes()
 
-        for k in range(len(course_session_times.SESSION_START)):
-            monday_courses = weekly_schedule.print_monday_courses(
+        for k in range(len(course_session_times.session_start)):
+            monday_courses = weekly_schedule.print_courses(
                 monday_courses_id,
                 monday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            tuesday_courses = weekly_schedule.print_tuesday_courses(
+            tuesday_courses = weekly_schedule.print_courses(
                 tuesday_courses_id,
                 tuesday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            wednesday_courses = weekly_schedule.print_wednesday_courses(
+            wednesday_courses = weekly_schedule.print_courses(
                 wednesday_courses_id,
                 wednesday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            thursday_courses = weekly_schedule.print_thursday_courses(
+            thursday_courses = weekly_schedule.print_courses(
                 thursday_courses_id,
                 thursday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            friday_courses = weekly_schedule.print_friday_courses(
+            friday_courses = weekly_schedule.print_courses(
                 friday_courses_id,
                 friday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            saturday_courses = weekly_schedule.print_saturday_courses(
+            saturday_courses = weekly_schedule.print_courses(
                 saturday_courses_id,
                 saturday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            sunday_courses = weekly_schedule.print_sunday_courses(
+            sunday_courses = weekly_schedule.print_courses(
                 sunday_courses_id,
                 sunday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
 
-            monday_course_place = weekly_schedule.print_monday_course_place(
+            monday_course_place = weekly_schedule.print_course_places(
                 monday_courses_place,
                 monday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            tuesday_course_place = weekly_schedule.print_tuesday_course_place(
+            tuesday_course_place = weekly_schedule.print_course_places(
                 tuesday_courses_place,
                 tuesday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            wednesday_course_place = weekly_schedule.print_wednesday_course_place(
+            wednesday_course_place = weekly_schedule.print_course_places(
                 wednesday_courses_place,
                 wednesday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            thursday_course_place = weekly_schedule.print_thursday_course_place(
+            thursday_course_place = weekly_schedule.print_course_places(
                 thursday_courses_place,
                 thursday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            friday_course_place = weekly_schedule.print_friday_course_place(
+            friday_course_place = weekly_schedule.print_course_places(
                 friday_courses_place,
                 friday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            saturday_course_place = weekly_schedule.print_saturday_course_place(
+            saturday_course_place = weekly_schedule.print_course_places(
                 saturday_courses_place,
                 saturday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
-            sunday_course_place = weekly_schedule.print_sunday_course_place(
+            sunday_course_place = weekly_schedule.print_course_places(
                 sunday_courses_place,
                 sunday_courses_start_time,
-                course_session_times.SESSION_START,
+                course_session_times.session_start,
                 k,
             )
+
 
             if (
                 monday_courses != ""
@@ -450,34 +442,28 @@ class StudentInterface:
                 print(
                     "------------------------------------------------------------------------------------------------------------------------------------------"
                 )
-                print(
-                    "|  %-15s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|%n"
-                    % (
-                        "",
-                        monday_courses,
-                        tuesday_courses,
-                        wednesday_courses,
-                        thursday_courses,
-                        friday_courses,
-                        saturday_courses,
-                        sunday_courses,
-                    )
-                )
-                print(
-                    "|  %-15s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|  %-14s|%n"
-                    % (
-                        course_session_times.SESSION_START[k]
-                        + " - "
-                        + course_session_times.SESSION_END[k],
-                        monday_course_place,
-                        tuesday_course_place,
-                        wednesday_course_place,
-                        thursday_course_place,
-                        friday_course_place,
-                        saturday_course_place,
-                        sunday_course_place,
-                    )
-                )
+                print("|  {:<15}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|".format(
+                    "",
+                    monday_courses,
+                    tuesday_courses,
+                    wednesday_courses,
+                    thursday_courses,
+                    friday_courses,
+                    saturday_courses,
+                    sunday_courses,
+                ))
+
+                print("|  {:<15}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|  {:<14}|".format(
+                    course_session_times.session_start[k] + " - " + course_session_times.session_end[k],
+                    monday_course_place,
+                    tuesday_course_place,
+                    wednesday_course_place,
+                    thursday_course_place,
+                    friday_course_place,
+                    saturday_course_place,
+                    sunday_course_place,
+                ))
+
 
         print(
             "------------------------------------------------------------------------------------------------------------------------------------------\n"
