@@ -30,14 +30,14 @@ class LoginInterface:
                 + self.__colors.get_reset()
             )
             print("Please enter your ID and password to login!\n")
-            ID = self.get_user_id()
-            password = self.get_user_password()
+            ID = self.__get_user_id()
+            password = self.__get_user_password()
 
-            user_type = self.get_user_type(ID)
+            user_type = self.__get_user_type(ID)
             if user_type == "student":
-                if self.user_exists("students", ID):
-                    if self.check_user_login_info("students", ID, password):
-                        self.__session = Session(self.create_student(ID, None))
+                if self.__user_exists("students", ID):
+                    if self.__check_user_login_info("students", ID, password):
+                        self.__session = Session(self.__create_student(ID, None))
                         print(
                             "\nWelcome {} {}!".format(
                                 self.__session.get_user().get_name(),
@@ -72,9 +72,9 @@ class LoginInterface:
                     )
                     continue
             elif user_type == "lecturer":
-                if self.user_exists("lecturers", ID):
-                    if self.check_user_login_info("advisors", ID, password):
-                        self.__session = Session(self.create_advisor(ID, "null"))
+                if self.__user_exists("lecturers", ID):
+                    if self.__check_user_login_info("advisors", ID, password):
+                        self.__session = Session(self.__create_advisor(ID, "null"))
                         print(
                             "\nWelcome {} {}!".format(
                                 self.__session.get_user().get_name(),
@@ -94,8 +94,8 @@ class LoginInterface:
                         )
                         advisor_interface = AdvisorInterface(session=self.__session)
                         advisor_interface.adv_menu()
-                    elif self.check_user_login_info("lecturers", ID, password):
-                        self.__session = Session(self.create_lecturer(ID))
+                    elif self.__check_user_login_info("lecturers", ID, password):
+                        self.__session = Session(self.__create_lecturer(ID))
                         print(
                             "\nWelcome {} {}!".format(
                                 self.__session.get_user().get_name(),
@@ -183,7 +183,7 @@ class LoginInterface:
     def exit(self):
         sys.exit(0)
 
-    def get_user_id(self):
+    def __get_user_id(self):
         while True:
             print(
                 "{}ID: {}".format(
@@ -192,7 +192,7 @@ class LoginInterface:
                 end="",
             )
             ID = input()
-            if not self.id_format_checker(ID):
+            if not self.__id_format_checker(ID):
                 print(
                     "{}Invalid input! Please try again.{}".format(
                         self.__colors.get_yellow(), self.__colors.get_reset()
@@ -201,7 +201,7 @@ class LoginInterface:
             else:
                 return ID
 
-    def get_user_password(self):
+    def __get_user_password(self):
         while True:
             print(
                 "{}Password: {}".format(
@@ -210,7 +210,7 @@ class LoginInterface:
                 end="",
             )
             password = input()
-            if not self.password_format_checker(password):
+            if not self.__password_format_checker(password):
                 print(
                     "{}Invalid input! Please try again.{}".format(
                         self.__colors.get_yellow(), self.__colors.get_reset()
@@ -219,7 +219,7 @@ class LoginInterface:
             else:
                 return password
 
-    def user_exists(self, file_name, ID):
+    def __user_exists(self, file_name, ID):
         try:
             with open("jsons/{}.json".format(file_name), "r", encoding='utf-8') as reader:
                 user_list = json.load(reader)
@@ -231,7 +231,7 @@ class LoginInterface:
             pass
         return False
 
-    def check_user_login_info(self, file_name, ID, password):
+    def __check_user_login_info(self, file_name, ID, password):
         while True:
             try:
                 with open("jsons/{}.json".format(file_name), "r") as reader:
@@ -244,7 +244,7 @@ class LoginInterface:
                 pass
             return False
 
-    def create_student(self, ID, advisor):
+    def __create_student(self, ID, advisor):
         try:
             with open("jsons/student/{}.json".format(ID), "r") as reader:
                 student = json.load(reader)
@@ -262,7 +262,7 @@ class LoginInterface:
                 taken_courses_array = student["TakenCourses"]
 
                 if advisor is None:
-                    advisor = self.create_advisor(advisor_ID, student_ID)
+                    advisor = self.__create_advisor(advisor_ID, student_ID)
 
                 stu = Student(
                     name,
@@ -279,14 +279,14 @@ class LoginInterface:
 
                 if taken_courses_array:
                     for course_ID in taken_courses_array:
-                        stu.set_current_taken_courses(self.create_course(course_ID))
+                        stu.set_current_taken_courses(self.__create_course(course_ID))
 
                 return stu
         except (IOError, json.JSONDecodeError):
             pass
         return None
 
-    def create_advisor(self, advisor_ID, student_ID):
+    def __create_advisor(self, advisor_ID, student_ID):
         try:
             with open("jsons/advisors.json", "r") as reader:
                 advisor_list: list = json.load(reader)
@@ -320,17 +320,17 @@ class LoginInterface:
                             student_ID_2 = student["ID"]
                             if student_ID == student_ID_2:
                                 continue
-                            adv.set_student(self.create_student(student_ID_2, adv))
+                            adv.set_student(self.__create_student(student_ID_2, adv))
 
                         for course_code in given_courses:
-                            adv.set_course(self.create_course(course_code))
+                            adv.set_course(self.__create_course(course_code))
 
                         return adv
         except (IOError, json.JSONDecodeError):
             pass
         return None
 
-    def create_lecturer(self, lecturer_ID):
+    def __create_lecturer(self, lecturer_ID):
         try:
             with open("jsons/lecturers.json", "r") as reader:
                 lecturer_list: list = json.load(reader)
@@ -361,14 +361,14 @@ class LoginInterface:
                         )
 
                         for course_code in given_courses:
-                            lec.set_course(self.create_course(course_code))
+                            lec.set_course(self.__create_course(course_code))
 
                         return lec
         except (IOError, json.JSONDecodeError):
             pass
         return None
 
-    def create_course(self, course_code: str):
+    def __create_course(self, course_code: str):
         try:
             with open("jsons/CoursesOffered.json", "r", encoding='utf-8') as reader:
                 courses_list = json.load(reader)
@@ -377,7 +377,7 @@ class LoginInterface:
                     if course_obj["CourseID"] == course_code:
                         course_name = course_obj["CourseName"]
                         course_day_time_location = course_obj["CourseDayTimeLocation"]
-                        course_session = self.create_course_session(
+                        course_session = self.__create_course_session(
                             course_day_time_location
                         )
 
@@ -411,7 +411,7 @@ class LoginInterface:
             pass
         return None
 
-    def create_course_session(self, course_day_time_location: str) -> CourseSession:
+    def __create_course_session(self, course_day_time_location: str) -> CourseSession:
         parts = course_day_time_location.split(" ")
         course_day = parts[::5]
         course_start_time = parts[1::5]
@@ -422,19 +422,19 @@ class LoginInterface:
             course_day, course_start_time, course_end_time, course_place
         )
 
-    def id_format_checker(self, ID: str):
+    def __id_format_checker(self, ID: str):
         if not ID or not ID.isdigit():
             return False
         if len(ID) != 9 and len(ID) != 6:
             return False
         return True
 
-    def password_format_checker(self, password):
+    def __password_format_checker(self, password):
         if not password or " " in password:
             return False
         return True
 
-    def get_user_type(self, ID):
+    def __get_user_type(self, ID):
         if len(ID) == 9:
             return "student"
         elif len(ID) == 6:
