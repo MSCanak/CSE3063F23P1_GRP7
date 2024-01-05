@@ -1,5 +1,5 @@
 import json
-from notifications_interface import NotificationsInterface
+from notification import Notification
 from colors import Colors
 from session import Session
 
@@ -10,15 +10,12 @@ class AdvisorCourseRegistrationInterface:
         self.__colors = Colors()
         self.__session = session
 
-        self.__selection_courses = []
-
-        self.__courses = []
+        self.__selection_courses : list = []
         self.__id_to_courses = {}
 
-        self.__course_to_lectures = {}
+
         self.__id_to_course_lectures = {}
 
-        self.__course_to_labs = {}
         self.__id_to_course_labs = {}
 
         # self.__messages_interface = MessagesInterface(self.__session)
@@ -107,8 +104,27 @@ class AdvisorCourseRegistrationInterface:
             if student_id != request_id:
                 continue
             
+            course = request_obj["SelectedCourses"]
+            lecture = request_obj["SelectedLectures"]
+            lab = request_obj["SelectedLabs"]
 
-        self.__approve_course(student_id)
+
+            # mapping for id to 
+            self.__id_to_courses = { student_id : course }
+            self.__id_to_course_lectures = { student_id : lecture }
+            self.__id_to_course_labs = { student_id : lab }
+
+            for course in self.__id_to_courses[student_id]:
+                print(f"{self.__colors.get_yellow()}{course}{self.__colors.get_reset()}")
+                if self.__id_to_course_lectures[student_id] is not None:
+                    for lecture in self.__id_to_course_lectures[student_id]:
+                        if lecture.count(course) > 0:
+                            print(f"{self.__colors.get_yellow()}{lecture}{self.__colors.get_reset()}")
+                if self.__id_to_course_labs[student_id] is not None:
+                    for lab in self.__id_to_course_labs[student_id]:
+                        if lab.count(course) > 0:
+                            print(f"{self.__colors.get_yellow()}{lab}{self.__colors.get_reset()}")
+                self.__approve_course(student_id)
 
     def __approve_course(self, student_id):
         if not self.__id_to_courses:
@@ -117,14 +133,17 @@ class AdvisorCourseRegistrationInterface:
 
         print(f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.  Go back to the Advisor Course Registration Menu.")
         print(f"{self.__colors.get_blue()}--> {self.__colors.get_reset()}Select course to approve: ", end="")
-
+        
+        course_len = len(self.__id_to_courses[student_id])
         while True:
             choice = int(input())
             if choice == 0:
                 break
-
+            if choice > course_len:
+                print(f"{self.__colors.get_red()} invalid input {self.__colors.get_reset()}")
+                return
             course = self.__id_to_courses[student_id][choice - 1]
-            if course in self.__selection_courses:
+            if self.__selection_courses is not None and course in self.__selection_courses:
                 print(f"{self.__colors.get_yellow()}You have already approved this course! Press 0{self.__colors.get_reset()}")
                 continue
             else:
@@ -141,144 +160,90 @@ class AdvisorCourseRegistrationInterface:
         receiver_id = student_id
         description = "Advisor has approved your courses!"
         sender_id = self.__session.get_user().get_id()
-        notification = NotificationsInterface(receiver_id, description, sender_id)
+        notification = Notification(receiver_id, description, sender_id)
         notification.send_notification(sender_id)
 
     def __save_approval(self, student_id):
-        for request_obj in self.__request_json:
-            request = request_obj
-            request_id = request["StudentID"]
-            if student_id == request_id:
-                approved_courses_json_array = request["ApprovedCourses"]
-                selected_courses = request["SelectedCourses"]
+        for request in self.__request_file:
+            if request["StudentID"] != student_id:
+                continue
+            
+            if self.__selection_courses is None:
+                print(f"{self.__colors.get_red()} There is no approved courses ")
+                break
 
-                approved_lecture_json_array = request["ApprovedLectures"]
-                selected_lectures = request["SelectedLectures"]
+            request["ApprovedCourses"] = self.__selection_courses
 
-                approved_lab_json_array = request["ApprovedLabs"]
-                selected_labs = request["SelectedLabs"]
+            for course in self.__selection_courses:
+                if self.__id_to_course_lectures[student_id] is not None:
+                    for lecture in self.__id_to_course_lectures[student_id]:
+                        if lecture.count(course) > 0:
+                            request["ApprovedLectures"].append(lecture)
+                    
+                    for lab in self.__id_to_course_labs[student_id]:
+                        if lab.count(course) > 0:
+                            request["ApprovedLabs"].append(lab)
 
-                course_to_labs_temp = self.__id_to_course_labs[student_id]
-                course_to_lecture_temp = self.__id_to_course_lectures[student_id]
-
-                for course in self.__selection_courses:
-                    approved_courses_json_array.append(course)
-                    if course_to_labs_temp is not None and course_to_labs_temp.get(course) is not None:
-                        approved_lab_json_array.append(course_to_labs_temp.get(course))
-                    if course_to_lecture_temp is not None and course_to_lecture_temp.get(course) is not None:
-                        approved_lecture_json_array.append(course_to_lecture_temp.get(course))
-
-                selected_courses.clear()
-                selected_lectures.clear()
-                selected_labs.clear()
+            
+            request["SelectedCourses"] = []
+            request["SelectedLectures"] = []
+            request["SelectedLabs"] = []
 
         try:
             with open("./jsons/RegistrationRequests.json", "w") as request_file:
-                json.dump(self.__request_json, request_file)
+                json.dump(self.__request_file, request_file)
 
         except Exception as e:
             print(e)
 
     def __finalize_registration_menu(self):
-        self.__show_students()
-        print(f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.  Go back to the Advisor Course Registration Menu.\n")
-        print(f"{self.__colors.get_blue()}--> {self.__colors.get_reset()}Select student for finalization: ", end="")
+        
+        while True:
+            self.__show_students()
+            print(f"{self.__colors.get_yellow()} Select student to finalize registration {self.__colors.get_reset()}")
 
-        choice = int(input(Colors.BLUE))
-        advisor = self.__session.get_user()
-
-        if choice == 0:
-            return
-
-        cur_student = advisor.get_students()[choice - 1]
-        for_delete = None
-
-        for request_obj in self.__request_json:
-            for_delete = request_obj
-            finalized_array_list = []
-
-            request = request_obj
-            request_id = request["StudentID"]
-            if cur_student.get_id() != request_id:
-                continue
-
-            approved_courses_json_array = request["ApprovedCourses"]
-            if not approved_courses_json_array:
-                print(f"{self.__colors.get_yellow()}No courses to finalize! Please select a different student!{self.__colors.get_reset()}")
+            choice = int(input())
+            if choice == 0:
                 return
+            
+            student = self.__session.get_user().get_students()[choice - 1]
 
-            for course_obj in approved_courses_json_array:
-                course = course_obj
-                for course_list_obj in self.__course_json:
-                    course_list = course_list_obj
-                    course_id = course_list["CourseID"]
-                    if course == course_id:
-                        new_course_id = course_list["CourseID"]
-                        new_course_name = course_list["CourseName"]
-                        new_course_type = course_list["Type"]
-                        new_course_credit = course_list["Credit"]
-                        new_course_semester = course_list["Semester"]
-                        new_course_grade = 0.0
-
-                        new_course = {
-                            "CourseID": new_course_id,
-                            "CourseName": new_course_name,
-                            "Type": new_course_type,
-                            "Credit": new_course_credit,
-                            "Semester": new_course_semester,
-                            "Grade": new_course_grade
-                        }
-
-                        finalized_array_list.append(new_course)
-
-            filename = request_id + ".json"
-
-            try:
-                with open("./jsons/student/" + filename, "r") as student_file:
-                    student_obj = json.load(student_file)
-                    student = student_obj
-                    transcript_obj = student["Transcript"]
-                    sem_array = transcript_obj["Semester"]
-                    taken_courses = student["TakenCourses"]
-                    student_id = student["ID"]
-                    course_to_labs_temp = self.__id_to_course_labs[student_id]
-                    course_to_lecture_temp = self.__id_to_course_lectures[student_id]
-
-                    for course_obj in approved_courses_json_array:
-                        course = course_obj
-                        taken_courses.append(course)
-                        if course_to_labs_temp is not None and course_to_labs_temp.get(course) is not None:
-                            taken_courses.append(course_to_labs_temp.get(course))
-
-                        if course_to_lecture_temp is not None and course_to_lecture_temp.get(course) is not None:
-                            taken_courses.append(course_to_lecture_temp.get(course))
-
-                    new_courses = {
-                        "Courses": finalized_array_list
-                    }
-
-                    sem_array.append(new_courses)
-
-                with open("./jsons/student/" + filename, "w") as student_file:
-                    json.dump(student, student_file)
-
-                # send notification to student
-                receiver_id = student_id
-                description = "Advisor has finalized your courses!"
-                sender_id = advisor.get_id()
-                notification = NotificationsInterface(receiver_id, description, sender_id)
-                notification.send_notification(sender_id)
-
-                print(f"{self.__colors.get_blue()}If your selection is finished, you can press 0.{self.__colors.get_reset()}")
-
+            try: 
+                with open("./jsons/student/" + student.get_id() + ".json", "r") as student_file:
+                    student_data = json.load(student_file)
             except Exception as e:
                 print(e)
 
-        try:
-            self.__request_json.remove(for_delete)
+            for request in self.__request_file:
+                if request["StudentID"] != student.get_id():
+                    continue
+                
+                if request["ApprovedCourses"] is None:
+                    print(f"{self.__colors.get_red()} There is no approved courses ")
+                    break
 
-            with open("./jsons/RegistrationRequests.json", "w") as request_file:
-                json.dump(self.__request_json, request_file)
+                student_data["Transcript"]["Semester"].append({"Courses": []})
 
-        except Exception as e:
-            print(e)
+                for curr_course in request["ApprovedCourses"]:
+                    for course in self.__courses_file:
+                        if course["CourseID"] == curr_course:
+                            newCourse = {
+                                "CourseID": course["CourseID"],
+                                "CourseName": course["CourseName"],
+                                "Credit": course["Credit"],
+                                "Type": course["Type"],
+                                "Semester": course["Semester"],
+                                "Grade": str(0)
+                            }
+                            student_data["Transcript"]["Semester"][-1]["Courses"].append(newCourse)
+                
+                request.clear()
+                            
+            try: 
+                with open("./jsons/student/" + student.get_id() + ".json", "w") as student_file:
+                    json.dump(student_data, student_file)
+                
+                with open("./jsons/RegistrationRequests.json", "w") as request_file:
+                    json.dump(self.__request_file, request_file)
+            except Exception as e:
+                print(e)
