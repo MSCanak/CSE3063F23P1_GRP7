@@ -536,9 +536,11 @@ class StudentCourseRegistrationInterface:
                     print("\033[93mInvalid input\033[0m")
                     continue
 
-                selected_lecture = self.__available_lectures[int(choice) - 1]
-                selected_lab = self.__available_labs[int(lab_input) - 1]
-                has_conflict = self.__check_conflict(selected_lecture, selected_lab)
+                selected_lecture: Lecture = self.__available_lectures[int(choice) - 1]
+                selected_lab: Lab = self.__available_labs[int(lab_input) - 1]
+                has_conflict: bool = self.__check_conflict(
+                    selected_lecture, selected_lab
+                )
 
                 if has_conflict:
                     continue
@@ -546,8 +548,12 @@ class StudentCourseRegistrationInterface:
                 self.__save_available_courses(selected_lecture, selected_lab)
                 print("\033[92mSelected lecture and lab added !\033[0m")
             else:
-                selected_lecture = self.__available_lectures[int(choice) - 1]
-                self.__check_conflict(selected_lecture)
+                selected_lecture: Lecture = self.__available_lectures[int(choice) - 1]
+                has_conflict: bool = self.__check_conflict(selected_lecture)
+
+                if has_conflict:
+                    continue
+
                 self.__save_available_courses(selected_lecture)
                 print("\033[93mSelected lecture added only !\033[0m")
 
@@ -890,5 +896,3 @@ class StudentCourseRegistrationInterface:
 
         if selected_lab:
             print("Selected Lab: {}".format(selected_lab.get_lab_id()))
-
-        print("{}".format("\033[93m" + "Selected lecture and lab added !" + "\033[0m"))
