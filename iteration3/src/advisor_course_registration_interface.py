@@ -7,6 +7,7 @@ from session import Session
 class AdvisorCourseRegistrationInterface:
     def __init__(self, session : Session):
         self
+        self.__colors = Colors()
         self.__session = session
 
         self.__selection_courses = []
@@ -31,14 +32,14 @@ class AdvisorCourseRegistrationInterface:
 
     def adv_reg_menu(self):
         while True:
-            # print(Colors.BOLD + Colors.RED + "\n>> Advisor Course Registration Menu\n" + Colors.RESET + Colors.RESET)
-            # print(Colors.YELLOW + "1" + Colors.RESET + ".   Show Students")
-            # print(Colors.YELLOW + "2" + Colors.RESET + ".   Approve/Deny Courses")
-            # print(Colors.YELLOW + "3" + Colors.RESET + ".   Finalize Registration")
-            # print(Colors.YELLOW + "4" + Colors.RESET + ".   Messages Menu")
-            # print(Colors.YELLOW + "0" + Colors.RESET + ".   Go Back to Advisor Menu")
-            # print("\n" + Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ", end="")
-
+            print(f"{self.__colors.get_bold()}{self.__colors.get_red()}\n>> Advisor Course Registration Menu{self.__colors.get_reset()}{self.__colors.get_reset()}")
+            print(f"{self.__colors.get_yellow()}1{self.__colors.get_reset()}.   Show Students")
+            print(f"{self.__colors.get_yellow()}2{self.__colors.get_reset()}.   Approve/Deny Courses")
+            print(f"{self.__colors.get_yellow()}3{self.__colors.get_reset()}.   Finalize Registration")
+            print(f"{self.__colors.get_yellow()}4{self.__colors.get_reset()}.   Messages Menu")
+            print(f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.   Go Back to Advisor Menu")
+            print(f"\n{self.__colors.get_blue()}--> {self.__colors.get_reset()}What do you want to do?   ", end="")
+            
             choice = int(input())
 
             if choice == 1:
@@ -58,7 +59,7 @@ class AdvisorCourseRegistrationInterface:
     def __show_students(self):
         advisor = self.__session.get_user()
 
-        print(Colors.BOLD + Colors.RED + "\n>>> Students\n" + Colors.RESET + Colors.RESET)
+        print(f"{self.__colors.get_bold()}{self.__colors.get_red()}\n>>> Students{self.__colors.get_reset()}{self.__colors.get_reset()}")
         number_of_students = 1
         print("------------------------------------------------------------")
 
@@ -72,9 +73,10 @@ class AdvisorCourseRegistrationInterface:
         print("------------------------------------------------------------\n")
 
     def __show_students_question_part(self):
-        print(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Advisor Course Registration Menu.\n")
-        print(Colors.BLUE + "--> " + Colors.RESET + "What do you want to do?   ", end="")
-        choice1 = input(Colors.BLUE)
+        print(f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.  Go back to the Advisor Course Registration Menu.\n")
+        print(f"{self.__colors.get_blue()}--> {self.__colors.get_reset()}What do you want to do?   ", end="")
+        
+        choice1 = input()
 
         if choice1 == '0':
             return
@@ -85,21 +87,21 @@ class AdvisorCourseRegistrationInterface:
 
             self.__show_students()
 
-            print(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Advisor Course Registration Menu.\n")
-            print(Colors.BLUE + "--> " + Colors.RESET + "Select student for approval: ", end="")
-            choice = int(input(Colors.BLUE))
+            print(f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.  Go back to the Advisor Course Registration Menu.\n")
+            print(f"{self.__colors.get_blue()}--> {self.__colors.get_reset()}Select student for approval: ", end="")
+
+            choice = int(input())
             if choice == 0:
                 return
 
             student = advisor.get_students()[choice - 1]
             print()
-            print(Colors.GREEN + "Student ID: " + student.get_id() + "\n" +
-                  "Student Name: " + student.get_name() + " " + student.get_surname() + Colors.RESET + "\n")
+            print(f"{self.__colors.get_green()}Student ID: {student.get_id()}\nStudent Name: {student.get_name()} {student.get_surname()}{self.__colors.get_reset()}\n")
             student_id = student.get_id()
             self.__show_students_requested(student_id)
 
     def __show_students_requested(self, student_id):
-        print(Colors.BOLD + Colors.RED + "\n>>> Requested Courses\n" + Colors.RESET + Colors.RESET)
+        print(f"{self.__colors.get_bold()}{self.__colors.get_red()}\n>>> Requested Courses{self.__colors.get_reset()}{self.__colors.get_reset()}")
         for request_obj in self.__request_file:
             request_id = request_obj["StudentID"]
             if student_id != request_id:
@@ -110,27 +112,28 @@ class AdvisorCourseRegistrationInterface:
 
     def __approve_course(self, student_id):
         if not self.__id_to_courses:
-            print(Colors.YELLOW + "No courses to approve! Please select a different student!" + Colors.RESET)
+            print(f"{self.__colors.get_yellow()}No courses to approve! Please select a different student!{self.__colors.get_reset()}")
             return
 
-        print(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Advisor Course Registration Menu.")
-        print(Colors.BLUE + "\n--> " + Colors.RESET + "Select course to approve: ", end="")
+        print(f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.  Go back to the Advisor Course Registration Menu.")
+        print(f"{self.__colors.get_blue()}--> {self.__colors.get_reset()}Select course to approve: ", end="")
 
         while True:
-            choice = int(input(Colors.BLUE))
+            choice = int(input())
             if choice == 0:
                 break
 
             course = self.__id_to_courses[student_id][choice - 1]
             if course in self.__selection_courses:
-                print(Colors.YELLOW + "You have already approved this course! Press 0" + Colors.RESET)
+                print(f"{self.__colors.get_yellow()}You have already approved this course! Press 0{self.__colors.get_reset()}")
                 continue
             else:
                 self.__selection_courses.append(course)
+            
+            print(f"{self.__colors.get_green()}{course} is approved!{self.__colors.get_reset()}")
+            print(f"{self.__colors.get_blue()}If your selection is finished, you can press 0.{self.__colors.get_reset()}")
+            print(f"{self.__colors.get_red()}OR{self.__colors.get_blue()}\n--> Select course to approve: ", end="")
 
-            print(Colors.GREEN + course + " is approved!" + Colors.RESET)
-            print(Colors.BLUE + " If your selection is finished, you can press 0. " + Colors.RESET)
-            print(Colors.RED + " OR " + Colors.BLUE + "\n--> " + Colors.RESET + "Select course to approve: ", end="")
 
         self.__save_approval(student_id)
 
@@ -178,8 +181,9 @@ class AdvisorCourseRegistrationInterface:
 
     def __finalize_registration_menu(self):
         self.__show_students()
-        print(Colors.YELLOW + "0" + Colors.RESET + ".  Go back to the Advisor Course Registration Menu.\n")
-        print(Colors.BLUE + "--> " + Colors.RESET + "Select student for finalization: ", end="")
+        print(f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.  Go back to the Advisor Course Registration Menu.\n")
+        print(f"{self.__colors.get_blue()}--> {self.__colors.get_reset()}Select student for finalization: ", end="")
+
         choice = int(input(Colors.BLUE))
         advisor = self.__session.get_user()
 
@@ -200,7 +204,7 @@ class AdvisorCourseRegistrationInterface:
 
             approved_courses_json_array = request["ApprovedCourses"]
             if not approved_courses_json_array:
-                print(Colors.YELLOW + "No courses to finalize! Please select a different student!" + Colors.RESET)
+                print(f"{self.__colors.get_yellow()}No courses to finalize! Please select a different student!{self.__colors.get_reset()}")
                 return
 
             for course_obj in approved_courses_json_array:
@@ -265,7 +269,7 @@ class AdvisorCourseRegistrationInterface:
                 notification = NotificationsInterface(receiver_id, description, sender_id)
                 notification.send_notification(sender_id)
 
-                print(Colors.GREEN + "Courses of student " + student_id + " are finalized!" + Colors.RESET)
+                print(f"{self.__colors.get_blue()}If your selection is finished, you can press 0.{self.__colors.get_reset()}")
 
             except Exception as e:
                 print(e)
