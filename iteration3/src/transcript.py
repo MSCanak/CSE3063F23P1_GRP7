@@ -114,32 +114,28 @@ class Transcript:
         for i, semester in enumerate(self.__semesters):
             # displaying information for each semester
             print(
-                "-------------------------------------------------------------------------------------------------------------"
+                "--------------------------------------------------------------------------------------------------------------"
             )
             print(
-                f"{self.__colors.get_blue()}Semester {i + 1}\n{self.__colors.get_reset()}"
+                f"{self.__colors.get_blue()}Semester {i + 1}{self.__colors.get_reset()}"
             )
             print(self.__colors.get_yellow())
-            print(
-                "\t%-15s%-70s%-10s%-10s%n%n"
-                % ("Course Code", "Course Name", "Credit", "Grade")
-            )
+            print("{:<10}{:<15}{:<70}{:<10}{:<10}".format("","Course Code", "Course Name", "Credit", "Grade"))
+
             print(self.__colors.get_reset())
 
             for course in semester.get_courses():
                 # displaying course information
-                print(
-                    "\t%-15s%-70s%-10s%-10s"
-                    % (
-                        course.get_course_id(),
-                        course.get_course_name(),
-                        course.get_credit(),
-                        course.get_grade(),
-                    )
-                )
-
-            # new line
+                print("{:<10}{:<15}{:<70}{:<10}{:<10}".format(
+                    "",
+                    course.get_course_id(),
+                    course.get_course_name(),
+                    course.get_credit(),
+                    course.get_grade(),
+                ))
+            
             print()
+
 
             taken_credit = semester.get_taken_credit()
             if taken_credit != 0:
@@ -167,7 +163,7 @@ class Transcript:
             else:
                 print("Gano: N/A")
 
-            print()
+           
 
     def set_gano(self, gano: List[float]):
         self.__gano = gano
