@@ -34,6 +34,7 @@ class AdvisorCourseRegistrationInterface:
             self.__courses_file = json.load(open("./jsons/courses.json"))
 
         except Exception as e:
+            logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
             print(e)
 
     def adv_reg_menu(self):
@@ -278,6 +279,7 @@ class AdvisorCourseRegistrationInterface:
                 json.dump(self.__request_file, request_file)
 
         except Exception as e:
+            logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
             print(e)
 
     def __finalize_registration_menu(self):
@@ -299,6 +301,7 @@ class AdvisorCourseRegistrationInterface:
                 ) as student_file:
                     student_data = json.load(student_file)
             except Exception as e:
+                logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
                 print(e)
 
             for request in self.__request_file:
@@ -344,4 +347,5 @@ class AdvisorCourseRegistrationInterface:
                 with open("./jsons/RegistrationRequests.json", "w") as request_file:
                     json.dump(self.__request_file, request_file)
             except Exception as e:
+                logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
                 print(e)
