@@ -9,7 +9,7 @@ class MessagesInterface:
     def __init__(self, session: Session):
         self.__colors = Colors()
         self.__message_object = None
-        self.__message_json = None
+        self.__message_json = []
         self.__session = session
         self.__received_messages: List[Message] = []
         self.__sent_messages: List[Message] = []
