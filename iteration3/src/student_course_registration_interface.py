@@ -9,9 +9,12 @@ from course import Course
 from course_session import CourseSession
 from lecture import Lecture
 from lab import Lab
+import logging
+
 
 
 class StudentCourseRegistrationInterface:
+    logging.basicConfig(filename='./logs/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
     def __init__(self, session: Session):
         self.__session = session
 
@@ -36,6 +39,7 @@ class StudentCourseRegistrationInterface:
         try:
             return int(value)
         except ValueError:
+            logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), ValueError))
             return None
 
     def __check_conflict(
@@ -179,6 +183,8 @@ class StudentCourseRegistrationInterface:
             if not is_exists:
                 self.__registration_process = "Draft"
         except Exception as e:
+            logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
+
             print(e)
 
     def __selected_courses_menu(self) -> None:
@@ -479,14 +485,13 @@ class StudentCourseRegistrationInterface:
             print(
                 "\033[92mThe registration request sent to advisor successfully !\033[0m"
             )
+            logging.info("time: {}, User {} select courses".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id()))
 
-            self.__write_log(
-                f"StudentID: {self.__session.get_user().get_id()}, The registration request sent to advisor successfully !"
-            )
 
         except Exception as e:
-            print(e)
+            logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
 
+            print(e)
 
     def __available_courses_menu(self) -> None:
         while True:
@@ -543,6 +548,9 @@ class StudentCourseRegistrationInterface:
 
                 self.__save_available_courses(selected_lecture, selected_lab)
                 print("\033[92mSelected lecture and lab added !\033[0m")
+                logging.info("time: {}, User {} select courses".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id()))
+
+
             else:
                 selected_lecture: Lecture = self.__available_lectures[int(choice) - 1]
                 has_conflict: bool = self.__check_conflict(selected_lecture)
@@ -597,6 +605,7 @@ class StudentCourseRegistrationInterface:
                     if lecture.get_course_id() == available_course.get_course_id():
                         self.__available_lectures.append(lecture)
         except Exception as e:
+            logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
             print(e)
 
     def __calculate_available_labs(self, selected_lecture: Lecture) -> None:
@@ -611,6 +620,7 @@ class StudentCourseRegistrationInterface:
                     ):
                         self.__available_labs.append(lab)
         except Exception as e:
+            logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
             print(e)
 
     def __calculate_available_courses(self) -> None:
@@ -739,6 +749,7 @@ class StudentCourseRegistrationInterface:
                 self.__all_courses.append(course)
 
         except Exception as e:
+            logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
             print(e)
 
     def __set_all_lectures_and_labs(self) -> None:
@@ -820,6 +831,7 @@ class StudentCourseRegistrationInterface:
                         self.__all_labs.append(lab)
 
         except Exception as e:
+            logging.error("time: {}, User {} error {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), e))
             print(e)
 
     def __show_available_lectures(self) -> None:
