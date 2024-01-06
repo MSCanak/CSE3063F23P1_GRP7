@@ -222,7 +222,7 @@ class LoginInterface:
     def __check_user_login_info(self, file_name, id, password):
         while True:
             try:
-                with open("jsons/{}.json".format(file_name), "r") as reader:
+                with open("jsons/{}.json".format(file_name), "r", encoding='utf-8') as reader:
                     user_list = json.load(reader)
 
                     for user in user_list:
