@@ -354,8 +354,11 @@ class AdvisorInterface:
             + self.__colors.get_reset()
         )
 
-        print("---------------------------------------------------------")
-        print("|  Course ID  |  Course Name |")
+        print("------------------------------------------------------")
+        print("|  {:<11} |  {:<35}|".format(
+            "Course ID",
+            "Course Name",
+        ))
 
         for course in courses:
             if isinstance(course, Lecture):
@@ -363,10 +366,10 @@ class AdvisorInterface:
             else:
                 course_ids.append(course.get_lab_id())
 
-            print("---------------------------------------------------------")
+            print("------------------------------------------------------")
             print(f"|  {course_ids[-1]:<11} |  {course.get_course_name():<35}|")
 
-        print("---------------------------------------------------------\n")
+        print("------------------------------------------------------\n")
 
         while True:
             print(
@@ -385,6 +388,7 @@ class AdvisorInterface:
             )
             print(self.__colors.get_blue(), end="")
             case_token_line = input()
+            print(self.__colors.get_reset(), end="")
             if len(case_token_line) > 1:
                 print(
                     self.__colors.get_yellow()
@@ -395,6 +399,7 @@ class AdvisorInterface:
 
             case_token = case_token_line[0]
             print(self.__colors.get_reset(), end="")
+            
             if case_token == "0":
                 return
             else:
