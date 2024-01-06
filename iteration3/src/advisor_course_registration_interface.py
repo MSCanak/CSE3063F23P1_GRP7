@@ -41,7 +41,7 @@ class AdvisorCourseRegistrationInterface:
     def adv_reg_menu(self):
         while True:
             print(
-                f"{self.__colors.get_bold()}{self.__colors.get_red()}\n>> Advisor Course Registration Menu{self.__colors.get_reset()}{self.__colors.get_reset()}"
+                f"{self.__colors.get_bold()}{self.__colors.get_red()}\n>> Advisor Course Registration Menu\n{self.__colors.get_reset()}{self.__colors.get_reset()}"
             )
             print(
                 f"{self.__colors.get_yellow()}1{self.__colors.get_reset()}.   Show Students"
@@ -90,22 +90,21 @@ class AdvisorCourseRegistrationInterface:
         advisor = self.__session.get_user()
 
         print(
-            f"{self.__colors.get_bold()}{self.__colors.get_red()}\n>>> Students{self.__colors.get_reset()}{self.__colors.get_reset()}"
+            f"{self.__colors.get_bold()}{self.__colors.get_red()}\n>>> Students\n{self.__colors.get_reset()}{self.__colors.get_reset()}"
         )
         number_of_students = 1
         print("------------------------------------------------------------")
 
-        print("| %6s | %-11s | %-33s |" % ("Number", "Student ID", "Student Name"))
+        print("| {:>6} | {:<11} | {:<33} |".format("Number", "Student ID", "Student Name"))
+
         for student in advisor.get_students():
             print("------------------------------------------------------------")
-            print(
-                "| %-6s | %-11s | %-33s |"
-                % (
-                    number_of_students,
-                    student.get_id(),
-                    student.get_name() + " " + student.get_surname(),
-                )
-            )
+            print("| {:<6} | {:<11} | {:<33} |".format(
+                number_of_students,
+                student.get_id(),
+                student.get_name() + " " + student.get_surname(),
+            ))
+
             number_of_students += 1
 
         print("------------------------------------------------------------\n")
@@ -115,11 +114,16 @@ class AdvisorCourseRegistrationInterface:
             f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.  Go back to the Advisor Course Registration Menu.\n"
         )
         print(
-            f"{self.__colors.get_blue()}--> {self.__colors.get_reset()}What do you want to do?   ",
+            "\n"
+            + self.__colors.get_blue()
+            + "--> "
+            + self.__colors.get_reset()
+            + "What do you want to do?   ",
             end="",
         )
-
-        choice1 = input()
+        print(self.__colors.get_blue(), end="")
+        choice1= input()
+        print(self.__colors.get_reset(), end="")
 
         if choice1 == "0":
             return
@@ -138,14 +142,16 @@ class AdvisorCourseRegistrationInterface:
                 end="",
             )
 
-            choice = int(input())
+            print(self.__colors.get_blue(), end="")
+            choice= int(input())
+            print(self.__colors.get_reset(), end="")
             if choice == 0:
                 return
 
             student = advisor.get_students()[choice - 1]
             print()
             print(
-                f"{self.__colors.get_green()}Student ID: {student.get_id()}\nStudent Name: {student.get_name()} {student.get_surname()}{self.__colors.get_reset()}\n"
+                f"{self.__colors.get_green()}Student ID: {self.__colors.get_reset}{student.get_id()}\n{self.__colors.get_green()}Student Name: {self.__colors.get_reset}{student.get_name()} {student.get_surname()}\n"
             )
             student_id = student.get_id()
             self.__show_students_requested(student_id)
@@ -203,12 +209,17 @@ class AdvisorCourseRegistrationInterface:
 
         course_len = len(self.__id_to_courses[student_id])
         while True:
+            
+            print(self.__colors.get_blue(), end="")
             choice = int(input())
+            print(self.__colors.get_reset(), end="")
+
             if choice == 0:
                 break
             if choice > course_len:
                 print(
-                    f"{self.__colors.get_red()} invalid input {self.__colors.get_reset()}"
+                    f"{self.__colors.get_yellow()}Invalid input! Please give a number!{self.__colors.get_reset()}"
+
                 )
                 return
             course = self.__id_to_courses[student_id][choice - 1]
@@ -230,7 +241,11 @@ class AdvisorCourseRegistrationInterface:
                 f"{self.__colors.get_blue()}If your selection is finished, you can press 0.{self.__colors.get_reset()}"
             )
             print(
-                f"{self.__colors.get_red()}OR{self.__colors.get_blue()}\n--> Select course to approve: ",
+                f"\n"
+                + self.__colors.get_blue()
+                + "--> "
+                + self.__colors.get_reset()
+                + "Select course to approve: ",
                 end="",
             )
 
@@ -249,7 +264,7 @@ class AdvisorCourseRegistrationInterface:
                 continue
 
             if self.__selection_courses is None:
-                print(f"{self.__colors.get_red()} There is no approved courses ")
+                print(f"{self.__colors.get_red()} There is no approved courses {self.__colors.get_reset()}")
                 break
 
             request["ApprovedCourses"] = self.__selection_courses
@@ -287,11 +302,20 @@ class AdvisorCourseRegistrationInterface:
     def __finalize_registration_menu(self):
         while True:
             self.__show_students()
+
             print(
-                f"{self.__colors.get_yellow()} Select student to finalize registration {self.__colors.get_reset()}"
+            f"{self.__colors.get_yellow()}0{self.__colors.get_reset()}.  Go back to the Advisor Course Registration Menu."
+            )
+            print(
+                f"{self.__colors.get_blue()}--> {self.__colors.get_reset()}Select student to finalize registration: ",
+                end="",
             )
 
-            choice = int(input())
+            print(self.__colors.get_blue(), end="")
+            choice= int(input())
+            print(self.__colors.get_reset(), end="")
+
+            
             if choice == 0:
                 return
 
@@ -311,7 +335,7 @@ class AdvisorCourseRegistrationInterface:
                     continue
 
                 if request["ApprovedCourses"] is None:
-                    print(f"{self.__colors.get_red()} There is no approved courses ")
+                    print(f"{self.__colors.get_red()} There is no approved courses  {self.__colors.get_reset()}" )
                     break
 
                 student_data["Transcript"]["Semester"].append({"Courses": []})
