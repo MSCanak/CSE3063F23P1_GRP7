@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 import sys
+import logging
 
 from student_interface import StudentInterface
 from advisor_interface import AdvisorInterface
@@ -16,6 +17,7 @@ from session import Session
 
 
 class LoginInterface:
+    logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
     def __init__(self):
         self.__colors = Colors()
         self.__session: Session = None
@@ -49,12 +51,8 @@ class LoginInterface:
                                 self.__colors.get_green(), self.__colors.get_reset()
                             )
                         )
+                        logging.info("time: {}, User {} logged in.".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id()))
                         print("You will be directed to the Student Menu!\n")
-                        self.write_log(
-                            "Student {} logged in.".format(
-                                self.__session.get_user().get_id()
-                            )
-                        )
                         student_interface = StudentInterface(self.__session, self)
                         student_interface.stu_menu()
                     else:
@@ -86,13 +84,9 @@ class LoginInterface:
                                 self.__colors.get_green(), self.__colors.get_reset()
                             )
                         )
+                        logging.info("time: {}, User {} logged in.".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id()))
                         print("You will be directed to the Advisor Menu!\n")
-                        self.write_log(
-                            "Advisor {} logged in.".format(
-                                self.__session.get_user().get_id()
-                            )
-                        )
-                        advisor_interface = AdvisorInterface(session=self.__session)
+                        advisor_interface = AdvisorInterface(self.__session, self)
                         advisor_interface.adv_menu()
                     elif self.__check_user_login_info("lecturers", id, password):
                         self.__session = Session(self.__create_lecturer(id))
@@ -107,12 +101,8 @@ class LoginInterface:
                                 self.__colors.get_green(), self.__colors.get_reset()
                             )
                         )
+                        logging.info("time: {}, User {} logged in.".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id()))
                         print("You will be directed to the Lecturer Menu!\n")
-                        self.write_log(
-                            "Lecturer {} logged in.".format(
-                                self.__session.get_user().get_id()
-                            )
-                        )
                         advisor_interface = AdvisorInterface(self.__session, self)
                         advisor_interface.adv_menu()
                     else:
@@ -152,15 +142,13 @@ class LoginInterface:
                         self.__colors.get_green(), self.__colors.get_reset()
                     )
                 )
+                logging.info("time: {}, User {} logged out.".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id()))
                 print(
                     "{}{}Thank you for using Marmara Course Registration System{}".format(
                         self.__colors.get_red(),
                         self.__colors.get_bold(),
                         self.__colors.get_reset(),
                     )
-                )
-                self.write_log(
-                    "User {} logged out.".format(self.__session.get_user().get_id())
                 )
                 self.__session.set_user(None)
                 self.exit()
@@ -442,7 +430,3 @@ class LoginInterface:
         else:
             return None
 
-    def write_log(self, message: str):
-        with open("jsons/logs.json", "a") as f:
-            log = {"time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "log": message}
-            f.write(json.dumps(log) + "\n")

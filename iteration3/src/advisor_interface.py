@@ -6,14 +6,14 @@ from colors import Colors
 from weekly_schedule import WeeklySchedule
 from course_session_times import CourseSessionTimes
 
-
 class AdvisorInterface:
-    def __init__(self, session: Session):
+    def __init__(self, session: Session, login_int):
         self.__session = session
         self.__adv_course_reg_int = AdvisorCourseRegistrationInterface(
             session=self.__session
         )
         self.__colors = Colors()
+        self.__login_int = login_int
         
 
     def adv_menu(self):
