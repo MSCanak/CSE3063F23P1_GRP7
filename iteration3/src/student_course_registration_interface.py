@@ -162,7 +162,7 @@ class StudentCourseRegistrationInterface:
         try:
             student_id = self.__session.get_user().get_id()
             registration_requests_json = "jsons/RegistrationRequests.json"
-            with open(registration_requests_json, "r") as file:
+            with open(registration_requests_json, "r", encoding='utf-8') as file:
                 registration_requests_array = json.load(file)
 
             is_exists = False
@@ -446,7 +446,7 @@ class StudentCourseRegistrationInterface:
             existing_registration_array = []
 
             try:
-                with open("jsons/RegistrationRequests.json", "r") as file:
+                with open("jsons/RegistrationRequests.json", "r", encoding='utf-8') as file:
                     existing_registration_array = json.load(file)
             except json.JSONDecodeError:
                 pass
@@ -473,7 +473,7 @@ class StudentCourseRegistrationInterface:
 
             existing_registration_array.append(registration_json)
 
-            with open("jsons/RegistrationRequests.json", "w") as file:
+            with open("jsons/RegistrationRequests.json", "w", encoding='utf-8') as file:
                 json.dump(existing_registration_array, file)
 
             print(
@@ -487,10 +487,6 @@ class StudentCourseRegistrationInterface:
         except Exception as e:
             print(e)
 
-    def __write_log(self, message: str) -> None:
-        with open("jsons/logs.json", "a") as f:
-            log = {"time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "log": message}
-            f.write(json.dumps(log) + "\n")
 
     def __available_courses_menu(self) -> None:
         while True:
@@ -634,7 +630,7 @@ class StudentCourseRegistrationInterface:
         try:
             stu_id = self.__session.get_user().get_id()
             student_json = f"jsons/student/{stu_id}.json"
-            with open(student_json, "r") as file:
+            with open(student_json, "r", encoding='utf-8') as file:
                 student_data: list = json.load(file)
 
                 transcript = student_data["Transcript"]
@@ -701,7 +697,7 @@ class StudentCourseRegistrationInterface:
 
     def __get_all_courses(self) -> None:
         try:
-            with open("jsons/courses.json") as file:
+            with open("jsons/courses.json", encoding='utf-8') as file:
                 courses_array = json.load(file)
 
             for course_json in courses_array:
@@ -747,7 +743,7 @@ class StudentCourseRegistrationInterface:
 
     def __set_all_lectures_and_labs(self) -> None:
         try:
-            with open("jsons/CoursesOffered.json") as file:
+            with open("jsons/CoursesOffered.json", encoding='utf-8') as file:
                 courses_offered_array = json.load(file)
 
             for course_json in courses_offered_array:

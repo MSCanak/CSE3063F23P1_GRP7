@@ -2,6 +2,7 @@ from datetime import datetime
 import json
 import sys
 import logging
+import os
 
 from student_interface import StudentInterface
 from advisor_interface import AdvisorInterface
@@ -17,7 +18,7 @@ from session import Session
 
 
 class LoginInterface:
-    logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+    logging.basicConfig(filename='./logs/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
     def __init__(self):
         self.__colors = Colors()
         self.__session: Session = None
@@ -61,6 +62,7 @@ class LoginInterface:
                                 self.__colors.get_yellow(), self.__colors.get_reset()
                             )
                         )
+                        logging.warning("time: {}, User {} invalid password.".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), id))
                         continue
                 else:
                     print(
@@ -111,6 +113,7 @@ class LoginInterface:
                                 self.__colors.get_yellow(), self.__colors.get_reset()
                             )
                         )
+                        logging.warning("time: {}, User {} invalid password.".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), id))
                         continue
                 else:
                     print(

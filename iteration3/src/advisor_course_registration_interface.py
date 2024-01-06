@@ -2,9 +2,12 @@ import json
 from notification import Notification
 from colors import Colors
 from session import Session
+import logging
+from datetime import datetime
 
 # color need fix
 class AdvisorCourseRegistrationInterface:
+    logging.basicConfig(filename='./logs/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
     def __init__(self, session : Session):
         self
         self.__colors = Colors()
@@ -188,6 +191,9 @@ class AdvisorCourseRegistrationInterface:
             request["SelectedCourses"] = []
             request["SelectedLectures"] = []
             request["SelectedLabs"] = []
+        
+        logging.info("time: {}, User {} approve courses {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), student_id))
+
 
         try:
             with open("./jsons/RegistrationRequests.json", "w") as request_file:
@@ -238,6 +244,8 @@ class AdvisorCourseRegistrationInterface:
                             student_data["Transcript"]["Semester"][-1]["Courses"].append(newCourse)
                 
                 request.clear()
+                logging.info("time: {}, User {} finalized courses for {}.".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__session.get_user().get_id(), student.get_id()))
+
                             
             try: 
                 with open("./jsons/student/" + student.get_id() + ".json", "w") as student_file:
