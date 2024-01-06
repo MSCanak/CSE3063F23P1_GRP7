@@ -4,6 +4,7 @@ from colors import Colors
 from session import Session
 import logging
 from datetime import datetime
+from messages_interface import MessagesInterface
 
 
 # color need fix
@@ -76,7 +77,8 @@ class AdvisorCourseRegistrationInterface:
             elif choice == 3:
                 self.__finalize_registration_menu()
             elif choice == 4:
-                self.__messages_interface.messages_menu()
+                messages_interface = MessagesInterface(self.__session)
+                messages_interface.messages_menu()
             elif choice == 0:
                 return
             else:
