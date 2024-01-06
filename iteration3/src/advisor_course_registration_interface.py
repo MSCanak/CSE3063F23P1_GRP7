@@ -181,19 +181,19 @@ class AdvisorCourseRegistrationInterface:
 
             for course in self.__id_to_courses[student_id]:
                 print(
-                    f"{self.__colors.get_yellow()}{course}{self.__colors.get_reset()}"
+                    f"{self.__colors.get_yellow()}1{self.__colors.get_reset()} {course}"
                 )
                 if self.__id_to_course_lectures[student_id] is not None:
                     for lecture in self.__id_to_course_lectures[student_id]:
                         if lecture.count(course) > 0:
                             print(
-                                f"{self.__colors.get_yellow()}{lecture}{self.__colors.get_reset()}"
+                                f"      {lecture}"
                             )
                 if self.__id_to_course_labs[student_id] is not None:
                     for lab in self.__id_to_course_labs[student_id]:
                         if lab.count(course) > 0:
                             print(
-                                f"{self.__colors.get_yellow()}{lab}{self.__colors.get_reset()}"
+                                f"      {lab}"
                             )
                 self.__approve_course(student_id)
 
