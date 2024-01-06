@@ -46,6 +46,7 @@ class AdvisorInterface:
             )
             print(self.__colors.get_blue(), end="")
             choice = input()
+            print(self.__colors.get_reset(), end="")
 
             if choice == "1":
                 notifications_int = NotificationsInterface(self.__session)
