@@ -13,7 +13,7 @@ class NotificationsInterface:
 
     def __calculate_notifications(self):
         try:
-            with open("data/notifications.json", "r") as notification_file:
+            with open("jsons/notifications.json", "r") as notification_file:
                 notification_object = json.load(notification_file)
             for notification_json in notification_object:
                 if notification_json["receiverID"] == self.__person.get_id():

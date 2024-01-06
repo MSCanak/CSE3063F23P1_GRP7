@@ -29,7 +29,7 @@ class StudentCourseRegistrationInterface:
 
         self.__get_all_courses()  # Load all courses from courses.json
         self.__set_all_lectures_and_labs()  # Load all lectures and labs from CoursesOffered.json
-        self.__registration_process: str = None
+        self.__registration_process: str = 'Draft'
         self.__colors = Colors()
 
     def __try_parse_int(self, value: str) -> int or None:

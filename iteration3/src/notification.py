@@ -40,12 +40,12 @@ class Notification:
                 notifications: list = json.load(file)
 
             new_notification: dict = {
-                "receiver_id": self.__receiver_id,
-                "is_read": self.__is_read,
+                "receiverID": self.__receiver_id,
+                "isRead": self.__is_read,
                 "description": self.__description,
-                "time_sent": str(self.__time_sent),
-                "sender_id": sender_id,
-                "notification_id": self.__notification_id,
+                "timeSent": str(self.__time_sent),
+                "senderID": sender_id,
+                "notificationID": self.__notification_id,
             }
 
             notifications.append(new_notification)
