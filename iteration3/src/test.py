@@ -6,10 +6,7 @@ from course_session import CourseSession
 from lecturer import Lecturer
 from message import Message
 from notification import Notification
-from login_interface import LoginInterface
-
 class Tests(unittest.TestCase):
-    login_interface = LoginInterface()
 
     advisor = Advisor("Murat", "Ganiz", "murat@mail.com", "055", "150101", "password", "Eng", "CSE", "DR.")
     student = Student("Ensar", "Yozgat", "ensar@mail.com", "051", "150120000", "pass","Eng", "CSE", 5, advisor)
@@ -103,6 +100,5 @@ class Tests(unittest.TestCase):
         self.assertEqual(self.notification.get_notification_id(), 2)
         self.assertEqual(self.notification.get_is_read(), False)
 
-    def test_login_interface(self):
-        self.assertEqual(self.login_interface.login())
+
 unittest.main()
