@@ -160,6 +160,11 @@ class AdvisorCourseRegistrationInterface:
         print(
             f"{self.__colors.get_bold()}{self.__colors.get_red()}\n>>> Requested Courses{self.__colors.get_reset()}{self.__colors.get_reset()}"
         )
+        if not self.__request_file:
+            print(
+                f"{self.__colors.get_yellow()}There is no requested courses!{self.__colors.get_reset()}"
+            )
+            return
         for request_obj in self.__request_file:
             request_id = request_obj["StudentID"]
             if student_id != request_id:
